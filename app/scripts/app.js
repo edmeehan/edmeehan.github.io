@@ -1,5 +1,5 @@
 (function(){
   "use strict";
-  var app = angular.module('DropTheV', ['video-channels']);
+  var app = angular.module('DropTheV', ['controllers','directives']);
 
 })();

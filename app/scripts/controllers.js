@@ -1,5 +1,6 @@
 (function(){
-  var app = angular.module('video-channels', []);
+  "use strict";
+  var app = angular.module('controllers', []);
 
   app.controller('FeedController', ['$http','$log','$scope','$compile', function($http,$log,$scope,$compile) {
     
@@ -74,7 +75,7 @@
 
             break;
         };
-        
+
         this.$parent.channelVideo[0].src = videoSrc;
         angular.element(document.getElementById('masterChannel')).append(this.$parent.channelVideo);
             
