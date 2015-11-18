@@ -179,7 +179,7 @@
     /**
     * Get video feed and update ViewModel
     */
-    $http.get('//localhost/data/video_feed.json').then(
+    $http.get('/app/data/video_feed.json').then(
       function successCallback(response) {
         $scope.video_feed = response.data;
       },
