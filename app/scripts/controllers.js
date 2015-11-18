@@ -2,117 +2,178 @@
   "use strict";
   var app = angular.module('controllers', []);
 
-  app.controller('FeedController', ['$http','$log','$scope','$compile', function($http,$log,$scope,$compile) {
+  app.controller('FeedController', ['$http','$log','$scope','$sce','$timeout', function($http,$log,$scope,$sce,$timeout) {
     
     $scope.channels = [1,2,3];
-    $scope.vidAPI = [];
+    $scope.activeChannels = {};
 
     /**
     * Select video for channel
     */
-    $scope.selectVideo = function(vidObj){
-      var srcIndex = 'srcIndex' + this.$parent.$index;
-      var videoID = 'id' + Date.now();
-      var videoSrc = '';
+    $scope.selectVideo = function(){
+      var srcActive = 'srcActive_' + this.$parent.$index;
+      var channelObj = {};
       var that = this;
-      var vidAPI;
+      
+      if($scope[srcActive] !== this.$index){
 
-      var vimeoReady = function(){
-        that.$parent.status = 'warning';
-        that.$parent.chState = 'enabled';
+        $scope[srcActive] = this.$index;
+        channelObj.id = 'id' + Date.now();
+        channelObj.ch = this.$parent.ch;
+        channelObj.vid = this.vid;
+        channelObj.status = 'default';
 
-        that.$parent.vidAPI.api('seekTo', vidObj.src_LOC);
-      };
-
-      var youtubeReady = function(){
-        that.$parent.status = 'warning';
-        that.$parent.chState = 'enabled';
-
-        that.$parent.vidAPI.mute();
-        that.$parent.vidAPI.setPlaybackQuality('highres');
-        that.$parent.vidAPI.seekTo(vidObj.src_LOC, true);
-      };
-
-      if($scope[srcIndex] !== this.$index){
-        $scope[srcIndex] = this.$index;
-        //this.$parent.chState = 'enabled';
-
-        if(this.$parent.channelTag){
-          this.$parent.channelTag.remove();
-          this.$parent.channelVideo.remove();
-        }
-
-        // Add channel tag
-        this.$parent.channelTag = $compile('<li ng-class="status" ng-init="status = \'default\'" class="list-group-item">Ch ' + (this.$parent.$index + 1) + ' <span class="label label-default">Loading</span><span class="label label-warning">Ready</span><span class="label label-success">Playing</span></li>')(this.$parent);
-        angular.element(document.getElementById('activeChannels')).append(this.$parent.channelTag);
-
-        // Add video iframe
-        this.$parent.channelVideo = $compile('<iframe ng-class="playVideo" ng-init="playVideo = \'ch-hidden\'"  id="' + videoID + '" ></iframe>')(this.$parent);
-        
-        switch(vidObj.src_TYPE){
+        switch(this.vid.src_TYPE){
           case 1: //Vimeo
-            
-            videoSrc += 'https://player.vimeo.com/video/';
-            videoSrc += vidObj.src_ID;
-            videoSrc += '?api=1&title=0&portrait=0&byline=0&badge=0&autopause=0&autoplay=1&player_id=' + videoID;
-
-            // this.$parent.vidAPI = new Froogaloop(this.$parent.channelVideo[0]);
-            // this.$parent.vidAPI.addEvent('ready',vimeoReady);
-
+            channelObj.src = $sce.trustAsResourceUrl("//player.vimeo.com/video/" + this.vid.src_ID + "?api=1&title=0&portrait=0&byline=0&badge=0&autopause=0&player_id=" + channelObj.id);
             break;
           case 2: // YouTube
-            
-            videoSrc += 'https://www.youtube.com/embed/';
-            videoSrc += vidObj.src_ID;
-            videoSrc += '?enablejsapi=1&autoplay=0&autohide=0&control=0&origin=' + window.location.origin;
-
-            // this.$parent.vidAPI = new YT.Player(this.$parent.channelVideo[0], {
-            //   events: {
-            //     'onReady': youtubeReady,
-            //     //'onStateChange': function(){console.log('onstate change')}
-            //   }
-            // });
-
+            channelObj.src = $sce.trustAsResourceUrl("//www.youtube.com/embed/" + this.vid.src_ID + "?enablejsapi=1&autoplay=0&autohide=0&control=0&origin=" + window.location.origin);
             break;
-        };
-
-        this.$parent.channelVideo[0].src = videoSrc;
-        angular.element(document.getElementById('masterChannel')).append(this.$parent.channelVideo);
-            
+        }
+        // update active channels obj - init repeater
+        $scope.activeChannels[this.$parent.$index] = channelObj;
+        // set small delay so iframe dom updates
+        $timeout(function () {
+           $scope.$emit('iframeFinished',channelObj,that);
+        },0);
         
       }else{
-        $scope[srcIndex] = null;
-        vidObj = null;
-        this.$parent.chState = 'disabled';
-        this.$parent.channelTag.remove();
-        this.$parent.channelVideo.remove();
+        $scope[srcActive] = null;
+        delete $scope.activeChannels[this.$parent.$index];
       }
 
-      //$rootScope.$broadcast('videoSelected', vidObj, this.$parent.$index);
     };
 
     /**
     * Turn channel on and off
     */
     $scope.toggleChannel = function(){
-      var that = this;
-      debugger;
-      var paused = function(value){
-        //debugger;
-        if(value){
-          that.vidAPI.api('play');
-        }else{
-          that.vidAPI.api('pause');
+
+      if($scope.liveChannel !== this.$index){
+
+        if(!isNaN($scope.liveChannel)){ // switch channels
+          $scope.activeChannels[$scope.liveChannel].status = 'ready';
+          $scope.stopPlay($scope.liveChannel);
         }
+
+        $scope.liveChannel = this.$index;
+
+        if($scope.activeChannels[this.$index].status !== 'play'){
+          $scope.activeChannels[this.$index].status = 'play';
+          $scope.videoPlay(this.$index);
+        }else{
+          $scope.activeChannels[this.$index].status = 'ready';
+          $scope.stopPlay(this.$index);
+        }
+      }else{
+        $scope.activeChannels[this.$index].status = 'ready';
+        $scope.stopPlay(this.$index);
+        $scope.liveChannel = undefined;
+      }
+      //$scope.$apply();
+
+    };
+
+    /**
+    * Callback when iframe is loaded in DOM and ready for video API
+    */
+    $scope.$on('iframeFinished', function(init,obj,scope) {
+
+      var timeout, player, iframe = document.getElementById(obj.id);
+
+      switch(obj.vid.src_TYPE){
+        case 1: // Vimeo Player
+          player = $f(iframe);
+          $scope.activeChannels[scope.$parent.$index].api = player;
+
+          player.addEvent('ready',function(){
+            player.api('seekTo', obj.vid.src_LOC);
+            player.api('pause');
+            player.addEvent('loadProgress',function(event){
+              clearTimeout(timeout);
+              timeout = setTimeout(function() {
+                // vimeo has a 10sec buffer - this event fires when its done calling loadProgress
+                if($scope.activeChannels[scope.$parent.$index].status === 'default'){
+                  $scope.activeChannels[scope.$parent.$index].status = 'ready';
+                  scope.$parent.chState = 'enabled';
+                  $scope.$apply(); //TODO - need better option
+                }
+              }, 3000);
+              
+            });
+            // player.addEvent('playProgress',function(event){
+            //   console.log('PLAY',event);
+            // });
+            player.addEvent('finish',function(event){
+              player.api('seekTo', obj.vid.src_LOC);
+              $scope.activeChannels[scope.$parent.$index].status = 'ready';
+              $scope.$apply();
+            });
+          });
+          break;
+        case 2: // Youtube Player
+          player = new YT.Player(iframe,{
+            events: {
+              'onReady': function(data){
+                player.seekTo(obj.vid.src_LOC, true);
+                player.mute();
+
+                $scope.activeChannels[scope.$parent.$index].api = player;
+              },
+              'onStateChange': function(data){
+                if(data.data === 3){ // buffering
+                  if($scope.activeChannels[scope.$parent.$index].status !== 'play'){
+                    $scope.activeChannels[scope.$parent.$index].status = 'ready';
+                    scope.$parent.chState = 'enabled';
+                    $scope.$apply(); //TODO - need better option
+                  }
+                }
+                if(data.data === 0){ // finished
+                  player.seekTo(obj.vid.src_LOC, true);
+                  $scope.activeChannels[scope.$parent.$index].status = 'ready';
+                  $scope.$apply();
+                }
+              }
+            }
+          });
+          
+          break;
+      }
+    });
+
+    /**
+    * Play video for channel
+    */
+    $scope.videoPlay = function(channel){
+      var api = $scope.activeChannels[channel].api;
+
+      switch($scope.activeChannels[channel].vid.src_TYPE){
+        case 1: // Vimeo Player
+          api.api('play');
+          break;
+        case 2:
+          api.playVideo();
+          break;
       }
 
-      this.chState = (this.chState === 'active')? 'inactive' : 'active';
-      this.playVideo = (this.playVideo === 'ch-hidden')? 'ch-show' : 'ch-hidden';
-      this.status = (this.status === 'warning')? 'success' : 'warning';
+    };
 
-      this.vidAPI.api('paused',paused);
+    /**
+    * Stop video for channel
+    */
+    $scope.stopPlay = function(channel){
+      var api = $scope.activeChannels[channel].api;
 
-      //$rootScope.$broadcast('channelToggled', this.$index, this.chState);
+      switch($scope.activeChannels[channel].vid.src_TYPE){
+        case 1: // Vimeo Player
+          api.api('pause');
+          break;
+        case 2:
+          api.pauseVideo();
+          break;
+      }
+
     };
 
     /**

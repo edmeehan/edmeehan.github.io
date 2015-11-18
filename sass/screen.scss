@@ -31,10 +31,10 @@ iframe.soundcloud{
 			&.default .label-default{
 				display:inline;
 			}
-			&.warning .label-warning{
+			&.ready .label-warning{
 				display:inline;
 			}
-			&.success .label-success{
+			&.play .label-success{
 				display:inline;
 			}
 		}
@@ -47,10 +47,11 @@ iframe.soundcloud{
 			border:0;
 			width:100%;
 			height:100%;
-			&.ch-hidden{
+			//@include transition(opacity 200ms linear 4s);
+			&.default,&.ready{
 				opacity:0;
 			}
-			&.ch-show{
+			&.play{
 				opacity:1;
 			}
 		}
