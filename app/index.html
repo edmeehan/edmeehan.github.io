@@ -25,7 +25,7 @@
 								<span class="label label-success">Playing</span>
 							</li>
 						</ul>
-						<button class="btn btn-lg btn-primary">Broadcast</button>
+						<!-- <button class="btn btn-lg btn-primary">Broadcast</button> -->
 						<div class="channels" id="masterChannel">
 						<!-- repeat per active channel -->
 							<iframe data-ng-repeat="ch in activeChannels" data-ng-class="ch.status" data-ng-src="{{ ch.src }}" id="{{ ch.id }}"></iframe>
