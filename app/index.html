@@ -4,7 +4,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Drop The V</title>
   <link rel="stylesheet" href="styles/screen.css">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 </head>
 <body>
 	<div class="wrapper" data-ng-controller="FeedController">
@@ -26,21 +25,19 @@
 							</li>
 						</ul>
 						<!-- <button class="btn btn-lg btn-primary">Broadcast</button> -->
-						<div class="channels" id="masterChannel">
-						<!-- repeat per active channel -->
-							<iframe data-ng-repeat="ch in activeChannels" data-ng-class="ch.status" data-ng-src="{{ ch.src }}" id="{{ ch.id }}"></iframe>
-						</div>
+						<div class="channels" id="masterChannel"></div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 			<!-- repeat per channel -->
-				<div data-ng-class="'col-md-' + (12 / channels.length)" data-ng-repeat="ch in channels">
-					<div class="panel panel-default">
+				<div data-ng-class="'col-md-' + (12 / channels.length)" data-ng-repeat="ch in channels" class="channel">
+					<div data-ng-class="{'active': $parent.liveChannel === $index}" class="panel panel-default">
 						<div class="panel-heading">
-							<button data-ng-click="chState === 'disabled' || toggleChannel()" data-ng-init="chState = 'disabled'" data-ng-class="chState" class="btn btn-default pull-right btn-primary" type="button">Go Live</button>
+							<button data-ng-click="chState === 'disabled' || toggleChannel()" data-ng-init="chState = 'disabled'; toggleText = 'Go Live'" data-ng-class="chState" class="btn btn-default pull-right btn-primary" type="button">{{ toggleText }}</button>
 							<h4>Channel {{ ch }}</h4>
 						</div>
+						<div data-channel-preview class="channel-preview"></div>
 						<div class="list-group">
 			<!-- repeat per video source -->
 							<button data-ng-click="selectVideo()" data-ng-class="{'active': this['srcActive_' + $parent.$index] === $index}" data-ng-repeat="vid in video_feed.data" type="button" class="list-group-item">
@@ -54,8 +51,9 @@
 		</div>
 	</div>
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-  <!-- <script type="text/javascript" src="//f.vimeocdn.com/js/froogaloop2.min.js"></script> -->
-  <script type="text/javascript" src="scripts/froogaloop.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+  <script type="text/javascript" src="//f.vimeocdn.com/js/froogaloop2.min.js"></script>
+  <!-- <script type="text/javascript" src="scripts/froogaloop.js"></script> -->
   <script type="text/javascript" src="//www.youtube.com/iframe_api"></script>
   <script type="text/javascript" src="scripts/app.js"></script>
   <script type="text/javascript" src="scripts/controllers.js"></script>
