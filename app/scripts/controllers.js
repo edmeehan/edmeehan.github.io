@@ -1,3 +1,15 @@
+window.popupObj = null;
+/*
+ * postMessage Object
+ *
+
+{
+  t: string|type,
+  ch: int|channel,
+  a: string|action
+}
+*/
+
 (function($){
   "use strict";
   var app = angular.module('controllers', []);
@@ -6,6 +18,14 @@
     
     $scope.channels = [1,2,3];
     $scope.activeChannels = {};
+
+    /**
+    * Select video for channel
+    */
+    $scope.popupWindow = function(){
+      window.popupObj = window.open('popout.html','myWindow','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');
+      
+    };
 
     /**
     * Select video for channel
@@ -44,6 +64,19 @@
         $timeout(function () {
            $scope.$emit('iframeFinished',channelObj,that);
         },0);
+
+        // new video postMessage
+        if(window.popupObj !== null){
+          window.popupObj.postMessage({
+            t: 'video',
+            ch: this.$parent.ch,
+            a: {
+              type:this.vid.src_TYPE,
+              loc:this.vid.src_LOC,
+              id:this.vid.src_ID
+            }
+          },'*');
+        }
         
       }else{
         this.$parent.chState = 'disabled';
@@ -189,7 +222,7 @@
     /**
     * Get video feed and update ViewModel
     */
-    $http.get('/app/data/video_feed.json').then(
+    $http.get('data/video_feed.json').then(
       function successCallback(response) {
         $scope.video_feed = response.data;
       },
@@ -199,21 +232,6 @@
     );
 
   }]);
-
-  app.directive( 'channelPreview', function ( $compile ) {
-    return {
-      restrict: 'AE',
-      scope: { text: '@' },
-      template: '',
-      controller: function ( $scope, $element ) {
-        $scope.$parent.newVideo = function () {
-          var el = $compile( '<div><iframe data-ng-src="{{ channelObj.src }}" id="{{ channelObj.id }}"></iframe></div>' )( $scope.$parent );
-          $($element).children().remove();
-          $element.append( el );
-        };
-      }
-    };
-  });
   
   //jQuery Dom Ready
   $(function() {
