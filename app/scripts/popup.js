@@ -22,7 +22,7 @@
 	//new video player
 	var videoPlayer = function(obj){
 
-		var id, original, div, iframe;
+		var id, original, div, iframe, player;
 
 		id = 'player' + obj.ch;
 		original = document.getElementById(id);
@@ -50,6 +50,33 @@
 	  wrapper.appendChild(div);
 
 	  uniqueID++;
+
+	  /**
+	   * VIDEO API
+	  */
+
+	  switch(obj.a.type){
+        case 1: // Vimeo Player
+          player = $f(iframe);
+
+          player.addEvent('ready',function(){
+            player.api('setVolume',0);
+          });
+
+          break;
+        case 2: // Youtube Player
+          player = new YT.Player(iframe,{
+            events: {
+              'onReady': function(data){
+
+                player.mute();
+
+              },
+            }
+          });
+          
+          break;
+      }
 
 	};
 
