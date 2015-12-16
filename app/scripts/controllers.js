@@ -106,6 +106,17 @@ window.popupObj = null;
         $scope.liveChannel = this.$index;
         $scope.activeChannels[this.$index].status = 'play';
         iframe.parentElement.classList.add('fitVideo');
+
+        // new video postMessage
+        if(window.popupObj !== null){
+          window.popupObj.postMessage({
+            t: 'action',
+            ch: this.ch,
+            a: {
+              toggleClass:'active'
+            }
+          },'*');
+        }
         
       }else{
         $scope.activeChannels[this.$index].status = 'ready';
