@@ -5,4 +5,19 @@ $(function() {
 	}).on('hide.bs.dropdown', function (event) {
   	$('#siteHeader').removeClass('show-megamenu');
 	});
+
+	setTimeout(function(){
+		var $guide = $('#guide');
+		var $window = $(window);
+		var top = Math.round($guide.offset().top) - 100;
+
+		$window.scroll(function(){
+			if($window.scrollTop() > top){
+				$guide.addClass('active');
+				$window.off('scroll');
+			}
+		});
+
+	},500);
+
 });
