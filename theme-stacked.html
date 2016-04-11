@@ -230,9 +230,13 @@
                   <div class="dropdown-menu megamenu">
                     <div class="row">
                       <div class="col-md-7">
-                        <h4 class="blue">Our mission: become a marketing partner for the life of your business.</h4>
+                        <h4>Our mission: become a marketing partner for the life of your business.</h4>
                         <p>It's all about you and your goals. Period. We bring our passionate team, state-of-the-art tools, and intelligent solutions to help you succeed with direct marketing.</p>
                         <p>Located in California for over 20 years, Modern has successfully partnered with over 60,000 businesses. We're eager to learn more about your business and how we can help you grow, too.</p>
+                        <div class="row">
+                          <div class="col-md-6"><a href="http://www.modernpostcard.com/testimonials">Testimonials</a></div>
+                          <div class="col-md-6"><a href="http://www.modernpostcard.com/about">Learn more About Us</a></div>
+                        </div>
                       </div>
                       <div class="col-md-4 col-md-offset-1 contact-us" ng-include="'views/partials/megamenu-contactus.html'"></div>
                     </div>
@@ -266,6 +270,10 @@
         </nav>
       </div>
     </header>
+    <a href="" class="cta-flag" data-toggle="modal" data-target="#subscribe-modal">
+      <span class="hd">Exclusive Offer</span>
+      <span class="bd">Get monthly offers and marketing tips delivered by email.</span>
+    </a>
     <section ng-view><!-- views loaded here --></section> 
     <footer class="site-footer" id="siteFooter">
       <div class="container">
@@ -470,14 +478,86 @@
 
 <!-- Modal -->
 <div class="modal fade" id="call-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog callus" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Call Us</h4>
       </div>
       <div class="modal-body">
-        <h1>800-959-8365</h1>
+        <h4>&ldquo;Jennifer isn’t just a mail vendor.<br/>We have a relationship…she really understands us.&rdquo;</h4>
+        <p class="em">Amy A. from Walla Walla General Hospital, loyal customer since 2008.</p>
+        <p class="large">We've got real people with years of experience.</p>
+        <h2>800-959-8365</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="subscribe-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog subscribe" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3>Exclusive Offer</h3>
+        <p>Get monthly offers and marketing tips delivered by email.<br/>Join now and get <strong>20% OFF PRINT!</strong></p>
+      </div>
+      <div class="modal-body">
+        <form name="subscribe" action="/subscribe" method="post" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="emailinput">Email: <span class="required">*</span></label>
+            <div class="col-sm-7">
+              <input type="email" name="email" class="form-control" id="emailinput" placeholder="" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="fnameinput">First Name: <span class="required">*</span></label>
+            <div class="col-sm-7">
+              <input type="text" name="firstname" class="form-control" id="fnameinput" placeholder="" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="lnameinput">Last Name:</label>
+            <div class="col-sm-7">
+              <input type="text" name="lastname" class="form-control" id="lnameinput" placeholder="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="zipinput">Zip Code:</label>
+            <div class="col-sm-7">
+              <input type="number" name="zip" class="form-control" id="zipinput" placeholder="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="companyinput">Company:</label>
+            <div class="col-sm-7">
+              <input type="text" name="company" class="form-control" id="companyinput" placeholder="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="industryinput">Industry:</label>
+            <div class="col-sm-7">
+              <select name="industry" id="industryinput" class="form-control">
+                <option selected="true" value="" disabled="disabled">Select option</option><option>Agency</option><option>Arts</option><option>Architecture</option><option>Culture</option><option>Education</option><option>Fashion</option><option>Financial</option><option>Fitness</option><option>Home Decor</option><option>Hospitality</option><option>Industrial</option><option>Medical</option><option>Non-Profit</option><option>Photography</option><option>Publishing</option><option>Real Estate</option><option>Retail</option><option>Technology</option><option>Graphic Design</option><option>Marketing</option><option>Student</option><option>Automotive</option><option>Music</option><option>Event Planning</option><option>Restaurant</option><option>Home/Office Remodeling</option><option>Insurance</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-7">
+              <div class="checkbox">
+                <label>
+                  <input checked="checked" value="1" type="checkbox"> <strong>YES!</strong> I would like to receive monthly offers, tips and news by email from Modern.
+Sign up now and you’ll get a 20% OFF PRINT discount code emailed to you right away.
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-7">
+              <button type="submit" class="btn btn-primary btn-block btn-lg">Sign Up!</button>
+            </div>
+          </div>
+        </form>
+        <p><span class="required">*</span> Required Fields. Modern Postcard does not share personal information with third parties.</p>
       </div>
     </div>
   </div>

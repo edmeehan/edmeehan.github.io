@@ -18,6 +18,12 @@ $(function() {
 			}
 		});
 
+		$(".continue").click(function() {
+	    $('html, body').animate({
+        scrollTop: $($(this).data().next).offset().top
+	    }, 2000);
+		});
+
 	},500);
 
 });
