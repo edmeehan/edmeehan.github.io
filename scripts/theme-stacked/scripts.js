@@ -24,6 +24,10 @@ $(function() {
 	    }, 2000);
 		});
 
+		$('#subscribe-modal').on('show.bs.modal', function (e) {
+		  $('#emailinput').val($('#promotion-cta').val());
+		});
+
 	},500);
 
 });

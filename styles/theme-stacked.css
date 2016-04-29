@@ -5291,50 +5291,78 @@ blockquote p::after {
 }
 
 /* line 62, ../../sass/theme-stacked.scss */
-.cta-flag {
+#guide {
+  overflow: hidden;
+}
+
+/* line 66, ../../sass/theme-stacked.scss */
+.cta-tag {
   position: fixed;
   right: 0;
   top: 450px;
   background-color: #d75d1a;
   color: #fff;
-  text-transform: uppercase;
-  padding: 16px 20px 16px 30px;
+  padding: 18px 20px;
   border-radius: 12px 0 0 12px;
-  max-width: 215px;
+  max-width: 260px;
   z-index: 500;
 }
-/* line 73, ../../sass/theme-stacked.scss */
-.cta-flag:hover {
-  text-decoration: none;
-  color: inherit;
+/* line 76, ../../sass/theme-stacked.scss */
+.cta-tag .hd {
+  font-size: 23px;
+  font-weight: normal;
+  margin: 0;
 }
-/* line 77, ../../sass/theme-stacked.scss */
-.cta-flag span {
-  display: block;
-}
-/* line 83, ../../sass/theme-stacked.scss */
-.cta-flag .bd {
-  font-size: 12px;
+/* line 81, ../../sass/theme-stacked.scss */
+.cta-tag .bd {
+  font-size: 18px;
   line-height: 1em;
+  font-weight: 100;
+  line-height: 26px;
+}
+/* line 88, ../../sass/theme-stacked.scss */
+.cta-tag .bd p {
+  margin: 0 0 8px;
+}
+/* line 91, ../../sass/theme-stacked.scss */
+.cta-tag .bd input {
+  width: 150px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  color: black;
+}
+/* line 99, ../../sass/theme-stacked.scss */
+.cta-tag .bd button {
+  margin-left: 5px;
+  border-radius: 8px;
+  padding: 5px 11px 4px;
+  border: none;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 400;
+  position: relative;
+  top: -1px;
 }
 
-/* line 89, ../../sass/theme-stacked.scss */
+/* line 113, ../../sass/theme-stacked.scss */
 .blue {
   color: #1598c8 !important;
 }
 
 /* --------------------- SITE HEADER ----------------------- */
-/* line 93, ../../sass/theme-stacked.scss */
+/* line 117, ../../sass/theme-stacked.scss */
 .site-header {
   background-color: #0e1825;
 }
-/* line 96, ../../sass/theme-stacked.scss */
+/* line 120, ../../sass/theme-stacked.scss */
 .site-header .navbar {
   margin-bottom: 0;
   border: 0;
   font-weight: 300;
 }
-/* line 100, ../../sass/theme-stacked.scss */
+/* line 124, ../../sass/theme-stacked.scss */
 .site-header .navbar-brand {
   padding: 0 8px 0;
   border-radius: 6px;
@@ -5342,32 +5370,32 @@ blockquote p::after {
   height: 52px;
   overflow: hidden;
 }
-/* line 106, ../../sass/theme-stacked.scss */
+/* line 130, ../../sass/theme-stacked.scss */
 .site-header .navbar-brand svg {
   height: 100%;
 }
-/* line 109, ../../sass/theme-stacked.scss */
+/* line 133, ../../sass/theme-stacked.scss */
 .site-header .navbar-brand .mp-logo {
   fill: #fff;
 }
-/* line 113, ../../sass/theme-stacked.scss */
+/* line 137, ../../sass/theme-stacked.scss */
 .site-header .navbar-text {
   font-size: 1.625em;
   /* 26/16 */
 }
-/* line 116, ../../sass/theme-stacked.scss */
+/* line 140, ../../sass/theme-stacked.scss */
 .site-header .navbar ul.nav {
   margin-right: 35px;
 }
-/* line 118, ../../sass/theme-stacked.scss */
+/* line 142, ../../sass/theme-stacked.scss */
 .site-header .navbar ul.nav li {
   margin-right: 25px;
 }
-/* line 122, ../../sass/theme-stacked.scss */
+/* line 146, ../../sass/theme-stacked.scss */
 .site-header .navbar ul.nav .menu-large {
   position: static;
 }
-/* line 124, ../../sass/theme-stacked.scss */
+/* line 148, ../../sass/theme-stacked.scss */
 .site-header .navbar ul.nav .menu-large a::before {
   content: '';
   width: 0;
@@ -5381,15 +5409,15 @@ blockquote p::after {
   margin-left: -10px;
   transition: bottom 800ms;
 }
-/* line 138, ../../sass/theme-stacked.scss */
+/* line 162, ../../sass/theme-stacked.scss */
 .site-header .navbar ul.nav .menu-large.open .megamenu {
   height: 310px;
 }
-/* line 141, ../../sass/theme-stacked.scss */
+/* line 165, ../../sass/theme-stacked.scss */
 .site-header .navbar ul.nav .menu-large.open a::before {
   bottom: -14px;
 }
-/* line 146, ../../sass/theme-stacked.scss */
+/* line 170, ../../sass/theme-stacked.scss */
 .site-header .navbar ul.nav .megamenu {
   width: 100%;
   display: block;
@@ -5402,12 +5430,12 @@ blockquote p::after {
   overflow: hidden;
   padding: 0;
 }
-/* line 158, ../../sass/theme-stacked.scss */
+/* line 182, ../../sass/theme-stacked.scss */
 .site-header .navbar ul.nav .megamenu p {
   line-height: 1.3em;
   margin-bottom: .9em;
 }
-/* line 162, ../../sass/theme-stacked.scss */
+/* line 186, ../../sass/theme-stacked.scss */
 .site-header .navbar ul.nav .megamenu::before {
   content: '';
   display: block;
@@ -5417,7 +5445,7 @@ blockquote p::after {
   left: 61%;
   background-color: #ccc;
 }
-/* line 171, ../../sass/theme-stacked.scss */
+/* line 195, ../../sass/theme-stacked.scss */
 .site-header .navbar ul.nav .megamenu h4 {
   color: #6d6e71;
   font-size: 22px;
@@ -5425,43 +5453,43 @@ blockquote p::after {
   margin-top: 40px;
   margin-bottom: 25px;
 }
-/* line 182, ../../sass/theme-stacked.scss */
+/* line 206, ../../sass/theme-stacked.scss */
 .site-header .icon-list {
   list-style: none;
   margin: 0 0 25px;
   padding: 0;
   overflow: hidden;
 }
-/* line 188, ../../sass/theme-stacked.scss */
+/* line 212, ../../sass/theme-stacked.scss */
 .site-header .icon-list.no-float > li {
   float: none;
 }
-/* line 192, ../../sass/theme-stacked.scss */
+/* line 216, ../../sass/theme-stacked.scss */
 .site-header .icon-list > li {
   width: 45%;
   float: left;
   margin-right: 0 !important;
   margin-bottom: 10px;
 }
-/* line 197, ../../sass/theme-stacked.scss */
+/* line 221, ../../sass/theme-stacked.scss */
 .site-header .icon-list > li:nth-child(2n+1) {
   clear: left;
 }
-/* line 201, ../../sass/theme-stacked.scss */
+/* line 225, ../../sass/theme-stacked.scss */
 .site-header .icon-list ul {
   list-style: inherit;
   margin-top: -36px;
   padding-left: 45px;
 }
-/* line 205, ../../sass/theme-stacked.scss */
+/* line 229, ../../sass/theme-stacked.scss */
 .site-header .icon-list ul li {
   line-height: 1.3em;
 }
-/* line 208, ../../sass/theme-stacked.scss */
+/* line 232, ../../sass/theme-stacked.scss */
 .site-header .icon-list ul a {
   line-height: 1em;
 }
-/* line 212, ../../sass/theme-stacked.scss */
+/* line 236, ../../sass/theme-stacked.scss */
 .site-header .icon-list a {
   font-size: 16px;
   font-weight: 300;
@@ -5469,78 +5497,78 @@ blockquote p::after {
   line-height: 32px;
   text-decoration: none;
 }
-/* line 219, ../../sass/theme-stacked.scss */
+/* line 243, ../../sass/theme-stacked.scss */
 .site-header .icon-list svg {
   width: 42px;
   height: 42px;
   vertical-align: middle;
 }
-/* line 225, ../../sass/theme-stacked.scss */
+/* line 249, ../../sass/theme-stacked.scss */
 .site-header .contact-us {
   text-align: center;
   color: #1598c8;
 }
-/* line 228, ../../sass/theme-stacked.scss */
+/* line 252, ../../sass/theme-stacked.scss */
 .site-header .contact-us h5 {
   font-size: 26px;
   margin: 50px 0 0;
   font-weight: 300;
 }
-/* line 233, ../../sass/theme-stacked.scss */
+/* line 257, ../../sass/theme-stacked.scss */
 .site-header .contact-us p {
   margin-bottom: 8px;
 }
-/* line 236, ../../sass/theme-stacked.scss */
+/* line 260, ../../sass/theme-stacked.scss */
 .site-header .contact-us > div {
   background: url("/images/theme-stacked/contact-us.png") no-repeat top right;
   padding-right: 160px;
   padding-left: 20px;
   background-size: contain;
 }
-/* line 244, ../../sass/theme-stacked.scss */
+/* line 268, ../../sass/theme-stacked.scss */
 .site-header .contact-us .btn {
   padding: 10px 0;
 }
 @media (min-width: 768px) {
-  /* line 93, ../../sass/theme-stacked.scss */
+  /* line 117, ../../sass/theme-stacked.scss */
   .site-header {
     margin-bottom: 0;
     transition: margin-bottom 800ms;
   }
-  /* line 253, ../../sass/theme-stacked.scss */
+  /* line 277, ../../sass/theme-stacked.scss */
   .site-header .navbar .nav {
     margin-top: 11px;
   }
-  /* line 260, ../../sass/theme-stacked.scss */
+  /* line 284, ../../sass/theme-stacked.scss */
   .site-header.show-megamenu {
     margin-bottom: 310px;
   }
 }
 
 /* --------------------- SITE FOOTER ----------------------- */
-/* line 266, ../../sass/theme-stacked.scss */
+/* line 290, ../../sass/theme-stacked.scss */
 .site-footer {
   background-color: #0e1825;
   padding: 2em 0;
   /* 32/16 */
   font-weight: 300;
 }
-/* line 271, ../../sass/theme-stacked.scss */
+/* line 295, ../../sass/theme-stacked.scss */
 .site-footer nav ul {
   list-style: none;
 }
-/* line 274, ../../sass/theme-stacked.scss */
+/* line 298, ../../sass/theme-stacked.scss */
 .site-footer nav li {
   margin: 7px 0;
   line-height: 1em;
 }
-/* line 278, ../../sass/theme-stacked.scss */
+/* line 302, ../../sass/theme-stacked.scss */
 .site-footer nav a {
   color: #c5c8cd;
   font-size: 0.75em;
   /* 12/16 */
 }
-/* line 283, ../../sass/theme-stacked.scss */
+/* line 307, ../../sass/theme-stacked.scss */
 .site-footer nav h5 {
   color: #1598c8;
   font-weight: 400;
@@ -5548,7 +5576,7 @@ blockquote p::after {
   /* 18/16 */
   margin: inherit;
 }
-/* line 290, ../../sass/theme-stacked.scss */
+/* line 314, ../../sass/theme-stacked.scss */
 .site-footer .social-icons {
   color: #7a8089;
   list-style: none;
@@ -5559,20 +5587,20 @@ blockquote p::after {
   padding: 0;
   text-align: center;
 }
-/* line 298, ../../sass/theme-stacked.scss */
+/* line 322, ../../sass/theme-stacked.scss */
 .site-footer .social-icons li {
   display: inline-block;
 }
-/* line 300, ../../sass/theme-stacked.scss */
+/* line 324, ../../sass/theme-stacked.scss */
 .site-footer .social-icons li:first-child {
   display: block;
   font-weight: 100;
 }
-/* line 305, ../../sass/theme-stacked.scss */
+/* line 329, ../../sass/theme-stacked.scss */
 .site-footer .social-icons a {
   color: inherit;
 }
-/* line 309, ../../sass/theme-stacked.scss */
+/* line 333, ../../sass/theme-stacked.scss */
 .site-footer .copyright {
   text-align: center;
   font-size: 0.75em;
@@ -5580,39 +5608,39 @@ blockquote p::after {
   line-height: 1.2em;
   color: white;
 }
-/* line 315, ../../sass/theme-stacked.scss */
+/* line 339, ../../sass/theme-stacked.scss */
 .site-footer .mail-service {
   color: #7a8089;
   font-size: 0.75em;
   /* 12/16 */
   line-height: 1.2em;
 }
-/* line 319, ../../sass/theme-stacked.scss */
+/* line 343, ../../sass/theme-stacked.scss */
 .site-footer .mail-service .spriteables-footer-logos {
   height: 41px;
   width: 254px;
   margin: 0 auto .666em;
   background-position: center center;
 }
-/* line 325, ../../sass/theme-stacked.scss */
+/* line 349, ../../sass/theme-stacked.scss */
 .site-footer .mail-service a {
   color: inherit;
   text-decoration: underline;
 }
 @media (max-width: 767px) {
-  /* line 336, ../../sass/theme-stacked.scss */
+  /* line 360, ../../sass/theme-stacked.scss */
   .site-footer nav li {
     width: 33.2%;
     float: left;
     padding-right: 8px;
     margin: 2px 0;
   }
-  /* line 341, ../../sass/theme-stacked.scss */
+  /* line 365, ../../sass/theme-stacked.scss */
   .site-footer nav li:first-child {
     float: none;
     width: auto;
   }
-  /* line 346, ../../sass/theme-stacked.scss */
+  /* line 370, ../../sass/theme-stacked.scss */
   .site-footer nav a {
     padding: 2px 0;
     display: inline-block;
@@ -5620,63 +5648,63 @@ blockquote p::after {
   }
 }
 @media (max-width: 480px) {
-  /* line 355, ../../sass/theme-stacked.scss */
+  /* line 379, ../../sass/theme-stacked.scss */
   .site-footer nav li {
     width: 50%;
   }
 }
 @media (min-width: 480px) {
-  /* line 361, ../../sass/theme-stacked.scss */
+  /* line 385, ../../sass/theme-stacked.scss */
   .site-footer nav {
     margin-bottom: 1.5em;
   }
-  /* line 367, ../../sass/theme-stacked.scss */
+  /* line 391, ../../sass/theme-stacked.scss */
   .site-footer .social-icons li:first-child {
     display: inline-block;
   }
 }
 @media (min-width: 768px) {
-  /* line 266, ../../sass/theme-stacked.scss */
+  /* line 290, ../../sass/theme-stacked.scss */
   .site-footer {
     padding: 5.625em 0;
     /* 90/16 */
   }
-  /* line 375, ../../sass/theme-stacked.scss */
+  /* line 399, ../../sass/theme-stacked.scss */
   .site-footer .social-icons {
     margin-bottom: 2em;
   }
-  /* line 377, ../../sass/theme-stacked.scss */
+  /* line 401, ../../sass/theme-stacked.scss */
   .site-footer .social-icons li {
     font-size: 1.3em;
     line-height: 1em;
   }
-  /* line 380, ../../sass/theme-stacked.scss */
+  /* line 404, ../../sass/theme-stacked.scss */
   .site-footer .social-icons li:first-child {
     font-size: inherit;
     vertical-align: text-top;
   }
-  /* line 387, ../../sass/theme-stacked.scss */
+  /* line 411, ../../sass/theme-stacked.scss */
   .site-footer .mail-service .spriteables-footer-logos {
     margin: 0 2em 0 0;
     float: left;
   }
 }
 @media (min-width: 992px) {
-  /* line 394, ../../sass/theme-stacked.scss */
+  /* line 418, ../../sass/theme-stacked.scss */
   .site-footer .mail-service {
     width: 75%;
     margin: 0 auto;
   }
 }
 @media (min-width: 1200px) {
-  /* line 401, ../../sass/theme-stacked.scss */
+  /* line 425, ../../sass/theme-stacked.scss */
   .site-footer .mail-service .spriteables-footer-logos {
     margin-top: -6px;
   }
 }
 
 /* ---------------------- JUMBOTRON ------------------------ */
-/* line 409, ../../sass/theme-stacked.scss */
+/* line 433, ../../sass/theme-stacked.scss */
 .jumbotron.top {
   background-color: #2C2944;
   padding: 150px 0;
@@ -5719,7 +5747,7 @@ blockquote p::after {
   color: #fff;
   border-color: #fff;
 }
-/* line 413, ../../sass/theme-stacked.scss */
+/* line 437, ../../sass/theme-stacked.scss */
 .jumbotron.blockquote {
   background-color: #2C2944;
   padding: 150px 0;
@@ -5772,11 +5800,20 @@ blockquote p::after {
 .jumbotron.blockquote blockquote cite::before {
   content: "- Source: ";
 }
-/* line 417, ../../sass/theme-stacked.scss */
+/* line 440, ../../sass/theme-stacked.scss */
+.jumbotron .feedback {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #a2a6b1;
+}
+/* line 448, ../../sass/theme-stacked.scss */
 .jumbotron .eye-contact-1 {
   position: static;
 }
-/* line 419, ../../sass/theme-stacked.scss */
+/* line 450, ../../sass/theme-stacked.scss */
 .jumbotron .eye-contact-1::before {
   content: '';
   display: block;
@@ -5787,7 +5824,7 @@ blockquote p::after {
   width: 280px;
   height: 469px;
 }
-/* line 431, ../../sass/theme-stacked.scss */
+/* line 462, ../../sass/theme-stacked.scss */
 .jumbotron .continue {
   display: block;
   position: absolute;
@@ -5805,7 +5842,7 @@ blockquote p::after {
   -webkit-animation: bounce2 2s ease-in-out infinite;
   animation: bounce2 2s ease-in-out infinite;
 }
-/* line 446, ../../sass/theme-stacked.scss */
+/* line 477, ../../sass/theme-stacked.scss */
 .jumbotron .continue::after {
   content: '\f078';
   font-family: FontAwesome;
@@ -5815,7 +5852,7 @@ blockquote p::after {
   color: rgba(255, 255, 255, 0.4);
   position: absolute;
 }
-/* line 455, ../../sass/theme-stacked.scss */
+/* line 486, ../../sass/theme-stacked.scss */
 .jumbotron .continue::before {
   content: '';
   display: block;
@@ -5827,7 +5864,7 @@ blockquote p::after {
 }
 
 /* ---------------------- MOD ------------------------ */
-/* line 467, ../../sass/theme-stacked.scss */
+/* line 498, ../../sass/theme-stacked.scss */
 .mod-block {
   text-align: center;
   font-size: 1.625em;
@@ -5835,41 +5872,41 @@ blockquote p::after {
   font-weight: 300;
   padding: .769em 0;
 }
-/* line 473, ../../sass/theme-stacked.scss */
+/* line 504, ../../sass/theme-stacked.scss */
 .mod-block a {
   color: inherit;
   text-decoration: underline;
 }
-/* line 477, ../../sass/theme-stacked.scss */
+/* line 508, ../../sass/theme-stacked.scss */
 .mod-block blockquote {
   font-size: inherit;
   line-height: 1.3em;
 }
-/* line 480, ../../sass/theme-stacked.scss */
+/* line 511, ../../sass/theme-stacked.scss */
 .mod-block blockquote cite {
   font-style: normal;
   font-weight: 100;
 }
-/* line 483, ../../sass/theme-stacked.scss */
+/* line 514, ../../sass/theme-stacked.scss */
 .mod-block blockquote cite::before {
   content: '- ';
 }
-/* line 489, ../../sass/theme-stacked.scss */
+/* line 520, ../../sass/theme-stacked.scss */
 .mod-block-blueish {
   color: #fff;
   background-color: #10759a;
 }
-/* line 493, ../../sass/theme-stacked.scss */
+/* line 524, ../../sass/theme-stacked.scss */
 .mod-block-orange {
   color: #fff;
   background-color: #d75d1a;
 }
-/* line 498, ../../sass/theme-stacked.scss */
+/* line 529, ../../sass/theme-stacked.scss */
 .mod-block-md {
   padding: 1.4em 0;
 }
 
-/* line 502, ../../sass/theme-stacked.scss */
+/* line 533, ../../sass/theme-stacked.scss */
 .mod-card {
   background-color: #f8f8f8;
   border-radius: 10px;
@@ -5877,20 +5914,20 @@ blockquote p::after {
   padding: 45px 20px 38px;
   color: #161616;
 }
-/* line 509, ../../sass/theme-stacked.scss */
+/* line 540, ../../sass/theme-stacked.scss */
 .mod-card h3 {
   font-size: 24px;
   font-weight: 300;
   margin: 0 0 8px;
   color: #1598c8;
 }
-/* line 515, ../../sass/theme-stacked.scss */
+/* line 546, ../../sass/theme-stacked.scss */
 .mod-card p {
   font-size: 15px;
   font-weight: 300;
   margin: 0 0 16px;
 }
-/* line 520, ../../sass/theme-stacked.scss */
+/* line 551, ../../sass/theme-stacked.scss */
 .mod-card .btn {
   padding: 0.777em 2.222em;
   font-size: 1em;
@@ -5899,14 +5936,14 @@ blockquote p::after {
   text-transform: uppercase;
   font-weight: 300;
 }
-/* line 525, ../../sass/theme-stacked.scss */
+/* line 556, ../../sass/theme-stacked.scss */
 .mod-card-row {
   background-color: #f2f2f2;
   text-align: center;
   padding: 2.1875em 0;
   /* 35/16 */
 }
-/* line 530, ../../sass/theme-stacked.scss */
+/* line 561, ../../sass/theme-stacked.scss */
 .mod-card-row h2 {
   color: #1598c8;
   font-size: 1.625em;
@@ -5915,12 +5952,12 @@ blockquote p::after {
   margin: 0 0 1.8em;
 }
 
-/* line 538, ../../sass/theme-stacked.scss */
+/* line 569, ../../sass/theme-stacked.scss */
 .mod-pitch {
   text-align: center;
   padding: 40px 0 10px;
 }
-/* line 541, ../../sass/theme-stacked.scss */
+/* line 572, ../../sass/theme-stacked.scss */
 .mod-pitch h2 {
   font-size: 2.75em;
   /* 44/16 */
@@ -5930,30 +5967,30 @@ blockquote p::after {
   line-height: 1.3em;
   margin-bottom: 10px;
 }
-/* line 549, ../../sass/theme-stacked.scss */
+/* line 580, ../../sass/theme-stacked.scss */
 .mod-pitch p {
   font-size: 1.125em;
   /* 18/16 */
   color: #3d3d3d;
 }
-/* line 552, ../../sass/theme-stacked.scss */
+/* line 583, ../../sass/theme-stacked.scss */
 .mod-pitch p span {
   color: #1598c8;
 }
-/* line 556, ../../sass/theme-stacked.scss */
+/* line 587, ../../sass/theme-stacked.scss */
 .mod-pitch ul {
   margin: -20px 0 0;
   padding: 0;
   list-style: none;
   position: relative;
 }
-/* line 561, ../../sass/theme-stacked.scss */
+/* line 592, ../../sass/theme-stacked.scss */
 .mod-pitch ul::after {
   content: '';
   display: block;
   clear: both;
 }
-/* line 566, ../../sass/theme-stacked.scss */
+/* line 597, ../../sass/theme-stacked.scss */
 .mod-pitch ul::before {
   content: '';
   position: absolute;
@@ -5964,7 +6001,7 @@ blockquote p::after {
   padding-bottom: 31%;
   border: solid 5px #e4e4e4;
 }
-/* line 577, ../../sass/theme-stacked.scss */
+/* line 608, ../../sass/theme-stacked.scss */
 .mod-pitch i.fa {
   color: #c0dfe9;
   background-color: #fff;
@@ -5973,12 +6010,12 @@ blockquote p::after {
   box-shadow: 0 0 0 5px white;
   position: absolute;
 }
-/* line 585, ../../sass/theme-stacked.scss */
+/* line 616, ../../sass/theme-stacked.scss */
 .mod-pitch li {
   width: 33.25%;
   position: relative;
 }
-/* line 588, ../../sass/theme-stacked.scss */
+/* line 619, ../../sass/theme-stacked.scss */
 .mod-pitch li a {
   position: absolute;
   width: 80%;
@@ -5988,11 +6025,11 @@ blockquote p::after {
   z-index: 100;
   cursor: pointer;
 }
-/* line 598, ../../sass/theme-stacked.scss */
+/* line 629, ../../sass/theme-stacked.scss */
 .mod-pitch-white {
   background-color: #fff;
 }
-/* line 601, ../../sass/theme-stacked.scss */
+/* line 632, ../../sass/theme-stacked.scss */
 .mod-pitch svg {
   width: 100%;
   height: 100px;
@@ -6002,7 +6039,7 @@ blockquote p::after {
   transform: scale(1.5);
   z-index: 10;
 }
-/* line 612, ../../sass/theme-stacked.scss */
+/* line 643, ../../sass/theme-stacked.scss */
 .mod-pitch-1 svg, .mod-pitch-2 svg, .mod-pitch-3 svg, .mod-pitch-4 svg, .mod-pitch-5 svg, .mod-pitch-6 svg {
   -moz-animation: bounce 800ms linear 0s infinite;
   -webkit-animation: bounce 800ms linear 0s infinite;
@@ -6011,113 +6048,113 @@ blockquote p::after {
   -webkit-animation-play-state: paused;
   animation-play-state: paused;
 }
-/* line 617, ../../sass/theme-stacked.scss */
+/* line 648, ../../sass/theme-stacked.scss */
 .mod-pitch-1:hover svg, .mod-pitch-2:hover svg, .mod-pitch-3:hover svg, .mod-pitch-4:hover svg, .mod-pitch-5:hover svg, .mod-pitch-6:hover svg {
   -moz-animation-play-state: running;
   -webkit-animation-play-state: running;
   animation-play-state: running;
 }
-/* line 622, ../../sass/theme-stacked.scss */
+/* line 653, ../../sass/theme-stacked.scss */
 .mod-pitch-1, .mod-pitch-2, .mod-pitch-3 {
   float: left;
 }
-/* line 625, ../../sass/theme-stacked.scss */
+/* line 656, ../../sass/theme-stacked.scss */
 .mod-pitch-4, .mod-pitch-5, .mod-pitch-6 {
   float: right;
 }
-/* line 629, ../../sass/theme-stacked.scss */
+/* line 660, ../../sass/theme-stacked.scss */
 .active .mod-pitch-1 {
   -moz-animation: tada 800ms linear 0s;
   -webkit-animation: tada 800ms linear 0s;
   animation: tada 800ms linear 0s;
 }
-/* line 632, ../../sass/theme-stacked.scss */
+/* line 663, ../../sass/theme-stacked.scss */
 .mod-pitch-1 i.fa {
   top: 136px;
   right: 0;
 }
-/* line 638, ../../sass/theme-stacked.scss */
+/* line 669, ../../sass/theme-stacked.scss */
 .active .mod-pitch-2 {
   -moz-animation: tada 800ms linear 300ms;
   -webkit-animation: tada 800ms linear 300ms;
   animation: tada 800ms linear 300ms;
 }
-/* line 641, ../../sass/theme-stacked.scss */
+/* line 672, ../../sass/theme-stacked.scss */
 .mod-pitch-2 i.fa {
   top: 136px;
   right: 0;
 }
-/* line 647, ../../sass/theme-stacked.scss */
+/* line 678, ../../sass/theme-stacked.scss */
 .active .mod-pitch-3 {
   -moz-animation: tada 800ms linear 600ms;
   -webkit-animation: tada 800ms linear 600ms;
   animation: tada 800ms linear 600ms;
 }
-/* line 650, ../../sass/theme-stacked.scss */
+/* line 681, ../../sass/theme-stacked.scss */
 .mod-pitch-3 i.fa {
   top: 345px;
   right: -42px;
   line-height: 18px;
 }
-/* line 657, ../../sass/theme-stacked.scss */
+/* line 688, ../../sass/theme-stacked.scss */
 .active .mod-pitch-4 {
   -moz-animation: tada 800ms linear 900ms;
   -webkit-animation: tada 800ms linear 900ms;
   animation: tada 800ms linear 900ms;
 }
-/* line 660, ../../sass/theme-stacked.scss */
+/* line 691, ../../sass/theme-stacked.scss */
 .mod-pitch-4 i.fa {
   top: 141px;
   left: 0;
 }
-/* line 666, ../../sass/theme-stacked.scss */
+/* line 697, ../../sass/theme-stacked.scss */
 .active .mod-pitch-5 {
   -moz-animation: tada 800ms linear 1200ms;
   -webkit-animation: tada 800ms linear 1200ms;
   animation: tada 800ms linear 1200ms;
 }
-/* line 669, ../../sass/theme-stacked.scss */
+/* line 700, ../../sass/theme-stacked.scss */
 .mod-pitch-5 svg {
   left: -15px;
 }
-/* line 672, ../../sass/theme-stacked.scss */
+/* line 703, ../../sass/theme-stacked.scss */
 .mod-pitch-5 i.fa {
   top: 141px;
   left: 0;
 }
-/* line 678, ../../sass/theme-stacked.scss */
+/* line 709, ../../sass/theme-stacked.scss */
 .active .mod-pitch-6 {
   -moz-animation: tada 800ms linear 1500ms;
   -webkit-animation: tada 800ms linear 1500ms;
   animation: tada 800ms linear 1500ms;
 }
-/* line 681, ../../sass/theme-stacked.scss */
+/* line 712, ../../sass/theme-stacked.scss */
 .mod-pitch-6 i.fa {
   top: -26px;
   left: -39px;
   line-height: 18px;
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-  /* line 689, ../../sass/theme-stacked.scss */
+  /* line 720, ../../sass/theme-stacked.scss */
   .mod-pitch ul::before {
     padding-bottom: 39.5%;
   }
-  /* line 693, ../../sass/theme-stacked.scss */
+  /* line 724, ../../sass/theme-stacked.scss */
   .mod-pitch-3 i.fa {
     right: -66px;
   }
-  /* line 698, ../../sass/theme-stacked.scss */
+  /* line 729, ../../sass/theme-stacked.scss */
   .mod-pitch-6 i.fa {
     top: -26px;
     left: -63px;
   }
 }
 
-/* line 705, ../../sass/theme-stacked.scss */
+/* line 736, ../../sass/theme-stacked.scss */
 .mod-plan {
   padding: 40px 0;
 }
-/* line 707, ../../sass/theme-stacked.scss */
+/* line 738, ../../sass/theme-stacked.scss */
 .mod-plan::before {
   content: "";
   position: absolute;
@@ -6128,7 +6165,7 @@ blockquote p::after {
   top: 140px;
   background: #fff;
 }
-/* line 717, ../../sass/theme-stacked.scss */
+/* line 748, ../../sass/theme-stacked.scss */
 .mod-plan-hd {
   font-weight: 300;
   font-size: 28px;
@@ -6136,13 +6173,13 @@ blockquote p::after {
   text-transform: uppercase;
   margin-bottom: 130px;
 }
-/* line 725, ../../sass/theme-stacked.scss */
+/* line 756, ../../sass/theme-stacked.scss */
 .mod-plan-bd strong {
   color: #282828;
   font-size: 1.125em;
   /* 18/16 */
 }
-/* line 729, ../../sass/theme-stacked.scss */
+/* line 760, ../../sass/theme-stacked.scss */
 .mod-plan-bd p {
   color: #828282;
   font-weight: 300;
@@ -6151,61 +6188,149 @@ blockquote p::after {
   padding: 0 40px;
 }
 
-/* line 741, ../../sass/theme-stacked.scss */
+/* line 772, ../../sass/theme-stacked.scss */
 .modal-dialog.callus .modal-header {
   border: none;
   padding-bottom: 0;
 }
-/* line 745, ../../sass/theme-stacked.scss */
+/* line 776, ../../sass/theme-stacked.scss */
 .modal-dialog.callus .modal-body {
   text-align: center;
 }
-/* line 747, ../../sass/theme-stacked.scss */
+/* line 778, ../../sass/theme-stacked.scss */
 .modal-dialog.callus .modal-body h4 {
   margin-bottom: 0;
 }
-/* line 749, ../../sass/theme-stacked.scss */
+/* line 780, ../../sass/theme-stacked.scss */
 .modal-dialog.callus .modal-body .em {
   font-size: .9em;
   color: #bbb;
 }
-/* line 755, ../../sass/theme-stacked.scss */
+/* line 786, ../../sass/theme-stacked.scss */
 .modal-dialog.subscribe .required {
   color: #af000a;
   font-size: 18px;
 }
-/* line 759, ../../sass/theme-stacked.scss */
+/* line 790, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-content {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+}
+/* line 794, ../../sass/theme-stacked.scss */
 .modal-dialog.subscribe .modal-header {
   text-align: center;
+  border-bottom: none;
 }
-/* line 763, ../../sass/theme-stacked.scss */
+/* line 798, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-header h3 {
+  font-size: 30px;
+  font-weight: 300;
+  color: #3e3e3e;
+  margin-top: 1em;
+}
+/* line 805, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body {
+  padding: 15px 60px;
+}
+/* line 808, ../../sass/theme-stacked.scss */
 .modal-dialog.subscribe .modal-body form {
-  border-bottom: solid 1px #e5e5e5;
-  margin-bottom: 1em;
+  margin-bottom: 1.3em;
 }
-/* line 766, ../../sass/theme-stacked.scss */
+/* line 810, ../../sass/theme-stacked.scss */
 .modal-dialog.subscribe .modal-body form + p {
   font-size: 14px;
-  margin-bottom: 0;
+  margin-bottom: 1em;
   padding-left: 12px;
+  text-align: center;
+  color: #5e5e5e;
 }
-/* line 770, ../../sass/theme-stacked.scss */
+/* line 816, ../../sass/theme-stacked.scss */
 .modal-dialog.subscribe .modal-body form + p .required {
   position: absolute;
   margin-left: -12px;
 }
-/* line 776, ../../sass/theme-stacked.scss */
+/* line 822, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body form .form-group {
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  padding: 10px 25px;
+}
+/* line 828, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body form .select-box {
+  background-color: #e2e2e2;
+}
+/* line 830, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body form .select-box .control-label {
+  color: #3e3e3e;
+}
+/* line 833, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body form .select-box .form-control {
+  background-color: inherit;
+}
+/* line 837, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body form .control-label {
+  width: 25%;
+  color: #acacac;
+  font-weight: 300;
+}
+/* line 842, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body form .form-control {
+  display: inline-block;
+  width: 74%;
+  border: none;
+  box-shadow: none;
+}
+/* line 849, ../../sass/theme-stacked.scss */
 .modal-dialog.subscribe .modal-body form label .required {
   position: absolute;
   margin-left: 4px;
 }
-/* line 783, ../../sass/theme-stacked.scss */
-.modal-dialog.subscribe .checkbox label {
-  font-size: 14px;
+/* line 855, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body .checkbox {
+  margin: 20px 30px 30px;
 }
-/* line 785, ../../sass/theme-stacked.scss */
-.modal-dialog.subscribe .checkbox label input {
+/* line 857, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body .checkbox strong {
+  color: #1598c8;
+  font-weight: 400;
+}
+/* line 861, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body .checkbox label {
+  font-size: 17px;
+}
+/* line 863, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body .checkbox label input {
   font-size: 20px;
+  display: none;
+}
+/* line 866, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body .checkbox label input + strong::before {
+  font-family: FontAwesome;
+  content: '\f096';
+  margin-left: -28px;
+  position: absolute;
+  font-size: 25px;
+  margin-top: -5px;
+}
+/* line 874, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body .checkbox label input:checked + strong::before {
+  content: '\f046';
+}
+/* line 880, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body .submit {
+  text-align: center;
+}
+/* line 882, ../../sass/theme-stacked.scss */
+.modal-dialog.subscribe .modal-body .submit button {
+  padding: 14px 35px;
+}
+@media (min-width: 768px) {
+  /* line 785, ../../sass/theme-stacked.scss */
+  .modal-dialog.subscribe {
+    margin-top: 80px;
+    width: 870px;
+  }
 }
 
 /* ---------------------- ANIMATIONS ------------------------ */

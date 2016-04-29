@@ -270,10 +270,13 @@
         </nav>
       </div>
     </header>
-    <a href="" class="cta-flag" data-toggle="modal" data-target="#subscribe-modal">
-      <span class="hd">Exclusive Offer</span>
-      <span class="bd">Get monthly offers and marketing tips delivered by email.</span>
-    </a>
+    <div class="cta-tag">
+      <h5 class="hd">Exclusive Offer</h5>
+      <div class="bd">
+        <p>Get monthly offers and marketing tips delivered by email. Join now and get 20% OFF PRINT!</p>
+        <input id="promotion-cta" type="email" placeholder="Email"><button data-toggle="modal" data-target="#subscribe-modal">Go</button>
+      </div>
+    </div>
     <section ng-view><!-- views loaded here --></section> 
     <footer class="site-footer" id="siteFooter">
       <div class="container">
@@ -497,64 +500,57 @@
   <div class="modal-dialog subscribe" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3>Exclusive Offer</h3>
-        <p>Get monthly offers and marketing tips delivered by email.<br/>Join now and get <strong>20% OFF PRINT!</strong></p>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+        <h3>Get Monthly Offers and Marketing Tips. Sign Up Today!</h3>
       </div>
       <div class="modal-body">
-        <form name="subscribe" action="/subscribe" method="post" class="form-horizontal">
+        <form name="subscribe" action="/subscribe" method="post">
           <div class="form-group">
-            <label class="col-sm-3 control-label" for="emailinput">Email: <span class="required">*</span></label>
-            <div class="col-sm-7">
-              <input type="email" name="email" class="form-control" id="emailinput" placeholder="" required>
-            </div>
+            <label class="control-label" for="emailinput">Email Address: <span class="required">*</span></label>
+            
+            <input type="email" name="email" class="form-control" id="emailinput" placeholder="" required>
+            
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label" for="fnameinput">First Name: <span class="required">*</span></label>
-            <div class="col-sm-7">
-              <input type="text" name="firstname" class="form-control" id="fnameinput" placeholder="" required>
-            </div>
+            <label class="control-label" for="fnameinput">First Name: <span class="required">*</span></label>
+            
+            <input type="text" name="firstname" class="form-control" id="fnameinput" placeholder="" required>
+            
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label" for="lnameinput">Last Name:</label>
-            <div class="col-sm-7">
-              <input type="text" name="lastname" class="form-control" id="lnameinput" placeholder="">
-            </div>
+            <label class="control-label" for="lnameinput">Last Name:</label>
+            
+            <input type="text" name="lastname" class="form-control" id="lnameinput" placeholder="">
+            
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label" for="zipinput">Zip Code:</label>
-            <div class="col-sm-7">
-              <input type="number" name="zip" class="form-control" id="zipinput" placeholder="">
-            </div>
+            <label class="control-label" for="zipinput">Zip Code:</label>
+            
+            <input type="number" name="zip" class="form-control" id="zipinput" placeholder="">
+            
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label" for="companyinput">Company:</label>
-            <div class="col-sm-7">
-              <input type="text" name="company" class="form-control" id="companyinput" placeholder="">
-            </div>
+            <label class="control-label" for="companyinput">Company:</label>
+            
+            <input type="text" name="company" class="form-control" id="companyinput" placeholder="">
+            
           </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label" for="industryinput">Industry:</label>
-            <div class="col-sm-7">
-              <select name="industry" id="industryinput" class="form-control">
-                <option selected="true" value="" disabled="disabled">Select option</option><option>Agency</option><option>Arts</option><option>Architecture</option><option>Culture</option><option>Education</option><option>Fashion</option><option>Financial</option><option>Fitness</option><option>Home Decor</option><option>Hospitality</option><option>Industrial</option><option>Medical</option><option>Non-Profit</option><option>Photography</option><option>Publishing</option><option>Real Estate</option><option>Retail</option><option>Technology</option><option>Graphic Design</option><option>Marketing</option><option>Student</option><option>Automotive</option><option>Music</option><option>Event Planning</option><option>Restaurant</option><option>Home/Office Remodeling</option><option>Insurance</option><option>Other</option>
-              </select>
-            </div>
+          <div class="form-group select-box">
+            <label class="control-label" for="industryinput">Select your industry:</label>
+            
+            <select name="industry" id="industryinput" class="form-control">
+              <option selected="true" value="" disabled="disabled"></option><option>Agency</option><option>Arts</option><option>Architecture</option><option>Culture</option><option>Education</option><option>Fashion</option><option>Financial</option><option>Fitness</option><option>Home Decor</option><option>Hospitality</option><option>Industrial</option><option>Medical</option><option>Non-Profit</option><option>Photography</option><option>Publishing</option><option>Real Estate</option><option>Retail</option><option>Technology</option><option>Graphic Design</option><option>Marketing</option><option>Student</option><option>Automotive</option><option>Music</option><option>Event Planning</option><option>Restaurant</option><option>Home/Office Remodeling</option><option>Insurance</option><option>Other</option>
+            </select>
+            
           </div>
-          <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-7">
-              <div class="checkbox">
-                <label>
-                  <input checked="checked" value="1" type="checkbox"> <strong>YES!</strong> I would like to receive monthly offers, tips and news by email from Modern.
-Sign up now and you’ll get a 20% OFF PRINT discount code emailed to you right away.
-                </label>
-              </div>
-            </div>
+          <div class="checkbox">
+            <label>
+              <input checked="checked" value="1" type="checkbox"> <strong>YES!</strong> I would like to receive monthly offers, tips and news by email from Modern.<br/>
+Sign up now and you'll get a 20% OFF PRINT discount code emailed to you right away.
+            </label>
           </div>
-          <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-7">
-              <button type="submit" class="btn btn-primary btn-block btn-lg">Sign Up!</button>
-            </div>
+          <div class="submit">
+              <button type="submit" class="btn btn-primary">Talk to an Expert</button>
           </div>
         </form>
         <p><span class="required">*</span> Required Fields. Modern Postcard does not share personal information with third parties.</p>
