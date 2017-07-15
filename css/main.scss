@@ -1,5 +1,9 @@
+---
+# Front matter comment to ensure Jekyll properly reads file.
+---
+
 @import "fix";
-@import "compass";
+//@import "compass";
 
 /* SASS VARS */
 $blue : #3576C3;
@@ -22,7 +26,7 @@ $monoPath: "MonoSocialIconsFont-1.10/MonoSocialIconsFont-1.10";
 $monoLabel: "Mono Social Icons Font";
 
 /* ICON FONT */
-@include font-face($monoLabel, font-files($monoPath + ".woff", $monoPath + ".ttf", $monoPath + ".svg#MonoSocialIconsFont"), $monoPath + ".eot", normal, normal);
+//@include font-face($monoLabel, font-files($monoPath + ".woff", $monoPath + ".ttf", $monoPath + ".svg#MonoSocialIconsFont"), $monoPath + ".eot", normal, normal);
 
 /* Mixins */
 @mixin social-font() {
@@ -49,10 +53,10 @@ html{
 	}
 
 	&.skin_default{
-		@include background-image(linear-gradient(-175deg, #90b2d5, #80863a, #556672));
+		// @include background-image(linear-gradient(-175deg, #90b2d5, #80863a, #556672));
 	}
 	&.skin_resume{
-		@include background-image(linear-gradient(-166deg, #aef8ff, #BBCE6B, #1f3213));
+		// @include background-image(linear-gradient(-166deg, #aef8ff, #BBCE6B, #1f3213));
 	}
 }
 
@@ -114,7 +118,7 @@ a{
 
 		/* ------------------- Animations -------------------- */
 		transition: max-width 800ms;
-		@include animation(ta-da $animation-set-1 paused);
+		// @include animation(ta-da $animation-set-1 paused);
 	}
 
 	.skin_resume &{
@@ -128,7 +132,7 @@ a{
 	}
 	/* trigger animation play */
 	.play &{
-		@include animation-play-state(running);
+		// @include animation-play-state(running);
 	}
 
 	@media screen and (min-width: $tablet-break) {
@@ -157,11 +161,11 @@ a{
 	color: shade($blue,50%);
 
 	/* ------------------- Animations -------------------- */
-	@include animation(bumpy $animation-set-2 paused $animation-set-1 - 400ms);
-	@include animation-fill-mode(both);
+	// @include animation(bumpy $animation-set-2 paused $animation-set-1 - 400ms);
+	// @include animation-fill-mode(both);
 
 	.play &{
-		@include animation-play-state(running);
+		// @include animation-play-state(running);
 	}
 }
 
@@ -217,11 +221,11 @@ a{
 .block-me{
 	font-size:1.25em; /* 20/16 */
 	/* ------------------- Animations -------------------- */
-	@include animation(bumpy $animation-set-2 paused $animation-set-1 + 400ms);
-	@include animation-fill-mode(both);
+	// @include animation(bumpy $animation-set-2 paused $animation-set-1 + 400ms);
+	// @include animation-fill-mode(both);
 
 	.play &{
-		@include animation-play-state(running);
+		// @include animation-play-state(running);
 	}
 
 	&-hd{ //.block-me-hd
@@ -254,11 +258,11 @@ a{
 
 .block-insta{
 	/* ------------------- Animations -------------------- */
-	@include animation(bumpy $animation-set-2 paused $animation-set-1);
-	@include animation-fill-mode(both);
+	// @include animation(bumpy $animation-set-2 paused $animation-set-1);
+	// @include animation-fill-mode(both);
 
 	.play &{
-		@include animation-play-state(running);
+		// @include animation-play-state(running);
 	}
 
 	&-hd{ //.block-insta-hd
@@ -308,11 +312,11 @@ a{
 
 .block-links{
 	/* ------------------- Animations -------------------- */
-	@include animation(bumpy $animation-set-2 paused $animation-set-1 - 400ms);
-	@include animation-fill-mode(both);
+	// @include animation(bumpy $animation-set-2 paused $animation-set-1 - 400ms);
+	// @include animation-fill-mode(both);
 
 	.play &{
-		@include animation-play-state(running);
+		// @include animation-play-state(running);
 	}
 
 	border-top: solid 1px tint($blue,20%);
@@ -501,40 +505,40 @@ a{
 }
 
 /* ---------- Animations ---------- */
-@include keyframes('ta-da'){
-	0% {
-		@include transform(scale(0.01,1) translateY(-100%));
-	}
-	85% {
-		@include transform(scale(0.01,1) translateY(0%));
-	}
-	93% {
-		@include transform(scale(1.1,1));
-	}
-	98% {
-		@include transform(scale(1.05,1));
-	}
-	96%,100% {
-		@include transform(scale(1,1));
-	}
-}
+// @include keyframes('ta-da'){
+// 	0% {
+// 		@include transform(scale(0.01,1) translateY(-100%));
+// 	}
+// 	85% {
+// 		@include transform(scale(0.01,1) translateY(0%));
+// 	}
+// 	93% {
+// 		@include transform(scale(1.1,1));
+// 	}
+// 	98% {
+// 		@include transform(scale(1.05,1));
+// 	}
+// 	96%,100% {
+// 		@include transform(scale(1,1));
+// 	}
+// }
 
-@include keyframes('bumpy'){
-	0%{
-		opacity:0;
-		@include transform(translateY(-100%));
-	}
-	20%{
-		opacity:1;
-	}
-	65% {
-		@include transform(translateY(4%));
-	}
-	80% {
-		@include transform(translateY(-2%));
-	}
-	100%{
-		opacity:1;
-		@include transform(translateY(0%));
-	}
-}
+// @include keyframes('bumpy'){
+// 	0%{
+// 		opacity:0;
+// 		@include transform(translateY(-100%));
+// 	}
+// 	20%{
+// 		opacity:1;
+// 	}
+// 	65% {
+// 		@include transform(translateY(4%));
+// 	}
+// 	80% {
+// 		@include transform(translateY(-2%));
+// 	}
+// 	100%{
+// 		opacity:1;
+// 		@include transform(translateY(0%));
+// 	}
+// }
