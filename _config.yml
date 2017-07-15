@@ -31,6 +31,11 @@ markdown: kramdown
 error_mode: warn
 gems: [github-pages]
 
+# Sass
+sass:
+  sass_dir: _sass
+  style: compressed
+
 # Defaults
 defaults:
 -
