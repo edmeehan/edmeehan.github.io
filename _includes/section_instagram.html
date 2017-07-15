@@ -1,0 +1,13 @@
+<section id="instagram" class="block block-insta">
+	<header class="block-hd block-insta-hd">
+		<h2>Instagram</h2>
+	</header>
+	<div class="block-bd block-insta-bd">
+		<p class="alert">Below are just a few of my favorite, check out <a href="https://www.instagram.com/edmeehan/">my feed</a> to view them all.</p>
+		<div class="thumbnails">
+			{% for item in site.data.instagram-photos %}
+			<a href="{{item.href}}" title="{{item.title}}" target="_blank"><img src="{{item.src}}" alt="Instagram thumbnail"></a>	
+			{% endfor %}
+		</div>
+	</div>
+</section>

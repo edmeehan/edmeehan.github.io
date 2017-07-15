@@ -1,0 +1,27 @@
+---
+
+---
+
+<!doctype html>
+<html class="no-js layout-default skin_{{ page.skin }}" lang="">
+	{% include doc_head.html %}
+	<body>
+		<div class="container">
+			<section id="content" class="block block-{{ page.blockName }}">
+				{% if page.headline %}
+				<header class="block-hd block-{{ page.blockName }}-hd">
+					<h1>{{ page.headline }}</h1>
+				</header>
+				{% endif %}
+				<div class="block-bd block-{{ page.blockName }}-bd">
+					{{ content }}
+				</div>
+			</section>
+			{% for item in page.sections %}
+				{% include section_{{item}}.html %}
+			{% endfor %}
+			<footer id="footer" class="footer">Designed, Built and maintained by me!</footer>
+		</div>
+		{% include scripts.html %}
+	</body>
+</html>
