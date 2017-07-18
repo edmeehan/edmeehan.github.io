@@ -28,7 +28,7 @@ source: src
 markdown: kramdown
 error_mode: warn
 gems: [github-pages]
-exclude: ['node_modules','package.json','emeehan.sublime-project','package-lock.json','Gemfile','Gemfile.lock','README.md','webpack','webpack.config.js']
+exclude: []
 
 # Sass
 sass:
