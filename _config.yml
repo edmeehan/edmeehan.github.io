@@ -32,7 +32,7 @@ exclude: []
 
 # Sass
 sass:
-  #sass_dir: _sass
+  sass_dir: _sass
   style: compressed
 
 # Defaults
