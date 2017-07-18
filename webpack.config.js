@@ -1,3 +1,5 @@
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
 module.exports = {
   // webpack folder's entry js - excluded from jekll's build process.
   entry: "./_javascript/main.js",
@@ -17,5 +19,10 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new UglifyJSPlugin({
+      sourceMap : true
+    })
+  ]
 };
