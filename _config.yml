@@ -24,10 +24,6 @@ url: "http://emeehan.com" # the base hostname & protocol for your site
 destination: _site
 source: src
 
-# Site assets & libraries
-# modernizr: 2.8.3
-# jquery: 3.1.0
-
 # Build settings
 markdown: kramdown
 error_mode: warn
@@ -36,7 +32,7 @@ exclude: ['node_modules','package.json','emeehan.sublime-project','package-lock.
 
 # Sass
 sass:
-  sass_dir: _sass
+  #sass_dir: _sass
   style: compressed
 
 # Defaults
