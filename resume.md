@@ -2,8 +2,8 @@
 layout: default
 title: Edward Meehan's Resume
 headline: Edward Meehan
-skin: resume
 blockName: resume
+skin: resume
 ---
 {::options parse_block_html="true" /}
 <aside class="additional-info">
