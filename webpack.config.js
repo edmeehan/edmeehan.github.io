@@ -1,12 +1,15 @@
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+let UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+let path = require('path');
 
 module.exports = {
   // webpack folder's entry js - excluded from jekll's build process.
-  entry: "./_javascript/main.js",
+  entry: {
+    main : path.resolve(__dirname, '_javascript/main.js'),
+    welcome : path.resolve(__dirname, '_javascript/welcome.js'),
+  },
   output: {
-    // we're going to put the generated file in the assets folder so jekyll will grab it.
-      path: '/Users/emeehan/Sites/Personal/edmeehan.github/js/',
-      filename: "main.js"
+    path: path.resolve(__dirname, 'js'),
+    filename: "[name].js"
   },
   module: {
     loaders: [
@@ -20,9 +23,9 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new UglifyJSPlugin({
-      sourceMap : true
-    })
-  ]
+  // plugins: [
+  //   new UglifyJSPlugin({
+  //     sourceMap : true
+  //   })
+  // ]
 };

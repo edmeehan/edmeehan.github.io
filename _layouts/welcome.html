@@ -1,0 +1,38 @@
+---
+
+---
+
+<!doctype html>
+<html class="layout-welcome" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{{ site.title }}{% if page.title %} | {{ page.title }}{% endif %}</title>
+        <meta name="description" content="{{ site.description }}">
+
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">        
+        <!-- Google Fonts -->
+        <script type="text/javascript">
+            WebFontConfig = { google: { families: [ 'Droid+Sans::latin', 'Droid+Serif::latin' ] } };
+            (function() {
+                var wf = document.createElement('script');
+                wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+                wf.type = 'text/javascript';
+                wf.async = 'true';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(wf, s);
+            })();
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            {{ content }}
+            <footer id="page-footer" class="page-footer">Designed, Built and maintained by me!</footer>
+        </div>
+        <link rel="stylesheet" href="{{site.baseurl}}/css/welcome.css">
+        <script src="{{site.baseurl}}/js/welcome.js"></script>
+    </body>
+</html>

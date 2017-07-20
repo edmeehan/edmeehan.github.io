@@ -5,5 +5,8 @@
         "babel-preset-es2015": "^6.24.1",
         "webpack": "^3.3.0"
     },
-    "dependencies": {}
+    "dependencies": {},
+    "jshintConfig": {
+        "esversion": 6
+    }
 }

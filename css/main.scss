@@ -3,14 +3,6 @@
 ---
 
 /* SASS VARS */
-$blue : #3576C3;
-$white : #fff;
-$black : #505050;
-$dark-white : shade($white, 8%);
-$lite-gray : #d8d8d8;
-$lite-blue : tint($blue, 40%);
-$lite-black : tint($black, 30%);
-
 $font-color: #fff;
 
 $tablet-break : 600px;
@@ -22,6 +14,7 @@ $animation-set-2: 1100ms;
 $monoPath: "MonoSocialIconsFont-1.10/MonoSocialIconsFont-1.10";
 $monoLabel: "Mono Social Icons Font";
 
+@import "variables";
 @import "fix";
 @import "mixin";
 
