@@ -22,8 +22,12 @@ url: "https://emeehan.com" # the base hostname & protocol for your site
 # Build settings
 markdown: kramdown
 error_mode: warn
-gems: [github-pages]
+plugins: [github-pages]
 exclude: ['node_modules','package.json','emeehan.sublime-project','package-lock.json','Gemfile','Gemfile.lock','README.md','webpack','webpack.config.js']
+# include: 
+# keep_files:
+# timezone:
+# encoding:
 
 # Sass
 sass:

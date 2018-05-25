@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: altitude_index
 title: Welcome
 headline: Edward Meehan
 blockName: me
