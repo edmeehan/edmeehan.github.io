@@ -7,12 +7,16 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <title>{{ site.meta_title }}{% if page.title %} | {{ page.title }}{% endif %}</title>
-        <meta name="description" content="{{ site.meta_desc }}">
+        <title>{{ site.title }}{% if page.title %} | {{ page.title }}{% endif %}</title>
+        {% if page.excerpt %}
+        <meta name="description" content="{{ page.excerpt | strip_html }}">
+        {% elsif page.description %}
+        <meta name="description" content="{{ page.description }}">
+        {% endif %}
         <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"> 
         <!-- Place favicon.ico in the root directory -->
         <!-- <link rel="apple-touch-icon" href="{{site.url}}/apple-touch-icon.png"> -->
-        <link rel="stylesheet" href="{{site.url}}/css/main.css" />
+        <link rel="stylesheet" href="{{site.baseurl}}/css/main.css" />
     </head>
     <body>
 
@@ -51,7 +55,7 @@
                 </div>
                 {% endif %}
                 
-                {% if site.debugmode %}
+                {% if page.debugmode and jekyll.environment == "development" %}
                 <!-- Wrapper -->
                 <div class="wrapper">
                     <div class="inner">
@@ -63,10 +67,10 @@
             </div>
 
         <!-- Scripts -->
-            <script src="{{site.url}}/js/jquery.min.js"></script>
-            <script src="{{site.url}}/js/skel.min.js"></script>
-            <script src="{{site.url}}/js/util.js"></script>
-            <script src="{{site.url}}/js/main.js"></script>
+            <script src="{{site.baseurl}}/js/jquery.min.js"></script>
+            <script src="{{site.baseurl}}/js/skel.min.js"></script>
+            <script src="{{site.baseurl}}/js/util.js"></script>
+            <script src="{{site.baseurl}}/js/main.js"></script>
 
     </body>
 </html>

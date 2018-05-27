@@ -9,10 +9,7 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-meta_title: Edward Meehan
-meta_desc: This is the site description.
-
-title: Edward Meehan #displayed on site header
+title: Ed Meehan #displayed on site header
 subtitle: Conversion Specialist  #displayed on site header
 
 address: 123 Test st. San Diego, CA 92115-1234
@@ -21,17 +18,16 @@ email: edward.meehan.808@gmail.com
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://emeehan.com" # the base hostname & protocol for your site
-debugmode: false
 
 # Build settings
 markdown: kramdown
 error_mode: warn
 plugins: [github-pages]
 exclude: ['node_modules','package.json','emeehan.sublime-project','package-lock.json','Gemfile','Gemfile.lock','README.md','webpack','webpack.config.js']
-# include: 
-# keep_files:
-# timezone:
-# encoding:
+  # include: 
+  # keep_files:
+  # timezone:
+  # encoding:
 
 # Sass
 sass:
@@ -43,9 +39,22 @@ defaults:
   -
     scope:
       path: ''
-      type: 'pages'
     values:
       block_top: false
       block_bottom: false
       block_header: header.html
       block_footer: footer.html
+      debugmode: false
+  -
+    scope:
+      path: ''
+      type: 'pages'
+    values:
+      description: This is the default page description here.
+      #permalink: /:path/:basename:output_ext
+  -
+    scope:
+      path: ''
+      type: 'posts'
+    values:
+      permalink: /blog/:categories/:title

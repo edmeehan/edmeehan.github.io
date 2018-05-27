@@ -2,39 +2,36 @@
 <footer id="footer">
     <section class="links">
         <div>
-            <h3>Sitemap</h3>
+            <h3>Pages</h3>
             <ul class="plain">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Blog</a></li>
+                <li><a href="{{ site.baseurl }}{% link index.html %}">Home</a></li>
+                <li><a href="{{ site.baseurl }}{% link services/index.html %}">Services</a></li>
+                <li><a href="{{ site.baseurl }}{% link blog/index.html %}">Blog</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Services</h3>
+            <ul class="plain">
+                <li><a href="{{ site.baseurl }}{% link services/optimization.html %}">Optimization</a></li>
+                <li><a href="{{ site.baseurl }}{% link services/development.html %}">Web Development</a></li>
+                <li><a href="{{ site.baseurl }}{% link services/analytics.html %}">Analytics</a></li>
             </ul>
         </div>
         <div>
             <h3>Social</h3>
             <ul class="plain">
-                <li><a href="https://www.instagram.com/edmeehan/">Instagram</a></li>
-                <li><a href="https://github.com/edmeehan">GitHub</a></li>
-                <li><a href="https://vimeo.com/edmeehan">Vimeo</a></li>
-                <li><a href="https://www.linkedin.com/in/edwardmeehan">LinkedIn</a></li>
-                <li><a href="http://codepen.io/edmeehan">CodePen</a></li>
+                <li><a target="_blank" href="https://github.com/edmeehan">GitHub</a></li>
+                <li><a target="_blank" href="https://www.linkedin.com/in/edwardmeehan">LinkedIn</a></li>
+                <li><a target="_blank" href="https://codepen.io/edmeehan">CodePen</a></li>
             </ul>
         </div>
         <div>
             <h3>Projects</h3>
             <ul class="plain">
-                <li><a href="#">emuser.rocks</a></li>
-                <li><a href="#">throwshaka.com</a></li>
+                <li><a target="_blank" href="https://emuser.rocks/">emuser.rocks</a></li>
+                <li><a target="_blank" href="http://throwshaka.com/">throwshaka.com</a></li>
             </ul>
         </div>
-        <!-- <div>
-            <h3>Aliquam</h3>
-            <ul class="plain">
-                <li><a href="#">Lorem prasent dia</a></li>
-                <li><a href="#">Nellentes ipsum</a></li>
-                <li><a href="#">Diamsed arcu dolor</a></li>
-                <li><a href="#">Sit amet cursus</a></li>
-            </ul>
-        </div> -->
     </section>
 
     <ul class="contact-icons">
