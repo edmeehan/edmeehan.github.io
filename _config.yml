@@ -9,15 +9,19 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-title: Edward Meehan | Front-End Web Developer
+meta_title: Edward Meehan
+meta_desc: This is the site description.
+
+title: Edward Meehan #displayed on site header
+subtitle: Conversion Specialist  #displayed on site header
+
+address: 123 Test st. San Diego, CA 92115-1234
+phone: 555.555.5555
 email: edward.meehan.808@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
+
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://emeehan.com" # the base hostname & protocol for your site
+debugmode: false
 
 # Build settings
 markdown: kramdown
@@ -41,5 +45,7 @@ defaults:
       path: ''
       type: 'pages'
     values:
-      skin: 'default'
-      blockName: 'content'
+      block_top: false
+      block_bottom: false
+      block_header: header.html
+      block_footer: footer.html

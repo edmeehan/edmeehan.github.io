@@ -4,25 +4,69 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Untitled</title>
-        <meta charset="utf-8" />
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="css/main.css" />
+        <title>{{ site.meta_title }}{% if page.title %} | {{ page.title }}{% endif %}</title>
+        <meta name="description" content="{{ site.meta_desc }}">
+        <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"> 
+        <!-- Place favicon.ico in the root directory -->
+        <!-- <link rel="apple-touch-icon" href="{{site.url}}/apple-touch-icon.png"> -->
+        <link rel="stylesheet" href="{{site.url}}/css/main.css" />
     </head>
     <body>
 
         <!-- Page Wrapper -->
             <div id="page-wrapper">
+                {% if page.block_header %}
+                <!-- Wrapper -->
+                <div class="wrapper">
+                    <div class="inner">
+
+                        {% include {{page.block_header}} %}
+                        
+                        {% if page.block_top %}
+                            {% include {{page.block_top}} %}
+                        {% endif %}
+                        
+                    </div>
+                </div>
+                {% endif %}
 
                 {{ content }}
+                
+                {% if page.block_footer %}
+                <!-- Wrapper -->
+                <div class="wrapper">
+                    <div class="inner">
+                        
+                        {% if page.block_bottom %}
+                            {% include {{page.block_bottom}} %}
+                        {% endif %}
+                        
+
+                        {% include {{page.block_footer}} %}
+
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if site.debugmode %}
+                <!-- Wrapper -->
+                <div class="wrapper">
+                    <div class="inner">
+                        {% include jekyll_vars.html %}
+                    </div>
+                </div>
+                {% endif %}
 
             </div>
 
         <!-- Scripts -->
-            <script src="js/jquery.min.js"></script>
-            <script src="js/skel.min.js"></script>
-            <script src="js/util.js"></script>
-            <script src="js/main.js"></script>
+            <script src="{{site.url}}/js/jquery.min.js"></script>
+            <script src="{{site.url}}/js/skel.min.js"></script>
+            <script src="{{site.url}}/js/util.js"></script>
+            <script src="{{site.url}}/js/main.js"></script>
 
     </body>
 </html>
