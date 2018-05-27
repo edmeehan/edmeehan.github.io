@@ -12,13 +12,14 @@
 <nav id="menu">
     <ul class="links">
         <li><a href="{{ site.baseurl }}{% link index.html %}">Home</a></li>
+        <li><a href="{{ site.baseurl }}{% link about.html %}">About</a></li>
         <li><a href="{{ site.baseurl }}{% link services/index.html %}">Services</a></li>
+        <li><a href="{{ site.baseurl }}{% link services/optimization.html %}">Optimization</a></li>
+        <li><a href="{{ site.baseurl }}{% link services/development.html %}">Development</a></li>
+        <li><a href="{{ site.baseurl }}{% link services/analytics.html %}">Analytics</a></li>
         <li><a href="{{ site.baseurl }}{% link blog/index.html %}">Blog</a></li>
     </ul>
-    {% comment %}
     <ul class="actions vertical">
-        <li><a href="#" class="button special fit">Sign Up</a></li>
-        <li><a href="#" class="button fit">Log In</a></li>
+        <li><a href="{{ site.baseurl }}{% link contact.html %}" class="button special fit">Contact</a></li>
     </ul>
-    {% endcomment %}
 </nav>

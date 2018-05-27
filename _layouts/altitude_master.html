@@ -30,7 +30,7 @@
                         {% include {{page.block_header}} %}
                         
                         {% if page.block_top %}
-                            {% include {{page.block_top}} %}
+                            {% include {{page.block_top.include}} accent=page.block_top.accent %}
                         {% endif %}
                         
                     </div>
@@ -45,10 +45,9 @@
                     <div class="inner">
                         
                         {% if page.block_bottom %}
-                            {% include {{page.block_bottom}} %}
+                            {% include {{page.block_bottom.include}} accent=page.block_bottom.accent %}
                         {% endif %}
                         
-
                         {% include {{page.block_footer}} %}
 
                     </div>
