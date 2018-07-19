@@ -10,7 +10,7 @@
 
 # Site settings
 title: Ed Meehan #displayed on site header
-subtitle: Conversion Specialist  #displayed on site header
+subtitle: CRO Specialist  #displayed on site header
 
 address: 123 Test st. San Diego, CA 92115-1234
 phone: 555.555.5555
@@ -40,6 +40,7 @@ defaults:
     scope:
       path: ''
     values:
+      site_logo: true
       block_top: false
       block_bottom: false
       block_header: header.html

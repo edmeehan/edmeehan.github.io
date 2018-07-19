@@ -88,12 +88,12 @@
             <tr>
                 <td>site.pages</td>
                 <td>A list of all Pages.</td>
-                <td>{{site.pages| jsonify}}</td>
+                <td>array_length: {{site.pages|size}}</td>
             </tr>
             <tr>
                 <td>site.posts</td>
                 <td>A reverse chronological list of all Posts.</td>
-                <td>{{site.posts| jsonify}}</td>
+                <td>array_length: {{site.posts|size}}</td>
             </tr>
             <tr>
                 <td>site.related_posts</td>
@@ -103,12 +103,12 @@
             <tr>
                 <td>site.static_files</td>
                 <td>A list of all static files (i.e. files not processed by Jekyll's converters or the Liquid renderer).</td>
-                <td>{{site.static_files| jsonify}}</td>
+                <td>array_length: {{site.static_files|size}}</td>
             </tr>
             <tr>
                 <td>site.html_pages</td>
                 <td>A subset of `site.pages` listing those which end in `.html`.</td>
-                <td>{{site.html_pages| jsonify}}</td>
+                <td>array_length: {{site.html_pages|size}}</td>
             </tr>
             <tr>
                 <td>site.html_files</td>
@@ -118,7 +118,7 @@
             <tr>
                 <td>site.collections</td>
                 <td>A list of all the collections.</td>
-                <td>{{site.collections| jsonify}}</td>
+                <td>array_length:  {{site.collections|size}}</td>
             </tr>
             <tr>
                 <td>site.data</td>
@@ -128,7 +128,7 @@
             <tr>
                 <td>site.documents</td>
                 <td>A list of all the documents in every collection.</td>
-                <td>{{site.documents| jsonify}}</td>
+                <td>array_length: {{site.documents|size}}</td>
             </tr>
             <tr>
                 <td>site.url</td>

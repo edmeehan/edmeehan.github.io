@@ -1,6 +1,6 @@
 <!-- Header -->
 <header id="header">
-    <a href="{{ site.baseurl }}{% link index.html %}" class="logo">{{site.title}} <span>{{site.subtitle}}</span></a>
+    {% if page.site_logo %}<a href="{{ site.baseurl }}{% link index.html %}" class="logo">{{site.title}} <span>{{site.subtitle}}</span></a>{% endif %}
     <nav>
         <ul>
             <li><a href="#menu">Menu</a></li>
@@ -11,15 +11,15 @@
 <!-- Nav -->
 <nav id="menu">
     <ul class="links">
-        <li><a href="{{ site.baseurl }}{% link index.html %}">Home</a></li>
-        <li><a href="{{ site.baseurl }}{% link about.html %}">About</a></li>
-        <li><a href="{{ site.baseurl }}{% link services/index.html %}">Services</a></li>
-        <li><a href="{{ site.baseurl }}{% link services/optimization.html %}">Optimization</a></li>
-        <li><a href="{{ site.baseurl }}{% link services/development.html %}">Development</a></li>
-        <li><a href="{{ site.baseurl }}{% link services/analytics.html %}">Analytics</a></li>
+        <li><a href="{{ site.baseurl }}{% link index.html %}">Welcome</a></li>
+        <li><a href="{{ site.baseurl }}{% link services.html %}">Services</a></li>
+        <li><a href="{{ site.baseurl }}{% link services.html %}#optimization">Optimization</a></li>
+        <li><a href="{{ site.baseurl }}{% link services.html %}#development">Development</a></li>
+        <li><a href="{{ site.baseurl }}{% link services.html %}#analytics">Analytics</a></li>
+        <li><a href="{{ site.baseurl }}{% link index.html %}#about">About</a></li>
         <li><a href="{{ site.baseurl }}{% link blog/index.html %}">Blog</a></li>
     </ul>
     <ul class="actions vertical">
-        <li><a href="{{ site.baseurl }}{% link contact.html %}" class="button special fit">Contact</a></li>
+        <li><a href="{{ site.baseurl }}{% link index.html %}#contact" class="button special fit">Contact</a></li>
     </ul>
 </nav>
