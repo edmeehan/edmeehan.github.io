@@ -7,7 +7,8 @@
 @import 'libs/mixins';
 @import 'libs/skel';
 @import 'font-awesome.min.css';
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,500,600');
+// @import url('https://fonts.googleapis.com/css?family=Raleway:300,500,600');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker|Raleway:300,500,600');
 
 /*
 	Altitude by Pixelarity
@@ -70,9 +71,6 @@
 	@import 'layout/footer';
 	@import 'layout/page-wrapper';
 
-.intro {
-	img {
-		margin: 0 auto;
-		border-radius: 100%;
-	}
-}
+// Custom Styles.
+	
+	@import 'my_custom_styles';

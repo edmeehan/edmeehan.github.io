@@ -1,8 +1,23 @@
 <!-- Section -->
-<section class="main {% if include.accent %}accent{{ include.accent }}{% endif %} intro">
-    <header class="major">
-        <h1>Ed Meehan</h1>
-        <p><strong>Conversion Rate Optimization Specialist</strong></p>
-    </header>
-    <img src="/img/ed-image-6-square.png" class="img-circle" style="max-width: 299px; width: 70%;"/>
+<section id="banner" class="intro-inc">
+    <div class="items">
+        <section class="{% if include.accent %}accent{{ include.accent }}{% endif %}">
+            <h1 style="transform: rotate(3deg)">Hello, I'm Ed.</h1>
+            <p>I'm a front-end developer in San Diego. I specialize in conversion rate optimization and application development with Javascript and PHP. I really love building with Laravel and Vue.</p>
+        </section>
+    </div>
+    <div class="slider">
+        <article>
+            <img src="/img/ed-image-1.png" alt="" data-position="top right" />
+        </article>
+        <article>
+            <img src="/img/ed-image-5.png" alt="" data-position="bottom right" />
+        </article>
+        <article>
+            <img src="/img/ed-image-3.png" alt="" data-position="center center" />
+        </article>
+        <article>
+            <img src="/img/ed-image-4.png" alt="" data-position="top right" />
+        </article>
+    </div>
 </section>
