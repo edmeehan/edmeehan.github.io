@@ -5,7 +5,7 @@ module.exports = {
   // webpack folder's entry js - excluded from jekll's build process.
   entry: {
     main : path.resolve(__dirname, '_javascript/main.js'),
-    welcome : path.resolve(__dirname, '_javascript/welcome.js'),
+    // welcome : path.resolve(__dirname, '_javascript/welcome.js'),
   },
   output: {
     path: path.resolve(__dirname, 'js'),
