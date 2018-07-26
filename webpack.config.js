@@ -9,7 +9,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'js'),
-    filename: "[name].js"
+    filename: "[name].js",
+    sourceMapFilename: 'bundle.map'
   },
   module: {
     loaders: [

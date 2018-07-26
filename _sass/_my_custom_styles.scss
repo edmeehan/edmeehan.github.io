@@ -23,6 +23,61 @@
     }
 }
 
+#contact-form {
+    position: relative;
+    
+    > .uniform{
+       opacity: 1; 
+    }
+
+    &.active,
+    &.active input,
+    &.active textarea{
+        cursor: progress;
+    }
+
+    &.success,
+    &.fail {
+        cursor: default;
+
+        > .uniform{
+           opacity: 0; 
+        }
+    }
+
+    &.active .form-response{
+        z-index: 1;
+    }
+
+    &.success .form-response.success,
+    &.fail .form-response.fail{
+        opacity: 1;
+    }
+
+    .form-response {
+        position: absolute;
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        border: solid 2px transparent;
+        z-index: -1;
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+
+        &.success {
+            border-color: #4cabb1;
+        }
+
+        &.fail {
+            border-color: #fed586;
+        }
+    }
+}
+
 .services {
 
 }

@@ -1,4 +1,7 @@
-import './util.js';
+window.$ = window.jQuery = require('jquery');
+require('./util.js');
+require('./contact_form.js');
+
 
 /*
     Altitude by Pixelarity
