@@ -78,6 +78,20 @@
     }
 }
 
+.experience-logos {
+    display: flex;
+    width: 100%;
+    margin-bottom: -2em;
+
+    > div {
+        flex: 1 1 auto;
+    }
+
+    img {
+        max-width: 100%;
+    }
+}
+
 .services {
 
 }
