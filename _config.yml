@@ -20,6 +20,8 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://emeehan.com" # the base hostname & protocol for your site
 js_scripts: ['/js/skel.min.js','/js/main.js'] # global js files - included in all pages
 
+gtm_container_id: GTM-TGPQS29
+
 # Build settings
 markdown: kramdown
 error_mode: warn
