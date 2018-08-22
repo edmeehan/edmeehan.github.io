@@ -1,0 +1,207 @@
+<section class="main">
+    <header class="major">
+        <h2>Jekyll Variables</h2>
+        <p>Just a quick way to see values from the differnt vars. <a href="https://jekyllrb.com/docs/variables/">https://jekyllrb.com/docs/variables/</a></p>
+    </header>
+    <h4>Custom Vars</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>page.headline</td>
+                <td></td>
+                <td>{{page.headline|jsonify}}</td>
+            </tr>
+            <tr>
+                <td>site.title</td>
+                <td></td>
+                <td>{{ site.title | jsonify}}</td>
+            </tr>
+            <tr>
+                <td>site.subtitle</td>
+                <td></td>
+                <td>{{ site.subtitle | jsonify}}</td>
+            </tr>
+            <tr>
+                <td>site.phone</td>
+                <td></td>
+                <td>{{site.phone}}</td>
+            </tr>
+            <tr>
+                <td>site.address</td>
+                <td></td>
+                <td>{{site.address}}</td>
+            </tr>
+            <tr>
+                <td>site.email</td>
+                <td></td>
+                <td>{{site.email| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>site.meta_title</td>
+                <td></td>
+                <td>{{ site.meta_title | jsonify}}</td>
+            </tr>
+            <tr>
+                <td>site.meta_desc</td>
+                <td></td>
+                <td>{{ site.meta_desc | jsonify}}</td>
+            </tr>
+            <tr>
+                <td>site.baseurl</td>
+                <td></td>
+                <td>{{site.baseurl| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>page.layout</td>
+                <td></td>
+                <td>{{page.layout| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>layout.layout</td>
+                <td></td>
+                <td>{{layout.layout| jsonify}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h4>Site Vars</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>site.time</td>
+                <td>Current time of jekyll build</td>
+                <td>{{site.time| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>site.pages</td>
+                <td>A list of all Pages.</td>
+                <td>array_length: {{site.pages|size}}</td>
+            </tr>
+            <tr>
+                <td>site.posts</td>
+                <td>A reverse chronological list of all Posts.</td>
+                <td>array_length: {{site.posts|size}}</td>
+            </tr>
+            <tr>
+                <td>site.related_posts</td>
+                <td>If the page being processed is a Post, this contains a list of up to ten related Posts.</td>
+                <td>{{site.related_posts| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>site.static_files</td>
+                <td>A list of all static files (i.e. files not processed by Jekyll's converters or the Liquid renderer).</td>
+                <td>array_length: {{site.static_files|size}}</td>
+            </tr>
+            <tr>
+                <td>site.html_pages</td>
+                <td>A subset of `site.pages` listing those which end in `.html`.</td>
+                <td>array_length: {{site.html_pages|size}}</td>
+            </tr>
+            <tr>
+                <td>site.html_files</td>
+                <td>A subset of `site.static_files` listing those which end in `.html`.</td>
+                <td>{{site.html_files| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>site.collections</td>
+                <td>A list of all the collections.</td>
+                <td>array_length:  {{site.collections|size}}</td>
+            </tr>
+            <tr>
+                <td>site.data</td>
+                <td>A list containing the data loaded from the YAML files located in the _data directory.</td>
+                <td>{{site.data| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>site.documents</td>
+                <td>A list of all the documents in every collection.</td>
+                <td>array_length: {{site.documents|size}}</td>
+            </tr>
+            <tr>
+                <td>site.url</td>
+                <td>Contains the url of your site as it is configured in the _config.yml.</td>
+                <td>{{site.url| jsonify}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h4>Page Vars</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>page.content</td>
+                <td>The content of the Page.</td>
+                <td>{{page.content| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>page.title</td>
+                <td>The title of the Page.</td>
+                <td>{{ page.title | jsonify}}</td>
+            </tr>
+            <tr>
+                <td>page.excerpt</td>
+                <td>The un-rendered excerpt of a document.</td>
+                <td>{{page.excerpt| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>page.url</td>
+                <td>The URL of the Post without the domain, but with a leading slash</td>
+                <td>{{page.url| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>page.date</td>
+                <td>The Date assigned to the Post.</td>
+                <td>{{page.date| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>page.id</td>
+                <td>An identifier unique to a document in a Collection or a Post</td>
+                <td>{{page.id| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>page.categories</td>
+                <td>The list of categories to which this post belongs.</td>
+                <td>{{page.categories| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>page.tags</td>
+                <td>The list of tags to which this post belongs.</td>
+                <td>{{page.tags| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>page.path</td>
+                <td>The path to the raw post or page.</td>
+                <td>{{page.path| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>page.next</td>
+                <td>The next post relative to the position of the current post in site.posts.</td>
+                <td>{{page.next| jsonify}}</td>
+            </tr>
+            <tr>
+                <td>page.previous</td>
+                <td>The previous post relative to the position of the current post in site.posts.</td>
+                <td>{{page.previous| jsonify}}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>

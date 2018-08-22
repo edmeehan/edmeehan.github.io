@@ -1,0 +1,50 @@
+<!-- Footer -->
+<footer id="footer">
+    <section class="links">
+        {% comment %}
+        <div>
+            <h3>Pages</h3>
+            <ul class="plain">
+                <li><a href="{{ site.baseurl }}{% link index.html %}">Welcome</a></li>
+                <li><a href="{{ site.baseurl }}{% link services.html %}">Services</a></li>
+                <li><a href="{{ site.baseurl }}{% link index.html %}#about">About</a></li>
+                <li><a href="{{ site.baseurl }}{% link blog/index.html %}">Blog</a></li>
+                <li><a href="{{ site.baseurl }}{% link index.html %}#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Services</h3>
+            <ul class="plain">
+                <li><a href="{{ site.baseurl }}{% link services.html %}#optimization">Optimization</a></li>
+                <li><a href="{{ site.baseurl }}{% link services.html %}#development">Development</a></li>
+                <li><a href="{{ site.baseurl }}{% link services.html %}#analytics">Analytics</a></li>
+            </ul>
+        </div>
+        {% endcomment %}
+        <div>
+            <h3>Social</h3>
+            <ul class="plain">
+                <li><a target="_blank" href="https://github.com/edmeehan">GitHub</a></li>
+                <li><a target="_blank" href="https://www.linkedin.com/in/edwardmeehan">LinkedIn</a></li>
+                <li><a target="_blank" href="https://codepen.io/edmeehan">CodePen</a></li>
+            </ul>
+        </div>
+        {% comment %}
+        <div>
+            <h3>Projects</h3>
+            <ul class="plain">
+                <li><a target="_blank" href="https://emuser.rocks/">emuser.rocks</a></li>
+                <li><a target="_blank" href="http://throwshaka.com/">throwshaka.com</a></li>
+            </ul>
+        </div>
+        {% endcomment %}
+    </section>
+    {% comment %}
+    <ul class="contact-icons">
+        <li class="icon fa-home">{{site.address}}</li>
+        <li class="icon fa-phone"><a href="tel:{{site.phone}}">{{site.phone}}</a></li>
+        <li class="icon fa-envelope-o"><a href="mailto:{{site.email}}">{{site.email}}</a></li>
+    </ul>
+    {% endcomment %}
+    <p class="copyright">&copy; 2018. All rights reserved.</p>
+</footer>

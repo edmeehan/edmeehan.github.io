@@ -1,0 +1,116 @@
+.intro {
+    img {
+        margin: 0 auto;
+        border-radius: 100%;
+    }
+}
+
+#banner.big-head {
+    @include breakpoint(null,(min-width:801px)) {
+        background-color: #030303;
+    }
+
+    .items {
+        // section {
+        //     background-color: inherit;
+        // }
+
+        @include breakpoint(null,(min-width:981px)) {            
+            section {
+                padding-left: 3em;
+            }
+        }
+
+        @include breakpoint(null,(min-width:801px)) {
+            section {
+                background-color: inherit;
+                padding-right: 0;
+            }
+        }
+
+        @include breakpoint(null,(max-width:800px)) {
+            section {
+                
+            }
+        }
+
+        @include breakpoint(null,(max-width:980px)) {
+            // background-color: pink;
+        }
+
+        font-size: 1.4em;
+    }
+}
+
+#contact-form {
+    position: relative;
+    
+    > .uniform{
+       opacity: 1; 
+    }
+
+    &.active,
+    &.active input,
+    &.active textarea{
+        cursor: progress;
+    }
+
+    &.success,
+    &.fail {
+        cursor: default;
+
+        > .uniform{
+           opacity: 0; 
+        }
+    }
+
+    &.active .form-response{
+        z-index: 1;
+    }
+
+    &.success .form-response.success,
+    &.fail .form-response.fail{
+        opacity: 1;
+    }
+
+    .form-response {
+        position: absolute;
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        border: solid 2px transparent;
+        z-index: -1;
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+
+        &.success {
+            border-color: #4cabb1;
+        }
+
+        &.fail {
+            border-color: #fed586;
+        }
+    }
+}
+
+.experience-logos {
+    display: flex;
+    width: 100%;
+    margin-top: -2em;
+
+    > div {
+        flex: 1 1 auto;
+    }
+
+    img {
+        max-width: 100%;
+    }
+}
+
+.services {
+
+}

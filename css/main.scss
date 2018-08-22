@@ -2,529 +2,75 @@
 # Front matter comment to ensure Jekyll properly reads file.
 ---
 
-/* SASS VARS */
-$blue : #3576C3;
-$white : #fff;
-$black : #505050;
-$dark-white : shade($white, 8%);
-$lite-gray : #d8d8d8;
-$lite-blue : tint($blue, 40%);
-$lite-black : tint($black, 30%);
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import 'libs/skel';
+@import 'font-awesome.min.css';
+// @import url('https://fonts.googleapis.com/css?family=Raleway:300,500,600');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker|Raleway:300,500,600');
 
-$font-color: #fff;
+/*
+	Altitude by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
+*/
 
-$tablet-break : 600px;
-$desktop-break: 1200px;
+	@include skel-breakpoints((
+		// xlarge: '(max-width: 1680px)',
+		large: '(max-width: 1280px)',
+		medium: '(max-width: 980px)',
+		small: '(max-width: 736px)',
+		xsmall: '(max-width: 480px)',
+		xxsmall: '(max-width: 360px)'
+	));
 
-$animation-set-1: 2100ms;
-$animation-set-2: 1100ms;
+	@include skel-layout((
+		reset: 'full',
+		boxModel: 'border',
+		grid: ( gutters: 2em )
+	));
 
-$monoPath: "MonoSocialIconsFont-1.10/MonoSocialIconsFont-1.10";
-$monoLabel: "Mono Social Icons Font";
-
-@import "fix";
-@import "mixin";
-
-/* ICON FONT */
-//@include font-face($monoLabel, font-files($monoPath + ".woff", $monoPath + ".ttf", $monoPath + ".svg#MonoSocialIconsFont"), $monoPath + ".eot", normal, normal);
-
-
-/* ---------- tag styles ---------- */
-html{
-	&.layout-default{
-		min-height:100%;
-		height:100%;
-		background-repeat:no-repeat;
-		background-attachment: fixed;
-	}
-
-	&.skin_default{
-		background-image: linear-gradient(-175deg, #90b2d5, #80863a, #556672);
-	}
-	&.skin_resume{
-		background-image: linear-gradient(-166deg, #aef8ff, #BBCE6B, #1f3213);
-	}
-}
-
-body{
-	font-family: 'Droid Sans', sans-serif;
-	font-size:16px;
-	font-weight: 300;
-	line-height:1.5em;
-
-	.skin_default &{
-		color:$font-color;
-	}
-	.skin_resume &{
-		color:$black;
-		padding: 4em 1em 2em;
+	@mixin color($p) {
+		@include color-typography($p);
+		@include color-box($p);
+		@include color-button($p);
+		@include color-features($p);
+		@include color-form($p);
+		@include color-icon($p);
+		@include color-list($p);
+		@include color-section($p);
+		@include color-table($p);
 	}
 
-	@media screen and (min-width: $tablet-break) {
-		.skin_default &{
-			background: url('/img/valley.jpg') no-repeat;
-		}
-		.skin_resume &{
-			padding-top: 2em;
-			//background: url('/img/mana-road.jpg') no-repeat;
-		}
+// Base.
 
-		.layout-default &{
-			background-size: cover;
-			background-attachment: fixed;
-		}
-	}
-}
+	@import 'base/page';
+	@import 'base/typography';
 
-h1,h2,h3,h4,h5,h6{
-	font-weight:100;
-}
+// Component.
 
-a{
-	text-decoration:underline;
-}
+	@import 'components/box';
+	@import 'components/button';
+	@import 'components/features';
+	@import 'components/form';
+	@import 'components/icon';
+	@import 'components/image';
+	@import 'components/list';
+	@import 'components/section';
+	@import 'components/table';
+	@import 'components/carousel';
+	@import 'components/spotlight';
+	@import 'components/wrapper';
 
-/* ---------- class styles ---------- */
-.social-icon{
-	@include social-font();
-}
+// Layout.
 
-.container{
-	margin:0 auto;
-	box-sizing: border-box;
+	@import 'layout/header';
+	@import 'layout/menu';
+	@import 'layout/banner';
+	@import 'layout/footer';
+	@import 'layout/page-wrapper';
 
-	.layout-default &{
-		min-height:100%;
-	}
-
-	.skin_default &{
-		background: rgba($blue,.8);
-		max-width:500px;
-		padding: 0 1.5em;
-
-		/* ------------------- Animations -------------------- */
-		transition: max-width 800ms;
-		animation: ta-da $animation-set-1 paused;
-	}
-
-	.skin_resume &{
-		background: $white;
-		max-width:500px;
-		padding: 0 1.5em;
-		box-shadow:
-			inset 0px 0px 0px 7px white,
-			inset 0px 0px 0px 8px $lite-blue,
-			0px 8px 30px -2px rgba($black, .5);
-	}
-	/* trigger animation play */
-	.play &{
-		animation-play-state: running;
-	}
-
-	@media screen and (min-width: $tablet-break) {
-		.skin_resume &{
-			max-width: 80%;
-		}
-	}
-
-	@media screen and (min-width: $desktop-break) {
-		.skin_default &{
-			margin:0 350px 0 auto;
-			max-width:700px;
-		}
-		.skin_resume &{
-			margin:0 auto;
-			padding: 0 2em;
-			width:960px;
-		}
-	}
-}
-
-.footer{
-	padding:1rem;
-	text-align:center;
-	font-size:.8em;
-	color: shade($blue,50%);
-
-	/* ------------------- Animations -------------------- */
-	animation: bumpy $animation-set-2 paused ($animation-set-1 - 400ms);
-	animation-fill-mode: both;
-
-	.play &{
-		animation-play-state: running;
-	}
-}
-
-/* ---------- blocks (section.block) ---------- */
-.block{
-	padding-top:1.5rem;
-
-	h1{
-		font-size:2em;
-		font-family: 'Droid Serif', serif;
-		line-height:1em;
-		margin-bottom:1rem;
-		text-align:center;
-	}
-	h2{
-		font-size:1.5em;
-		line-height:2rem;
-		text-align:center;
-	}
-	h1,h2{
-		.skin_default &{
-			text-shadow:1px 2px 0px shade($blue,3%);
-		}
-	}
-	p{
-		margin-bottom:1rem;
-		line-height:1.3em;
-		font-weight:100;
-	}
-	.alert{
-		font-size:.8em;
-		background-color: tint($blue,8%);
-		padding: .5rem;
-		border-radius:4px;
-		margin:.5rem 0;
-	}
-
-	@media screen and (min-width: $tablet-break) {
-		h1,h2{
-			text-align:left;
-		}
-		.skin_default &{
-			padding-right:1.5rem;
-		}
-	}
-	@media screen and (min-width: $desktop-break) {
-		.skin_default &{
-			padding-right:1.5rem;
-		}
-	}
-}
-
-.block-me{
-	font-size:1.25em; /* 20/16 */
-	/* ------------------- Animations -------------------- */
-	animation: bumpy $animation-set-2 paused ($animation-set-1 + 400ms);
-	animation-fill-mode: both;
-
-	.play &{
-		animation-play-state: running;
-	}
-
-	&-hd{ //.block-me-hd
-		&:before{
-			display:block;
-			content:'';
-			background:url('/img/EdwardMeehan54.jpg');
-			width:120px;
-			height:120px;
-			background-size: cover;
-    	border-radius: 100%;
-    	margin:0 auto 2rem;
-		}
-	}
-
-	@media screen and (min-width: $tablet-break) {
-		padding-left: 4rem;
-		padding-top: 6rem;
-		&-hd{ //.block-me-hd
-			position: relative;
-			&:before{
-				position: absolute;
-				left: -9.25rem;
-				top: -3rem;
-				margin:0;
-			}
-		}
-	}
-}
-
-.block-insta{
-	/* ------------------- Animations -------------------- */
-	animation: bumpy $animation-set-2 paused $animation-set-1;
-	animation-fill-mode: both;
-
-	.play &{
-		animation-play-state: running;
-	}
-
-	&-hd{ //.block-insta-hd
-		&:before{
-			display:block;
-			content:'';
-			background: url('/img/Instagram-v051916.png');
-			width:50px;
-			height:50px;
-			background-size: cover;
-			margin:0 auto 1rem;
-		}
-	}
-	&-bd{ //.block-insta-bd
-		
-		.thumbnails{
-			display:flex;
-			flex-direction:row;
-			flex-wrap:wrap;
-			margin:0 -10px;
-			a{
-				display:block;
-				width:33.3%;
-				padding:10px;
-				box-sizing:border-box;
-			}
-			img{
-				display:block;
-
-			}
-		}
-	}
-	@media screen and (min-width: $tablet-break) {
-		padding-left:1.5rem;
-
-		&-hd{ //.block-me-hd
-			position: relative;
-			&:before{
-				position: absolute;
-				margin:0;
-				left:-4.5rem;
-				top:-.75rem;
-			}
-		}
-	}
-}
-
-.block-links{
-	/* ------------------- Animations -------------------- */
-	animation: bumpy $animation-set-2 paused ($animation-set-1 - 400ms);
-	animation-fill-mode: both;
-
-	.play &{
-		animation-play-state: running;
-	}
-
-	border-top: solid 1px tint($blue,20%);
-	border-bottom: solid 1px tint($blue,20%);
-	margin-top:3rem;
-	padding:1rem;
-
-	&-hd{ //.block-links-hd
-
-	}
-	&-bd{ //.block-links-bd
-		ul{
-			text-align:center;
-		}
-		li{
-			display:inline-block;
-			a{
-				padding: 4px;
-			}
-		}
-	}
-
-	@media screen and (min-width: $tablet-break) {
-		padding:2rem;
-		margin-top:6rem;
-	}
-}
-
-.block-resume{
-	color: $black;
-	h1,h2,h3,h4{
-		color: $lite-black;
-	}
-	&-hd{
-		position: relative;
-		&:before{
-			content:"";
-			background: url('/img/EdwardMeehan54.jpg');
-			background-size: cover;
-			display: block;
-			height: 100px;
-			width: 100px;
-			border-radius:100%;
-			position: absolute;
-			top: -80px;
-			left: 50%;
-			margin-left: -50px;
-			border: solid 4px $white;
-		}
-	}
-	&-bd{
-		li li{
-			display: list-item;
-			// list-style-position: inside;
-			margin-top: 1rem;
-			&:first-child{
-				margin-top: 0;
-			}
-			> p{
-				padding:0;
-			}
-		}
-		li ul {
-			padding-left: 17px;
-			+ p{
-				color: $lite-black;
-				margin-bottom: .5rem;
-				margin-top: 1rem;
-			}
-		}
-	}
-	h1{
-		padding: 2.5rem 0 1.5rem;
-		margin-bottom: 0;
-	}
-	h2{
-		border-top: 1px solid $lite-gray;
-		padding:.8em 0;
-		margin-top:1em;
-	}
-	h3,h4{
-		font-weight: bold;
-		color: $lite-blue;
-		+ p{
-			color: $lite-black;
-			margin-bottom: .5rem;
-		}
-	}
-	.clients-list{
-		border: dashed $dark-white 1px;
-		padding: 0 1rem 1rem;
-		margin: 2rem 0 0;
-		> li{
-			display: block;
-			margin-top: 2rem;
-		}
-		&:before{
-			content: "Wetumka Interactive Clients";
-		    position: relative;
-		    padding: 0 .25rem;
-		    margin: 0 .50rem;
-		    display: inline-block;
-		    top: -.8rem;
-		    background-color: $white;
-		    font-weight: bold;
-		}
-	}
-	.primary-info{
-		> ul > li{
-			margin-top:1.8rem;
-			&:first-child{
-				margin-top:0;
-			}
-		}
-	}
-	@media screen and (min-width: $tablet-break) {
-		h1{
-			text-indent: 60px;
-			padding-bottom: 3rem;
-			border-bottom: 1px solid $lite-gray;
-		}
-		h2{
-			&:first-child{
-				margin-top: 0;
-				border-top: none;
-			}
-		}
-		&-hd{
-			&:before{
-				top:0;
-				left:-25px;
-			}
-		}
-		&-bd{ //.block-resume-bd
-			display: flex;
-			flex-direction: row;
-			> aside{
-				flex: 2;
-				order: 2;
-				margin-left:2rem;
-			}
-			> div{
-				flex: 3;
-				order: 1;
-
-				li{
-					margin-top:2em;
-					li {
-						margin-top:0;
-					}
-					&:first-child{
-						margin-top: 0;
-					}
-				}
-			}
-		}
-	}
-	@media screen and (min-width: $desktop-break) {
-		h2,h3,h4,p{
-			padding-left: .75rem;
-			padding-right: .75rem;
-		}
-		&-bd{ //.block-resume-bd
-			li{ 
-				> ul{
-					margin: 0 .75rem 0 1.75rem;
-				}
-				li{
-					list-style-position: outside;
-				}
-			}
-			> aside{
-				flex: 1;
-			}
-			> div{
-				flex: 2;
-			}
-		}
-		.clients-list{
-			li > p{
-				padding-left: .75rem;
-				padding-right: .75rem;
-			}
-		}
-	}
-}
-
-/* ---------- Animations ---------- */
-@keyframes ta-da {
-	0% {
-		transform: scale(0.01,1) translateY(-100%);
-	}
-	85% {
-		transform: scale(0.01,1) translateY(0%);
-	}
-	93% {
-		transform: scale(1.1,1);
-	}
-	98% {
-		transform: scale(1.05,1);
-	}
-	96%,100% {
-		transform: scale(1,1);
-	}
-}
-
-@keyframes bumpy {
-	0%{
-		opacity:0;
-		transform: translateY(-100%);
-	}
-	20%{
-		opacity:1;
-	}
-	65% {
-		transform: translateY(4%);
-	}
-	80% {
-		transform: translateY(-2%);
-	}
-	100%{
-		opacity:1;
-		transform: translateY(0%);
-	}
-}
+// Custom Styles.
+	
+	@import 'my_custom_styles';

@@ -9,33 +9,55 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-title: Edward Meehan | Front-End Web Developer
+title: Ed Meehan #displayed on site header
+subtitle: Web Developer  #displayed on site header
+
+address: 123 Test st. San Diego, CA 92115-1234
+phone: 555.555.5555
 email: edward.meehan.808@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
+
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://emeehan.com" # the base hostname & protocol for your site
+js_scripts: ['/js/skel.min.js','/js/main.js'] # global js files - included in all pages
 
 # Build settings
 markdown: kramdown
 error_mode: warn
-gems: [github-pages]
+plugins: [github-pages]
 exclude: ['node_modules','package.json','emeehan.sublime-project','package-lock.json','Gemfile','Gemfile.lock','README.md','webpack','webpack.config.js']
+  # include: 
+  # keep_files:
+  # timezone:
+  # encoding:
 
 # Sass
 sass:
   sass_dir: _sass
-  style: compressed
+  #style: compressed
 
 # Defaults
 defaults:
   -
     scope:
       path: ''
+    values:
+      site_logo: true
+      block_top: false
+      block_bottom: false
+      block_header: header.html
+      block_footer: footer.html
+      debugmode: false
+      js_scripts: [] # page js files - included in current page
+  -
+    scope:
+      path: ''
       type: 'pages'
     values:
-      skin: 'default'
-      blockName: 'content'
+      description: This is the default page description here.
+      #permalink: /:path/:basename:output_ext
+  -
+    scope:
+      path: ''
+      type: 'posts'
+    values:
+      permalink: /blog/:categories/:title
