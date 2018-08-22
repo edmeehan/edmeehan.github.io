@@ -123,8 +123,9 @@
 				}
 			}
 		}
-
-		@include breakpoint(medium) {
+		
+		@include breakpoint(null,(max-width:800px)) {
+		//@include breakpoint(medium) {
 			@include vendor('flex-direction', 'column-reverse');
 
 			> .items {

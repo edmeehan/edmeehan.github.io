@@ -5,21 +5,40 @@
     }
 }
 
-#banner.intro-inc {
-    > .items {
-        @include breakpoint(null,(min-width:981px)) {
-            // min-height: 500px;
+#banner.big-head {
+    @include breakpoint(null,(min-width:801px)) {
+        background-color: #030303;
+    }
+
+    .items {
+        // section {
+        //     background-color: inherit;
+        // }
+
+        @include breakpoint(null,(min-width:981px)) {            
             section {
                 padding-left: 3em;
-                padding-right: 3em;
             }
         }
 
-        font-size: 1.4em;
-    }
+        @include breakpoint(null,(min-width:801px)) {
+            section {
+                background-color: inherit;
+                padding-right: 0;
+            }
+        }
 
-    h1 {
-        white-space: nowrap;
+        @include breakpoint(null,(max-width:800px)) {
+            section {
+                
+            }
+        }
+
+        @include breakpoint(null,(max-width:980px)) {
+            // background-color: pink;
+        }
+
+        font-size: 1.4em;
     }
 }
 
@@ -81,7 +100,7 @@
 .experience-logos {
     display: flex;
     width: 100%;
-    margin-bottom: -2em;
+    margin-top: -2em;
 
     > div {
         flex: 1 1 auto;
