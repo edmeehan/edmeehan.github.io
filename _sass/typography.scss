@@ -1,0 +1,28 @@
+p {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5rem;
+}
+
+.font {
+    &.poppins,
+    &-poppins {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    &.marker,
+    &-marker {
+        font-family: 'Permanent Marker', cursive;
+        letter-spacing: .1rem;
+        word-spacing: .25rem;
+
+        h1 {
+            font-size: (58/$size-units) + 0rem;
+            line-height: 3rem;
+        }
+
+        .big {
+            font-size: (42/$size-units) + 0rem;
+        }
+    }
+}

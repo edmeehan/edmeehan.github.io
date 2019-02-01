@@ -1,0 +1,21 @@
+$size-units: 24;
+
+// z-index levels
+$z-base: 0;
+$z-background: 1;
+$z-foreground: 5;
+$z-popover: 50;
+$z-menu: 100;
+$z-modal: 200;
+$z-top: 300;
+
+// breakpoints
+$xl-break: 1600px;
+
+$l-break-max: $xl-break - 1;
+$l-break: 1024px;
+
+$m-break-max: $l-break - 1;
+$m-break: 768px;
+
+$s-break-max: $m-break - 1;

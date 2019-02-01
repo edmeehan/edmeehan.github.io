@@ -18,9 +18,13 @@ email: edward.meehan.808@gmail.com
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://emeehan.com" # the base hostname & protocol for your site
-js_scripts: ['/js/skel.min.js','/js/main.js'] # global js files - included in all pages
+js_scripts: [] # global js files - included in all pages
+css_styles: [
+  "https://fonts.googleapis.com/css?family=Permanent+Marker|Poppins:400,600",
+  "/css/2019.css"
+]
 
-gtm_container_id: GTM-TGPQS29
+gtm_container_id:
 
 # Build settings
 markdown: kramdown
@@ -50,6 +54,7 @@ defaults:
       block_footer: footer.html
       debugmode: false
       js_scripts: [] # page js files - included in current page
+      css_styles: [] 
   -
     scope:
       path: ''
