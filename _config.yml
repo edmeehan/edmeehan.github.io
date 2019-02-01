@@ -47,9 +47,6 @@ defaults:
     scope:
       path: ''
     values:
-      site_logo: true
-      block_top: false
-      block_bottom: false
       block_header: header.html
       block_footer: footer.html
       debugmode: false

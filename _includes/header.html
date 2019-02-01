@@ -1,27 +1,17 @@
 <!-- Header -->
-<header id="header">
-    {% if page.site_logo %}<a href="{{ site.baseurl }}{% link index.html %}" class="logo">{{site.title}} <span>{{site.subtitle}}</span></a>{% endif %}
-    {% comment %}
-    <nav>
-        <ul>
-            <li><a href="#menu">Menu</a></li>
+<header class="site-header" id="header">
+    <nav class="site-header__nav">
+        <div class="site-header__logo">
+            <a href="">
+                <img width="89" height="67" src="/img/emeehan-logo.svg" alt="">
+            </a>
+        </div>
+        <ul class="site-header__nav-links font-marker">
+            <li><a href="">About</a></li>
+            <li><a href="">Services</a></li>
+            <li><a href="">Portfolio</a></li>
+            <li><a href="">Contact</a></li>
+            <li><a href="">Blog</a></li>
         </ul>
     </nav>
-    {% endcomment %}
 </header>
-{% comment %}
-<!-- Nav -->
-<nav id="menu">
-    <ul class="links">
-        <li><a href="{{ site.baseurl }}{% link index.html %}">Welcome</a></li>
-        <li><a href="{{ site.baseurl }}{% link services.html %}">Services</a></li>
-        <li><a href="{{ site.baseurl }}{% link services.html %}#optimization">Optimization</a></li>
-        <li><a href="{{ site.baseurl }}{% link services.html %}#development">Development</a></li>
-        <li><a href="{{ site.baseurl }}{% link services.html %}#analytics">Analytics</a></li>
-        <li><a href="{{ site.baseurl }}{% link blog/index.html %}">Blog</a></li>
-    </ul>
-    <ul class="actions vertical">
-        <li><a href="{{ site.baseurl }}{% link index.html %}#contact" class="button special fit">Contact</a></li>
-    </ul>
-</nav>
-{% endcomment %}
