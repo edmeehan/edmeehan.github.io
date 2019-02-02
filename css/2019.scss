@@ -8,11 +8,19 @@
 // font size and baseline
 html,
 body {
-    font-size: $size-units + 0px;
+    color: #000;
     line-height: (36/$size-units) + 0rem;
 
     @media (max-width: $s-break-max) {
         font-size: 18px;
+    }
+
+    @media (min-width: $m-break) and (max-width: $m-break-max) {
+        font-size: 20px;
+    }
+
+    @media (min-width: $l-break) and (max-width: $l-break-max) {
+        font-size: $size-units + 0px;
     }
 
     @media (min-width: $xl-break) {
@@ -50,8 +58,10 @@ body {
         margin: 0;
         padding: 0;
         list-style: none;
-        display: flex;
+        // display: flex;
         flex: 10 0 auto;
+
+        display:none;
 
         li {
             flex: 1 1 auto;
@@ -82,6 +92,10 @@ body {
             width: $m-break - 40;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        &__nav-links {
+            display: flex;
         }
     }
 
@@ -133,7 +147,7 @@ body {
     }
 
     &--cardboard {
-        background-image: radial-gradient(50% 50%, #C2AD90 33%, #83745F 100%);
+        background-image: radial-gradient(50% 50%, $brand-tan 33%, #83745F 100%);
 
         &::after {
             background-image: url("/img/seemless-tiles/cardboard.png");
@@ -145,7 +159,7 @@ body {
     }
 
     &--lined {
-        background-image: linear-gradient(218deg, #2C5DA0 0%, #5893D7 99%);
+        background-image: linear-gradient(218deg, $brand-dark-blue 0%, $brand-blue 99%);
     
         &::after {
             background-image: url("/img/seemless-tiles/linedpaper.png");
@@ -186,7 +200,7 @@ body {
 
     @media (min-width: $m-break) {
         &--cardboard {
-            background-image: radial-gradient(50% 40%, #C2AD90 33%, #83745F 100%);
+            background-image: radial-gradient(50% 40%, $brand-tan 33%, #83745F 100%);
         }
 
         &__content {
@@ -198,7 +212,7 @@ body {
 
     @media (min-width: $l-break) {
         &--cardboard {
-            background-image: radial-gradient(45% 30%, #C2AD90 33%, #83745F 100%);
+            background-image: radial-gradient(45% 30%, $brand-tan 33%, #83745F 100%);
         }
 
         &__content {
@@ -213,3 +227,94 @@ body {
     }
 }
 
+.form {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__input {
+        padding: 0 .6rem 1.5rem;
+        box-sizing: border-box;
+    }
+
+    &__textarea {
+        padding: 0 .6rem 1.5rem;
+        box-sizing: border-box;
+    }
+
+    &__controls {
+        padding: 0 .6rem 1.5rem;
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        li {
+            margin-right: 1.2rem;
+        }
+    }
+
+    &--name {
+        flex: 0 0 50%;
+    }
+
+    &--email {
+        flex: 0 0 50%;
+    }
+
+    &--message {
+        flex: 0 0 100%;
+    }
+}
+
+input,
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: solid 1px transparent;
+    border-radius: 4px;
+    padding: 0 .5rem;
+}
+
+textarea {
+    padding: .35rem .5rem;
+}
+
+input {
+    line-height: 1.8rem;
+    height: 1.8rem;
+}
+
+.button {
+    text-transform: uppercase;
+    border-radius: 300px;
+    background-color: #ccc;
+    box-shadow: 0 (5/$size-units) + 0rem 0 #333;
+    font-size: (18/$size-units) + 0rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    outline: none;
+    transform: translateY(0);
+    transition: transform 300ms, box-shadow 300ms;
+
+
+    &:active {
+        transform: translateY((5/$size-units) + 0rem);
+        box-shadow: 0 0 0 #333;
+    }
+
+    &--cta {
+        color: #fff;
+        background-color: $brand-blue;
+        box-shadow: 0px (5/$size-units) + 0rem 0px $brand-dark-blue;
+
+        &:active {
+            transform: translateY((5/$size-units) + 0rem);
+            box-shadow: 0 0 0 $brand-dark-blue;
+        }
+    }
+}

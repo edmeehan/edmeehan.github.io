@@ -1,12 +1,16 @@
 ---
 layout: 2019_master
 ---
-{% if page.block_header %}
-    {% include {{page.block_header}} %}
-{% endif %}
 <!-- Page Layout Start -->
-{{ content }}        
+<div class="font-poppins">
+    {% if page.block_header %}
+        {% include {{page.block_header}} %}
+    {% endif %}
+    
+    {{ content }}        
+    
+    {% if page.block_footer %}
+        {% include {{page.block_footer}} %}
+    {% endif %}
+</div>
 <!-- Page Layout End -->
-{% if page.block_footer %}
-    {% include {{page.block_footer}} %}
-{% endif %}
