@@ -9,18 +9,11 @@
 html,
 body {
     color: #000;
-    line-height: (36/$size-units) + 0rem;
+    line-height: 1.5rem;
+    font-size: 20px;
 
     @media (max-width: $s-break-max) {
-        font-size: 18px;
-    }
-
-    @media (min-width: $m-break) and (max-width: $m-break-max) {
-        font-size: 20px;
-    }
-
-    @media (min-width: $l-break) and (max-width: $l-break-max) {
-        font-size: $size-units + 0px;
+        font-size: 16px;
     }
 
     @media (min-width: $xl-break) {
