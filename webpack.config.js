@@ -1,32 +1,28 @@
-let UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 let path = require('path');
 
 module.exports = {
-  // webpack folder's entry js - excluded from jekll's build process.
+  mode: 'development',
+  devtool: 'source-map',
   entry: {
-    main : path.resolve(__dirname, '_javascript/main.js'),
+    main: path.resolve(__dirname, '_javascript/main.js'),
     // welcome : path.resolve(__dirname, '_javascript/welcome.js'),
   },
   output: {
     path: path.resolve(__dirname, 'js'),
     filename: "[name].js",
-    sourceMapFilename: 'bundle.map'
+    //sourceMapFilename: 'bundle.map'
   },
   module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /(node_modules)/,
-        loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
-        query: {
-          presets: ['es2015']
+    rules: [{
+      //test: /\.m?js$/,
+      test: /\.jsx?$/,
+      exclude: /(node_modules)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
         }
       }
-    ]
-  },
-  // plugins: [
-  //   new UglifyJSPlugin({
-  //     sourceMap : true
-  //   })
-  // ]
+    }]
+  }
 };
