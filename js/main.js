@@ -98,46 +98,96 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
 /* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _modules_scrolling_in_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/scrolling_in_view */ "./_javascript/modules/scrolling_in_view.js");
-// require('./util.js');
-// require('./contact_form.js');
-//import "core-js/fn/promise";
 
-
+ //import _ from 'lodash';
 
 (function () {
+  //'use strict';
   var sectionElements = document.getElementsByClassName('js-scroll-in-view'),
+      backgroundElement = document.getElementById('page-background'),
       viewEvents = new _modules_scrolling_in_view__WEBPACK_IMPORTED_MODULE_1__["default"]({
     elements: sectionElements
-  });
+  }),
+      currentSection,
+      backgroundNumber;
 
   function isVisible(event) {
-    console.log(event);
+    if (currentSection !== this && event.detail.element.top < event.detail.window.middle && event.detail.element.bottom > event.detail.window.middle) {
+      currentSection = this;
+      changeBackground(true);
+    }
+  }
+
+  function changeBackground() {
+    var div = document.createElement('div'),
+        random; // get a new random number differnt from the last
+
+    do {
+      random = Math.floor(Math.random() * 5) + 1;
+    } while (random === backgroundNumber);
+
+    backgroundNumber = random;
+    div.classList.add('background', 'background__' + random); // find and remove old backgrounds
+
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = backgroundElement.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var oldbackground = _step.value;
+        oldbackground.classList.remove('background--visible');
+        oldbackground.addEventListener('transitionend', function () {
+          this.remove();
+        });
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return != null) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+
+    backgroundElement.appendChild(div);
+    setTimeout(function () {
+      div.classList.add('background--visible');
+    }, 5);
   } // add visibile listener
 
 
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
 
   try {
-    for (var _iterator = sectionElements[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var item = _step.value;
+    for (var _iterator2 = sectionElements[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var item = _step2.value;
       item.addEventListener('is_visible', isVisible);
     }
   } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
   } finally {
     try {
-      if (!_iteratorNormalCompletion && _iterator.return != null) {
-        _iterator.return();
+      if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+        _iterator2.return();
       }
     } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
+      if (_didIteratorError2) {
+        throw _iteratorError2;
       }
     }
   }
+
+  viewEvents.scroll();
 })();
 
 /***/ }),

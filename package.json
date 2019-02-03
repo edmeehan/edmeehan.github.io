@@ -8,7 +8,9 @@
     },
     "dependencies": {
         "@babel/polyfill": "^7.2.5",
-        "custom-event-polyfill": "^1.0.6"
+        "custom-event-polyfill": "^1.0.6",
+        "lodash": "^4.17.11",
+        "terser": "^3.14.1"
     },
     "jshintConfig": {
         "esversion": 6

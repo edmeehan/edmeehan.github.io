@@ -1,17 +1,57 @@
-// require('./util.js');
-// require('./contact_form.js');
-//import "core-js/fn/promise";
-
 import "custom-event-polyfill";
 import ViewEvents from './modules/scrolling_in_view';
+//import _ from 'lodash';
 
 (function() {
+    //'use strict';
 
     let sectionElements = document.getElementsByClassName('js-scroll-in-view'),
-        viewEvents = new ViewEvents({elements:sectionElements});
+        backgroundElement = document.getElementById('page-background'),
+        viewEvents = new ViewEvents({elements:sectionElements}),
+        currentSection,
+        backgroundNumber;
 
     function isVisible(event) {
-        console.log(event);
+
+        if (
+            currentSection !== this &&
+            event.detail.element.top < event.detail.window.middle &&
+            event.detail.element.bottom > event.detail.window.middle
+        ) {
+            currentSection = this;
+
+            changeBackground(true);
+        }        
+    }
+
+    function changeBackground() {
+        let div = document.createElement('div'),
+            random;
+
+        // get a new random number differnt from the last
+        do
+          random = Math.floor(Math.random() * 5) + 1;
+        while (random === backgroundNumber);
+
+        backgroundNumber = random;
+
+        div.classList.add('background', 'background__' + random);
+
+        // find and remove old backgrounds
+        for (let oldbackground of backgroundElement.children) {
+            oldbackground.classList.remove('background--visible');
+            oldbackground.addEventListener('transitionend', function(){
+                this.remove();
+            });
+        }
+
+        backgroundElement.appendChild(div);
+
+        setTimeout(function(){
+            div.classList.add('background--visible');
+        }, 5);
+
+        
     }
 
     // add visibile listener
@@ -19,9 +59,6 @@ import ViewEvents from './modules/scrolling_in_view';
         item.addEventListener('is_visible', isVisible);
     }
 
-})(
-    // jQuery || {},
-    // new ViewEvents({
-    //     elements: document.getElementsByClassName('js-scroll-in-view')
-    // })
-);
+    viewEvents.scroll();
+
+})();
