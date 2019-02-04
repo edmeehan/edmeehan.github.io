@@ -30,7 +30,7 @@ import ViewEvents from './modules/scrolling_in_view';
 
         // get a new random number differnt from the last
         do
-          random = Math.floor(Math.random() * 5) + 1;
+          random = Math.floor(Math.random() * 8) + 1;
         while (random === backgroundNumber);
 
         backgroundNumber = random;

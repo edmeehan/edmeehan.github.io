@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
         random; // get a new random number differnt from the last
 
     do {
-      random = Math.floor(Math.random() * 5) + 1;
+      random = Math.floor(Math.random() * 8) + 1;
     } while (random === backgroundNumber);
 
     backgroundNumber = random;
