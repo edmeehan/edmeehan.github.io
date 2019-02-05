@@ -95,99 +95,17 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
-/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _modules_scrolling_in_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/scrolling_in_view */ "./_javascript/modules/scrolling_in_view.js");
-
+/* harmony import */ var _sections_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sections_manager */ "./_javascript/sections_manager.js");
  //import _ from 'lodash';
 
 (function () {
-  //'use strict';
-  var sectionElements = document.getElementsByClassName('js-scroll-in-view'),
-      backgroundElement = document.getElementById('page-background'),
-      viewEvents = new _modules_scrolling_in_view__WEBPACK_IMPORTED_MODULE_1__["default"]({
-    elements: sectionElements
-  }),
-      currentSection,
-      backgroundNumber;
+  'use strict';
 
-  function isVisible(event) {
-    if (currentSection !== this && event.detail.element.top < event.detail.window.middle && event.detail.element.bottom > event.detail.window.middle) {
-      currentSection = this;
-      changeBackground(true);
-    }
-  }
-
-  function changeBackground() {
-    var div = document.createElement('div'),
-        random; // get a new random number differnt from the last
-
-    do {
-      random = Math.floor(Math.random() * 8) + 1;
-    } while (random === backgroundNumber);
-
-    backgroundNumber = random;
-    div.classList.add('background', 'background__' + random); // find and remove old backgrounds
-
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-      for (var _iterator = backgroundElement.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var oldbackground = _step.value;
-        oldbackground.classList.remove('background--visible');
-        oldbackground.addEventListener('transitionend', function () {
-          this.remove();
-        });
-      }
-    } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion && _iterator.return != null) {
-          _iterator.return();
-        }
-      } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
-        }
-      }
-    }
-
-    backgroundElement.appendChild(div);
-    setTimeout(function () {
-      div.classList.add('background--visible');
-    }, 5);
-  } // add visibile listener
-
-
-  var _iteratorNormalCompletion2 = true;
-  var _didIteratorError2 = false;
-  var _iteratorError2 = undefined;
-
-  try {
-    for (var _iterator2 = sectionElements[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-      var item = _step2.value;
-      item.addEventListener('is_visible', isVisible);
-    }
-  } catch (err) {
-    _didIteratorError2 = true;
-    _iteratorError2 = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-        _iterator2.return();
-      }
-    } finally {
-      if (_didIteratorError2) {
-        throw _iteratorError2;
-      }
-    }
-  }
-
-  viewEvents.scroll();
+  var sections = new _sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
+    sections: document.getElementsByClassName('js-scroll-in-view'),
+    background: document.getElementById('page-background'),
+    randomCeiling: 8
+  });
 })();
 
 /***/ }),
@@ -211,16 +129,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var _default =
 /*#__PURE__*/
 function () {
-  function _default(_ref) {
+  function _default(elements, eventLabel) {
     var _this = this;
-
-    var elements = _ref.elements;
 
     _classCallCheck(this, _default);
 
     var that = this,
         raf = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame; // set some property values
 
+    this.eventLabel = eventLabel;
     this.elements = elements;
     this.boundaryArray = [];
     this.scrollTop = window.scrollY || window.pageYOffset; // if we have scroll elements, then lets do this.
@@ -319,7 +236,7 @@ function () {
             }
           }
 
-          this.elements[elements[i].index].dispatchEvent(new CustomEvent('is_visible', {
+          this.elements[elements[i].index].dispatchEvent(new CustomEvent(this.eventLabel, {
             bubbles: false,
             detail: {
               visibility: visibility,
@@ -343,6 +260,171 @@ function () {
     key: "boundary",
     get: function get() {
       return this.boundaryArray;
+    }
+  }]);
+
+  return _default;
+}();
+
+
+
+/***/ }),
+
+/***/ "./_javascript/sections_manager.js":
+/*!*****************************************!*\
+  !*** ./_javascript/sections_manager.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
+/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_scrolling_in_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/scrolling_in_view */ "./_javascript/modules/scrolling_in_view.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+var _default =
+/*#__PURE__*/
+function () {
+  function _default(_ref) {
+    var sections = _ref.sections,
+        background = _ref.background,
+        randomCeiling = _ref.randomCeiling;
+    var eventLabel = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'is_visible';
+    var backgroundClass = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'background';
+    var backgroundVisibleClass = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'visible';
+    var sectionActiveClass = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'active';
+
+    _classCallCheck(this, _default);
+
+    this.backgroundClass = backgroundClass;
+    this.backgroundVisibleClass = backgroundVisibleClass;
+    this.eventLabel = eventLabel;
+    this.sectionsEle = sections;
+    this.backgroundEle = background;
+    this.viewEvents = new _modules_scrolling_in_view__WEBPACK_IMPORTED_MODULE_1__["default"](sections, eventLabel);
+    this.randomCeiling = randomCeiling;
+    this.prevRandom = null;
+    this.sectionInFocus = null;
+    this.sectionInFocusClass = sectionActiveClass; // add visibile listener
+
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = sections[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var item = _step.value;
+        item.addEventListener(this.eventLabel, this.isVisible.bind(this));
+      } // init scroll to get started
+
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return != null) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+
+    this.viewEvents.scroll();
+  }
+
+  _createClass(_default, [{
+    key: "isVisible",
+    value: function isVisible(event) {
+      if (this.sectionInFocus !== event.target && event.detail.element.top < event.detail.window.middle && event.detail.element.bottom > event.detail.window.middle) {
+        // check if hass classList - not the null value form init
+        if (this.sectionInFocus !== null) {
+          this.sectionInFocus.classList.remove(this.sectionInFocusClass);
+        }
+
+        this.sectionInFocus = event.target;
+        this.changeBackground();
+        this.sectionInFocus.classList.add(this.sectionInFocusClass);
+      }
+    }
+  }, {
+    key: "changeBackground",
+    value: function changeBackground() {
+      var div = document.createElement('div'),
+          random; // get a new random number differnt from the last
+
+      do {
+        random = Math.floor(Math.random() * this.randomCeiling) + 1;
+      } while (random === this.prevRandom);
+
+      this.prevRandom = random;
+      div.classList.add(this.backgroundClass, "".concat(this.backgroundClass, "__").concat(random)); // find and remove old backgrounds
+
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = this.backgroundEle.children[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var children = _step2.value;
+          children.classList.remove("".concat(this.backgroundClass, "--").concat(this.backgroundVisibleClass));
+          children.addEventListener('transitionend', function () {
+            this.remove();
+          });
+        } // add new background
+
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+            _iterator2.return();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
+      this.backgroundEle.appendChild(div); // add the class to trigger transition
+
+      setTimeout(function () {
+        div.classList.add("".concat(this.backgroundClass, "--").concat(this.backgroundVisibleClass));
+      }.bind(this), 5);
+    }
+  }, {
+    key: "sections",
+    get: function get() {
+      return this.sectionsEle;
+    }
+  }, {
+    key: "background",
+    get: function get() {
+      return this.backgroundEle;
+    }
+  }, {
+    key: "active_section",
+    get: function get() {
+      return this.sectionInFocus;
+    }
+  }, {
+    key: "view_event",
+    get: function get() {
+      return this.viewEvents;
     }
   }]);
 

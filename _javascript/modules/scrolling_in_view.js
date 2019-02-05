@@ -1,12 +1,11 @@
 export default class {
 
-    constructor({
-        elements
-    }) {
+    constructor ( elements, eventLabel ) {
         let that = this,
             raf = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame;
 
         // set some property values
+        this.eventLabel = eventLabel;
         this.elements = elements;
         this.boundaryArray = [];
         this.scrollTop = window.scrollY || window.pageYOffset;
@@ -110,7 +109,7 @@ export default class {
                     }
                 }
 
-                this.elements[elements[i].index].dispatchEvent(new CustomEvent('is_visible', {
+                this.elements[elements[i].index].dispatchEvent(new CustomEvent(this.eventLabel, {
                     bubbles: false,
                     detail: {
                         visibility,
