@@ -43,6 +43,11 @@ sass:
   sass_dir: _sass
   #style: compressed
 
+# Projects
+collections:
+  portfolio:
+    output: true
+
 # Defaults
 defaults:
   -

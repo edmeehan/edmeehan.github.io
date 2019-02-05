@@ -5,7 +5,7 @@ export default class {
 
     constructor(
         {sections, background, randomCeiling},
-        eventLabel = 'is_visible',
+        eventLabel = 'view_event',
         backgroundClass = 'background',
         backgroundVisibleClass = 'visible',
         sectionActiveClass = 'active'
@@ -16,7 +16,7 @@ export default class {
         this.eventLabel = eventLabel;
         this.sectionsEle = sections;
         this.backgroundEle = background;
-        this.viewEvents = new ViewEvents(sections, eventLabel);
+        this.viewEvents = new ViewEvents(sections, `${eventLabel}_visible`);
         this.randomCeiling = randomCeiling;
         this.prevRandom = null;
         this.sectionInFocus = null;
@@ -24,7 +24,7 @@ export default class {
 
         // add visibile listener
         for (let item of sections) {
-            item.addEventListener(this.eventLabel, this.isVisible.bind(this));
+            item.addEventListener(`${this.eventLabel}_visible`, this.isVisible.bind(this));
         }
 
         // init scroll to get started
@@ -55,12 +55,13 @@ export default class {
         ) {
             // check if hass classList - not the null value form init
             if (this.sectionInFocus !== null) {
-                this.sectionInFocus.classList.remove(this.sectionInFocusClass);
+                this.sectionInFocus.dispatchEvent(new CustomEvent(`${this.eventLabel}_blur`, { bubbles: false }));
             }
             
             this.sectionInFocus = event.target;
             this.changeBackground();
-            this.sectionInFocus.classList.add(this.sectionInFocusClass);
+            
+            this.sectionInFocus.dispatchEvent(new CustomEvent(`${this.eventLabel}_focus`, { bubbles: false }));
         }        
     }
 

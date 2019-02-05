@@ -3,12 +3,20 @@
 ---
 @import 'variables';
 
+.js-scroll-in-view {
+    visibility: hidden;
+    &.active {
+        visibility: visible;
+    }
+}
+
+.section {
+    animation-duration: .9s;
+    animation-fill-mode: both;
+}
+
 .intro {
     $background-color: rgba(white, .35);
-
-    transform: translate(-200%, 0);
-    opacity: 0;
-    transition: transform 600ms ease-out, opacity 1800ms;
 
     &__headshot {
         img {
@@ -22,11 +30,6 @@
         background-color: $background-color;
         padding: 1px 1.5rem;
         border-radius: 1rem;
-    }
-
-    .section.active & {
-        transform: translate(0, 0) rotate(-3deg);
-        opacity: 1;
     }
 
     @media (max-width: $m-break-max) {
@@ -61,13 +64,14 @@
 
 .about {
 
-    transform: translate(-200%, 0);
-    opacity: 0;
-    transition: transform 600ms ease-out, opacity 1800ms;
-    
-    .section.active & {
-        transform: translate(0, 0);
-        opacity: 1;
+    &__text {
+        background-color: rgba(white, .35);
+        padding: 1px 1.5rem;
+    }
+
+    &__sidebar {
+        background-color: rgba(white, .2);
+        padding: 1px 1.5rem;
     }
 
     @media (min-width: $m-break) {
@@ -79,20 +83,11 @@
 
         &__text {
             flex: 0 1 67%;
-            transform: rotate(2.2deg);
         }
     }
 }
 
 .services {
-    transform: translate(-200%, 0);
-    opacity: 0;
-    transition: transform 600ms ease-out, opacity 1800ms;
-    
-    .section.active & {
-        transform: translate(0, 0);
-        opacity: 1;
-    }
 
     &__columns {
         text-align: center;
@@ -106,48 +101,44 @@
         padding: 0;
     }
 
+    &__item {
+        padding: 1px 1.5rem;
+        background-color: rgba(white, .35);
+
+        &--top {
+            order: -1;
+            background-color: rgba(white, .45);
+        }
+    }
+
     &__icon {
-        border: solid (4/$size-units) + 0rem $brand-lite-blue;
-        background-color: rgba($brand-lite-blue, .4);
-        border-radius: 100%;
-        width: (130/$size-units) + 0rem;
-        height: (130/$size-units) + 0rem;
-        margin-left: auto;
-        margin-right: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        font-size: 3rem;
+        margin-top: 1.5rem;
     }
 
     @media (min-width: $m-break) {
         &__items {
             flex-direction: row;
-
-            > li {
-                flex-direction: column;
-                flex: 0 1 33.33%;
-                padding-left: (20/$size-units) + 0rem;
-                padding-right: (20/$size-units) + 0rem;
-            }
         }
 
-        &__text {
-            padding-left: 0;
+        &__item {
+            flex: 0 1 33.33%;
+            transform: translate(0, 0) scale(1);
+            transition: transform 500ms ease-out 800ms;
+
+            &--top {
+                order: 0;
+                transform: translate(0, 0) scale(1) !important;
+            }
+
+            .active.js-scroll-in-view &{
+                transform: translate(0, .5rem) scale(.9);
+            }
         }
     }
 }
 
 .contact {
-    width: 100%;
-
-    transform: translate(-200%, 0);
-    opacity: 0;
-    transition: transform 600ms ease-out, opacity 1800ms;
-    
-    .section.active & {
-        transform: translate(0, 0);
-        opacity: 1;
-    }
 
     &__text {
         text-align: center;

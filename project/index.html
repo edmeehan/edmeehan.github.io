@@ -1,0 +1,13 @@
+---
+layout: 2019_project
+title:  "Welcome to Jekyll!"
+---
+
+{% for project in site.portfolio %}
+  <h2>
+    <a href="{{ project.url }}">
+      {{ project.title }}
+    </a>
+  </h2>
+  <p>{{ project.content | markdownify }}</p>
+{% endfor %}

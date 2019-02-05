@@ -101,7 +101,95 @@ __webpack_require__.r(__webpack_exports__);
 (function () {
   'use strict';
 
-  var sections = new _sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
+  var sections,
+      // home page stuff
+  intro = document.getElementById('intro'),
+      about = document.getElementById('about'),
+      services = document.getElementById('services'),
+      contact = document.getElementById('contact'); // homepage scripts
+
+  {
+    var start_event = 'view_event_focus',
+        end_event = 'view_event_blur',
+        // intro
+    intro_in = 'bounceIn',
+        intro_out = 'bounceOut',
+        // about
+    about_in = 'bounceInLeft',
+        about_out = 'bounceOutRight',
+        // services
+    services_in = 'bounceInRight',
+        services_out = 'bounceOutLeft',
+        // contact
+    contact_in = 'bounceInLeft',
+        contact_out = 'bounceOutRight';
+
+    if (intro) {
+      intro.addEventListener(start_event, function (event) {
+        event.target.classList.add('active', intro_in);
+      });
+      intro.addEventListener(end_event, function (event) {
+        event.target.classList.add(intro_out);
+      });
+      intro.addEventListener('animationend', function (event) {
+        event.target.classList.remove(event.animationName);
+
+        if (event.animationName === intro_out && !event.target.classList.contains(intro_in)) {
+          event.target.classList.remove('active');
+        }
+      });
+    }
+
+    if (about) {
+      about.addEventListener(start_event, function (event) {
+        event.target.classList.add('active', about_in);
+      });
+      about.addEventListener(end_event, function (event) {
+        event.target.classList.add(about_out);
+      });
+      about.addEventListener('animationend', function (event) {
+        event.target.classList.remove(event.animationName);
+
+        if (event.animationName === about_out && !event.target.classList.contains(about_in)) {
+          event.target.classList.remove('active');
+        }
+      });
+    }
+
+    if (services) {
+      services.addEventListener(start_event, function (event) {
+        event.target.classList.add('active', services_in);
+      });
+      services.addEventListener(end_event, function (event) {
+        event.target.classList.add(services_out);
+      });
+      services.addEventListener('animationend', function (event) {
+        event.target.classList.remove(event.animationName);
+
+        if (event.animationName === services_out && !event.target.classList.contains(services_in)) {
+          event.target.classList.remove('active');
+        }
+      });
+    }
+
+    if (contact) {
+      contact.addEventListener(start_event, function (event) {
+        event.target.classList.add('active', contact_in);
+      });
+      contact.addEventListener(end_event, function (event) {
+        event.target.classList.add(contact_out);
+      });
+      contact.addEventListener('animationend', function (event) {
+        event.target.classList.remove(event.animationName);
+
+        if (event.animationName === contact_out && event.target.classList.contains(contact_in)) {
+          event.target.classList.remove('active');
+        }
+      });
+    }
+  } // section manager controls background and events when sections become visible
+
+  sections = new _sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
     sections: document.getElementsByClassName('js-scroll-in-view'),
     background: document.getElementById('page-background'),
     randomCeiling: 8
@@ -299,7 +387,7 @@ function () {
     var sections = _ref.sections,
         background = _ref.background,
         randomCeiling = _ref.randomCeiling;
-    var eventLabel = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'is_visible';
+    var eventLabel = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'view_event';
     var backgroundClass = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'background';
     var backgroundVisibleClass = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'visible';
     var sectionActiveClass = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'active';
@@ -311,7 +399,7 @@ function () {
     this.eventLabel = eventLabel;
     this.sectionsEle = sections;
     this.backgroundEle = background;
-    this.viewEvents = new _modules_scrolling_in_view__WEBPACK_IMPORTED_MODULE_1__["default"](sections, eventLabel);
+    this.viewEvents = new _modules_scrolling_in_view__WEBPACK_IMPORTED_MODULE_1__["default"](sections, "".concat(eventLabel, "_visible"));
     this.randomCeiling = randomCeiling;
     this.prevRandom = null;
     this.sectionInFocus = null;
@@ -324,7 +412,7 @@ function () {
     try {
       for (var _iterator = sections[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
         var item = _step.value;
-        item.addEventListener(this.eventLabel, this.isVisible.bind(this));
+        item.addEventListener("".concat(this.eventLabel, "_visible"), this.isVisible.bind(this));
       } // init scroll to get started
 
     } catch (err) {
@@ -351,12 +439,16 @@ function () {
       if (this.sectionInFocus !== event.target && event.detail.element.top < event.detail.window.middle && event.detail.element.bottom > event.detail.window.middle) {
         // check if hass classList - not the null value form init
         if (this.sectionInFocus !== null) {
-          this.sectionInFocus.classList.remove(this.sectionInFocusClass);
+          this.sectionInFocus.dispatchEvent(new CustomEvent("".concat(this.eventLabel, "_blur"), {
+            bubbles: false
+          }));
         }
 
         this.sectionInFocus = event.target;
         this.changeBackground();
-        this.sectionInFocus.classList.add(this.sectionInFocusClass);
+        this.sectionInFocus.dispatchEvent(new CustomEvent("".concat(this.eventLabel, "_focus"), {
+          bubbles: false
+        }));
       }
     }
   }, {
