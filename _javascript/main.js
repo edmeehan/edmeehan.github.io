@@ -9,7 +9,8 @@ import SectionManager from './sections_manager';
         intro = document.getElementById('intro'),
         about = document.getElementById('about'),
         services = document.getElementById('services'),
-        contact = document.getElementById('contact');
+        contact = document.getElementById('contact'),
+        tabs = document.getElementsByClassName('js-tab');
 
     // homepage scripts
     {
@@ -70,6 +71,28 @@ import SectionManager from './sections_manager';
                 event.target.classList.remove('active');
             });
             
+        }
+    }
+
+    // tabs
+    {
+        for (let tab of tabs) {
+            tab.addEventListener('click', function(event){
+                for (let tab_siblings of this.parentElement.children) {
+                    tab_siblings.classList.remove('active');
+                }
+
+                this.classList.add('active');
+
+                let content = document.getElementById(this.dataset.target);
+
+                for (let content_siblings of content.parentElement.children) {
+                    content_siblings.classList.remove('active');
+                }
+
+                content.classList.add('active');
+                
+            });
         }
     }
     

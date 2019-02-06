@@ -106,7 +106,8 @@ __webpack_require__.r(__webpack_exports__);
   intro = document.getElementById('intro'),
       about = document.getElementById('about'),
       services = document.getElementById('services'),
-      contact = document.getElementById('contact'); // homepage scripts
+      contact = document.getElementById('contact'),
+      tabs = document.getElementsByClassName('js-tab'); // homepage scripts
 
   {
     var start_event = 'view_event_focus',
@@ -158,6 +159,84 @@ __webpack_require__.r(__webpack_exports__);
       contact.addEventListener(end_event, function (event) {
         event.target.classList.remove('active');
       });
+    }
+  } // tabs
+
+  {
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = tabs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var tab = _step.value;
+        tab.addEventListener('click', function (event) {
+          var _iteratorNormalCompletion2 = true;
+          var _didIteratorError2 = false;
+          var _iteratorError2 = undefined;
+
+          try {
+            for (var _iterator2 = this.parentElement.children[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+              var tab_siblings = _step2.value;
+              tab_siblings.classList.remove('active');
+            }
+          } catch (err) {
+            _didIteratorError2 = true;
+            _iteratorError2 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                _iterator2.return();
+              }
+            } finally {
+              if (_didIteratorError2) {
+                throw _iteratorError2;
+              }
+            }
+          }
+
+          this.classList.add('active');
+          var content = document.getElementById(this.dataset.target);
+          var _iteratorNormalCompletion3 = true;
+          var _didIteratorError3 = false;
+          var _iteratorError3 = undefined;
+
+          try {
+            for (var _iterator3 = content.parentElement.children[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+              var content_siblings = _step3.value;
+              content_siblings.classList.remove('active');
+            }
+          } catch (err) {
+            _didIteratorError3 = true;
+            _iteratorError3 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+                _iterator3.return();
+              }
+            } finally {
+              if (_didIteratorError3) {
+                throw _iteratorError3;
+              }
+            }
+          }
+
+          content.classList.add('active');
+        });
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return != null) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
     }
   } // section manager controls background and events when sections become visible
 
