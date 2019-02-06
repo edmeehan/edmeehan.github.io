@@ -126,65 +126,37 @@ __webpack_require__.r(__webpack_exports__);
 
     if (intro) {
       intro.addEventListener(start_event, function (event) {
-        event.target.classList.add('active', intro_in);
+        event.target.classList.add('animate', 'active', intro_in);
       });
       intro.addEventListener(end_event, function (event) {
-        event.target.classList.add(intro_out);
-      });
-      intro.addEventListener('animationend', function (event) {
-        event.target.classList.remove(event.animationName);
-
-        if (event.animationName === intro_out && !event.target.classList.contains(intro_in)) {
-          event.target.classList.remove('active');
-        }
+        event.target.classList.remove('active');
       });
     }
 
     if (about) {
       about.addEventListener(start_event, function (event) {
-        event.target.classList.add('active', about_in);
+        event.target.classList.add('animate', 'active', about_in);
       });
       about.addEventListener(end_event, function (event) {
-        event.target.classList.add(about_out);
-      });
-      about.addEventListener('animationend', function (event) {
-        event.target.classList.remove(event.animationName);
-
-        if (event.animationName === about_out && !event.target.classList.contains(about_in)) {
-          event.target.classList.remove('active');
-        }
+        event.target.classList.remove('active');
       });
     }
 
     if (services) {
       services.addEventListener(start_event, function (event) {
-        event.target.classList.add('active', services_in);
+        event.target.classList.add('animate', 'active', services_in);
       });
       services.addEventListener(end_event, function (event) {
-        event.target.classList.add(services_out);
-      });
-      services.addEventListener('animationend', function (event) {
-        event.target.classList.remove(event.animationName);
-
-        if (event.animationName === services_out && !event.target.classList.contains(services_in)) {
-          event.target.classList.remove('active');
-        }
+        event.target.classList.remove('active');
       });
     }
 
     if (contact) {
       contact.addEventListener(start_event, function (event) {
-        event.target.classList.add('active', contact_in);
+        event.target.classList.add('animate', 'active', contact_in);
       });
       contact.addEventListener(end_event, function (event) {
-        event.target.classList.add(contact_out);
-      });
-      contact.addEventListener('animationend', function (event) {
-        event.target.classList.remove(event.animationName);
-
-        if (event.animationName === contact_out && event.target.classList.contains(contact_in)) {
-          event.target.classList.remove('active');
-        }
+        event.target.classList.remove('active');
       });
     }
   } // section manager controls background and events when sections become visible
@@ -192,7 +164,7 @@ __webpack_require__.r(__webpack_exports__);
   sections = new _sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
     sections: document.getElementsByClassName('js-scroll-in-view'),
     background: document.getElementById('page-background'),
-    randomCeiling: 8
+    randomCeiling: 7
   });
 })();
 

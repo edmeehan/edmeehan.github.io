@@ -45,6 +45,44 @@ body {
     }
 }
 
+.tabbed {
+    display: flex;
+
+    &__tabs {
+
+    }
+
+    &__tab-list {
+
+    }
+
+    &__tab-title {
+
+    }
+
+    &__contents {
+
+    }
+
+    &__content-list {
+
+    }
+
+    &__tab-content {
+
+    }
+
+    @media (min-width: $m-break) {
+        &__tabs {
+            flex: 0 1 33%;
+        }
+
+        &__contents {
+            flex: 0 1 67%;
+        }
+    }
+}
+
 .page-content {}
 .page-background {
     height: 100vh;

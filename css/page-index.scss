@@ -5,7 +5,7 @@
 
 .js-scroll-in-view {
     visibility: hidden;
-    &.active {
+    &.animate {
         visibility: visible;
     }
 }
@@ -16,7 +16,7 @@
 }
 
 .intro {
-    $background-color: rgba(white, .35);
+    $background-color: rgba(white, .6);
 
     &__headshot {
         img {
@@ -65,26 +65,26 @@
 .about {
 
     &__text {
-        background-color: rgba(white, .35);
+        background-color: rgba(white, .6);
         padding: 1px 1.5rem;
     }
 
     &__sidebar {
-        background-color: rgba(white, .2);
+        background-color: rgba(white, .4);
         padding: 1px 1.5rem;
     }
 
-    @media (min-width: $m-break) {
-        display: flex;
+    // @media (min-width: $m-break) {
+    //     display: flex;
 
-        &__sidebar {
-            flex: 0 1 33%;
-        }
+    //     &__sidebar {
+    //         flex: 0 1 33%;
+    //     }
 
-        &__text {
-            flex: 0 1 67%;
-        }
-    }
+    //     &__text {
+    //         flex: 0 1 67%;
+    //     }
+    // }
 }
 
 .services {
@@ -103,11 +103,11 @@
 
     &__item {
         padding: 1px 1.5rem;
-        background-color: rgba(white, .35);
+        background-color: rgba(white, .4);
 
         &--top {
             order: -1;
-            background-color: rgba(white, .45);
+            background-color: rgba(white, .6);
         }
     }
 
@@ -124,7 +124,7 @@
         &__item {
             flex: 0 1 33.33%;
             transform: translate(0, 0) scale(1);
-            transition: transform 500ms ease-out 800ms;
+            transition: transform 900ms ease-out 100ms;
 
             &--top {
                 order: 0;
@@ -132,7 +132,7 @@
             }
 
             .active.js-scroll-in-view &{
-                transform: translate(0, .5rem) scale(.9);
+                transform: translate(0, 1.3%) scale(.9);
             }
         }
     }
