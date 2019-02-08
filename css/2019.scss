@@ -152,14 +152,19 @@ body {
     width: 100%;
     background-size: auto $header-height;
     height: $header-height;
-
     position: fixed;
-    top: 0;    
+    top: 0;
+
+    &__nav {
+        display: flex;
+        align-items: center;
+        height: (100/$size-units) + 0rem;
+    }
 
     &__logo {
         flex: 1 0 auto;
         a {
-            display: inline-block;
+            display: block;
         }
         img {
             display: block;
@@ -168,19 +173,11 @@ body {
         }
     }
 
-    &__nav {
-        display: flex;
-        align-items: center;
-        height: (100/$size-units) + 0rem;
-    }
-
     &__nav-links {
         margin: 0;
         padding: 0;
         list-style: none;
         flex: 10 0 auto;
-
-        display:none;
 
         li {
             color: $brand-dark-blue;
@@ -194,12 +191,12 @@ body {
 
                 &:before {
                     content:'<';
-                    transform: translateX(-1rem);
+                    transform: translateX(-1em);
                 }
 
                 &:after {
                     content:'>';
-                    transform: translateX(.5rem);
+                    transform: translateX(.5em);
                 }
             }
         }
@@ -211,7 +208,63 @@ body {
         }
     }
 
+    @media (max-width: $s-break-max) {
+        &__toggle {
+            font-size: 2rem;
+            flex: 0 0 (50/$size-units) + 0rem;
+            height: (50/$size-units) + 0rem;
+            text-align: center;
+            border: solid 1px $brand-dark-blue;
+            border-radius: (4/$size-units) + 0rem;
+            color: $brand-dark-blue;
+            position: relative;
+            z-index: $z-menu;
+            
+            &-open,
+            &-close {
+                line-height: (50/$size-units) + 0rem;
+            }
+
+            &-close {
+                display: none;
+            }
+
+            &.active {
+                .site-header__toggle-open {
+                    display: none;
+                }
+                .site-header__toggle-close {
+                    display: block;
+                }
+            }
+        }
+
+        &__nav-links {
+            display:none;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            background-color: rgba($brand-tan, .93);
+            position: absolute;
+            z-index: $z-popover;
+            font-size: 2rem;
+            line-height: 1.5em;
+
+            &.active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+
     @media (min-width: $m-break) {
+
+        &__toggle {
+            display: none;
+        }
 
         &__nav-links {
             display: flex;

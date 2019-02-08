@@ -7,12 +7,18 @@
                 <!-- <div>Ed Meehan</div> -->
             </a>
         </div>
-        <ul class="site-header__nav-links font-marker">
+        <div class="site-header__toggle" id="header-nav-toggle">
+            <i class="fas fa-bars site-header__toggle-open"></i>
+            <i class="fas fa-times site-header__toggle-close"></i>
+        </div>
+        <ul class="site-header__nav-links font-marker" id="header-nav">
             <li id="header-link-about"><a href="/#about">About</a></li>
             <li id="header-link-services"><a href="/#services">Services</a></li>
             <li id="header-link-project"><a href="/project">Projects</a></li>
             <li id="header-link-contact"><a href="/#contact">Contact</a></li>
+            {% comment %}
             <li id="header-link-blog"><a href="/blog">Blog</a></li>
+            {% endcomment %}
         </ul>
     </nav>
 </header>

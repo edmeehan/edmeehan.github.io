@@ -107,7 +107,10 @@ __webpack_require__.r(__webpack_exports__);
       about = document.getElementById('about'),
       services = document.getElementById('services'),
       contact = document.getElementById('contact'),
-      tabs = document.getElementsByClassName('js-tab');
+      headerToggle = document.getElementById('header-nav-toggle'),
+      headerNav = document.getElementById('header-nav'),
+      tabs = document.getElementsByClassName('js-tab'); // sets the nav to the current page
+  // mostly used on the homepage
 
   function headerNavUpdate(element) {
     var target = document.getElementById('header-link-' + element.id),
@@ -141,7 +144,47 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 
-  ; // homepage scripts
+  ; // header nav toggle
+
+  {
+    headerToggle.addEventListener('click', function (event) {
+      this.classList.toggle('active');
+
+      if (headerNav) {
+        headerNav.classList.toggle('active');
+      }
+    });
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+      for (var _iterator2 = headerNav.getElementsByTagName('a')[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var link = _step2.value;
+        link.addEventListener('click', function () {
+          if (headerNav.classList.contains('active')) {
+            headerToggle.classList.remove('active');
+            headerNav.classList.remove('active');
+          }
+
+          ;
+        });
+      }
+    } catch (err) {
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+          _iterator2.return();
+        }
+      } finally {
+        if (_didIteratorError2) {
+          throw _iteratorError2;
+        }
+      }
+    }
+  } // homepage scripts
 
   {
     var start_event = 'view_event_focus',
@@ -201,48 +244,22 @@ __webpack_require__.r(__webpack_exports__);
   } // tabs
 
   {
-    var _iteratorNormalCompletion2 = true;
-    var _didIteratorError2 = false;
-    var _iteratorError2 = undefined;
+    var _iteratorNormalCompletion3 = true;
+    var _didIteratorError3 = false;
+    var _iteratorError3 = undefined;
 
     try {
-      for (var _iterator2 = tabs[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-        var tab = _step2.value;
+      for (var _iterator3 = tabs[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+        var tab = _step3.value;
         tab.addEventListener('click', function (event) {
-          var _iteratorNormalCompletion3 = true;
-          var _didIteratorError3 = false;
-          var _iteratorError3 = undefined;
-
-          try {
-            for (var _iterator3 = this.parentElement.children[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-              var tab_siblings = _step3.value;
-              tab_siblings.classList.remove('active');
-            }
-          } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-                _iterator3.return();
-              }
-            } finally {
-              if (_didIteratorError3) {
-                throw _iteratorError3;
-              }
-            }
-          }
-
-          this.classList.add('active');
-          var content = document.getElementById(this.dataset.target);
           var _iteratorNormalCompletion4 = true;
           var _didIteratorError4 = false;
           var _iteratorError4 = undefined;
 
           try {
-            for (var _iterator4 = content.parentElement.children[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-              var content_siblings = _step4.value;
-              content_siblings.classList.remove('active');
+            for (var _iterator4 = this.parentElement.children[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+              var tab_siblings = _step4.value;
+              tab_siblings.classList.remove('active');
             }
           } catch (err) {
             _didIteratorError4 = true;
@@ -259,20 +276,46 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
 
+          this.classList.add('active');
+          var content = document.getElementById(this.dataset.target);
+          var _iteratorNormalCompletion5 = true;
+          var _didIteratorError5 = false;
+          var _iteratorError5 = undefined;
+
+          try {
+            for (var _iterator5 = content.parentElement.children[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+              var content_siblings = _step5.value;
+              content_siblings.classList.remove('active');
+            }
+          } catch (err) {
+            _didIteratorError5 = true;
+            _iteratorError5 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
+                _iterator5.return();
+              }
+            } finally {
+              if (_didIteratorError5) {
+                throw _iteratorError5;
+              }
+            }
+          }
+
           content.classList.add('active');
         });
       }
     } catch (err) {
-      _didIteratorError2 = true;
-      _iteratorError2 = err;
+      _didIteratorError3 = true;
+      _iteratorError3 = err;
     } finally {
       try {
-        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-          _iterator2.return();
+        if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+          _iterator3.return();
         }
       } finally {
-        if (_didIteratorError2) {
-          throw _iteratorError2;
+        if (_didIteratorError3) {
+          throw _iteratorError3;
         }
       }
     }

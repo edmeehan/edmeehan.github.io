@@ -10,8 +10,12 @@ import SectionManager from './sections_manager';
         about = document.getElementById('about'),
         services = document.getElementById('services'),
         contact = document.getElementById('contact'),
+        headerToggle = document.getElementById('header-nav-toggle'),
+        headerNav = document.getElementById('header-nav'),
         tabs = document.getElementsByClassName('js-tab');
 
+    // sets the nav to the current page
+    // mostly used on the homepage
     function headerNavUpdate(element){
         let target = document.getElementById('header-link-' + element.id),
             links = document.querySelectorAll('.site-header__nav-links > li');
@@ -25,6 +29,25 @@ import SectionManager from './sections_manager';
         }
         
     };
+
+    // header nav toggle
+    {
+        headerToggle.addEventListener('click', function(event){
+            this.classList.toggle('active');
+            if (headerNav) {
+                headerNav.classList.toggle('active');
+            }
+        });
+
+        for (let link of headerNav.getElementsByTagName('a')) {
+            link.addEventListener('click', function(){
+                if(headerNav.classList.contains('active')){
+                    headerToggle.classList.remove('active');
+                    headerNav.classList.remove('active');
+                };
+            })
+        }
+    }
 
     // homepage scripts
     {
