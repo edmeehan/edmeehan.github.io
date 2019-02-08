@@ -107,7 +107,41 @@ __webpack_require__.r(__webpack_exports__);
       about = document.getElementById('about'),
       services = document.getElementById('services'),
       contact = document.getElementById('contact'),
-      tabs = document.getElementsByClassName('js-tab'); // homepage scripts
+      tabs = document.getElementsByClassName('js-tab');
+
+  function headerNavUpdate(element) {
+    var target = document.getElementById('header-link-' + element.id),
+        links = document.querySelectorAll('.site-header__nav-links > li');
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = links[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var link = _step.value;
+        link.classList.remove('active');
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return != null) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+
+    if (target) {
+      target.classList.add('active');
+    }
+  }
+
+  ; // homepage scripts
 
   {
     var start_event = 'view_event_focus',
@@ -128,6 +162,7 @@ __webpack_require__.r(__webpack_exports__);
     if (intro) {
       intro.addEventListener(start_event, function (event) {
         event.target.classList.add('animate', 'active', intro_in);
+        headerNavUpdate(this);
       });
       intro.addEventListener(end_event, function (event) {
         event.target.classList.remove('active');
@@ -137,6 +172,7 @@ __webpack_require__.r(__webpack_exports__);
     if (about) {
       about.addEventListener(start_event, function (event) {
         event.target.classList.add('animate', 'active', about_in);
+        headerNavUpdate(this);
       });
       about.addEventListener(end_event, function (event) {
         event.target.classList.remove('active');
@@ -146,6 +182,7 @@ __webpack_require__.r(__webpack_exports__);
     if (services) {
       services.addEventListener(start_event, function (event) {
         event.target.classList.add('animate', 'active', services_in);
+        headerNavUpdate(this);
       });
       services.addEventListener(end_event, function (event) {
         event.target.classList.remove('active');
@@ -155,6 +192,7 @@ __webpack_require__.r(__webpack_exports__);
     if (contact) {
       contact.addEventListener(start_event, function (event) {
         event.target.classList.add('animate', 'active', contact_in);
+        headerNavUpdate(this);
       });
       contact.addEventListener(end_event, function (event) {
         event.target.classList.remove('active');
@@ -163,48 +201,22 @@ __webpack_require__.r(__webpack_exports__);
   } // tabs
 
   {
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
 
     try {
-      for (var _iterator = tabs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var tab = _step.value;
+      for (var _iterator2 = tabs[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var tab = _step2.value;
         tab.addEventListener('click', function (event) {
-          var _iteratorNormalCompletion2 = true;
-          var _didIteratorError2 = false;
-          var _iteratorError2 = undefined;
-
-          try {
-            for (var _iterator2 = this.parentElement.children[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-              var tab_siblings = _step2.value;
-              tab_siblings.classList.remove('active');
-            }
-          } catch (err) {
-            _didIteratorError2 = true;
-            _iteratorError2 = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                _iterator2.return();
-              }
-            } finally {
-              if (_didIteratorError2) {
-                throw _iteratorError2;
-              }
-            }
-          }
-
-          this.classList.add('active');
-          var content = document.getElementById(this.dataset.target);
           var _iteratorNormalCompletion3 = true;
           var _didIteratorError3 = false;
           var _iteratorError3 = undefined;
 
           try {
-            for (var _iterator3 = content.parentElement.children[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-              var content_siblings = _step3.value;
-              content_siblings.classList.remove('active');
+            for (var _iterator3 = this.parentElement.children[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+              var tab_siblings = _step3.value;
+              tab_siblings.classList.remove('active');
             }
           } catch (err) {
             _didIteratorError3 = true;
@@ -221,20 +233,46 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
 
+          this.classList.add('active');
+          var content = document.getElementById(this.dataset.target);
+          var _iteratorNormalCompletion4 = true;
+          var _didIteratorError4 = false;
+          var _iteratorError4 = undefined;
+
+          try {
+            for (var _iterator4 = content.parentElement.children[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+              var content_siblings = _step4.value;
+              content_siblings.classList.remove('active');
+            }
+          } catch (err) {
+            _didIteratorError4 = true;
+            _iteratorError4 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+                _iterator4.return();
+              }
+            } finally {
+              if (_didIteratorError4) {
+                throw _iteratorError4;
+              }
+            }
+          }
+
           content.classList.add('active');
         });
       }
     } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
     } finally {
       try {
-        if (!_iteratorNormalCompletion && _iterator.return != null) {
-          _iterator.return();
+        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+          _iterator2.return();
         }
       } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
+        if (_didIteratorError2) {
+          throw _iteratorError2;
         }
       }
     }

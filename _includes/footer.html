@@ -1,6 +1,6 @@
 <!-- Footer -->
 <footer class="site-footer" id="footer">
-    <div class="layout">
+    <div class="layout site-footer__content x-small">
         <nav class="site-footer__nav">
             <div>
                 <h3 class="h4">Social</h3>
@@ -11,6 +11,12 @@
                 </ul>
             </div>
         </nav>
-        <p class="copyright x-small">&copy; 2018. All rights reserved.</p>
+        <div class="site-footer__about-me">
+            <img width="100" height="100" src="/img/headshots/emeehan_square.jpg" alt="">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu auctor augue. Aliquam eu velit vel enim mollis luctus at congue nulla. Nulla consectetur cursus nulla, vitae ultrices elit. Sed quis pretium arcu. Sed sodales dictum ligula, non cursus turpis congue ac.</p>
+        </div>
+        <div class="site-footer__small-print">
+            &copy; {{ site.time | date: '%Y' }}. All rights reserved.
+        </div>
     </div>
 </footer>

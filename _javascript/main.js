@@ -12,6 +12,20 @@ import SectionManager from './sections_manager';
         contact = document.getElementById('contact'),
         tabs = document.getElementsByClassName('js-tab');
 
+    function headerNavUpdate(element){
+        let target = document.getElementById('header-link-' + element.id),
+            links = document.querySelectorAll('.site-header__nav-links > li');
+
+        for(let link of links){
+            link.classList.remove('active');
+        }
+
+        if (target) {
+            target.classList.add('active');
+        }
+        
+    };
+
     // homepage scripts
     {
         let start_event = 'view_event_focus',
@@ -32,6 +46,7 @@ import SectionManager from './sections_manager';
         if (intro) {
             intro.addEventListener(start_event, function(event){
                 event.target.classList.add('animate','active',intro_in);
+                headerNavUpdate(this);
             });
 
             intro.addEventListener(end_event, function(event){
@@ -43,6 +58,7 @@ import SectionManager from './sections_manager';
         if (about) {
             about.addEventListener(start_event, function(event){
                 event.target.classList.add('animate','active',about_in);
+                headerNavUpdate(this);
             });
 
             about.addEventListener(end_event, function(event){
@@ -54,6 +70,7 @@ import SectionManager from './sections_manager';
         if (services) {
             services.addEventListener(start_event, function(event){
                 event.target.classList.add('animate','active',services_in);
+                headerNavUpdate(this);
             });
 
             services.addEventListener(end_event, function(event){
@@ -65,6 +82,7 @@ import SectionManager from './sections_manager';
         if (contact) {
             contact.addEventListener(start_event, function(event){
                 event.target.classList.add('animate','active',contact_in);
+                headerNavUpdate(this);
             });
 
             contact.addEventListener(end_event, function(event){

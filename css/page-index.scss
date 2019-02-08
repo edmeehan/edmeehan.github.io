@@ -18,6 +18,8 @@
 .intro {
     $background-color: rgba(white, .6);
 
+    transform: rotate(1.5deg);
+
     &__headshot {
         img {
             border-radius: 100%;
@@ -34,6 +36,10 @@
 
     @media (max-width: $m-break-max) {
         text-align: center;
+    }
+
+    @media (min-width: $m-break) {
+        transform: rotate(3deg);
     }
 
     @media (min-width: $l-break) {
@@ -63,6 +69,7 @@
 }
 
 .about {
+    // transform: rotate(-1deg);
 
     &__text {
 
@@ -70,6 +77,10 @@
 
     &__sidebar {
 
+    }
+
+    @media (min-width: $m-break) {
+        transform: rotate(-1deg);
     }
 }
 
@@ -89,6 +100,7 @@
 
     &__item {
         padding: 1px 1.5rem;
+        margin-bottom: 1.5rem;
         background-color: rgba(white, .4);
 
         &--top {
@@ -100,6 +112,16 @@
     &__icon {
         font-size: 3rem;
         margin-top: 1.5rem;
+        padding: .75rem 0;
+        color: $brand-dark-blue;
+        background-color: rgba(white, .5);
+    }
+
+    &__text {
+        ul {
+            text-align: left;
+            list-style: circle;
+        }
     }
 
     @media (min-width: $m-break) {
@@ -109,7 +131,8 @@
 
         &__item {
             flex: 0 1 33.33%;
-            transform: translate(0, 0) scale(1);
+            margin: 0;
+            transform: translate(0, 0) scale(1) rotate(0deg);
             transition: transform 900ms ease-out 100ms;
 
             &--top {
@@ -118,13 +141,19 @@
             }
 
             .active.js-scroll-in-view &{
-                transform: translate(0, 1.3%) scale(.9);
+                &:first-child{
+                    transform: translate(0, 1.3%) scale(.9) rotate(1deg);
+                }
+                &:last-child{
+                    transform: translate(0, 1.3%) scale(.9) rotate(-1deg);
+                }
             }
         }
     }
 }
 
 .contact {
+    transform: rotate(1.5deg);
 
     &__text {
         text-align: center;

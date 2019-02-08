@@ -11,6 +11,6 @@
             <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
         </feMerge>
     </filter>
-
-    <polygon style="filter:url(#dropshadow)" id="path-1" fill="#FFFFFF" points="0 0 1506 0 1506 89.3828125 1216.33203 81.7578125 901.582031 97.7695312 564.167969 81.7578125 141.408496 98 0 89.3828125"></polygon>
+    <!-- <polygon style="filter:url(#dropshadow)" -->
+    <polygon id="path-1" fill="#FFFFFF" points="0 0 1506 0 1506 89.3828125 1216.33203 81.7578125 901.582031 97.7695312 564.167969 81.7578125 141.408496 98 0 89.3828125"></polygon>
 </svg>
