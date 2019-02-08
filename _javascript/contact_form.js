@@ -1,49 +1,57 @@
-(function($) {
+import axios from 'axios';
 
-    var formSuccess;
+(function() {
 
-    $('#contact-form').submit(function(event){
+    let contactForm = document.getElementById('contact-form'),
+        formClass = 'form--',
+        formData;
+
+    contactForm.addEventListener('submit', form_submit, false);
+
+    function form_submit(event) {
         event.preventDefault();
+        formData = new FormData(contactForm);
 
-        let data = {};
-        
-        $(this).serializeArray()
-            .forEach((item) => {
-                data[item.name] = item.value;
+        // set visual pending
+        contactForm.classList.add(formClass + 'pending');
+
+        axios.post( contactForm.getAttribute('action'), formData)
+            .then(function(response){
+                contactForm.classList.add(formClass + 'success');
+                contactForm.classList.remove(formClass + 'pending');
+                form_response(true);
+            }).catch(function(error){
+                contactForm.classList.add(formClass + 'fail');
+                contactForm.classList.remove(formClass + 'pending');
+                form_response(false);
             });
-
-        if($(this).hasClass('active')) return;
-
-        $.ajax({
-            url: 'https://script.google.com/macros/s/AKfycbwEp73O79JI-Ix3qVWCQUcDY921bHyZYn8ferTFC3HNMiA0cMI/exec',
-            method: 'POST',
-            data: data
-        })
-        .done(function() {
-            //success
-            formSuccess = true;
-        })
-        .fail(function() {
-            //error
-            formSuccess = false;
-        })
-        .always(function() {
-            //complete
-            formComplete();
-        });
-
-        $(this).addClass('active')
-            .find('input, textarea')
-            .attr('disabled',true);
-    });
-
-    // adds a calls to the form element to display proper mesesage
-    function formComplete(){
-        if(formSuccess){
-            $('#contact-form').addClass('success');
-        }else{
-            $('#contact-form').addClass('fail');
-        }
     }
 
-})(jQuery);
+    function form_response(isSuccess) {
+        let wrapper = document.createElement("div"),
+            headline = document.createElement("h3"),
+            message = document.createElement("p"),
+            button = document.createElement("button");
+
+        wrapper.classList.add('form__response-message');
+
+        headline.appendChild(document.createTextNode(isSuccess
+            ? 'Thanks for the message!'
+            : 'Oops!?!'
+        ));
+
+        message.appendChild(document.createTextNode(isSuccess
+            ? 'I will do my best to responde withen 24 hours.'
+            : 'Something went wrong, please try again later or give me a call.'
+        ));
+
+        wrapper.appendChild(headline);
+        wrapper.appendChild(message);        
+        contactForm.appendChild(wrapper);
+
+        setTimeout(function(){
+            wrapper.classList.add('active');
+        },10);
+    }
+
+})();

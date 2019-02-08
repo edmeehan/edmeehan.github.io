@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     main: path.resolve(__dirname, '_javascript/main.js'),
-    // welcome : path.resolve(__dirname, '_javascript/welcome.js'),
+    contact_form : path.resolve(__dirname, '_javascript/contact_form.js'),
   },
   output: {
     path: path.resolve(__dirname, 'js'),

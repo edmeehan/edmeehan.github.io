@@ -65,26 +65,12 @@
 .about {
 
     &__text {
-        // background-color: rgba(white, .6);
-        // padding: 1px 1.5rem;
+
     }
 
     &__sidebar {
-        // background-color: rgba(white, .4);
-        // padding: 1px 1.5rem;
+
     }
-
-    // @media (min-width: $m-break) {
-    //     display: flex;
-
-    //     &__sidebar {
-    //         flex: 0 1 33%;
-    //     }
-
-    //     &__text {
-    //         flex: 0 1 67%;
-    //     }
-    // }
 }
 
 .services {
@@ -142,5 +128,17 @@
 
     &__text {
         text-align: center;
+    }
+
+    &__form {
+        .form__wrapper {
+            background-color: rgba(white, .4);
+            padding: 1.5rem .75rem 0;
+            border-radius: (4/$size-units) + 0rem;
+        }
+
+        .form__response-message {
+            text-align: center;
+        }
     }
 }

@@ -1,5 +1,5 @@
-<form method="post" action="#" id="contact-form">
-    <div class="form">
+<form method="post" class="form" action="https://script.google.com/macros/s/AKfycbwEp73O79JI-Ix3qVWCQUcDY921bHyZYn8ferTFC3HNMiA0cMI/exec" id="contact-form">
+    <div class="form__wrapper">
         <input type="hidden" name="category" value="{{ include.meta | default: 'Location not set' }}">
 
         <div class="form__input form--name">
@@ -17,5 +17,8 @@
                 <li><input type="reset" value="Reset" class="button" /></li>
             </ul>
         </div>
+    </div>
+    <div class="form__loader">
+        <i class="fas fa-spinner fa-pulse"></i>
     </div>
 </form>
