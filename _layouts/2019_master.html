@@ -1,5 +1,5 @@
 ---
-
+color_style: 'theme--blue'
 ---
 <!DOCTYPE HTML>
 <html>
@@ -37,12 +37,16 @@
         {% for item in site.css_styles %}
             <link rel="stylesheet" href="{{item}}" />
         {% endfor %}
+        
+        {% for item in layout.css_styles %}
+            <link rel="stylesheet" href="{{item}}" />
+        {% endfor %}
 
         {% for item in page.css_styles %}
             <link rel="stylesheet" href="{{item}}" />
         {% endfor %}
     </head>
-    <body>
+    <body class="{{ layout.color_style }}">
         
         {% if site.gtm_container_id %}
         <!-- Google Tag Manager (noscript) -->

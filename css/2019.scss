@@ -4,26 +4,47 @@
 @import 'variables';
 @import 'normalize';
 @import 'typography';
-@import 'backgrounds';
 
 // font size and baseline
 html,
 body {
-    color: #000;
     line-height: 1.5rem;
-    font-size: 20px;
+    font-size: 16px;
 
     @media (max-width: $s-break-max) {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     @media (min-width: $xl-break) {
-        font-size: 30px;
+        font-size: 20px;
     }
 }
 
-body {
-    background-color: $brand-blue;
+.theme {
+    &--black {
+        background-color: $brand-rich-blue;
+        color: $brand-lite-blue;
+
+        .site-footer {
+            color: #000;
+            background-color: rgba(white, .6);
+            &__small-print {
+                border-top-color: $hr-color;
+            }
+        }
+    }
+
+    &--blue {
+        background-color: $brand-blue;
+        color: #000;
+
+        .site-footer {
+            background-color: rgba(white, .6);
+            &__small-print {
+                border-top-color: $hr-color;
+            }
+        }
+    }
 }
 
 .layout {
@@ -174,6 +195,7 @@ body {
     }
 
     &__nav-links {
+        text-transform: uppercase;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -292,7 +314,6 @@ body {
 }
 
 .site-footer {
-    background-color: rgba(white, .4);
     padding-top: 1px;
     padding-bottom: 1px;
     text-align: center;
@@ -318,7 +339,7 @@ body {
     &__small-print {
         flex: 1 1 100%;
         text-align: center;
-        border-top: solid 1px $hr-color;
+        border-top: solid 1px transparent;
     }
 
     &__nav {

@@ -1,7 +1,7 @@
 @mixin marker() {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Shadows Into Light Two', cursive;
     letter-spacing: .1rem;
-    word-spacing: .25rem;
+    word-spacing: -.5rem;
 }
 
 @mixin poppins() {
@@ -35,18 +35,20 @@ h1,.h1 {
 
 h2,.h2 {
     font-size: (42/$size-units) + 0rem;
+    line-height: 3rem;
 }
 
 h3,.h3 {
     font-size: (36/$size-units) + 0rem;
+    line-height: 3rem;
 }
 
 h4,.h4 {
-    font-size: 1rem;
+    font-size: (22/$size-units) + 0rem;
 }
 
 h5,.h5 {
-    font-size: (18/$size-units) + 0rem;
+    font-size: 1rem;
 }
 
 p {
@@ -77,8 +79,8 @@ a {
     font-size: (42/$size-units) + 0rem;
 }
 .small {
-    font-size: (18/$size-units) + 0rem;
-}
-.x-small {
     font-size: (14/$size-units) + 0rem;
 }
+// .x-small {
+//     font-size: (14/$size-units) + 0rem;
+// }

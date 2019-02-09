@@ -141,7 +141,7 @@ import SectionManager from './sections_manager';
     sections = new SectionManager({
         sections: document.getElementsByClassName('js-scroll-in-view'),
         background: document.getElementById('page-background'),
-        randomCeiling: 7
+        randomCeiling: window.backgroundCount || 1
     });
     
 })();

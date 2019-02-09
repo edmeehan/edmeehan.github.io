@@ -324,7 +324,7 @@ __webpack_require__.r(__webpack_exports__);
   sections = new _sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
     sections: document.getElementsByClassName('js-scroll-in-view'),
     background: document.getElementById('page-background'),
-    randomCeiling: 7
+    randomCeiling: window.backgroundCount || 1
   });
 })();
 

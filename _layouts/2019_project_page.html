@@ -1,0 +1,15 @@
+---
+layout: 2019_project
+---
+
+<section class="section section--full-screen js-scroll-in-view" id="intro">
+    <div class="section__content layout">
+        <h2>
+            <a href="{{ page.url }}">
+                {{ page.title }}
+            </a>
+        </h2>
+        <img width="400" height="400" src="{{ page.images[0] }}" alt="">
+        {{ page.content | markdownify }}
+    </div>
+</section>

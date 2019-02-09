@@ -12,7 +12,7 @@ $success-green: #5cb85c;
 $fail-red: #d9534f;
 
 // default font size
-$size-units: 20;
+$size-units: 16;
 
 // z-index levels
 $z-base: 0;
@@ -35,4 +35,4 @@ $m-break: 768px;
 $s-break-max: $m-break - 1;
 
 // defined
-$header-height: (115/$size-units) + 0rem;
+$header-height: 100px;

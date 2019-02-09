@@ -1,13 +1,31 @@
 ---
 layout: 2019_project
-title:  "Welcome to Jekyll!"
+title:  "Projects"
 ---
 
-{% for project in site.portfolio %}
-  <h2>
-    <a href="{{ project.url }}">
-      {{ project.title }}
-    </a>
-  </h2>
-  <p>{{ project.content | markdownify }}</p>
-{% endfor %}
+<section class="section section--full-screen section--top js-scroll-in-view">
+    <div class="section__content layout">
+        <div class="projects">
+            <div class="projects__text">
+                <h1>Projects</h1>
+                <p>Some text talking about my projects page here.</p>
+            </div>
+            {% for project in site.projects %}
+            <div class="projects__item">
+                <div class="projects__title">
+                    <h2 class="h3">
+                        <a href="{{ project.url }}">
+                            {{ project.title }}
+                        </a>
+                    </h2>
+                </div>
+                <div class="projects__img">
+                    <a href="{{ project.url }}">
+                        <img width="100" height="100" src="{{ project.images[0] }}" alt="">
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

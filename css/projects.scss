@@ -1,0 +1,31 @@
+---
+# Front matter comment to ensure Jekyll properly reads file.
+---
+@import 'variables';
+
+.projects {
+    flex: 1 0 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    &__text {
+        flex: 1 0 100%;
+        text-align: center;
+    }
+
+    &__item {
+        flex: 1 0 50%;
+    }
+
+    &__img {
+        img {
+            max-width: 1440px;
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+.project {
+    
+}
