@@ -1,5 +1,5 @@
 import "custom-event-polyfill";
-import ViewEvents from './modules/scrolling_in_view';
+import ViewEvents from './scrolling_in_view';
 
 export default class {
 

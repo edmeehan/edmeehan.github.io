@@ -1,28 +1,28 @@
-@mixin marker() {
+@mixin cursive() {
     font-family: 'Shadows Into Light Two', cursive;
     letter-spacing: .1rem;
     word-spacing: -.5rem;
 }
 
-@mixin poppins() {
+@mixin sans() {
     font-family: 'Poppins', sans-serif;
 }
 
 .font {
-    &.poppins,
-    &-poppins {
-        @include poppins();
+    &.sans,
+    &-sans {
+        @include sans();
     }
 
-    &.marker,
-    &-marker {
-        @include marker();
+    &.cursive,
+    &-cursive {
+        @include cursive();
     }
 }
 
 h1,h2,h3,h4,h5,
 .h1,.h2,.h3,.h4,.h5 {
-    @include marker();
+    // @include cursive();
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     line-height: 1.5rem;

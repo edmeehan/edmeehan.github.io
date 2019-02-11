@@ -58,11 +58,11 @@ color_style: 'theme--blue'
 
         <!-- Scripts -->
         {% for item in site.js_scripts %}
-            <script src="{{site.baseurl}}{{item}}"></script>
+            <script src="{{item}}"></script>
         {% endfor %}
 
         {% for item in page.js_scripts %}
-            <script src="{{site.baseurl}}{{item}}"></script>
+            <script src="{{item}}"></script>
         {% endfor %}
 
     </body>
