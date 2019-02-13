@@ -101,34 +101,35 @@ __webpack_require__.r(__webpack_exports__);
 (function () {
   'use strict';
 
-  var sections,
-      headerToggle = document.getElementById('header-nav-toggle'),
-      headerNav = document.getElementById('header-nav'),
-      tabs = document.getElementsByClassName('js-tab'); // header nav toggle
+  var headerToggle = document.getElementById('header-nav-toggle'),
+      headerNav = document.getElementById('header-nav');
 
-  {
-    headerToggle.addEventListener('click', function (event) {
-      this.classList.toggle('active');
+  function headerToggleEvent(event) {
+    this.classList.toggle('active');
 
-      if (headerNav) {
-        headerNav.classList.toggle('active');
-      }
-    });
+    if (headerNav) {
+      headerNav.classList.toggle('active');
+    }
+  }
+
+  function headerLinkEvent(event) {
+    if (headerNav.classList.contains('active')) {
+      headerToggle.classList.remove('active');
+      headerNav.classList.remove('active');
+    }
+
+    ;
+  }
+
+  function tabsEvent(event) {
     var _iteratorNormalCompletion = true;
     var _didIteratorError = false;
     var _iteratorError = undefined;
 
     try {
-      for (var _iterator = headerNav.getElementsByTagName('a')[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var link = _step.value;
-        link.addEventListener('click', function () {
-          if (headerNav.classList.contains('active')) {
-            headerToggle.classList.remove('active');
-            headerNav.classList.remove('active');
-          }
-
-          ;
-        });
+      for (var _iterator = this.parentElement.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var tab_siblings = _step.value;
+        tab_siblings.classList.remove('active');
       }
     } catch (err) {
       _didIteratorError = true;
@@ -144,69 +145,17 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     }
-  } // tabs
 
-  {
+    this.classList.add('active');
+    var content = document.getElementById(this.dataset.target);
     var _iteratorNormalCompletion2 = true;
     var _didIteratorError2 = false;
     var _iteratorError2 = undefined;
 
     try {
-      for (var _iterator2 = tabs[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-        var tab = _step2.value;
-        tab.addEventListener('click', function (event) {
-          var _iteratorNormalCompletion3 = true;
-          var _didIteratorError3 = false;
-          var _iteratorError3 = undefined;
-
-          try {
-            for (var _iterator3 = this.parentElement.children[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-              var tab_siblings = _step3.value;
-              tab_siblings.classList.remove('active');
-            }
-          } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-                _iterator3.return();
-              }
-            } finally {
-              if (_didIteratorError3) {
-                throw _iteratorError3;
-              }
-            }
-          }
-
-          this.classList.add('active');
-          var content = document.getElementById(this.dataset.target);
-          var _iteratorNormalCompletion4 = true;
-          var _didIteratorError4 = false;
-          var _iteratorError4 = undefined;
-
-          try {
-            for (var _iterator4 = content.parentElement.children[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-              var content_siblings = _step4.value;
-              content_siblings.classList.remove('active');
-            }
-          } catch (err) {
-            _didIteratorError4 = true;
-            _iteratorError4 = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-                _iterator4.return();
-              }
-            } finally {
-              if (_didIteratorError4) {
-                throw _iteratorError4;
-              }
-            }
-          }
-
-          content.classList.add('active');
-        });
+      for (var _iterator2 = content.parentElement.children[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var content_siblings = _step2.value;
+        content_siblings.classList.remove('active');
       }
     } catch (err) {
       _didIteratorError2 = true;
@@ -222,9 +171,63 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     }
-  } // section manager controls background and events when sections become visible
 
-  sections = new _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
+    content.classList.add('active');
+  } // header nav toggle
+
+
+  headerToggle.addEventListener('click', headerToggleEvent);
+  var _iteratorNormalCompletion3 = true;
+  var _didIteratorError3 = false;
+  var _iteratorError3 = undefined;
+
+  try {
+    for (var _iterator3 = headerNav.getElementsByTagName('a')[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+      var link = _step3.value;
+      link.addEventListener('click', headerLinkEvent);
+    } // tabs
+
+  } catch (err) {
+    _didIteratorError3 = true;
+    _iteratorError3 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+        _iterator3.return();
+      }
+    } finally {
+      if (_didIteratorError3) {
+        throw _iteratorError3;
+      }
+    }
+  }
+
+  var _iteratorNormalCompletion4 = true;
+  var _didIteratorError4 = false;
+  var _iteratorError4 = undefined;
+
+  try {
+    for (var _iterator4 = document.getElementsByClassName('js-tab')[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+      var tab = _step4.value;
+      tab.addEventListener('click', tabsEvent);
+    } // section manager controls background and events when sections become visible
+
+  } catch (err) {
+    _didIteratorError4 = true;
+    _iteratorError4 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+        _iterator4.return();
+      }
+    } finally {
+      if (_didIteratorError4) {
+        throw _iteratorError4;
+      }
+    }
+  }
+
+  window.sections = new _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
     sections: document.getElementsByClassName('js-scroll-in-view'),
     background: document.getElementById('page-background'),
     randomCeiling: window.backgroundCount || 1

@@ -72,7 +72,17 @@
     // transform: rotate(-1deg);
 
     &__text {
-
+        .logo {
+            border-radius: 100%;
+            float: left;
+            width: 3rem;
+            height: auto;
+            margin-right: 1rem;
+        }
+        .photo {
+            width: 35%;
+            height: auto;
+        }
     }
 
     &__sidebar {
@@ -153,6 +163,7 @@
 }
 
 .contact {
+    width: 100%;
     transform: rotate(1.5deg);
 
     &__text {

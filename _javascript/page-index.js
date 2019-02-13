@@ -19,7 +19,6 @@
         if (target) {
             target.classList.add('active');
         }
-        
     };
 
     // homepage scripts
@@ -47,7 +46,6 @@
         intro.addEventListener(end_event, function(event){
             event.target.classList.remove('active');
         });
-        
     }
 
     if (about) {
@@ -59,7 +57,6 @@
         about.addEventListener(end_event, function(event){
             event.target.classList.remove('active');
         });
-        
     }
 
     if (services) {
@@ -71,7 +68,6 @@
         services.addEventListener(end_event, function(event){
             event.target.classList.remove('active');
         });
-        
     }
 
     if (contact) {
@@ -83,7 +79,9 @@
         contact.addEventListener(end_event, function(event){
             event.target.classList.remove('active');
         });
-        
     }
+
+    // trigger event - an init event
+    window.sections.active_section.dispatchEvent(new CustomEvent(start_event, { bubbles: false }));
 
 })();

@@ -60,7 +60,9 @@ color_style: 'theme--blue'
         {% for item in site.js_scripts %}
             <script src="{{item}}"></script>
         {% endfor %}
-
+        {% for item in layout.js_scripts %}
+            <script src="{{item}}"></script>
+        {% endfor %}
         {% for item in page.js_scripts %}
             <script src="{{item}}"></script>
         {% endfor %}
