@@ -14,7 +14,7 @@ subtitle: Web Developer  #displayed on site header
 
 address: 123 Test st. San Diego, CA 92115-1234
 phone: 555.555.5555
-email: edward.meehan.808@gmail.com
+email: 
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://emeehan.com" # the base hostname & protocol for your site
@@ -55,8 +55,6 @@ defaults:
     scope:
       path: ''
     values:
-      block_header: header.html
-      block_footer: footer.html
       debugmode: false
       js_scripts: [] # page js files - included in current page
       css_styles: [] 

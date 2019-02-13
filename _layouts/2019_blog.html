@@ -4,14 +4,11 @@ layout: 2019_master
 <div class="page-background" id="page-background"></div>
 <!-- Page Layout Start -->
 <div class="page-content font-sans">
-    {% if page.block_header %}
-        {% include {{page.block_header}} %}
-    {% endif %}
-    
-    {{ content }}        
-    
-    {% if page.block_footer %}
-        {% include {{page.block_footer}} %}
-    {% endif %}
+    <div class="page-content__header">
+        {% include header.html %}
+    </div>
+    <div class="page-content__wrapper">
+        {{ content }}
+    </div>
 </div>
 <!-- Page Layout End -->

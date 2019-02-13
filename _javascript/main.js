@@ -3,21 +3,13 @@ import SectionManager from './modules/sections_manager';
 (function() {
     'use strict';
 
-    let headerToggle = document.getElementById('header-nav-toggle'),
-        headerNav = document.getElementById('header-nav');
-
     function headerToggleEvent(event) {
-        this.classList.toggle('active');
-        if (headerNav) {
-            headerNav.classList.toggle('active');
+        let content = document.getElementById('page-content');
+        if (content) {
+            this.classList.toggle('active');
+            content.classList.toggle('active');
+            document.body.classList.toggle('locked');
         }
-    }
-
-    function headerLinkEvent(event) {
-        if(headerNav.classList.contains('active')){
-            headerToggle.classList.remove('active');
-            headerNav.classList.remove('active');
-        };
     }
 
     function tabsEvent(event) {
@@ -37,10 +29,10 @@ import SectionManager from './modules/sections_manager';
     }
 
     // header nav toggle
-    headerToggle.addEventListener('click', headerToggleEvent);
+    let headerToggle = document.getElementById('header-nav-toggle');
 
-    for (let link of headerNav.getElementsByTagName('a')) {
-        link.addEventListener('click', headerLinkEvent);
+    if (headerToggle) {
+        headerToggle.addEventListener('click', headerToggleEvent);
     }
 
     // tabs

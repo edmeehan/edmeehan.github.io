@@ -101,24 +101,14 @@ __webpack_require__.r(__webpack_exports__);
 (function () {
   'use strict';
 
-  var headerToggle = document.getElementById('header-nav-toggle'),
-      headerNav = document.getElementById('header-nav');
-
   function headerToggleEvent(event) {
-    this.classList.toggle('active');
+    var content = document.getElementById('page-content');
 
-    if (headerNav) {
-      headerNav.classList.toggle('active');
+    if (content) {
+      this.classList.toggle('active');
+      content.classList.toggle('active');
+      document.body.classList.toggle('locked');
     }
-  }
-
-  function headerLinkEvent(event) {
-    if (headerNav.classList.contains('active')) {
-      headerToggle.classList.remove('active');
-      headerNav.classList.remove('active');
-    }
-
-    ;
   }
 
   function tabsEvent(event) {
@@ -176,16 +166,22 @@ __webpack_require__.r(__webpack_exports__);
   } // header nav toggle
 
 
-  headerToggle.addEventListener('click', headerToggleEvent);
+  var headerToggle = document.getElementById('header-nav-toggle');
+
+  if (headerToggle) {
+    headerToggle.addEventListener('click', headerToggleEvent);
+  } // tabs
+
+
   var _iteratorNormalCompletion3 = true;
   var _didIteratorError3 = false;
   var _iteratorError3 = undefined;
 
   try {
-    for (var _iterator3 = headerNav.getElementsByTagName('a')[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-      var link = _step3.value;
-      link.addEventListener('click', headerLinkEvent);
-    } // tabs
+    for (var _iterator3 = document.getElementsByClassName('js-tab')[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+      var tab = _step3.value;
+      tab.addEventListener('click', tabsEvent);
+    } // section manager controls background and events when sections become visible
 
   } catch (err) {
     _didIteratorError3 = true;
@@ -198,31 +194,6 @@ __webpack_require__.r(__webpack_exports__);
     } finally {
       if (_didIteratorError3) {
         throw _iteratorError3;
-      }
-    }
-  }
-
-  var _iteratorNormalCompletion4 = true;
-  var _didIteratorError4 = false;
-  var _iteratorError4 = undefined;
-
-  try {
-    for (var _iterator4 = document.getElementsByClassName('js-tab')[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-      var tab = _step4.value;
-      tab.addEventListener('click', tabsEvent);
-    } // section manager controls background and events when sections become visible
-
-  } catch (err) {
-    _didIteratorError4 = true;
-    _iteratorError4 = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-        _iterator4.return();
-      }
-    } finally {
-      if (_didIteratorError4) {
-        throw _iteratorError4;
       }
     }
   }
