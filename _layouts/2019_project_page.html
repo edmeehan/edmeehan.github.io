@@ -7,7 +7,7 @@ layout: 2019_project
         <div class="project">
             <header class="project__header">
                 <a class="project__back-link" href="/project" title="View all projects"><i class="fas fa-arrow-left"></i></a>
-                <h1 class="h3">{{ page.title }}</h1>
+                <h1 class="h3 font-serif">{{ page.title }}</h1>
                 <div class="project__type">
                     {% if page.type == 'development' %}
                     Development <i class="fas fa-code"></i>
@@ -15,7 +15,28 @@ layout: 2019_project
                 </div>
             </header>
 
-            {{ page.content | markdownify }}
+            <div class="project__content">
+                {{ page.content | markdownify }}
+            </div>
+
+            <div class="project__comment">
+                {% if page.comments %}
+                    <div id="disqus_thread"></div>
+                    <script>
+                    var disqus_config = function () {
+                        this.page.url = '{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}';  // Replace PAGE_URL with your page's canonical URL variable
+                        this.page.identifier = '{{ page.url }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://emeehan.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                {% endif %}
+            </div>
         </div>
     </div>
 </section>

@@ -17,12 +17,14 @@
 
 .intro {
     transform: rotate(1.5deg);
+    display: flex;
+    flex-direction: column-reverse;
 
     &__headshot {
         img {
             border-radius: 100%;
-            width: (240/$size-units) + 0rem;
-            height: (240/$size-units) + 0rem;
+            width: (200/$size-units) + 0rem;
+            height: (200/$size-units) + 0rem;
         }
     }
 
@@ -30,18 +32,61 @@
         background-color: $bg-color;
         padding: 1px 1.5rem;
         border-radius: 1rem;
+        position: relative;
+
+        .headline {
+
+        }
+
+        .subheadline {
+            letter-spacing: -(1/$size-units) + 0rem
+        }
     }
 
     @media (max-width: $m-break-max) {
         text-align: center;
+
+        &__headshot {
+            margin-top: 1.5rem;
+        }
+
+        &__text {
+            .headline {
+                font-size: 6.5vw;
+            }
+
+            .subheadline {
+                font-size: 4.5vw;
+                line-height: 1.5em;
+            }
+
+            &::after {
+                display: block;
+                content: '';
+                width:0;
+                height:0;
+                border: solid transparent 1rem;
+                position: absolute;
+                border-top-color: $bg-color;
+                bottom: -2rem;
+                left: 20%;
+            }
+        }
     }
 
     @media (min-width: $m-break) {
         transform: rotate(3deg);
+
+        &__headshot {
+            img {
+                width: (240/$size-units) + 0rem;
+                height: (240/$size-units) + 0rem;
+            }
+        }
     }
 
     @media (min-width: $l-break) {
-        display: flex;
+        flex-direction: row;
         align-items: center;
 
         &__headshot {
@@ -49,18 +94,16 @@
 
         &__text {
             margin-left: 1.5rem;
-            position: relative;
             &::before {
                 display: block;
                 content: '';
                 width:0;
                 height:0;
                 border: solid transparent 1rem;
-                border-right-color: $bg-color;
                 position: absolute;
-                top: 50%;
+                border-right-color: $bg-color;
+                top: 20%;
                 left: -2rem;
-                margin-top: -1rem;
             }
         }
     }
@@ -71,10 +114,7 @@
 }
 
 .about {
-    
-    width: 75%;
-    margin: 0 auto;
-
+    margin: 0 1rem;
     &__text {
         h2,h4 {
             text-align: center;
@@ -92,7 +132,8 @@
             margin: 0;
             padding: 0;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: space-around;
+            background-color: white;
             
             li {
                 text-align: center;
@@ -106,6 +147,10 @@
         }
     }
 
+    @media (min-width: $m-break) {
+        width: 75%;
+        margin: 0 auto;
+    }
 }
 
 .services {
@@ -125,20 +170,21 @@
     &__item {
         padding: 1px 1.5rem;
         margin-bottom: 1.5rem;
-        background-color: rgba(white, .4);
+        background-color: $bg-color;
 
         &--top {
             order: -1;
-            background-color: $bg-color;
+            background-color: rgba($brand-green, .8);
+            // color: #d6e9fd;
         }
     }
 
     &__icon {
-        font-size: 3rem;
+        font-size: 5rem;
         margin-top: 1.5rem;
         padding: .75rem 0;
-        color: $brand-dark-blue;
-        background-color: rgba(white, .5);
+        color: rgba(white, .4);
+        // background-color: rgba(white, .5);
     }
 
     &__text {
@@ -166,10 +212,10 @@
 
             // .active.js-scroll-in-view &{
             &:first-child{
-                transform: translate(0, 1.3%) scale(.9) rotate(1deg);
+                transform: translate(0, 1.3%) scale(.95) rotate(.8deg);
             }
             &:last-child{
-                transform: translate(0, 1.3%) scale(.9) rotate(-1deg);
+                transform: translate(0, 1.3%) scale(.95) rotate(-.8deg);
             }
             // }
         }

@@ -1,11 +1,9 @@
 @mixin serif() {
     font-family: 'Roboto Slab', serif;
-    // letter-spacing: .1rem;
-    // word-spacing: -.5rem;
 }
 
 @mixin sans() {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 .font {
@@ -70,12 +68,22 @@ hr {
     border-top: solid 1px $hr-color;
 }
 
-a {
-    color: $brand-dark-blue;
+p {
+    > a {
+        display: inline-block;
+        padding-left: (2/$size-units) + 0rem;
+        padding-right: (2/$size-units) + 0rem;
+        margin-left: -(2/$size-units) + 0rem;
+        margin-right: -(2/$size-units) + 0rem;
+        text-decoration: none;
+    }
 }
 
 .big {
     font-size: (42/$size-units) + 0rem;
+}
+.medium {
+    font-size: (18/$size-units) + 0rem;
 }
 .small {
     font-size: (14/$size-units) + 0rem;

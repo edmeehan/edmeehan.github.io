@@ -3,6 +3,7 @@ layout: 2019_project_page
 title:  "Host & Porter"
 type: development
 image: "/img/projects/hostandporter-homepage.png"
+comments: true
 ---
 <img width="400" height="400" src="/img/projects/hostandporter-homepage.png" alt="">
 
