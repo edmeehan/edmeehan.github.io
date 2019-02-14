@@ -12,10 +12,10 @@ js_scripts: ["/js/projects.js"]
     <div class="page-content__background" id="page-background"></div>
 
     <div class="page-content__nav">
-        <div class="page-content__toggle button button--cta" id="header-nav-toggle">
+        <button type="button" class="page-content__toggle button button--cta" id="header-nav-toggle">
             <i class="fas fa-bars page-content__toggle-open"></i>
             <i class="fas fa-times page-content__toggle-close"></i>
-        </div>
+        </button>
         <div class="flex">
             {% include header.html %}
             {% include footer.html %}
@@ -24,6 +24,8 @@ js_scripts: ["/js/projects.js"]
     <div class="page-content__wrapper">
         <div class="page-content__shadow"></div>
         {{ content }}
+
+        {% include message-modal.html %}
     </div>
 </div>
 <!-- Page Layout End -->

@@ -73,6 +73,26 @@ body {
     }
 }
 
+.message-modal {
+    &__toggle {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+
+        > span {
+            display: none;
+        }
+    }
+
+    @media (min-width: $m-break) {
+        &__toggle {
+            > span {
+                display: inline;
+            }
+        }
+    }
+}
+
 /*
 .tabbed {
     display: flex;
@@ -206,17 +226,15 @@ body {
 
     &__toggle {
         // !important - set to fix button class
-        font-size: 2rem!important;
         height: (50/$size-units) + 0rem!important;
         width: (50/$size-units) + 0rem;
         text-align: center;
         color: white;
         position: absolute;
         z-index: $z-menu;
-        right: -(100/$size-units) + 0rem;
-        top: (25/$size-units) + 0rem;
+        right: -4rem;
+        top: 1rem;
         cursor: pointer;
-        padding: .5rem!important;
         
         &-open,
         &-close {
@@ -570,6 +588,7 @@ input {
     outline: none;
     transform: translateY(0);
     transition: transform 300ms, box-shadow 300ms;
+    border-color: transparent;
 
 
     &:active {
