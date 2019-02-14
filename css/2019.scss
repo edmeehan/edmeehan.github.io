@@ -74,10 +74,12 @@ body {
 }
 
 .message-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
     &__toggle {
-        position: fixed;
-        top: 1rem;
-        right: 1rem;
+        margin-top: 1rem;
+        margin-right: 1rem;
 
         > span {
             display: none;
@@ -337,6 +339,11 @@ body {
             font-size: 1.2rem;
             line-height: 3rem;
             background-color: rgba($brand-purple, .2);
+
+            &.cta {
+                background-color: $brand-purple;
+                color: white;
+            }
         }
     }
 
