@@ -1,26 +1,17 @@
 <!-- Header -->
-<div class="site-header__toggle" id="header-nav-toggle">
-    <i class="fas fa-bars site-header__toggle-open"></i>
-    <i class="fas fa-times site-header__toggle-close"></i>
-</div>
-
 <header class="site-header" id="header">
-    <nav class="site-header__nav layout">
-        <div class="site-header__logo">
-            <a href="/#intro">
-                <img width="89" height="67" src="/img/emeehan-logo.svg" alt="">
-                <!-- <div>Ed Meehan</div> -->
-            </a>
-        </div>
-        
-        <ul class="site-header__nav-links" id="header-nav">
-            <li id="header-link-about"><a href="/#about">About</a></li>
-            <li id="header-link-services"><a href="/#services">Services</a></li>
-            <li {% if layout.nav == 'projects' %} class="active" {% endif %} id="header-link-project"><a href="/project">Projects</a></li>
-            <li id="header-link-contact"><a href="/#contact">Contact</a></li>
-            
-            <li id="header-link-blog"><a href="/blog">Blog</a></li>
-            
+    <div class="site-header__title">
+        <h3 class="headline font-serif">Edward Meehan</h3>
+        <h5 class="subheadline">Conversion Rate Optimization Expert</h5>
+    </div>
+    <nav class="site-header__nav">
+        <ul>
+            <li><a href="/#intro">Welcome</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/project">Projects</a></li>
+            <li><a href="/#contact">Contact</a></li>
+            <li><a href="/blog">Blog</a></li>
         </ul>
     </nav>
 </header>

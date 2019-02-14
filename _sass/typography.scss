@@ -1,7 +1,7 @@
-@mixin cursive() {
-    font-family: 'Shadows Into Light Two', cursive;
-    letter-spacing: .1rem;
-    word-spacing: -.5rem;
+@mixin serif() {
+    font-family: 'Roboto Slab', serif;
+    // letter-spacing: .1rem;
+    // word-spacing: -.5rem;
 }
 
 @mixin sans() {
@@ -14,15 +14,14 @@
         @include sans();
     }
 
-    &.cursive,
-    &-cursive {
-        @include cursive();
+    &.serif,
+    &-serif {
+        @include serif();
     }
 }
 
 h1,h2,h3,h4,h5,
 .h1,.h2,.h3,.h4,.h5 {
-    // @include cursive();
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     line-height: 1.5rem;

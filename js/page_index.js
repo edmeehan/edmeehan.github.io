@@ -97,99 +97,57 @@
   'use strict';
 
   var intro = document.getElementById('intro'),
-      about = document.getElementById('about'),
-      services = document.getElementById('services'),
-      contact = document.getElementById('contact'); // sets the nav to the current page
-  // mostly used on the homepage
-
-  function headerNavUpdate(element) {
-    var target = document.getElementById('header-link-' + element.id),
-        links = document.querySelectorAll('.site-header__nav-links > li');
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-      for (var _iterator = links[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var link = _step.value;
-        link.classList.remove('active');
-      }
-    } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion && _iterator.return != null) {
-          _iterator.return();
-        }
-      } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
-        }
-      }
-    }
-
-    if (target) {
-      target.classList.add('active');
-    }
-  }
-
-  ; // homepage scripts
-
-  var start_event = 'view_event_focus',
+      // about = document.getElementById('about'),
+  services = document.getElementById('services'),
+      // contact = document.getElementById('contact'),
+  // homepage scripts
+  start_event = 'view_event_focus',
       end_event = 'view_event_blur',
       // intro
   intro_in = 'bounceIn',
       intro_out = 'bounceOut',
       // about
-  about_in = 'bounceInLeft',
-      about_out = 'bounceOutRight',
-      // services
+  // about_in = 'bounceInLeft',
+  // about_out = 'bounceOutRight',
+  // services
   services_in = 'bounceInRight',
-      services_out = 'bounceOutLeft',
-      // contact
-  contact_in = 'bounceInLeft',
-      contact_out = 'bounceOutRight';
+      services_out = 'bounceOutLeft'; // contact
+  // contact_in = 'bounceInLeft',
+  // contact_out = 'bounceOutRight';
 
   if (intro) {
     intro.addEventListener(start_event, function (event) {
       event.target.classList.add('animate', 'active', intro_in);
-      headerNavUpdate(this);
     });
     intro.addEventListener(end_event, function (event) {
       event.target.classList.remove('active');
     });
-  }
+  } // if (about) {
+  //     about.addEventListener(start_event, function(event){
+  //         event.target.classList.add('animate','active',about_in);
+  //     });
+  //     about.addEventListener(end_event, function(event){
+  //         event.target.classList.remove('active');
+  //     });
+  // }
 
-  if (about) {
-    about.addEventListener(start_event, function (event) {
-      event.target.classList.add('animate', 'active', about_in);
-      headerNavUpdate(this);
-    });
-    about.addEventListener(end_event, function (event) {
-      event.target.classList.remove('active');
-    });
-  }
 
   if (services) {
     services.addEventListener(start_event, function (event) {
       event.target.classList.add('animate', 'active', services_in);
-      headerNavUpdate(this);
     });
     services.addEventListener(end_event, function (event) {
       event.target.classList.remove('active');
     });
-  }
-
-  if (contact) {
-    contact.addEventListener(start_event, function (event) {
-      event.target.classList.add('animate', 'active', contact_in);
-      headerNavUpdate(this);
-    });
-    contact.addEventListener(end_event, function (event) {
-      event.target.classList.remove('active');
-    });
-  } // trigger event - an init event
+  } // if (contact) {
+  //     contact.addEventListener(start_event, function(event){
+  //         event.target.classList.add('animate','active',contact_in);
+  //     });
+  //     contact.addEventListener(end_event, function(event){
+  //         event.target.classList.remove('active');
+  //     });
+  // }
+  // trigger event - an init event
 
 
   window.sections.active_section.dispatchEvent(new CustomEvent(start_event, {

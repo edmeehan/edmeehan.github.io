@@ -22,7 +22,7 @@ js_scripts: [
   "/js/main.js"
 ]
 css_styles: [
-  "https://fonts.googleapis.com/css?family=Shadows+Into+Light+Two|Poppins:400,600",
+  "https://fonts.googleapis.com/css?family=Roboto+Slab|Poppins:400,600",
   "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css",
   "/css/2019.css"
 ]

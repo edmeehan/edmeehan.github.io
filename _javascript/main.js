@@ -12,21 +12,21 @@ import SectionManager from './modules/sections_manager';
         }
     }
 
-    function tabsEvent(event) {
-        for (let tab_siblings of this.parentElement.children) {
-            tab_siblings.classList.remove('active');
-        }
+    // function tabsEvent(event) {
+    //     for (let tab_siblings of this.parentElement.children) {
+    //         tab_siblings.classList.remove('active');
+    //     }
 
-        this.classList.add('active');
+    //     this.classList.add('active');
 
-        let content = document.getElementById(this.dataset.target);
+    //     let content = document.getElementById(this.dataset.target);
 
-        for (let content_siblings of content.parentElement.children) {
-            content_siblings.classList.remove('active');
-        }
+    //     for (let content_siblings of content.parentElement.children) {
+    //         content_siblings.classList.remove('active');
+    //     }
 
-        content.classList.add('active');
-    }
+    //     content.classList.add('active');
+    // }
 
     // header nav toggle
     let headerToggle = document.getElementById('header-nav-toggle');
@@ -36,9 +36,9 @@ import SectionManager from './modules/sections_manager';
     }
 
     // tabs
-    for (let tab of document.getElementsByClassName('js-tab')) {
-        tab.addEventListener('click', tabsEvent);
-    }
+    // for (let tab of document.getElementsByClassName('js-tab')) {
+    //     tab.addEventListener('click', tabsEvent);
+    // }
     
     // section manager controls background and events when sections become visible
     window.sections = new SectionManager({

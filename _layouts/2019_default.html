@@ -9,9 +9,16 @@ css_styles: ["/css/backgrounds-default.css"]
 <!-- Page Layout Start -->
 <div class="page-content font-sans" id="page-content">
     <div class="page-content__background" id="page-background"></div>
-    
-    <div class="page-content__header">
-        {% include header.html %}
+
+    <div class="page-content__nav">
+        <div class="page-content__toggle" id="header-nav-toggle">
+            <i class="fas fa-bars page-content__toggle-open"></i>
+            <i class="fas fa-times page-content__toggle-close"></i>
+        </div>
+        <div class="flex">
+            {% include header.html %}
+            {% include footer.html %}
+        </div>
     </div>
     <div class="page-content__wrapper">
         <div class="page-content__shadow"></div>

@@ -1,22 +1,19 @@
 <!-- Footer -->
 <footer class="site-footer" id="footer">
-    <div class="layout site-footer__content small">
-        <nav class="site-footer__nav">
-            <div>
-                <h3 class="h4">Social</h3>
-                <ul>
-                    <li><a target="_blank" href="https://github.com/edmeehan">GitHub</a></li>
-                    <li><a target="_blank" href="https://www.linkedin.com/in/edwardmeehan">LinkedIn</a></li>
-                    <li><a target="_blank" href="https://codepen.io/edmeehan">CodePen</a></li>
-                </ul>
-            </div>
-        </nav>
-        <div class="site-footer__about-me">
-            <img width="100" height="100" src="/img/headshots/emeehan_square.jpg" alt="">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu auctor augue. Aliquam eu velit vel enim mollis luctus at congue nulla. Nulla consectetur cursus nulla, vitae ultrices elit. Sed quis pretium arcu. Sed sodales dictum ligula, non cursus turpis congue ac.</p>
-        </div>
-        <div class="site-footer__small-print">
-            &copy; {{ site.time | date: '%Y' }}. All rights reserved.
-        </div>
+    <div class="site-footer__about-me">
+        <img width="120" height="120" src="/img/ed-ali.jpg" alt="Ali and Edward Meehan">
+        <p>I'm from the small town of Hilo on the Big Island of Hawaii. I currently live in San Diego with my wife Ali and our dog Tink. When I am not working, I like to hit the beach to go surfing or training to improve my Jiu-Jitsu.</p>
+    </div>
+
+    <nav class="site-footer__nav">
+        <ul>
+            <li><a target="_blank" href="https://github.com/edmeehan"><i class="fab fa-github"></i> GitHub</a></li>
+            <li><a target="_blank" href="https://www.linkedin.com/in/edwardmeehan"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+            <li><a target="_blank" href="https://codepen.io/edmeehan"><i class="fab fa-codepen"></i> CodePen</a></li>
+        </ul>
+    </nav>
+    
+    <div class="site-footer__legal">
+        &copy; {{ site.time | date: '%Y' }}. All rights reserved.
     </div>
 </footer>

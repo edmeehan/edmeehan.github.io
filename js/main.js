@@ -109,61 +109,18 @@ __webpack_require__.r(__webpack_exports__);
       content.classList.toggle('active');
       document.body.classList.toggle('locked');
     }
-  }
-
-  function tabsEvent(event) {
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-      for (var _iterator = this.parentElement.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var tab_siblings = _step.value;
-        tab_siblings.classList.remove('active');
-      }
-    } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion && _iterator.return != null) {
-          _iterator.return();
-        }
-      } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
-        }
-      }
-    }
-
-    this.classList.add('active');
-    var content = document.getElementById(this.dataset.target);
-    var _iteratorNormalCompletion2 = true;
-    var _didIteratorError2 = false;
-    var _iteratorError2 = undefined;
-
-    try {
-      for (var _iterator2 = content.parentElement.children[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-        var content_siblings = _step2.value;
-        content_siblings.classList.remove('active');
-      }
-    } catch (err) {
-      _didIteratorError2 = true;
-      _iteratorError2 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-          _iterator2.return();
-        }
-      } finally {
-        if (_didIteratorError2) {
-          throw _iteratorError2;
-        }
-      }
-    }
-
-    content.classList.add('active');
-  } // header nav toggle
+  } // function tabsEvent(event) {
+  //     for (let tab_siblings of this.parentElement.children) {
+  //         tab_siblings.classList.remove('active');
+  //     }
+  //     this.classList.add('active');
+  //     let content = document.getElementById(this.dataset.target);
+  //     for (let content_siblings of content.parentElement.children) {
+  //         content_siblings.classList.remove('active');
+  //     }
+  //     content.classList.add('active');
+  // }
+  // header nav toggle
 
 
   var headerToggle = document.getElementById('header-nav-toggle');
@@ -171,32 +128,11 @@ __webpack_require__.r(__webpack_exports__);
   if (headerToggle) {
     headerToggle.addEventListener('click', headerToggleEvent);
   } // tabs
+  // for (let tab of document.getElementsByClassName('js-tab')) {
+  //     tab.addEventListener('click', tabsEvent);
+  // }
+  // section manager controls background and events when sections become visible
 
-
-  var _iteratorNormalCompletion3 = true;
-  var _didIteratorError3 = false;
-  var _iteratorError3 = undefined;
-
-  try {
-    for (var _iterator3 = document.getElementsByClassName('js-tab')[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-      var tab = _step3.value;
-      tab.addEventListener('click', tabsEvent);
-    } // section manager controls background and events when sections become visible
-
-  } catch (err) {
-    _didIteratorError3 = true;
-    _iteratorError3 = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-        _iterator3.return();
-      }
-    } finally {
-      if (_didIteratorError3) {
-        throw _iteratorError3;
-      }
-    }
-  }
 
   window.sections = new _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
     sections: document.getElementsByClassName('js-scroll-in-view'),
