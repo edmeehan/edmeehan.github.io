@@ -98,48 +98,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/sections_manager */ "./_javascript/modules/sections_manager.js");
 
 
-(function () {
-  'use strict';
+(function (sections) {
+  'use strict'; // section manager controls background and events when sections become visible
 
-  function headerToggleEvent(event) {
-    var content = document.getElementById('page-content');
+  window.sections = sections;
 
-    if (content) {
-      this.classList.toggle('active');
-      content.classList.toggle('active');
-      document.body.classList.toggle('locked');
+  function asideToggleEvent(event) {
+    console.log(event); // let content = document.getElementById('page-content');
+    // if (content) {
+    //     this.classList.toggle('active');
+    //     content.classList.toggle('active');
+    //     document.body.classList.toggle('locked');
+    // }
+  } // aside toggle clicks
+
+
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = document.getElementsByClassName('js-page-aside-toggle')[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var aside = _step.value;
+      aside.addEventListener('click', asideToggleEvent);
     }
-  } // function tabsEvent(event) {
-  //     for (let tab_siblings of this.parentElement.children) {
-  //         tab_siblings.classList.remove('active');
-  //     }
-  //     this.classList.add('active');
-  //     let content = document.getElementById(this.dataset.target);
-  //     for (let content_siblings of content.parentElement.children) {
-  //         content_siblings.classList.remove('active');
-  //     }
-  //     content.classList.add('active');
-  // }
-  // header nav toggle
-
-
-  var headerToggle = document.getElementById('header-nav-toggle');
-
-  if (headerToggle) {
-    headerToggle.addEventListener('click', headerToggleEvent);
-  } // tabs
-  // for (let tab of document.getElementsByClassName('js-tab')) {
-  //     tab.addEventListener('click', tabsEvent);
-  // }
-  // section manager controls background and events when sections become visible
-
-
-  window.sections = new _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
-    sections: document.getElementsByClassName('js-scroll-in-view'),
-    background: document.getElementById('page-background'),
-    randomCeiling: window.backgroundCount || 1
-  });
-})();
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return != null) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+})(new _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
+  sections: document.getElementsByClassName('js-scroll-in-view'),
+  background: document.getElementById('page-background'),
+  randomCeiling: window.backgroundCount || 1
+}));
 
 /***/ }),
 

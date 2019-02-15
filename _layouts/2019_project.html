@@ -8,21 +8,21 @@ js_scripts: ["/js/projects.js"]
     window.backgroundCount = 2;
 </script>
 <!-- Page Layout Start -->
-<div class="page-content font-sans" id="page-content">
-    <div class="page-content__background" id="page-background"></div>
+<div class="page font-sans" id="page-content">
+    <div class="page__background" id="page-background"></div>
 
-    <div class="page-content__nav">
-        <button type="button" class="page-content__toggle button button--cta" id="header-nav-toggle">
-            <i class="fas fa-bars page-content__toggle-open"></i>
-            <i class="fas fa-times page-content__toggle-close"></i>
+    <div class="page__nav">
+        <button type="button" class="page__toggle button button--cta" id="header-nav-toggle">
+            <i class="fas fa-bars page__toggle-open"></i>
+            <i class="fas fa-times page__toggle-close"></i>
         </button>
         <div class="flex">
             {% include header.html %}
             {% include footer.html %}
         </div>
     </div>
-    <div class="page-content__wrapper">
-        <div class="page-content__shadow"></div>
+    <div class="page__wrapper">
+        <div class="page__shadow"></div>
         {{ content }}
     </div>
 
