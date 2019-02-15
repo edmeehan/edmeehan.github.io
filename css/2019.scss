@@ -35,7 +35,7 @@ body {
             color: inherit;
         }
 
-        .page__nav {
+        .site-nav {
             color: $brand-black;
         }
     }
@@ -60,21 +60,15 @@ body {
     background-color: $brand-green;
 
     &__toggle {
-        // !important - set to fix button class
-        height: (50/$size-units) + 0rem!important;
-        width: (50/$size-units) + 0rem;
-        text-align: center;
-        color: white;
         position: absolute;
         z-index: $z-menu;
         right: -4rem;
         top: 1rem;
-        cursor: pointer;
         
-        &-open,
-        &-close {
-            line-height: (50/$size-units) + 0rem;
-        }
+        // &-open,
+        // &-close {
+        //     // line-height: (50/$size-units) + 0rem;
+        // }
 
         &-close {
             display: none;
@@ -216,5 +210,39 @@ body {
                 shape-outside:circle();
             }
         }
+    }
+}
+
+.message-modal {
+    background-color: $brand-purple;
+
+    &__toggle {
+        position: absolute;
+        z-index: $z-menu;
+        left: -17rem;
+        top: 1rem;
+
+        > span {
+            display: none;
+        }
+    }
+
+    @media (min-width: $m-break) {
+        &__toggle {
+            > span {
+                display: inline;
+            }
+        }
+    }
+}
+
+.testing-modal {
+    background-color: $brand-blue;
+
+    &__toggle {
+        position: absolute;
+        z-index: $z-menu;
+        right: -8rem;
+        top: 20rem;
     }
 }

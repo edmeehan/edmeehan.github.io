@@ -11,18 +11,22 @@ css_styles: ["/css/backgrounds-default.css"]
     <div class="page__background" id="page-background"></div>
 
     <div class="page__aside site-nav page--left page--small">
-        <button type="button" class="site-nav__toggle button button--cta js-page-aside-toggle" data-toggle-class="page--left page--nav">
+        <button type="button" class="site-nav__toggle button button--cta js-page-aside-toggle" data-toggle-class="page--left page--small">
             <i class="fas fa-bars site-nav__toggle-open"></i>
             <i class="fas fa-times site-nav__toggle-close"></i>
         </button>
-        <div class="site-nav__content">
+        <div class="page__aside-content site-nav__content">
             {% include header.html %}
             {% include footer.html %}
         </div>
     </div>
+    
     <div class="page__wrapper">
         <div class="page__shadow"></div>
         {{ content }}
     </div>
+
+    {% include message-modal.html %}
+    {% include test-modal.html %}
 </div>
 <!-- Page Layout End -->

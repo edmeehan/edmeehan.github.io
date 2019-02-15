@@ -3,13 +3,36 @@
 .page {
     overflow: hidden;
 
-    &__wrapper {
+    &__wrapper { //.page__wrapper
         transform: translateX(0%);
         transition: transform 800ms;
         min-height: 100vh;
+        position: relative;
+
+        &.active { //.page__wrapper.active
+            z-index: $z-foreground + 1;
+
+            &.page--left{ //.page__wrapper.active.page--left
+                transform: translateX(80%);
+            }
+
+            &.page--right{ //.page__wrapper.active.page--right
+                transform: translateX(-80%);
+            }
+
+            .page__shadow { //.page__wrapper.active .page__shadow
+                width: 100%;
+                height: 100%;
+                background-color: black;
+                position: absolute;
+                top: 0;
+                z-index: 100;
+                opacity: .8;
+            }
+        }
     }
 
-    &__aside {
+    &__aside { //.page__aside
         height: 100vh;
         position: fixed;
         top: 0;
@@ -27,6 +50,10 @@
         &.page--right {
             right: 0;
             transform: translateX(100%);
+        }
+
+        &.active {
+            transform: translateX(0%);
         }
     }
 
@@ -48,48 +75,28 @@
         transition: opacity 800ms;
     }
 
-    &.active {
-        .page {
-            &__aside {
-                transform: translateX(0%);
-
-                &--left + .page__wrapper{
-                    transform: translateX(80%);
-                }
-
-                &--right + .page__wrapper{
-                    transform: translateX(-80%);
-                }
-            }
-            &__shadow {
-                width: 100%;
-                height: 100%;
-                background-color: black;
-                position: absolute;
-                top: 0;
-                z-index: 100;
-                opacity: .8;
-            }
-        }
-    }
-
     @media (min-width: $m-break) {
-        $width: 25rem;
+        $small: 25rem;
+        $med: 40vw;
+        $large: 70vw;
 
         &__aside {
-            width: $width;
+            &.page--small {width: $small;}
+            &.page--med {width: $med;}
+            &.page--large {width: $large;}
         }
 
-        &.active {
-            .page {
-                &__aside {
-                    &--left + .page__wrapper{
-                        transform: translateX($width);
-                    }
-
-                    &--right + .page__wrapper{
-                        transform: translateX(-$width);
-                    }
+        &__wrapper {
+            &.active {
+                &.page--left {
+                    &.page--small {transform: translateX($small);}
+                    &.page--med {transform: translateX($med);}
+                    &.page--large {transform: translateX($large);}
+                }
+                &.page--right {
+                    &.page--small {transform: translateX(-$small);}
+                    &.page--med {transform: translateX(-$med);}
+                    &.page--large {transform: translateX(-$large);}
                 }
             }
         }
@@ -146,28 +153,6 @@
 
     @media (min-width: $xl-break) {
         width: $xl-break - 40;
-    }
-}
-
-.message-modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    &__toggle {
-        margin-top: 1rem;
-        margin-right: 1rem;
-
-        > span {
-            display: none;
-        }
-    }
-
-    @media (min-width: $m-break) {
-        &__toggle {
-            > span {
-                display: inline;
-            }
-        }
     }
 }
 

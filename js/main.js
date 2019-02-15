@@ -99,40 +99,137 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (function (sections) {
-  'use strict'; // section manager controls background and events when sections become visible
+  'use strict'; // section manager controls background and
+  // events when sections become visible
 
   window.sections = sections;
 
-  function asideToggleEvent(event) {
-    console.log(event); // let content = document.getElementById('page-content');
-    // if (content) {
-    //     this.classList.toggle('active');
-    //     content.classList.toggle('active');
-    //     document.body.classList.toggle('locked');
-    // }
-  } // aside toggle clicks
+  var getClosest = function getClosest(elem, selector) {
+    for (; elem && elem !== document; elem = elem.parentNode) {
+      if (elem.matches(selector)) return elem;
+    }
+
+    return null;
+  };
+
+  var getSibling = function getSibling(elem, selector) {
+    return elem.parentElement.querySelector(selector);
+  };
+
+  var asideClosedEvent = function asideClosedEvent(event) {
+    // condtion out bubbled events
+    if (this === event.target) {
+      window.activeAside = null;
+      this.style.zIndex = null;
+      this.querySelector('.page__aside-content').style.display = 'none';
+      this.removeEventListener('transitionend', asideClosedEvent);
+    }
+  };
+
+  var asideToggleEvent = function asideToggleEvent(event) {
+    var act = 'active',
+        aside = getClosest(this, '.page__aside'),
+        // aside element to display
+    wrapper = getSibling(aside, '.page__wrapper'),
+        // page wrapper to push around
+    toggleClass = this.dataset.toggleClass,
+        content = aside.querySelector('.page__aside-content');
+    toggleClass = toggleClass.split(' ') || [];
+    toggleClass.push(act);
+
+    if (content && toggleClass && !aside.classList.contains(act) && !wrapper.classList.contains(act)) {
+      if (window.activeAside) {
+        console.log('aside active already - stuff is going to break');
+      } // no state - so hack dat shit
 
 
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
+      window.activeAside = aside; // make visible before transition
+
+      content.style.display = null; //add classes to trigger animation
+
+      aside.classList.add(act);
+      aside.style.zIndex = 100;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = toggleClass[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var item = _step.value;
+          wrapper.classList.add(item);
+        } // locks body to prevent scrolling
+
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      document.body.classList.add('locked');
+    } else {
+      // hide visibility after transtion with listener
+      aside.addEventListener('transitionend', asideClosedEvent); //remove classes to trigger transitions
+
+      aside.classList.remove(act);
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = toggleClass[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var _item = _step2.value;
+          wrapper.classList.remove(_item);
+        } // unlock body to allow scrolling
+
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+            _iterator2.return();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
+      document.body.classList.remove('locked');
+    }
+  }; // aside toggle clicks
+
+
+  var _iteratorNormalCompletion3 = true;
+  var _didIteratorError3 = false;
+  var _iteratorError3 = undefined;
 
   try {
-    for (var _iterator = document.getElementsByClassName('js-page-aside-toggle')[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var aside = _step.value;
-      aside.addEventListener('click', asideToggleEvent);
+    for (var _iterator3 = document.getElementsByClassName('js-page-aside-toggle')[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+      var asideEle = _step3.value;
+      asideEle.addEventListener('click', asideToggleEvent);
     }
   } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
+    _didIteratorError3 = true;
+    _iteratorError3 = err;
   } finally {
     try {
-      if (!_iteratorNormalCompletion && _iterator.return != null) {
-        _iterator.return();
+      if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+        _iterator3.return();
       }
     } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
+      if (_didIteratorError3) {
+        throw _iteratorError3;
       }
     }
   }

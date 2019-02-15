@@ -6,7 +6,7 @@ import axios from 'axios';
         formClass = 'form--',
         formData;
 
-    contactForm.addEventListener('submit', form_submit, false);
+    if (contactForm) contactForm.addEventListener('submit', form_submit, false);
 
     function form_submit(event) {
         event.preventDefault();

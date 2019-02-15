@@ -103,7 +103,7 @@ __webpack_require__.r(__webpack_exports__);
   var contactForm = document.getElementById('contact-form'),
       formClass = 'form--',
       formData;
-  contactForm.addEventListener('submit', form_submit, false);
+  if (contactForm) contactForm.addEventListener('submit', form_submit, false);
 
   function form_submit(event) {
     event.preventDefault();
