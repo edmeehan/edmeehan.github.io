@@ -58,11 +58,15 @@ body {
 
 .site-nav {
     background-color: $brand-green;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: scroll;
 
     &__toggle {
-        position: absolute;
+        position: fixed;
         z-index: $z-menu;
-        right: -4rem;
+        left: 1rem;
         top: 1rem;
         
         // &-open,
@@ -85,10 +89,7 @@ body {
     }
 
     &__content {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        overflow: scroll;
+        
     }
 }
 
@@ -219,7 +220,7 @@ body {
     &__toggle {
         position: absolute;
         z-index: $z-menu;
-        left: -17rem;
+        right: 1rem;
         top: 1rem;
 
         > span {

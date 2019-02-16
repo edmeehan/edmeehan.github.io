@@ -8,21 +8,25 @@ js_scripts: ["/js/projects.js"]
     window.backgroundCount = 2;
 </script>
 <!-- Page Layout Start -->
-<div class="page font-sans" id="page-content">
+<div class="page font-sans" id="project-layout">
     <div class="page__background" id="page-background"></div>
 
-    <div class="page__aside site-nav page--left page--small">
-        <button type="button" class="site-nav__toggle button button--cta js-page-aside-toggle" data-toggle-class="page--left page--small">
-            <i class="fas fa-bars site-nav__toggle-open"></i>
-            <i class="fas fa-times site-nav__toggle-close"></i>
-        </button>
+    <div class="page__aside site-nav page--left page--small" id="aside-nav" data-toggle-class="page--left page--small">
+        
         <div class="page__aside-content site-nav__content" style="display: none">
             {% include header.html %}
             {% include footer.html %}
         </div>
     </div>
-    <div class="page__wrapper">
+
+    <div class="page__wrapper" id="document">
         <div class="page__shadow"></div>
+        
+        <button type="button" class="site-nav__toggle button button--cta js-page-aside-toggle" data-target="#aside-nav">
+            <i class="fas fa-bars site-nav__toggle-open"></i>
+            <i class="fas fa-times site-nav__toggle-close"></i>
+        </button>
+
         {{ content }}
     </div>
 

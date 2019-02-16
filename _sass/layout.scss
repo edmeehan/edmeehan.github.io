@@ -4,21 +4,24 @@
     overflow: hidden;
 
     &__wrapper { //.page__wrapper
-        transform: translateX(0%);
-        transition: transform 800ms;
         min-height: 100vh;
-        position: relative;
+        // position: relative;
+        
+        // &.transition {
+        //     transform: translateX(0%);
+        //     transition: transform 800ms;
+        // }
 
         &.active { //.page__wrapper.active
             z-index: $z-foreground + 1;
 
-            &.page--left{ //.page__wrapper.active.page--left
-                transform: translateX(80%);
-            }
+            // &.page--left{ //.page__wrapper.active.page--left
+            //     transform: translateX(80%);
+            // }
 
-            &.page--right{ //.page__wrapper.active.page--right
-                transform: translateX(-80%);
-            }
+            // &.page--right{ //.page__wrapper.active.page--right
+            //     transform: translateX(-80%);
+            // }
 
             .page__shadow { //.page__wrapper.active .page__shadow
                 width: 100%;
@@ -26,7 +29,7 @@
                 background-color: black;
                 position: absolute;
                 top: 0;
-                z-index: 100;
+                // z-index: 100;
                 opacity: .8;
             }
         }
@@ -86,20 +89,20 @@
             &.page--large {width: $large;}
         }
 
-        &__wrapper {
-            &.active {
-                &.page--left {
-                    &.page--small {transform: translateX($small);}
-                    &.page--med {transform: translateX($med);}
-                    &.page--large {transform: translateX($large);}
-                }
-                &.page--right {
-                    &.page--small {transform: translateX(-$small);}
-                    &.page--med {transform: translateX(-$med);}
-                    &.page--large {transform: translateX(-$large);}
-                }
-            }
-        }
+        // &__wrapper {
+        //     &.active {
+        //         &.page--left {
+        //             &.page--small {transform: translateX($small);}
+        //             &.page--med {transform: translateX($med);}
+        //             &.page--large {transform: translateX($large);}
+        //         }
+        //         &.page--right {
+        //             &.page--small {transform: translateX(-$small);}
+        //             &.page--med {transform: translateX(-$med);}
+        //             &.page--large {transform: translateX(-$large);}
+        //         }
+        //     }
+        // }
     }
 }
 

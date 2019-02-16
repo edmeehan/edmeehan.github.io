@@ -7,71 +7,64 @@ import SectionManager from './modules/sections_manager';
     // events when sections become visible
     window.sections = sections;
 
-    var getClosest = function(elem, selector) {
-        for ( ; elem && elem !== document; elem = elem.parentNode ) {
-            if ( elem.matches( selector ) ) return elem;
-        }
-        return null;
-    };
-
-    var getSibling = function (elem, selector) {
-        return elem.parentElement.querySelector(selector);
-    };
-
-    var asideClosedEvent = function(event) {
-        // condtion out bubbled events
-        if(this === event.target){
-            window.activeAside = null;
-            this.style.zIndex = null;
-            this.querySelector('.page__aside-content').style.display = 'none';
-            this.removeEventListener('transitionend', asideClosedEvent);
-        }
-    }
-
-    var asideToggleEvent = function (event) {
-        let act = 'active',
-            aside = getClosest(this, '.page__aside'), // aside element to display
-            wrapper = getSibling(aside, '.page__wrapper'), // page wrapper to push around
-            toggleClass = this.dataset.toggleClass,
-            content = aside.querySelector('.page__aside-content');
-
+    var asideShowEvent = function({detail, element}) {
+        let aside = element || document.querySelector(detail.target),
+            toggleClass = aside.dataset.toggleClass;
         toggleClass = toggleClass.split(' ') || [];
-        toggleClass.push(act);
+        toggleClass.push('active');
+        
+        // handle active aside first
+        // - can also toggle
+        if (window.activeAside) {
+            if (aside === window.activeAside && detail.toggle === undefined) return;
+            asideHideEvent({element:window.activeAside});
+            if(detail.toggle === '' || detail.toggle === 'true') return;
+        }
 
-        if(content && toggleClass && !aside.classList.contains(act) && !wrapper.classList.contains(act)){
-            if(window.activeAside){
-                console.log('aside active already - stuff is going to break');
-            }
-            // no state - so hack dat shit
-            window.activeAside = aside;
-            // make visible before transition
-            content.style.display = null;
-            //add classes to trigger animation
-            aside.classList.add(act);
-            aside.style.zIndex = 100;
-            for (let item of toggleClass) {
-                wrapper.classList.add(item);
-            }
-            // locks body to prevent scrolling
-            document.body.classList.add('locked');
-        } else {
-            // hide visibility after transtion with listener
-            aside.addEventListener('transitionend', asideClosedEvent);
-            //remove classes to trigger transitions
-            aside.classList.remove(act);
-            for (let item of toggleClass) {
-                wrapper.classList.remove(item);
-            }
-            // unlock body to allow scrolling
-            document.body.classList.remove('locked');
+        window.activeAside = aside;
+        //add classes to trigger animation
+        aside.classList.add('active');
+        for (let item of toggleClass) {
+            docEle.classList.add(item);
+        }
+        // locks body to prevent scrolling
+        document.body.classList.add('locked');
+    }
+
+    var asideHideEvent = function({detail, element}) {
+        let aside = element || document.querySelector(detail.target),
+            toggleClass = aside.dataset.toggleClass;
+        toggleClass = toggleClass.split(' ') || [];
+        toggleClass.push('active');
+        // clear activeAside
+        window.activeAside = null;
+        //add classes to trigger animation
+        aside.classList.remove('active');
+        for (let item of toggleClass) {
+            docEle.classList.remove(item);
+        }
+        // locks body to prevent scrolling
+        document.body.classList.remove('locked');
+    }
+
+    let docEle = document.getElementById('document');
+    if (docEle) {
+        docEle.addEventListener('aside.show', asideShowEvent);
+        docEle.addEventListener('aside.hide', asideHideEvent);
+
+        for(let asideShow of document.getElementsByClassName('js-aside-show')){
+            asideShow.addEventListener('click', function(event){
+                docEle.dispatchEvent(new CustomEvent('aside.show', { bubbles: false, detail: this.dataset }));
+            });
+        }
+
+        for(let asideHide of document.getElementsByClassName('js-aside-hide')){
+            asideHide.addEventListener('click', function(event){
+                docEle.dispatchEvent(new CustomEvent('aside.hide', { bubbles: false, detail: this.dataset }));
+            });
         }
     }
-
-    // aside toggle clicks
-    for(let asideEle of document.getElementsByClassName('js-page-aside-toggle')){
-        asideEle.addEventListener('click', asideToggleEvent);
-    }
-    
+        
 })(
     new SectionManager({
         sections: document.getElementsByClassName('js-scroll-in-view'),

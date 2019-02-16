@@ -104,132 +104,153 @@ __webpack_require__.r(__webpack_exports__);
 
   window.sections = sections;
 
-  var getClosest = function getClosest(elem, selector) {
-    for (; elem && elem !== document; elem = elem.parentNode) {
-      if (elem.matches(selector)) return elem;
-    }
-
-    return null;
-  };
-
-  var getSibling = function getSibling(elem, selector) {
-    return elem.parentElement.querySelector(selector);
-  };
-
-  var asideClosedEvent = function asideClosedEvent(event) {
-    // condtion out bubbled events
-    if (this === event.target) {
-      window.activeAside = null;
-      this.style.zIndex = null;
-      this.querySelector('.page__aside-content').style.display = 'none';
-      this.removeEventListener('transitionend', asideClosedEvent);
-    }
-  };
-
-  var asideToggleEvent = function asideToggleEvent(event) {
-    var act = 'active',
-        aside = getClosest(this, '.page__aside'),
-        // aside element to display
-    wrapper = getSibling(aside, '.page__wrapper'),
-        // page wrapper to push around
-    toggleClass = this.dataset.toggleClass,
-        content = aside.querySelector('.page__aside-content');
+  var asideShowEvent = function asideShowEvent(_ref) {
+    var detail = _ref.detail,
+        element = _ref.element;
+    var aside = element || document.querySelector(detail.target),
+        toggleClass = aside.dataset.toggleClass;
     toggleClass = toggleClass.split(' ') || [];
-    toggleClass.push(act);
+    toggleClass.push('active'); // handle active aside first
+    // - can also toggle
 
-    if (content && toggleClass && !aside.classList.contains(act) && !wrapper.classList.contains(act)) {
-      if (window.activeAside) {
-        console.log('aside active already - stuff is going to break');
-      } // no state - so hack dat shit
-
-
-      window.activeAside = aside; // make visible before transition
-
-      content.style.display = null; //add classes to trigger animation
-
-      aside.classList.add(act);
-      aside.style.zIndex = 100;
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = toggleClass[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var item = _step.value;
-          wrapper.classList.add(item);
-        } // locks body to prevent scrolling
-
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      document.body.classList.add('locked');
-    } else {
-      // hide visibility after transtion with listener
-      aside.addEventListener('transitionend', asideClosedEvent); //remove classes to trigger transitions
-
-      aside.classList.remove(act);
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
-
-      try {
-        for (var _iterator2 = toggleClass[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var _item = _step2.value;
-          wrapper.classList.remove(_item);
-        } // unlock body to allow scrolling
-
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-            _iterator2.return();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
-      }
-
-      document.body.classList.remove('locked');
+    if (window.activeAside) {
+      if (aside === window.activeAside && detail.toggle === undefined) return;
+      asideHideEvent({
+        element: window.activeAside
+      });
+      if (detail.toggle === '' || detail.toggle === 'true') return;
     }
-  }; // aside toggle clicks
 
+    window.activeAside = aside; //add classes to trigger animation
 
-  var _iteratorNormalCompletion3 = true;
-  var _didIteratorError3 = false;
-  var _iteratorError3 = undefined;
+    aside.classList.add('active');
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
 
-  try {
-    for (var _iterator3 = document.getElementsByClassName('js-page-aside-toggle')[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-      var asideEle = _step3.value;
-      asideEle.addEventListener('click', asideToggleEvent);
-    }
-  } catch (err) {
-    _didIteratorError3 = true;
-    _iteratorError3 = err;
-  } finally {
     try {
-      if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-        _iterator3.return();
-      }
+      for (var _iterator = toggleClass[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var item = _step.value;
+        docEle.classList.add(item);
+      } // locks body to prevent scrolling
+
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
     } finally {
-      if (_didIteratorError3) {
-        throw _iteratorError3;
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return != null) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+
+    document.body.classList.add('locked');
+  };
+
+  var asideHideEvent = function asideHideEvent(_ref2) {
+    var detail = _ref2.detail,
+        element = _ref2.element;
+    var aside = element || document.querySelector(detail.target),
+        toggleClass = aside.dataset.toggleClass;
+    toggleClass = toggleClass.split(' ') || [];
+    toggleClass.push('active'); // clear activeAside
+
+    window.activeAside = null; //add classes to trigger animation
+
+    aside.classList.remove('active');
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+      for (var _iterator2 = toggleClass[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var item = _step2.value;
+        docEle.classList.remove(item);
+      } // locks body to prevent scrolling
+
+    } catch (err) {
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+          _iterator2.return();
+        }
+      } finally {
+        if (_didIteratorError2) {
+          throw _iteratorError2;
+        }
+      }
+    }
+
+    document.body.classList.remove('locked');
+  };
+
+  var docEle = document.getElementById('document');
+
+  if (docEle) {
+    docEle.addEventListener('aside.show', asideShowEvent);
+    docEle.addEventListener('aside.hide', asideHideEvent);
+    var _iteratorNormalCompletion3 = true;
+    var _didIteratorError3 = false;
+    var _iteratorError3 = undefined;
+
+    try {
+      for (var _iterator3 = document.getElementsByClassName('js-aside-show')[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+        var asideShow = _step3.value;
+        asideShow.addEventListener('click', function (event) {
+          docEle.dispatchEvent(new CustomEvent('aside.show', {
+            bubbles: false,
+            detail: this.dataset
+          }));
+        });
+      }
+    } catch (err) {
+      _didIteratorError3 = true;
+      _iteratorError3 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+          _iterator3.return();
+        }
+      } finally {
+        if (_didIteratorError3) {
+          throw _iteratorError3;
+        }
+      }
+    }
+
+    var _iteratorNormalCompletion4 = true;
+    var _didIteratorError4 = false;
+    var _iteratorError4 = undefined;
+
+    try {
+      for (var _iterator4 = document.getElementsByClassName('js-aside-hide')[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+        var asideHide = _step4.value;
+        asideHide.addEventListener('click', function (event) {
+          docEle.dispatchEvent(new CustomEvent('aside.hide', {
+            bubbles: false,
+            detail: this.dataset
+          }));
+        });
+      }
+    } catch (err) {
+      _didIteratorError4 = true;
+      _iteratorError4 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+          _iterator4.return();
+        }
+      } finally {
+        if (_didIteratorError4) {
+          throw _iteratorError4;
+        }
       }
     }
   }
