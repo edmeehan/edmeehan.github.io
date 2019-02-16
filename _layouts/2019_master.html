@@ -7,9 +7,29 @@ color_style: 'theme--blue'
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
-         <link rel="author" href="humans.txt">
-        
+        <title>{{ site.title }} | {{ page.title }}</title>
+        <meta name="twitter:title" content="{{ page.title }}">
+        <meta property="og:title" content="{{ page.title }}">
+        <meta itemprop="name" content="{{ page.title }}">
+        {% if page.excerpt %}
+        <meta name="description" content="{{ page.excerpt | strip_html }}">
+        <meta property="og:description" content="{{ page.excerpt | strip_html }}">
+        <meta itemprop="description" content="{{ page.excerpt | strip_html }}">
+        <meta name="twitter:description" content="{{ page.excerpt | strip_html }}">
+        {% elsif page.description %}
+        <meta name="description" content="{{ page.description }}">
+        <meta property="og:description" content="{{ page.description }}">
+        <meta itemprop="description" content="{{ page.description }}">
+        <meta name="twitter:description" content="{{ page.description }}">
+        {% endif %}
+        <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+        <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+        <link rel="apple-touch-icon" href="{{site.url}}/apple-touch-icon.png">
+        <link rel="shortcut icon" href="{{site.url}}/favicon.png" type="image/x-icon">
+        <link rel="author" href="{{ "/humans.txt" | prepend: site.baseurl | prepend: site.url }}">
+        <link rel="alternate" type="application/rss+xml" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="{{ page.og-image | prepend: site.baseurl | prepend: site.url }}">
         {% if site.gtm_container_id %}
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -19,55 +39,22 @@ color_style: 'theme--blue'
         })(window,document,'script','dataLayer','{{ site.gtm_container_id }}');</script>
         <!-- End Google Tag Manager -->
         {% endif %}
-
-        <title>{{ site.title }}{% if page.title %} | {{ page.title }}{% endif %}</title>
-        
-        {% if page.excerpt %}
-        <meta name="description" content="{{ page.excerpt | strip_html }}">
-        {% elsif page.description %}
-        <meta name="description" content="{{ page.description }}">
-        {% endif %}
-        
-        <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"> 
-        
-        <!-- Place favicon.ico in the root directory -->
-        <link rel="apple-touch-icon" href="{{site.url}}/apple-touch-icon.png">
-        
         <!-- Style Sheets -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        
-        {% for item in site.css_styles %}
-            <link rel="stylesheet" href="{{item}}" />
-        {% endfor %}
-        
-        {% for item in layout.css_styles %}
-            <link rel="stylesheet" href="{{item}}" />
-        {% endfor %}
-
-        {% for item in page.css_styles %}
-            <link rel="stylesheet" href="{{item}}" />
-        {% endfor %}
+        {% for item in site.css_styles %}<link rel="stylesheet" href="{{item}}" />{% endfor %}
+        {% for item in layout.css_styles %}<link rel="stylesheet" href="{{item}}" />{% endfor %}
+        {% for item in page.css_styles %}<link rel="stylesheet" href="{{item}}" />{% endfor %}
     </head>
     <body class="{{ layout.color_style }}">
-        
         {% if site.gtm_container_id %}
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.gtm_container_id }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
         {% endif %}
-
         {{ content }}
-
         <!-- Scripts -->
-        {% for item in site.js_scripts %}
-            <script src="{{item}}"></script>
-        {% endfor %}
-        {% for item in layout.js_scripts %}
-            <script src="{{item}}"></script>
-        {% endfor %}
-        {% for item in page.js_scripts %}
-            <script src="{{item}}"></script>
-        {% endfor %}
-
+        {% for item in site.js_scripts %}<script src="{{item}}"></script>{% endfor %}
+        {% for item in layout.js_scripts %}<script src="{{item}}"></script>{% endfor %}
+        {% for item in page.js_scripts %}<script src="{{item}}"></script>{% endfor %}
     </body>
 </html>
