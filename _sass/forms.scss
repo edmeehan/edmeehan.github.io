@@ -75,17 +75,17 @@
         }
     }
 
-    &--success {
-        .form__response-message {
-            background-color: rgba($success-green, .4);
-        }
-    }
+    // &--success {
+    //     .form__response-message {
+    //         background-color: rgba($success-green, .4);
+    //     }
+    // }
 
-    &--fail {
-        .form__response-message {
-            background-color: rgba($fail-red, .4);
-        }
-    }
+    // &--fail {
+    //     .form__response-message {
+    //         background-color: rgba($fail-red, .4);
+    //     }
+    // }
 
     &--name {
         flex: 1 0 auto;
@@ -120,35 +120,70 @@ input {
     height: 1.8rem;
 }
 
+button {
+    cursor: pointer;
+    outline: none;
+    &.link {
+        border: none;
+    }
+}
+
 .button {
     text-transform: uppercase;
     border-radius: 300px;
     background-color: #ccc;
     box-shadow: 0 (5/$size-units) + 0rem 0 #333;
     font-size: (18/$size-units) + 0rem;
-    // height: 2.5rem;
     line-height: 2.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    outline: none;
     transform: translateY(0);
     transition: transform 300ms, box-shadow 300ms;
     border-color: transparent;
-
 
     &:active {
         transform: translateY((5/$size-units) + 0rem);
         box-shadow: 0 0 0 #333;
     }
 
-    &--cta {
+    &--cta-1 {
         color: #fff;
         background-color: $brand-purple;
         box-shadow: 0px (5/$size-units) + 0rem 0px darken($brand-purple, 20%);
 
         &:active {
-            transform: translateY((5/$size-units) + 0rem);
             box-shadow: 0 0 0 darken($brand-purple, 20%);
         }
+    }
+
+    &--cta-2 {
+        color: #fff;
+        background-color: $brand-green;
+        box-shadow: 0px (5/$size-units) + 0rem 0px darken($brand-green, 20%);
+
+        &:active {
+            box-shadow: 0 0 0 darken($brand-green, 20%);
+        }
+    }
+
+    &--cta-3 {
+        color: #fff;
+        background-color: $brand-blue;
+        box-shadow: 0px (5/$size-units) + 0rem 0px darken($brand-blue, 20%);
+
+        &:active {
+            box-shadow: 0 0 0 darken($brand-blue, 20%);
+        }
+    }
+
+    &--small {
+        font-size: 1rem;
+        line-height: 1.5em;
+        padding-left: .5em;
+        padding-right: .5em;
+    }
+
+    &--link {
+
     }
 }

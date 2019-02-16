@@ -1,15 +1,11 @@
-# humanstxt.org/
-# The humans responsible & technology colophon
+/* TEAM */
 
-# TEAM
+    Edward Meehan -- Designer, Developer -- San Diego, California
 
-    <name> -- <role> -- <twitter>
+/* THANKS */
 
-# THANKS
+    I customized the wicked cool backgrounds on my site at SVGBackgrounds.com
 
-    <name>
-
-# TECHNOLOGY COLOPHON
-
-    CSS3, HTML5
-    Apache Server Configs, jQuery, Modernizr, Normalize.css
+/* SITE */
+    Components: axios, babel
+    Software: Sublime Text, Adobe Photoshop, Adobe Illustrator, Sketch, Google Chrome, Postman, Git, Jekyll, Webpack, NPM, SASS

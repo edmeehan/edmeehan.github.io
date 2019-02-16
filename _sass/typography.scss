@@ -69,7 +69,8 @@ hr {
 }
 
 p {
-    > a {
+    > a,
+    button.link {
         display: inline-block;
         padding-left: (2/$size-units) + 0rem;
         padding-right: (2/$size-units) + 0rem;

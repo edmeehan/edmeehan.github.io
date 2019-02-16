@@ -9,8 +9,8 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Ed Meehan #displayed on site header
-subtitle: Web Developer  #displayed on site header
+title: Edward Meehan #displayed on site header
+subtitle: Conversion Rate Optimization Expert  #displayed on site header
 
 address: 123 Test st. San Diego, CA 92115-1234
 phone: 555.555.5555
@@ -18,9 +18,7 @@ email:
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://emeehan.com" # the base hostname & protocol for your site
-js_scripts: [
-  "/js/main.js"
-]
+js_scripts: ["/js/main.js"]
 css_styles: [
   "https://fonts.googleapis.com/css?family=Roboto+Slab|Noto+Sans:400,700",
   "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css",

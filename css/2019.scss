@@ -49,47 +49,11 @@ body {
         }
 
         p {
-            > a {
+            > a,
+            > button.link {
                 background-color: rgba($brand-purple, .4);
             }
         }
-    }
-}
-
-.site-nav {
-    background-color: $brand-green;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: scroll;
-
-    &__toggle {
-        position: fixed;
-        z-index: $z-menu;
-        left: 1rem;
-        top: 1rem;
-        
-        // &-open,
-        // &-close {
-        //     // line-height: (50/$size-units) + 0rem;
-        // }
-
-        &-close {
-            display: none;
-        }
-
-        &.active {
-            .page__toggle-open {
-                display: none;
-            }
-            .page__toggle-close {
-                display: block;
-            }
-        }
-    }
-
-    &__content {
-        
     }
 }
 
@@ -214,11 +178,29 @@ body {
     }
 }
 
-.message-modal {
-    background-color: $brand-purple;
+.aside-nav {
+    background-color: $brand-green;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: scroll;
+    color: $brand-black;
 
-    &__toggle {
-        position: absolute;
+    &__btn-show {
+        position: fixed;
+        z-index: $z-menu;
+        left: 1rem;
+        top: 1rem;
+    }
+}
+
+.aside-message {
+    background-color: $brand-green;
+    color: $brand-black;
+    padding: 1.5rem;
+
+    &__btn-show {
+        position: fixed;
         z-index: $z-menu;
         right: 1rem;
         top: 1rem;
@@ -228,22 +210,45 @@ body {
         }
     }
 
+    &__content {
+        text-align: center;
+    }
+
+    &__form {
+        .form {
+            &__response-message {
+                text-align: center;
+                padding: 1rem;
+                box-sizing: border-box;
+
+                h3 {
+                    @include serif();
+                    font-size: (22/$size-units) + 0rem;
+                    line-height: 1.5rem;
+                }
+            }
+
+            &--success {
+                .form__response-message {
+                    border: dashed (3/$size-units) + 0rem $success-green;
+                    color: white;
+                }
+            }
+
+            &--fail {
+                .form__response-message {
+                    border: dashed (3/$size-units) + 0rem $fail-red;
+                    color: $fail-red;
+                }
+            }
+        }
+    }
+
     @media (min-width: $m-break) {
-        &__toggle {
+        &__btn-show {
             > span {
                 display: inline;
             }
         }
-    }
-}
-
-.testing-modal {
-    background-color: $brand-blue;
-
-    &__toggle {
-        position: absolute;
-        z-index: $z-menu;
-        right: -8rem;
-        top: 20rem;
     }
 }

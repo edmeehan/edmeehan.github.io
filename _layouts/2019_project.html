@@ -2,7 +2,7 @@
 layout: 2019_master
 color_style: 'theme--black'
 css_styles: ["/css/backgrounds-projects.css","/css/projects.css"]
-js_scripts: ["/js/projects.js"]
+js_scripts: ["/js/contact_form.js","/js/projects.js"]
 ---
 <script>
     window.backgroundCount = 2;
@@ -11,25 +11,20 @@ js_scripts: ["/js/projects.js"]
 <div class="page font-sans" id="project-layout">
     <div class="page__background" id="page-background"></div>
 
-    <div class="page__aside site-nav page--left page--small" id="aside-nav" data-toggle-class="page--left page--small">
-        
-        <div class="page__aside-content site-nav__content" style="display: none">
-            {% include header.html %}
-            {% include footer.html %}
-        </div>
-    </div>
-
     <div class="page__wrapper" id="document">
-        <div class="page__shadow"></div>
-        
-        <button type="button" class="site-nav__toggle button button--cta js-page-aside-toggle" data-target="#aside-nav">
+        <div class="page__shadow" id="page-shadow"></div>
+
+        <button type="button" class="aside-nav__btn-show button button--cta-2 js-aside-show" data-target="#aside-nav">
             <i class="fas fa-bars site-nav__toggle-open"></i>
-            <i class="fas fa-times site-nav__toggle-close"></i>
+        </button>
+
+        <button type="button" class="aside-message__btn-show button button--cta-1 js-aside-show" data-target="#aside-message">
+            <i class="fas fa-comment"></i> <span>Send me a message</span>
         </button>
 
         {{ content }}
     </div>
-
-    {% include message-modal.html %}
+    {% include aside-nav.html %}
+    {% include aside-message.html %}
 </div>
 <!-- Page Layout End -->

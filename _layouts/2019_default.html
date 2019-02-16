@@ -1,6 +1,7 @@
 ---
 layout: 2019_master
 css_styles: ["/css/backgrounds-default.css"]
+js_scripts: ["/js/contact_form.js"]
 # color_style: 'theme--blue'
 ---
 <script>
@@ -9,26 +10,21 @@ css_styles: ["/css/backgrounds-default.css"]
 <!-- Page Layout Start -->
 <div class="page font-sans" id="default-layout">
     <div class="page__background" id="page-background"></div>
- 
-    <div class="page__aside site-nav page--left page--small" id="aside-nav">
-        {% include header.html %}
-        {% include footer.html %}
-    </div>
     
     <div class="page__wrapper" id="document">
-        <div class="page__shadow"></div>
+        <div class="page__shadow" id="page-shadow"></div>
 
-        <button type="button" class="site-nav__toggle button button--cta js-aside-show" data-target="#aside-nav" data-toggle>
+        <button type="button" class="aside-nav__btn-show button button--cta-2 js-aside-show" data-target="#aside-nav">
             <i class="fas fa-bars site-nav__toggle-open"></i>
         </button>
 
-        <button type="button" class="message-modal__toggle button button--cta js-aside-show" data-target="#aside-message" data-toggle>
+        <button type="button" class="aside-message__btn-show button button--cta-1 js-aside-show" data-target="#aside-message">
             <i class="fas fa-comment"></i> <span>Send me a message</span>
         </button>
 
         {{ content }}
     </div>
-
-    {% include message-modal.html %}
+    {% include aside-nav.html %}
+    {% include aside-message.html %}
 </div>
 <!-- Page Layout End -->

@@ -7,42 +7,45 @@ import SectionManager from './modules/sections_manager';
     // events when sections become visible
     window.sections = sections;
 
+    var hideEndEvent = function(event) {
+        // condtion out bubbled events
+        if(this === event.target){
+            this.style.display = 'none';
+            this.removeEventListener('transitionend', hideEndEvent);
+            window.activeAside = null;
+        }
+    }
+
     var asideShowEvent = function({detail, element}) {
-        let aside = element || document.querySelector(detail.target),
-            toggleClass = aside.dataset.toggleClass;
-        toggleClass = toggleClass.split(' ') || [];
-        toggleClass.push('active');
+        let aside = element || document.querySelector(detail.target);
         
         // handle active aside first
         // - can also toggle
         if (window.activeAside) {
-            if (aside === window.activeAside && detail.toggle === undefined) return;
+            if (aside === window.activeAside) return;
             asideHideEvent({element:window.activeAside});
-            if(detail.toggle === '' || detail.toggle === 'true') return;
         }
 
         window.activeAside = aside;
-        //add classes to trigger animation
-        aside.classList.add('active');
-        for (let item of toggleClass) {
-            docEle.classList.add(item);
-        }
-        // locks body to prevent scrolling
-        document.body.classList.add('locked');
+
+        aside.style.display = null;
+
+        setTimeout(function(){
+            //add classes to trigger animation
+            aside.classList.add('active');
+            docEle.classList.add('active');
+            // locks body to prevent scrolling
+            document.body.classList.add('locked');
+        },50);
     }
 
     var asideHideEvent = function({detail, element}) {
-        let aside = element || document.querySelector(detail.target),
-            toggleClass = aside.dataset.toggleClass;
-        toggleClass = toggleClass.split(' ') || [];
-        toggleClass.push('active');
-        // clear activeAside
-        window.activeAside = null;
+        let aside = element || document.querySelector(detail.target);
+        //add listener for end of transition event
+        aside.addEventListener('transitionend', hideEndEvent);
         //add classes to trigger animation
         aside.classList.remove('active');
-        for (let item of toggleClass) {
-            docEle.classList.remove(item);
-        }
+        docEle.classList.remove('active');
         // locks body to prevent scrolling
         document.body.classList.remove('locked');
     }
@@ -63,6 +66,13 @@ import SectionManager from './modules/sections_manager';
                 docEle.dispatchEvent(new CustomEvent('aside.hide', { bubbles: false, detail: this.dataset }));
             });
         }
+    }
+
+    let shadow = document.getElementById('page-shadow');
+    if (shadow) {
+        shadow.addEventListener('click', function(event){
+            if(window.activeAside) asideHideEvent({element:window.activeAside});
+        })
     }
         
 })(
