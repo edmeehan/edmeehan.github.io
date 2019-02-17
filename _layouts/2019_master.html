@@ -45,7 +45,7 @@
         {% for item in layout.css_styles %}<link rel="stylesheet" href="{{item}}" />{% endfor %}
         {% for item in page.css_styles %}<link rel="stylesheet" href="{{item}}" />{% endfor %}
     </head>
-    <body class="{{ layout.color_style }}">
+    <body class="{{ page.color_style }}">
         {% if site.gtm_container_id %}
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.gtm_container_id }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

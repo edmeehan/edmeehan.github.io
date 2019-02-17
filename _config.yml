@@ -97,7 +97,7 @@ defaults:
       type: projects
     values:
       permalink: /:collection/:categories/:name
-      js_scripts: ["/js/projects.js"]
+      js_scripts: []
       css_styles: ["/css/backgrounds-black.css","/css/projects.css"]
       color_style: theme--black
       color_background_count: 2
