@@ -8,6 +8,7 @@
         {{ page.description }}
     {% endif %}
 {% endcapture %}
+{% assign theme_color = site.data.theme_colors[page.theme_color] %}
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -41,11 +42,12 @@
         {% endif %}
         <!-- Style Sheets -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        {% for item in site.css_styles %}<link rel="stylesheet" href="{{item}}" />{% endfor %}
-        {% for item in layout.css_styles %}<link rel="stylesheet" href="{{item}}" />{% endfor %}
-        {% for item in page.css_styles %}<link rel="stylesheet" href="{{item}}" />{% endfor %}
+        {% for item in site.css_styles %}<link rel="stylesheet" href="{{ item }}" />{% endfor %}
+        <link rel="stylesheet" href="{{ theme_color.css }}" />
+        {% for item in layout.css_styles %}<link rel="stylesheet" href="{{ item }}" />{% endfor %}
+        {% for item in page.css_styles %}<link rel="stylesheet" href="{{ item }}" />{% endfor %}
     </head>
-    <body class="{{ page.color_style }}">
+    <body class="{{ page.theme_color | prepend: "theme--" }}">
         {% if site.gtm_container_id %}
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.gtm_container_id }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -53,8 +55,9 @@
         {% endif %}
         {{ content }}
         <!-- Scripts -->
-        {% for item in site.js_scripts %}<script src="{{item}}"></script>{% endfor %}
-        {% for item in layout.js_scripts %}<script src="{{item}}"></script>{% endfor %}
-        {% for item in page.js_scripts %}<script src="{{item}}"></script>{% endfor %}
+        <script>window.backgroundCount = {{ theme_color.count }};</script>
+        {% for item in site.js_scripts %}<script src="{{ item }}"></script>{% endfor %}
+        {% for item in layout.js_scripts %}<script src="{{ item }}"></script>{% endfor %}
+        {% for item in page.js_scripts %}<script src="{{ item }}"></script>{% endfor %}
     </body>
 </html>

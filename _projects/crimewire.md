@@ -1,7 +1,6 @@
 ---
 title:  "Crimewire Blog"
-type: development
-categories: [development]
+category: development
 image: "/img/projects/crimewire-homepage.png"
 ---
 <img width="400" height="400" src="/img/projects/crimewire-homepage.png" alt="">

@@ -1,6 +1,6 @@
 <form method="post" class="form" action="https://script.google.com/macros/s/AKfycbwEp73O79JI-Ix3qVWCQUcDY921bHyZYn8ferTFC3HNMiA0cMI/exec" id="contact-form">
     <div class="form__wrapper">
-        <input type="hidden" name="category" value="{{ include.meta | default: 'Location not set' }}">
+        <input type="hidden" name="category" value="{{ include.meta | default: 'not set' }}">
 
         <div class="form__input form--name">
             <input type="text" name="name" id="contact-form-name" value="" placeholder="Name" required />

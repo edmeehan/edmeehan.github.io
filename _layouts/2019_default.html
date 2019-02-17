@@ -1,7 +1,6 @@
 ---
 layout: 2019_master
 ---
-<script>window.backgroundCount = {{ page.color_background_count }};</script>
 <!-- Page Layout Start -->
 <div class="page font-sans" id="{{ page.layout_id | default: default-layout }}">
     <div class="page__background" id="page-background"></div>
@@ -14,9 +13,6 @@ layout: 2019_master
             <i class="fas fa-comment"></i> <span>Send me a message</span>
         </button>
         {{ content }}
-
-        {{ layout.testing }}
-        {{ page.testing }}
     </div>
     {% include share.html %}
     {% include aside-nav.html %}

@@ -1,0 +1,7 @@
+blue:
+  count: 7
+  css: /css/backgrounds_blue.css
+
+black:
+  count: 2
+  css: /css/backgrounds_black.css
