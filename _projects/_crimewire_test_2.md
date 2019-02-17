@@ -1,8 +1,8 @@
 ---
-title: Crimewire Blog
+title: Test 2
+subhead: Wordpress to Laravel migration
 category: development
-date: 2017-01-01
-project_url: https://www.instantcheckmate.com/crimewire/
+date: 2017-01-02
 image: /img/projects/crimewire-homepage.png
 ---
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et magna turpis. Aliquam quis urna eu purus consectetur varius. Praesent tempus commodo leo nec luctus. Suspendisse a elit odio. Sed ultrices condimentum nisi vel ultricies. Nunc tristique tempus ligula, vel malesuada metus posuere sodales. Donec dapibus cursus augue eget molestie. Praesent ullamcorper diam in odio posuere, ac accumsan ex lobortis. Nullam semper ex erat, et pharetra ligula dapibus at. Aenean tristique accumsan sapien, et ornare nulla iaculis sed. Proin ante massa, hendrerit ac lacinia sed, tristique at mauris.

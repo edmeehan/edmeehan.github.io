@@ -1,10 +1,10 @@
 ---
-title:  "Host & Porter"
+title: Host & Porter
 category: development
-image: "/img/projects/hostandporter-homepage.png"
+date: 2019-02-01
+project_url: http://hostandporter.com/
+image: /img/projects/hostandporter-homepage.png
 ---
-<img width="400" height="400" src="/img/projects/hostandporter-homepage.png" alt="">
-
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et magna turpis. Aliquam quis urna eu purus consectetur varius. Praesent tempus commodo leo nec luctus. Suspendisse a elit odio. Sed ultrices condimentum nisi vel ultricies. Nunc tristique tempus ligula, vel malesuada metus posuere sodales. Donec dapibus cursus augue eget molestie. Praesent ullamcorper diam in odio posuere, ac accumsan ex lobortis. Nullam semper ex erat, et pharetra ligula dapibus at. Aenean tristique accumsan sapien, et ornare nulla iaculis sed. Proin ante massa, hendrerit ac lacinia sed, tristique at mauris.
 
 <img width="400" height="400" src="/img/projects/hostandporter-category.png" alt="">

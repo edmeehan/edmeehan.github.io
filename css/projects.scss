@@ -2,37 +2,51 @@
 # Front matter comment to ensure Jekyll properly reads file.
 ---
 @import 'variables';
+$img-max-width: 1440px;
 
 .projects {
-    flex: 1 0 100%;
-    display: flex;
-    flex-wrap: wrap;
 
-    a {
-        display: block;
-        text-decoration: none;
-        color: inherit;
-    }
-
-    &__text {
-        flex: 1 0 100%;
+    &__header {
         text-align: center;
     }
 
-    &__item {
-        flex: 1 0 46%;
-        background-color: rgba(black, .4);
-        margin: 2%;
-        // position: relative;
+    &__list {
+        list-style: none;
+        margin:0;
+        padding:0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    &__list-item {
+
+        > a {
+            background-color: $brand-purple;
+            margin: .5rem;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            border-radius: $s-border-radius;
+            overflow: hidden;
+        }
+
+        &:first-child {
+            flex: 0 0 100%;
+            max-width: $img-max-width;
+            margin-bottom: 3rem;
+
+            > a {
+                background-color: $brand-green;
+            }
+        }
     }
 
     &__img {
-        img {
-            max-width: 1440px;
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+        max-width: $img-max-width;
+        width: 100%;
+        height: auto;
+        display: block;
     }
 
     &__title {
@@ -40,52 +54,91 @@
         align-items: center;
 
         i {
-            flex: 0 0 20%;
+            flex: 0 1 auto;
             text-align: center;
-            font-size: 3rem;
+            font-size: 2rem;
             opacity: .3;
+            padding-left: 1rem;
         }
 
         h2 {
             font-family: 'Poppins', sans-serif;
             flex: 1 0 auto;
+            padding: 0 1rem;
+        }
+    }
+
+    @media (min-width: $l-break) {
+        &__list-item {
+            flex: 0 0 50%;
+        }
+    }
+
+    @media (min-width: $xl-break) {
+        &__list-item {
+            flex: 0 0 33.33%;
         }
     }
 }
 
 .project {
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    grid-template-rows: auto 1fr auto auto;
+    grid-template-areas:
+        "title title"
+        "masthead masthead"
+        "sidebar post"
+        "sidebar comment";
+
     img {
-        max-width: 1440px;
-        width: 100%;
         height: auto;
-        display: block;
-        padding: 1.5rem;
-        background-color: rgba(black, .4);
-        box-sizing: border-box;
-        // margin: 0 auto;
     }
 
-    &__header {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-
-        h1 {
-            flex: 1 0 auto;
+    &__masthead {
+        grid-area: masthead;
+        background-color: rgba(black, .4);
+        
+        img {
+            max-width: $img-max-width;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin:0 auto;
+            padding: 1.5rem;
         }
     }
 
+    &__title {
+        grid-area: title;
+        text-align: center;
+    }
+
+    &__content {
+        grid-area: post;
+    }
+
+    &__sidebar {
+        grid-area: sidebar;
+        padding: 1.5rem 3rem 0 0;
+        text-align: right;
+    }
+
+    &__comment {
+        grid-area: comment;
+    }
+
     &__back-link {
-        flex: 0 0 auto;
+        float: left;
+        margin: 1.5rem 0;
         color: inherit;
         border: solid 1px white;
         padding: (8/$size-units) + 0rem (14/$size-units) + 0rem;
-        margin-right: 1rem;
-        border-radius: (4/$size-units) + 0rem;
+        border-radius: $s-border-radius;
     }
 
-    &__type {
+    &__category {
         color: #ccc;
-        flex: 1 0 100%;
+        text-transform: capitalize;
     }
 }

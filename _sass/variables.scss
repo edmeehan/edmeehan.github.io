@@ -1,15 +1,12 @@
+// colors
 $brand-lite-blue: #8CB9EA;
-$brand-blue:      #5893D7;
 $brand-dark-blue: #2C5DA0;
 $brand-rich-blue: #3B6084;
 
+$brand-blue:   #5893D7;
 $brand-purple: #7a58d7;
-
-$brand-green: #58d79c;
-
-$brand-orange: #e2af1e;
-
-$brand-black: #290000;
+$brand-green:  #58d79c;
+$brand-black:  #290000;
 
 $hr-color: rgba(white, .5);
 $bg-color: rgba($brand-lite-blue, .5);
@@ -44,3 +41,9 @@ $s-break-max: $m-break - 1;
 // defined
 $header-height: 100px;
 $header-height-xl: 124px;
+
+// border radius sizes
+$s-border-radius: 4px;
+$m-border-radius: 1rem;
+$l-border-radius: 1.8rem;
+$circle-radius: 1000px;

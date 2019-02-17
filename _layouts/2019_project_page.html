@@ -1,26 +1,31 @@
 ---
 layout: 2019_default
 ---
+{% assign category_icon = site.data.icons[page.category] %}
 <section class="section section--full-screen js-scroll-in-view">
     <div class="section__content layout">
-        <div class="project">
-            <header class="project__header">
-                <a class="project__back-link" href="{{ site.baseurl | prepend: site.url }}{% link projects.html %}" title="View all projects"><i class="fas fa-arrow-left"></i></a>
-                <h1 class="h3 font-serif">{{ page.title }}</h1>
-                <div class="project__type">
-                    {% if page.category == 'development' %}
-                    Development <i class="fas fa-code"></i>
-                    {% endif %}
-                </div>
+        <article class="project">
+            <header class="project__masthead">
+                <img src="{{ page.image }}" alt="">
             </header>
+            <div class="project__title">
+                <a class="project__back-link" href="{{ site.baseurl | prepend: site.url }}{% link projects.html %}" title="View all projects"><i class="fas fa-arrow-left"></i></a>
+                <h1 class="font-serif">{{ page.title }}</h1>
+            </div>
             <div class="project__content">
                 {{ page.content | markdownify }}
             </div>
+            <sidebar class="project__sidebar">
+                {% if page.project_url %}
+                <a href="{{ page.project_url }}" target="_blank" class="button button--cta-1">Visit Project</a>
+                {% endif %}
+                <div class="project__category">{{ page.category }}&nbsp;{{ category_icon.icon }}</div>
+            </sidebar>
             {% if page.comments %}
             <div class="project__comment">
                 {% include disqus_comments.html %}
             </div>
             {% endif %}
-        </div>
+        </article>
     </div>
 </section>
