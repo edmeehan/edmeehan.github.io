@@ -66,11 +66,13 @@ defaults:
       theme_color: blue
       og-image: /img/open-graph-image.png
       description: This is the default page description here.
+      share: true
       #layout_id: default-layout -- default set in layout file
       #js_scripts:
       #css_styles:
       #comments:
       #image:
+      #share:
   -
     scope:
       path: ''
