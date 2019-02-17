@@ -1,0 +1,8 @@
+development:
+  icon: <i class="fas fa-code"></i>
+
+analytics:
+  icon: <i class="fas fa-chart-bar"></i>
+
+optimization:
+  icon: <i class="fas fa-flask"></i>

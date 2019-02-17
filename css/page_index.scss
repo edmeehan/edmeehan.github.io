@@ -22,7 +22,7 @@
 
     &__headshot {
         img {
-            border-radius: 100%;
+            border-radius: $circle-radius;
             width: (200/$size-units) + 0rem;
             height: (200/$size-units) + 0rem;
         }
@@ -31,7 +31,7 @@
     &__text {
         background-color: $bg-color;
         padding: 1px 1.5rem;
-        border-radius: 1rem;
+        border-radius: $m-border-radius;
         position: relative;
 
         .headline {

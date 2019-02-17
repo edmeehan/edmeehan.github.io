@@ -87,6 +87,7 @@ defaults:
     values:
       permalink: /blog/:categories/:title
       theme_color: black
+      layout: 2019_blog
       css_styles:
         - /css/blog.css
   -
