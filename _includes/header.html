@@ -1,27 +1,18 @@
 <!-- Header -->
-<header id="header">
-    {% if page.site_logo %}<a href="{{ site.baseurl }}{% link index.html %}" class="logo">{{site.title}} <span>{{site.subtitle}}</span></a>{% endif %}
-    {% comment %}
-    <nav>
-        <ul>
-            <li><a href="#menu">Menu</a></li>
+<header class="site-header" id="header">
+    <button type="button" class="site-nav__btn-hide button button--small js-aside-hide" data-target="#aside-nav"><i class="fas fa-times"></i></button>
+    <div class="site-header__title">
+        <h3 class="headline font-serif">Edward Meehan</h3>
+        <h5 class="subheadline">Conversion Rate Optimization Expert</h5>
+    </div>
+    <nav class="site-header__nav">
+        <ul class="js-aside-hide" data-target="#aside-nav">
+            <li><a href="{{ "/#intro" | absolute_url }}">Welcome</a></li>
+            <li><a href="{{ "/#about" | absolute_url }}">About</a></li>
+            <li><a href="{{ "/#services" | absolute_url }}">Services</a></li>
+            <li><a href="{{ "/projects/" | absolute_url }}">Projects</a></li>
+            <li><a href="{{ "/blog/" | absolute_url }}">Blog</a></li>
+            <li><a href="{{ "/hire-me" | absolute_url }}" class="cta"><i class="fas fa-handshake"></i> Hire Me</a></li>
         </ul>
     </nav>
-    {% endcomment %}
 </header>
-{% comment %}
-<!-- Nav -->
-<nav id="menu">
-    <ul class="links">
-        <li><a href="{{ site.baseurl }}{% link index.html %}">Welcome</a></li>
-        <li><a href="{{ site.baseurl }}{% link services.html %}">Services</a></li>
-        <li><a href="{{ site.baseurl }}{% link services.html %}#optimization">Optimization</a></li>
-        <li><a href="{{ site.baseurl }}{% link services.html %}#development">Development</a></li>
-        <li><a href="{{ site.baseurl }}{% link services.html %}#analytics">Analytics</a></li>
-        <li><a href="{{ site.baseurl }}{% link blog/index.html %}">Blog</a></li>
-    </ul>
-    <ul class="actions vertical">
-        <li><a href="{{ site.baseurl }}{% link index.html %}#contact" class="button special fit">Contact</a></li>
-    </ul>
-</nav>
-{% endcomment %}

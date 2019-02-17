@@ -1,0 +1,46 @@
+$brand-lite-blue: #8CB9EA;
+$brand-blue:      #5893D7;
+$brand-dark-blue: #2C5DA0;
+$brand-rich-blue: #3B6084;
+
+$brand-purple: #7a58d7;
+
+$brand-green: #58d79c;
+
+$brand-orange: #e2af1e;
+
+$brand-black: #290000;
+
+$hr-color: rgba(white, .5);
+$bg-color: rgba($brand-lite-blue, .5);
+$border-grey: #ccc;
+
+$success-green: #5cb85c;
+$fail-red: #d9534f;
+
+// default font size
+$size-units: 16;
+
+// z-index levels
+$z-base: 0;
+$z-background: 1;
+$z-foreground: 5;
+$z-popover: 50;
+$z-menu: 100;
+$z-modal: 200;
+$z-top: 300;
+
+// breakpoints
+$xl-break: 1600px;
+
+$l-break-max: $xl-break - 1;
+$l-break: 1024px;
+
+$m-break-max: $l-break - 1;
+$m-break: 768px;
+
+$s-break-max: $m-break - 1;
+
+// defined
+$header-height: 100px;
+$header-height-xl: 124px;

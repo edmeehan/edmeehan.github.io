@@ -1,0 +1,102 @@
+@mixin serif() {
+    font-family: 'Roboto Slab', serif;
+}
+
+@mixin sans() {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.font {
+    &.sans,
+    &-sans {
+        @include sans();
+    }
+
+    &.serif,
+    &-serif {
+        @include serif();
+    }
+}
+
+h1,h2,h3,h4,h5,
+.h1,.h2,.h3,.h4,.h5 {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5rem;
+}
+
+h1,.h1 {
+    font-size: (52/$size-units) + 0rem;
+    line-height: 3rem;
+}
+
+h2,.h2 {
+    font-size: (42/$size-units) + 0rem;
+    line-height: 3rem;
+}
+
+h3,.h3 {
+    font-size: (36/$size-units) + 0rem;
+    line-height: 3rem;
+}
+
+h4,.h4 {
+    font-size: (22/$size-units) + 0rem;
+}
+
+h5,.h5 {
+    font-size: 1rem;
+}
+
+p {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5rem;
+}
+
+ol,
+ul {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+hr {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    height: 0;
+    border-top: solid 1px $hr-color;
+}
+
+p {
+    > a,
+    button.link {
+        display: inline-block;
+        padding-left: (2/$size-units) + 0rem;
+        padding-right: (2/$size-units) + 0rem;
+        margin-left: -(2/$size-units) + 0rem;
+        margin-right: -(2/$size-units) + 0rem;
+        text-decoration: none;
+    }
+}
+
+.big {
+    font-size: (42/$size-units) + 0rem;
+}
+.medium {
+    font-size: (18/$size-units) + 0rem;
+}
+.small {
+    font-size: (14/$size-units) + 0rem;
+}
+// .x-small {
+//     font-size: (14/$size-units) + 0rem;
+// }
+
+.weight-normal {
+    font-weight: 400;
+}
+
+.weight-bold {
+    font-weight: 600;
+}

@@ -1,0 +1,25 @@
+---
+layout: 2019_master
+---
+<script>window.backgroundCount = {{ page.color_background_count }};</script>
+<!-- Page Layout Start -->
+<div class="page font-sans" id="{{ page.layout_id | default: default-layout }}">
+    <div class="page__background" id="page-background"></div>
+    <div class="page__wrapper" id="document">
+        <div class="page__shadow" id="page-shadow"></div>
+        <button type="button" class="aside-nav__btn-show button button--cta-2 js-aside-show" data-target="#aside-nav">
+            <i class="fas fa-bars site-nav__toggle-open"></i>
+        </button>
+        <button type="button" class="aside-message__btn-show button button--cta-1 js-aside-show" data-target="#aside-message">
+            <i class="fas fa-comment"></i> <span>Send me a message</span>
+        </button>
+        {{ content }}
+
+        {{ layout.testing }}
+        {{ page.testing }}
+    </div>
+    {% include share.html %}
+    {% include aside-nav.html %}
+    {% include aside-message.html %}
+</div>
+<!-- Page Layout End -->

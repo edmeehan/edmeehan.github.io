@@ -1,0 +1,26 @@
+---
+layout: 2019_default
+---
+<section class="section section--full-screen js-scroll-in-view">
+    <div class="section__content layout">
+        <div class="project">
+            <header class="project__header">
+                <a class="project__back-link" href="/project" title="View all projects"><i class="fas fa-arrow-left"></i></a>
+                <h1 class="h3 font-serif">{{ page.title }}</h1>
+                <div class="project__type">
+                    {% if page.type == 'development' %}
+                    Development <i class="fas fa-code"></i>
+                    {% endif %}
+                </div>
+            </header>
+            <div class="project__content">
+                {{ page.content | markdownify }}
+            </div>
+            {% if page.comments %}
+            <div class="project__comment">
+                {% include disqus_comments.html %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

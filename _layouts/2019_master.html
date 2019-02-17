@@ -1,0 +1,60 @@
+---
+
+---
+{% capture description %}
+    {% if page.excerpt %}
+        {{ page.excerpt | strip_html }}
+    {% elsif page.description %}
+        {{ page.description }}
+    {% endif %}
+{% endcapture %}
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <title>{{ site.title }} | {{ page.title }}</title>
+        <meta name="twitter:title" content="{{ page.title }}">
+        <meta property="og:title" content="{{ page.title }}">
+        <meta itemprop="name" content="{{ page.title }}">
+        <meta name="description" content="{{ description | normalize_whitespace }}">
+        <meta property="og:description" content="{{ description | normalize_whitespace }}">
+        <meta itemprop="description" content="{{ description | normalize_whitespace }}">
+        <meta name="twitter:description" content="{{ description | normalize_whitespace }}">
+        <link rel="canonical" href="{{ page.url | absolute_url }}">
+        <link rel="apple-touch-icon" href="{{ "/apple-touch-icon.png" | absolute_url }}">
+        <link rel="shortcut icon" href="{{ "/favicon.png" | absolute_url }}" type="image/x-icon">
+        <link rel="author" href="{{ "/humans.txt" | absolute_url }}">
+        <link rel="alternate" type="application/rss+xml" href="{{ "/feed.xml" | absolute_url }}">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ page.url | absolute_url }}">
+        <meta property="og:image" content="{{ page.og-image | absolute_url }}">
+        {% if site.gtm_container_id %}
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','{{ site.gtm_container_id }}');</script>
+        <!-- End Google Tag Manager -->
+        {% endif %}
+        <!-- Style Sheets -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        {% for item in site.css_styles %}<link rel="stylesheet" href="{{item}}" />{% endfor %}
+        {% for item in layout.css_styles %}<link rel="stylesheet" href="{{item}}" />{% endfor %}
+        {% for item in page.css_styles %}<link rel="stylesheet" href="{{item}}" />{% endfor %}
+    </head>
+    <body class="{{ page.color_style }}">
+        {% if site.gtm_container_id %}
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.gtm_container_id }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        {% endif %}
+        {{ content }}
+        <!-- Scripts -->
+        {% for item in site.js_scripts %}<script src="{{item}}"></script>{% endfor %}
+        {% for item in layout.js_scripts %}<script src="{{item}}"></script>{% endfor %}
+        {% for item in page.js_scripts %}<script src="{{item}}"></script>{% endfor %}
+    </body>
+</html>

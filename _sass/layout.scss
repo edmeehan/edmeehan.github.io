@@ -1,0 +1,218 @@
+.page {
+    overflow: hidden;
+
+    &__wrapper { //.page__wrapper
+        min-height: 100vh;
+        position: relative;
+        z-index: $z-background;
+
+        &.active { //.page__wrapper.active
+
+            .page__shadow { //.page__wrapper.active .page__shadow
+                width: 100%;
+                height: 100%;
+                background-color: black;
+                position: absolute;
+                top: 0;
+                z-index: $z-top;
+                opacity: .8;
+            }
+        }
+    }
+
+    &__aside { //.page__aside
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        width: 80%;
+        transition: transform 800ms;
+        z-index: $z-foreground;
+        
+        // which side will the drawer
+        // slide in from - left or right
+        &.page--left {
+            left: 0;
+            transform: translateX(-100%);
+        }
+
+        &.page--right {
+            right: 0;
+            transform: translateX(100%);
+        }
+
+        &.active {
+            transform: translateX(0%);
+        }
+    }
+
+    &__background {
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        z-index: -1;
+
+        > div {
+            width: inherit;
+            height: inherit;
+            position: absolute;
+        }
+    }
+
+    &__shadow {
+        opacity: 0;
+        transition: opacity 800ms;
+    }
+
+    @media (min-width: $m-break) {
+        $small: 25rem;
+        $med: 40vw;
+        $large: 70vw;
+
+        &__aside {
+            &.page--small {width: $small;}
+            &.page--med {width: $med;}
+            &.page--large {width: $large;}
+        }
+    }
+}
+
+.section {
+    &__content {
+        padding-top: $header-height;
+    }
+
+    &--full-screen {
+        .section__content {
+            min-height: 70vh;
+            padding-bottom: $header-height;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    &--top {
+        .section__content {
+            align-items: flex-start;
+        }
+    }
+
+    @media (min-width: $xl-break) {
+        &__content {
+            padding-top: $header-height-xl;
+        }
+
+        &--full-screen {
+            .section__content {
+                padding-bottom: $header-height-xl;
+            }
+        }
+    }
+}
+
+.layout {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+
+    @media (min-width: $m-break) {
+        width: $m-break - 40;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media (min-width: $l-break) {
+        width: $l-break - 40;
+    }
+
+    @media (min-width: $xl-break) {
+        width: $xl-break - 40;
+    }
+}
+
+/*
+.tabbed {
+    display: flex;
+
+    &__tabs {
+        // background-color: rgba(white, .4);
+    }
+
+    &__tab-list {
+        margin:0;
+        padding:0;
+        list-style:none;
+        position: sticky;
+        top: 5.75rem;
+    }
+
+    &__tab-title {
+        background-color: rgba(white, .4);
+        margin-bottom: .75rem;
+        margin-right: .75rem;
+        padding-right: 0;
+        transition: margin-right 600ms, padding-right 600ms, background-color 600ms;
+
+        a {
+            padding: .75rem;
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .title {
+            display: none;
+        }
+
+        &.active {
+            background-color: $bg-color;
+            margin-right: 0;
+            padding-right: .75rem;
+        }
+    }
+
+    &__contents {
+        background-color: $bg-color;
+    }
+
+    &__content-list {
+        margin:0;
+        padding:1px 1.5rem;
+        list-style:none;
+    }
+
+    &__tab-content {
+        display:none;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    &--white {
+        &.tabbed {
+
+        }
+    }
+
+    @media (min-width: $m-break) {
+        &__tabs {
+            flex: 0 1 30%;
+        }
+
+        &__contents {
+            flex: 0 1 70%;
+        }
+
+        &__tab-list {
+            position: sticky;
+            top: 5.75rem;
+        }
+
+        &__tab-title {
+            .title {
+                display: inline;
+            }
+        }
+    }
+}
+*/

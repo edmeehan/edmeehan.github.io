@@ -1,0 +1,302 @@
+---
+# Front matter comment to ensure Jekyll properly reads file.
+---
+@import 'variables';
+@import 'normalize';
+@import 'typography';
+@import 'layout';
+@import 'forms';
+
+// font size and baseline
+html,
+body {
+    line-height: 1.5rem;
+    font-size: 16px;
+
+    &.locked {
+        overflow: hidden;
+    }
+
+    @media (max-width: $s-break-max) {
+        font-size: 14px;
+    }
+
+    @media (min-width: $xl-break) {
+        font-size: 20px;
+    }
+}
+
+.theme {
+    &--black {
+        background-color: $brand-rich-blue;
+        color: white;
+
+        a {
+            color: inherit;
+        }
+
+        .site-nav {
+            color: $brand-black;
+        }
+    }
+
+    &--blue {
+        background-color: $brand-blue;
+        color: $brand-black;
+
+        a {
+            color: inherit;
+        }
+
+        p {
+            > a,
+            > button.link {
+                background-color: rgba($brand-purple, .4);
+            }
+        }
+    }
+}
+
+.site-header {
+    // display: none;
+    flex: 1 0 auto;
+    padding: 1.5rem;
+
+    &__title {
+        text-align: center;
+        margin-bottom: 1.5rem;
+
+        .headline {
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .subheadline {
+            margin: 0;
+            font-weight: 400;
+        }
+    }
+
+    &__nav {
+        text-transform: uppercase;
+        text-align: center;
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: .5rem;
+        }
+
+        a {
+            text-decoration: none;
+            display: block;
+            font-size: 1.2rem;
+            line-height: 3rem;
+            background-color: rgba($brand-purple, .2);
+
+            &.cta {
+                background-color: $brand-purple;
+                color: white;
+            }
+        }
+    }
+
+    @media (max-width: $s-break-max) {
+        &__title {
+            .headline {
+                font-size: 7.5vw;
+                line-height: 1.4em;
+            }
+
+            .subheadline {
+                font-size: 5vw;
+                line-height: 1.3em;
+            }
+        }
+    }
+}
+
+.site-footer {
+    // display: none;
+    flex: 0 1 auto;
+    padding: 1.5rem;
+
+    &__nav {
+        margin-bottom: 1.5rem;
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        li {
+            flex: 1 0 auto;
+            padding: (5/$size-units) + 0rem;
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+            background-color: rgba($brand-purple, .2);
+            text-align: center;
+            // color: white;
+        }
+    }
+
+    &__about-me {
+        img {
+            border-radius: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+    &__legal {
+        text-align: center;
+        font-size: .75rem;
+    }
+
+    // .active.page &{
+    //     display: block;
+    // }
+
+    @media (min-width: $m-break) {
+        &__about-me {
+            img {
+                float: left;
+                margin: .75rem 1.5rem 0 0;
+                shape-outside:circle();
+            }
+        }
+    }
+}
+
+.aside-nav {
+    background-color: $brand-green;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: scroll;
+    color: $brand-black;
+
+    &__btn-show {
+        position: fixed;
+        z-index: $z-menu;
+        left: 1rem;
+        top: 1rem;
+    }
+}
+
+.aside-message {
+    background-color: $brand-green;
+    color: $brand-black;
+    padding: 1.5rem;
+
+    &__btn-show {
+        position: fixed;
+        z-index: $z-menu;
+        right: 1rem;
+        top: 1rem;
+
+        > span {
+            display: none;
+        }
+    }
+
+    &__content {
+        text-align: center;
+    }
+
+    &__form {
+        .form {
+            &__response-message {
+                text-align: center;
+                padding: 1rem;
+                box-sizing: border-box;
+
+                h3 {
+                    @include serif();
+                    font-size: (22/$size-units) + 0rem;
+                    line-height: 1.5rem;
+                }
+            }
+
+            &--success {
+                .form__response-message {
+                    border: dashed (3/$size-units) + 0rem $success-green;
+                    color: white;
+                }
+            }
+
+            &--fail {
+                .form__response-message {
+                    border: dashed (3/$size-units) + 0rem $fail-red;
+                    color: $fail-red;
+                }
+            }
+        }
+    }
+
+    @media (min-width: $m-break) {
+        &__btn-show {
+            > span {
+                display: inline;
+            }
+        }
+    }
+}
+
+.share {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    z-index: $z-foreground;
+    font-size: 1.2rem;
+    bottom: 0;
+    width: 100%;
+    padding: .8rem 0;
+    background-color: rgba(white,.6);
+    
+    > a {
+        width:1.5rem;
+        border-radius: 4px;
+        text-align: center;
+        margin-right: .3em;
+        padding: .3em;
+        color: inherit;
+    }
+
+    &__facebook {$color:#4267b2; background-color: $color; box-shadow: 1px 3px 0 darken($color, 20%); }
+    &__twitter {$color:#38A1F3; background-color: $color; box-shadow: 1px 3px 0 darken($color, 20%); }
+    &__pintrest {$color:#BD081C; background-color: $color; box-shadow: 1px 3px 0 darken($color, 20%); }
+    &__linkedin {$color:#0077B5; background-color: $color; box-shadow: 1px 3px 0 darken($color, 20%); }
+    &__email {$color:#555; background-color: $color; box-shadow: 1px 3px 0 darken($color, 20%); }
+
+    @media (min-width: $m-break) {
+        flex-direction: column;
+        bottom: auto;
+        top: 50%;
+        left: .75rem;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        width: auto;
+        background-color: unset;
+
+        > a {
+            width: auto;
+            
+            margin-bottom: .3em;
+        }
+    }
+}

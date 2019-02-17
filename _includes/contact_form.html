@@ -1,25 +1,24 @@
-<form method="post" action="#" id="contact-form">
-    <div class="row uniform">
+<form method="post" class="form" action="https://script.google.com/macros/s/AKfycbwEp73O79JI-Ix3qVWCQUcDY921bHyZYn8ferTFC3HNMiA0cMI/exec" id="contact-form">
+    <div class="form__wrapper">
         <input type="hidden" name="category" value="{{ include.meta | default: 'Location not set' }}">
 
-        <div class="6u 12u$(xsmall)">
+        <div class="form__input form--name">
             <input type="text" name="name" id="contact-form-name" value="" placeholder="Name" required />
         </div>
-        <div class="6u$ 12u$(xsmall)">
+        <div class="form__input form--email">
             <input type="email" name="email" id="contact-form-email" value="" placeholder="Email" required />
         </div>
-        <!-- Break -->
-        <div class="12u$">
+        <div class="form__textarea form--message">
             <textarea name="message" id="contact-form-message" placeholder="Enter your message" rows="6" required></textarea>
         </div>
-        <!-- Break -->
-        <div class="12u$">
-            <ul class="actions">
-                <li><input type="submit" value="Send Message" class="special" /></li>
-                <li><input type="reset" value="Reset" /></li>
+        <div class="form__controls">
+            <ul>
+                <li><button type="submit" class="button button--cta-3" >Send Message</button></li>
+                <li><button type="reset" class="button" >Reset</button></li>
             </ul>
         </div>
     </div>
+<<<<<<< HEAD
     <!-- Success Message -->
     <div class="success form-response">
         <h2>Thank you for contacting me!</h2>
@@ -29,5 +28,9 @@
     <div class="fail form-response">
         <h2>Sorry!</h2>
         <h3>Something seems to be failing... please try again later.</h3>
+=======
+    <div class="form__loader">
+        <i class="fas fa-spinner fa-pulse"></i>
+>>>>>>> rebrand
     </div>
 </form>

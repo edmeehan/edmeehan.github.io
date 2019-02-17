@@ -1,5 +1,4 @@
 ---
-layout: altitude_post
 title:  "Welcome to Jekyll!"
 # excerpt: This is the excerpt here.
 excerpt_separator: <!--more-->

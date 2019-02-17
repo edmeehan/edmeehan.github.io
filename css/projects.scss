@@ -1,0 +1,91 @@
+---
+# Front matter comment to ensure Jekyll properly reads file.
+---
+@import 'variables';
+
+.projects {
+    flex: 1 0 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    a {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    &__text {
+        flex: 1 0 100%;
+        text-align: center;
+    }
+
+    &__item {
+        flex: 1 0 46%;
+        background-color: rgba(black, .4);
+        margin: 2%;
+        // position: relative;
+    }
+
+    &__img {
+        img {
+            max-width: 1440px;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+
+    &__title {
+        display: flex;
+        align-items: center;
+
+        i {
+            flex: 0 0 20%;
+            text-align: center;
+            font-size: 3rem;
+            opacity: .3;
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            flex: 1 0 auto;
+        }
+    }
+}
+
+.project {
+    img {
+        max-width: 1440px;
+        width: 100%;
+        height: auto;
+        display: block;
+        padding: 1.5rem;
+        background-color: rgba(black, .4);
+        box-sizing: border-box;
+        // margin: 0 auto;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        h1 {
+            flex: 1 0 auto;
+        }
+    }
+
+    &__back-link {
+        flex: 0 0 auto;
+        color: inherit;
+        border: solid 1px white;
+        padding: (8/$size-units) + 0rem (14/$size-units) + 0rem;
+        margin-right: 1rem;
+        border-radius: (4/$size-units) + 0rem;
+    }
+
+    &__type {
+        color: #ccc;
+        flex: 1 0 100%;
+    }
+}
