@@ -1,7 +1,6 @@
 ---
 title:  "Host & Porter"
-type: development
-categories: [development]
+category: development
 image: "/img/projects/hostandporter-homepage.png"
 ---
 <img width="400" height="400" src="/img/projects/hostandporter-homepage.png" alt="">

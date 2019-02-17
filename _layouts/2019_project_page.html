@@ -5,10 +5,10 @@ layout: 2019_default
     <div class="section__content layout">
         <div class="project">
             <header class="project__header">
-                <a class="project__back-link" href="/project" title="View all projects"><i class="fas fa-arrow-left"></i></a>
+                <a class="project__back-link" href="{{ site.baseurl | prepend: site.url }}{% link projects.html %}" title="View all projects"><i class="fas fa-arrow-left"></i></a>
                 <h1 class="h3 font-serif">{{ page.title }}</h1>
                 <div class="project__type">
-                    {% if page.type == 'development' %}
+                    {% if page.category == 'development' %}
                     Development <i class="fas fa-code"></i>
                     {% endif %}
                 </div>
