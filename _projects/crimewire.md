@@ -1,7 +1,7 @@
 ---
-layout: 2019_project_page
 title:  "Crimewire Blog"
 type: development
+categories: [development]
 image: "/img/projects/crimewire-homepage.png"
 ---
 <img width="400" height="400" src="/img/projects/crimewire-homepage.png" alt="">

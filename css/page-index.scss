@@ -114,7 +114,7 @@
 }
 
 .about {
-    margin: 0 1rem;
+    // margin: 0 1rem;
     &__text {
         h2,h4 {
             text-align: center;
@@ -133,12 +133,12 @@
             padding: 0;
             flex-wrap: wrap;
             justify-content: space-around;
-            background-color: white;
+            // background-color: white;
             
             li {
                 text-align: center;
                 flex: 0 1 auto;
-                padding: 0 .5rem;
+                // padding: 0 .5rem;
 
                 img {
                     display: block;

@@ -252,3 +252,50 @@ body {
         }
     }
 }
+
+.share {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    z-index: $z-foreground;
+    font-size: 1.2rem;
+    bottom: 0;
+    width: 100%;
+    padding: .8rem 0;
+    background-color: rgba(white,.6);
+    
+    > a {
+        width:1.5rem;
+        border-radius: 4px;
+        text-align: center;
+        margin-right: .3em;
+        padding: .3em;
+    }
+
+    &__facebook {$color:#4267b2; background-color: $color; box-shadow: 1px 3px 0 darken($color, 20%); }
+    &__twitter {$color:#38A1F3; background-color: $color; box-shadow: 1px 3px 0 darken($color, 20%); }
+    &__pintrest {$color:#BD081C; background-color: $color; box-shadow: 1px 3px 0 darken($color, 20%); }
+    &__linkedin {$color:#0077B5; background-color: $color; box-shadow: 1px 3px 0 darken($color, 20%); }
+    &__email {$color:#555; background-color: $color; box-shadow: 1px 3px 0 darken($color, 20%); }
+
+    @media (min-width: $m-break) {
+        flex-direction: column;
+        bottom: auto;
+        top: 50%;
+        left: .75rem;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        width: auto;
+        background-color: unset;
+
+        > a {
+            width: auto;
+            
+            margin-bottom: .3em;
+        }
+    }
+}

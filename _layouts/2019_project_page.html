@@ -1,7 +1,6 @@
 ---
-layout: 2019_project
----
 
+---
 <section class="section section--full-screen js-scroll-in-view">
     <div class="section__content layout">
         <div class="project">
@@ -14,29 +13,14 @@ layout: 2019_project
                     {% endif %}
                 </div>
             </header>
-
             <div class="project__content">
                 {{ page.content | markdownify }}
             </div>
-
+            {% if page.comments %}
             <div class="project__comment">
-                {% if page.comments %}
-                    <div id="disqus_thread"></div>
-                    <script>
-                    var disqus_config = function () {
-                        this.page.url = '{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}';  // Replace PAGE_URL with your page's canonical URL variable
-                        this.page.identifier = '{{ page.url }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                    };
-                    (function() { // DON'T EDIT BELOW THIS LINE
-                    var d = document, s = d.createElement('script');
-                    s.src = 'https://emeehan.disqus.com/embed.js';
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                    })();
-                    </script>
-                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                {% endif %}
+                {% include disqus_comments.html %}
             </div>
+            {% endif %}
         </div>
     </div>
 </section>

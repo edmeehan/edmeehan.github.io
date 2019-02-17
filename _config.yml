@@ -16,7 +16,10 @@ phone: 555.555.5555
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://emeehan.com" # the base hostname & protocol for your site
-js_scripts: ["/js/main.js"]
+js_scripts: [
+  "/js/main.js",
+  "/js/contact_form.js"
+]
 css_styles: [
   "https://fonts.googleapis.com/css?family=Roboto+Slab|Noto+Sans:400,700",
   "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css",
@@ -42,7 +45,11 @@ sass:
 
 # Projects
 collections:
+  
   projects:
+    output: true
+  
+  posts_categories:
     output: true
 
 # Defaults
@@ -52,11 +59,15 @@ defaults:
       path: ''
     values:
       js_scripts: []
-      css_styles: [] 
+      css_styles: ["/css/backgrounds-blue.css"]
+      color_style: theme--blue
+      color_background_count: 7
+      layout: 2019_default
+      #layout_id: default-layout -- default set in layout file
   -
     scope:
       path: ''
-      type: 'pages'
+      type: pages
     values:
       title: this is the default page title here.
       description: This is the default page description here.
@@ -65,6 +76,31 @@ defaults:
   -
     scope:
       path: ''
-      type: 'posts'
+      type: posts
     values:
       permalink: /blog/:categories/:title
+      css_styles: ["/css/backgrounds-black.css","/css/blog.css"]
+      color_style: theme--black
+      color_background_count: 2
+  -
+    scope:
+      path: ''
+      type: posts_categories
+    values:
+      permalink: /blog/:name
+      css_styles: ["/css/backgrounds-black.css","/css/blog.css"]
+      color_style: theme--black
+      color_background_count: 2
+  -
+    scope:
+      path: ''
+      type: projects
+    values:
+      permalink: /:collection/:categories/:name
+      js_scripts: ["/js/projects.js"]
+      css_styles: ["/css/backgrounds-black.css","/css/projects.css"]
+      color_style: theme--black
+      color_background_count: 2
+      layout: 2019_project_page
+      comments: true
+

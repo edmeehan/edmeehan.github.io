@@ -1,5 +1,4 @@
 ---
-layout: 2019_blog
 title:  "Welcome to Jekyll!"
 excerpt: This is the excerpt here.
 category: development

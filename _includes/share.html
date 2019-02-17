@@ -1,0 +1,11 @@
+{% comment %}TODO: add utm tracking params{% endcomment %}
+{% assign url_encoded = page.url | absolute_url | url_encode %}
+{% assign title_encoded = page.title | url_encode %}
+{% assign img_encoded = page.og-image | absolute_url | url_encode %}
+<div class="share">
+    <a target="_blank" href="https://facebook.com/sharer/sharer.php?u={{ url_encoded }}" class="share__facebook"><i class="fab fa-facebook-f"></i></a>
+    <a target="_blank" href="https://twitter.com/intent/tweet/?text={{ title_encoded }}&amp;url={{ url_encoded }}" class="share__twitter"><i class="fab fa-twitter"></i></a>
+    <a target="_blank" href="https://pinterest.com/pin/create/button/?url={{ url_encoded }}&amp;media={{ img_encoded }}&amp;description={{ title_encoded }}" class="share__pintrest"><i class="fab fa-pinterest-p"></i></a>
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ url_encoded }}&amp;title={{ title_encoded }}" class="share__linkedin"><i class="fab fa-linkedin-in"></i></a>
+    <a href="mailto:?subject={{ title_encoded }}&amp;body={{ url_encoded }}" class="share__email"><i class="fas fa-envelope"></i></a>
+</div>
