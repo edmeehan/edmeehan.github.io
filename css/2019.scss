@@ -35,6 +35,13 @@ body {
             color: inherit;
         }
 
+        p {
+            > a,
+            > button.link {
+                background-color: $brand-purple;
+            }
+        }
+
         .site-nav {
             color: $brand-black;
         }
