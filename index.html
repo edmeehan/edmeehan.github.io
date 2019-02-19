@@ -1,14 +1,22 @@
 ---
 title: Conversion Rate Optimization (CRO) Specialist
-css_styles: ["/css/page_index.css"]
-js_scripts: ["/js/page_index.js"]
+css_styles: 
+    -
+        path: /css/page_index.css
+        cache_bust: true
+        absolute_url: true
+js_scripts:
+    -
+        path: /js/page_index.js
+        cache_bust: true
+        absolute_url: true
 ---
 
 <section class="section section--full-screen js-scroll-in-view animated" id="intro">
     <div class="section__content layout">
         <div class="intro">
             <div class="intro__headshot">
-                <img width="200" height="200" src="/img/headshots/emeehan_square.jpg" alt="">
+                <img width="200" height="200" src="{{ '/img/headshots/emeehan_square.jpg' | absolute_url }}" alt="">
             </div>
             <div class="intro__text">
                 <h1 class="headline font-serif">I'm Edward, a CRO expert.</h1>
@@ -19,7 +27,7 @@ js_scripts: ["/js/page_index.js"]
     </div>
 </section>
 
-<section class="section section--full-screen js-scroll-in-view" id="about">
+<section class="section section--full-screen" id="about">
     <div class="section__content layout">
         <div class="about">
             <div class="about__text">
@@ -33,19 +41,19 @@ js_scripts: ["/js/page_index.js"]
             <div class="about__brands">
                 <h5>Brands as an employee or contractor</h5>
                 <ul class="logos">
-                    <li><img width="100" height="100" src="/img/logos/callaway_golf.svg" alt=""></li>
-                    <li><img width="100" height="100" src="/img/logos/intuit.svg" alt=""></li>
-                    <li><img width="100" height="100" src="/img/logos/homedepot.svg" alt=""></li>
+                    <li><img width="100" height="100" src="{{ '/img/logos/callaway_golf.svg' | absolute_url }}" alt=""></li>
+                    <li><img width="100" height="100" src="{{ '/img/logos/intuit.svg' | absolute_url }}" alt=""></li>
+                    <li><img width="100" height="100" src="{{ '/img/logos/homedepot.svg' | absolute_url }}" alt=""></li>
                 </ul>
             </div>
             <div class="about__brands">
                 <h5>Brands under an agency</h5>
                 <ul class="logos">
-                    <li><img width="100" height="100" src="/img/logos/adidas.svg" alt=""></li>
-                    <li><img width="100" height="100" src="/img/logos/keurig.svg" alt=""></li>
-                    <li><img width="100" height="100" src="/img/logos/patagonia.svg" alt=""></li>
-                    <li><img width="100" height="100" src="/img/logos/art_institutes.png" alt=""></li>
-                    <li><img width="100" height="100" src="/img/logos/warner_music_group.svg" alt=""></li>
+                    <li><img width="100" height="100" src="{{ '/img/logos/adidas.svg' | absolute_url }}" alt=""></li>
+                    <li><img width="100" height="100" src="{{ '/img/logos/keurig.svg' | absolute_url }}" alt=""></li>
+                    <li><img width="100" height="100" src="{{ '/img/logos/patagonia.svg' | absolute_url }}" alt=""></li>
+                    <li><img width="100" height="100" src="{{ '/img/logos/art_institutes.png' | absolute_url }}" alt=""></li>
+                    <li><img width="100" height="100" src="{{ '/img/logos/warner_music_group.svg' | absolute_url }}" alt=""></li>
                 </ul>
             </div>
         </div>

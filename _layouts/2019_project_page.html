@@ -12,15 +12,15 @@ layout: 2019_default
                 <a class="project__back-link" href="{{ site.baseurl | prepend: site.url }}{% link projects.html %}" title="View all projects"><i class="fas fa-arrow-left"></i></a>
                 <h1 class="font-serif">{{ page.title }}</h1>
             </div>
+            <aside class="project__sidebar">
+                {% if page.project_url %}
+                <a href="{{ page.project_url }}" rel=”nofollow” target="_blank" class="button button--cta-1 project__link"><i class="fas fa-link"></i><span>&nbsp;Visit Project</span></a>
+                {% endif %}
+                <h4 class="project__category">{{ page.category }}&nbsp;{{ category_icon.icon }}</h4>
+            </aside>
             <div class="project__content">
                 {{ page.content | markdownify }}
             </div>
-            <sidebar class="project__sidebar">
-                {% if page.project_url %}
-                <a href="{{ page.project_url }}" target="_blank" class="button button--cta-1">Visit Project</a>
-                {% endif %}
-                <div class="project__category">{{ page.category }}&nbsp;{{ category_icon.icon }}</div>
-            </sidebar>
             {% if page.comments %}
             <div class="project__comment">
                 {% include disqus_comments.html %}

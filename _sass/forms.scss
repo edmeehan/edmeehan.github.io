@@ -75,18 +75,6 @@
         }
     }
 
-    // &--success {
-    //     .form__response-message {
-    //         background-color: rgba($success-green, .4);
-    //     }
-    // }
-
-    // &--fail {
-    //     .form__response-message {
-    //         background-color: rgba($fail-red, .4);
-    //     }
-    // }
-
     &--name {
         flex: 1 0 auto;
     }
@@ -147,7 +135,7 @@ button {
     }
 
     &--cta-1 {
-        color: #fff;
+        color: #fff!important;
         background-color: $brand-purple;
         box-shadow: 0px (5/$size-units) + 0rem 0px darken($brand-purple, 20%);
 
@@ -157,7 +145,7 @@ button {
     }
 
     &--cta-2 {
-        color: #fff;
+        color: #fff!important;
         background-color: $brand-green;
         box-shadow: 0px (5/$size-units) + 0rem 0px darken($brand-green, 20%);
 
@@ -167,7 +155,7 @@ button {
     }
 
     &--cta-3 {
-        color: #fff;
+        color: #fff!important;
         background-color: $brand-blue;
         box-shadow: 0px (5/$size-units) + 0rem 0px darken($brand-blue, 20%);
 
@@ -186,4 +174,9 @@ button {
     &--link {
 
     }
+}
+
+a.button {
+    display: inline-block;
+    text-decoration: none;
 }

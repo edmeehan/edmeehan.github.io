@@ -3,7 +3,10 @@ title:  "Projects"
 permalink: /projects/
 theme_color: black
 css_styles:
-    - /css/projects.css
+    -
+        path: /css/projects.css
+        cache_bust: true
+        absolute_url: true
 ---
 <section class="section section--full-screen section--top js-scroll-in-view">
     <div class="section__content layout">
@@ -12,7 +15,7 @@ css_styles:
                 <h1 class="font-serif">Projects</h1>
             </header>
             <ul class="projects__list">
-                {% assign sorted_projects = site.projects | sort: 'date' | reverse %}
+                {% assign sorted_projects = site.projects | reverse %}
                 {% for project in sorted_projects %}
                 {% assign category_icon = site.data.icons[project.category] %}
                 <li class="projects__list-item projects__list-item--{{ project.category }}">

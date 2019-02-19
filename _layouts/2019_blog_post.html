@@ -1,0 +1,27 @@
+---
+layout: 2019_default
+---
+{% assign category_icon = site.data.icons[page.category] %}
+<section class="section js-scroll-in-view">
+    <div class="section__content layout">
+        <article class="blog__article blog-post-grid">
+            <header class="blog__masthead">
+                <img src="{{ page.image }}" alt="">
+            </header>
+            <div class="blog__title">
+                <h1 class="h3 font-serif">{{ page.title }}</h1>
+            </div>
+            <sidebar class="blog__sidebar">
+
+            </sidebar>
+            <div class="blog__content">
+                {{ page.content | markdownify }}
+            </div>
+        </article>
+        {% if page.comments %}
+        <div class="blog__comment">
+            {% include disqus_comments.html %}
+        </div>
+        {% endif %}
+    </div>
+</section>
