@@ -9,7 +9,7 @@ $brand-green:  #58d79c;
 $brand-black:  #290000;
 
 $hr-color: rgba(white, .5);
-$bg-color: rgba($brand-lite-blue, .5);
+$bg-color: $brand-lite-blue;
 $border-grey: #ccc;
 
 $success-green: #5cb85c;

@@ -42,10 +42,10 @@
         {% endif %}
         <!-- Style Sheets -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        {% for item in site.css_styles %}<link rel="stylesheet" href="{{ item }}" />{% endfor %}
-        <link rel="stylesheet" href="{{ theme_color.css }}" />
-        {% for item in layout.css_styles %}<link rel="stylesheet" href="{{ item }}" />{% endfor %}
-        {% for item in page.css_styles %}<link rel="stylesheet" href="{{ item }}" />{% endfor %}
+        {% for item in site.css_styles %}<link rel="stylesheet" href="{% if item.absolute_url %}{{ item.path | absolute_url }}{% else %}{{ item.path }}{% endif %}{% if item.cache_bust %}?{{ site.time | date: '%s%N' }}{% endif %}" />{% endfor %}
+        <link rel="stylesheet" href="{{ theme_color.css | absolute_url }}?{{ site.time | date: '%s%N' }}" />
+        {% for item in layout.css_styles %}<link rel="stylesheet" href="{% if item.absolute_url %}{{ item.path | absolute_url }}{% else %}{{ item.path }}{% endif %}{% if item.cache_bust %}?{{ site.time | date: '%s%N' }}{% endif %}" />{% endfor %}
+        {% for item in page.css_styles %}<link rel="stylesheet" href="{% if item.absolute_url %}{{ item.path | absolute_url }}{% else %}{{ item.path }}{% endif %}{% if item.cache_bust %}?{{ site.time | date: '%s%N' }}{% endif %}" />{% endfor %}
     </head>
     <body class="{{ page.theme_color | prepend: "theme--" }}">
         {% if site.gtm_container_id %}
@@ -56,8 +56,8 @@
         {{ content }}
         <!-- Scripts -->
         <script>window.backgroundCount = {{ theme_color.count }};</script>
-        {% for item in site.js_scripts %}<script src="{{ item }}"></script>{% endfor %}
-        {% for item in layout.js_scripts %}<script src="{{ item }}"></script>{% endfor %}
-        {% for item in page.js_scripts %}<script src="{{ item }}"></script>{% endfor %}
+        {% for item in site.js_scripts %}<script src="{% if item.absolute_url %}{{ item.path }}{% else %}{{ item.path | absolute_url }}{% endif %}"></script>{% endfor %}
+        {% for item in layout.js_scripts %}<script src="{% if item.absolute_url %}{{ item.path | absolute_url }}{% else %}{{ item.path }}{% endif %}{% if item.cache_bust %}?{{ site.time | date: '%s%N' }}{% endif %}"></script>{% endfor %}
+        {% for item in page.js_scripts %}<script src="{% if item.absolute_url %}{{ item.path | absolute_url }}{% else %}{{ item.path }}{% endif %}{% if item.cache_bust %}?{{ site.time | date: '%s%N' }}{% endif %}"></script>{% endfor %}
     </body>
 </html>
