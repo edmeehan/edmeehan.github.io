@@ -82,17 +82,18 @@ $img-max-width: 1440px;
 }
 
 .project {
-    display: grid;
-    grid-template-columns: 2fr 5fr;
-    grid-template-rows: auto 1fr auto auto;
-    grid-template-areas:
-        "title title"
-        "masthead masthead"
-        "sidebar post"
-        "sidebar comment";
+    // display: grid;
+    // grid-template-columns: 2fr 5fr;
+    // grid-template-rows: auto 1fr auto auto;
+    // grid-template-areas:
+    //     "title title"
+    //     "masthead masthead"
+    //     "sidebar post"
+    //     "sidebar comment";
 
     img {
         height: auto;
+        max-width: 100%;
     }
 
     &__masthead {
@@ -106,12 +107,14 @@ $img-max-width: 1440px;
             display: block;
             margin:0 auto;
             padding: 1.5rem;
+            box-sizing: border-box;
         }
     }
 
     &__title {
         grid-area: title;
         text-align: center;
+        padding: 1px 0;
     }
 
     &__content {
@@ -120,25 +123,61 @@ $img-max-width: 1440px;
 
     &__sidebar {
         grid-area: sidebar;
-        padding: 1.5rem 3rem 0 0;
+        padding: 1px 0;
         text-align: right;
+        display: block;
     }
 
     &__comment {
         grid-area: comment;
     }
 
+    &__link {
+        float: right;
+        margin: 1rem 0 1rem 1.5rem;
+        > span {
+            display: none;
+        }
+    }
+
     &__back-link {
         float: left;
         margin: 1.5rem 0;
         color: inherit;
-        border: solid 1px white;
-        padding: (8/$size-units) + 0rem (14/$size-units) + 0rem;
+        padding: .5rem (14/$size-units) + 0rem;
+        line-height: 2rem;
         border-radius: $s-border-radius;
+        background-color: $brand-purple;
     }
 
     &__category {
         color: #ccc;
         text-transform: capitalize;
+    }
+
+    @media (min-width: $m-break) {
+
+    }
+
+    @media (min-width: $l-break) {
+        display: grid;
+        grid-template-columns: 2fr 5fr;
+        grid-template-rows: auto 1fr auto auto;
+        grid-template-areas:
+            "title title"
+            "masthead masthead"
+            "sidebar post"
+            "sidebar comment";
+
+        &__sidebar {
+            padding: 1.5rem 3rem 0 0;
+        }
+
+        &__link {
+            float: none;
+            > span {
+                display: inline;
+            }
+        }
     }
 }

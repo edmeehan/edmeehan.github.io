@@ -1,0 +1,48 @@
+---
+title: Blog
+permalink: /blog/
+css_styles:
+  -
+    path: /css/blog.css
+    cache_bust: true
+    absolute_url: true
+---
+<section class="section section--full-screen section--top js-scroll-in-view">
+    <div class="section__content layout">
+        <div class="blog-listing-grid">
+            <main class="blog-listing-grid__main">
+                {% for post in site.posts %}
+                <article class="blog__article">
+                    <header class="blog__masthead">
+                        <a href="{{ post.url | absolute_url }}">
+                            <img src="{{ post.image | absolute_url }}" alt="">
+                        </a>
+                    </header>
+                    <div class="blog__title">
+                        <h3 class="font-serif"><a href="{{ post.url | absolute_url }}">{{ post.title }}</a></h3>
+                    </div>
+                    <footer class="blog__footer">
+                        <div class="published-date">{{ post.date | date: "%B %e, %Y" }}</div>
+                    </footer>
+                    <div class="blog__excerpt">
+                        {{ post.excerpt }}
+                        <p><a href="">Read More&hellip;</a></p>
+                    </div>
+                </article>
+                {% endfor %}
+            </main>
+            <aside class="blog-listing-grid__sidebar">
+                <ul class="blog__category-list">
+                {% for post in site.posts_categories %}
+                    <li>
+                        {% assign category_icon = site.data.icons[post.category] %}
+                        <a class="button button--cta-1" href="{{ post.url | absolute_url }}" title="View {{ post.category | downcase }} category posts">
+                            {{ category_icon.icon }}<span>&nbsp;{{ post.category }}</span>
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </aside>
+        </div>
+    </div>
+</section>

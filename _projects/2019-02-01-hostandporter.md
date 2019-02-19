@@ -1,11 +1,14 @@
 ---
 title: Host & Porter
 category: development
-date: 2019-02-01
 project_url: http://hostandporter.com/
 image: /img/projects/hostandporter-homepage.png
 ---
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et magna turpis. Aliquam quis urna eu purus consectetur varius. Praesent tempus commodo leo nec luctus. Suspendisse a elit odio. Sed ultrices condimentum nisi vel ultricies. Nunc tristique tempus ligula, vel malesuada metus posuere sodales. Donec dapibus cursus augue eget molestie. Praesent ullamcorper diam in odio posuere, ac accumsan ex lobortis. Nullam semper ex erat, et pharetra ligula dapibus at. Aenean tristique accumsan sapien, et ornare nulla iaculis sed. Proin ante massa, hendrerit ac lacinia sed, tristique at mauris.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et magna turpis. Aliquam quis urna eu purus consectetur varius. Praesent tempus commodo leo nec luctus. Suspendisse a elit odio.
+
+<img width="400" height="400" src="{{ '/img/projects/hostandporter-site-map.png' | absolute_url }}" alt="">
+
+Sed ultrices condimentum nisi vel ultricies. Nunc tristique tempus ligula, vel malesuada metus posuere sodales. Donec dapibus cursus augue eget molestie. Praesent ullamcorper diam in odio posuere, ac accumsan ex lobortis. Nullam semper ex erat, et pharetra ligula dapibus at. Aenean tristique accumsan sapien, et ornare nulla iaculis sed. Proin ante massa, hendrerit ac lacinia sed, tristique at mauris.
 
 <img width="400" height="400" src="{{ '/img/projects/hostandporter-category.png' | absolute_url }}" alt="">
 

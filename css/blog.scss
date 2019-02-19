@@ -1,0 +1,128 @@
+---
+# Front matter comment to ensure Jekyll properly reads file.
+---
+@import 'variables';
+$img-max-width: 1440px;
+
+.blog-listing-grid {
+    display: grid;
+    grid-template-columns: 6fr 2rem 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "main . sidebar";
+
+    &__main {
+        grid-area: main;
+    }
+    &__sidebar {
+        grid-area: sidebar;
+    }
+    @media (min-width: $m-break) {
+        grid-template-columns: 5fr 2rem 2fr;
+    }
+}
+
+.blog-post-grid {
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+        "masthead masthead"
+        "title title"
+        "sidebar post";
+
+    .blog__masthead {
+        grid-area: masthead;
+    }
+
+    .blog__title {
+        grid-area: title;
+    }
+
+    .blog__content {
+        grid-area: post;
+    }
+
+    @media (min-width: $m-break) {
+        display: grid;
+        grid-template-columns: 2fr 5fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "masthead masthead"
+            "title title"
+            "sidebar post";
+    }
+}
+
+.blog {
+    &__article {
+        background-color: $brand-lite-blue;
+        border-radius: $s-border-radius;
+        margin-bottom: 3rem;
+        overflow: hidden;
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+
+    &__title {
+        padding: 0 1.5rem;
+        a {
+            text-decoration: none;
+        }
+        h3 {
+            font-size: 2rem;
+        }
+    }
+
+    &__excerpt {
+        padding: 0 1.5rem 1px;
+    }
+
+    &__content {
+        padding: 0 1.5rem;
+    }
+
+    &__masthead {
+
+    }
+
+    &__footer {
+        padding: 0 1.5rem;
+        .published-date {
+            margin-top: -1.5rem;
+            text-transform: uppercase;
+            font-style: italic;
+        }
+    }
+
+    &__category-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        position: fixed;
+
+        li {
+            margin-bottom: 1.5rem;
+        }
+
+        .button {
+            > span {
+                display: none;
+            }
+        }
+    }
+
+    @media (min-width: $m-break) {
+        &__category-list {
+            .button {
+                > span {
+                    display: inline;
+                }
+            }
+        }
+    }
+}

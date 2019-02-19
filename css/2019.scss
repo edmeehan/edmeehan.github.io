@@ -58,7 +58,6 @@ body {
 }
 
 .site-header {
-    // display: none;
     flex: 1 0 auto;
     padding: 1.5rem;
 
@@ -121,7 +120,6 @@ body {
 }
 
 .site-footer {
-    // display: none;
     flex: 0 1 auto;
     padding: 1.5rem;
 
@@ -146,7 +144,6 @@ body {
             text-decoration: none;
             background-color: rgba($brand-purple, .2);
             text-align: center;
-            // color: white;
         }
     }
 
@@ -162,10 +159,6 @@ body {
         text-align: center;
         font-size: .75rem;
     }
-
-    // .active.page &{
-    //     display: block;
-    // }
 
     @media (min-width: $m-break) {
         &__about-me {
@@ -244,7 +237,7 @@ body {
         }
     }
 
-    @media (min-width: $m-break) {
+    @media (min-width: $l-break) {
         &__btn-show {
             > span {
                 display: inline;
