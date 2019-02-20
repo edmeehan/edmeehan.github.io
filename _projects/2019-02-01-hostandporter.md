@@ -4,16 +4,22 @@ category: development
 project_url: http://hostandporter.com/
 image: /img/projects/hostandporter-homepage.png
 ---
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et magna turpis. Aliquam quis urna eu purus consectetur varius. Praesent tempus commodo leo nec luctus. Suspendisse a elit odio.
+I was hired by [Caava design](https://caavadesign.com/) to build a product catalog website for their client Host & Porter. I have been following their owner and creative director [Cody Small on behance.com](https://www.behance.net/codysmall) for some time and was excited to have an opportunity to work with them.
 
-<img width="400" height="400" src="{{ '/img/projects/hostandporter-site-map.png' | absolute_url }}" alt="">
+### WordPress Development
 
-Sed ultrices condimentum nisi vel ultricies. Nunc tristique tempus ligula, vel malesuada metus posuere sodales. Donec dapibus cursus augue eget molestie. Praesent ullamcorper diam in odio posuere, ac accumsan ex lobortis. Nullam semper ex erat, et pharetra ligula dapibus at. Aenean tristique accumsan sapien, et ornare nulla iaculis sed. Proin ante massa, hendrerit ac lacinia sed, tristique at mauris.
+<img class="full-width" style="background-color:#fff; padding:.5rem" width="400" height="400" src="{{ '/img/projects/hostandporter-site-map.png' | absolute_url }}" alt="">
 
-<img width="400" height="400" src="{{ '/img/projects/hostandporter-category.png' | absolute_url }}" alt="">
+The client selected WordPress as the platform of choice. **The product catalog contained 450 SKU's, 26 collections (products grouped by design) and 6 categories.** The project had the size and complexity of an e-commerce store without the cart. I created a custom WordPress plugin that would allow for the management of the catalog within the admin UI.
 
-Aliquam sit amet nunc pretium, egestas dolor elementum, tempor eros. Sed malesuada aliquet eros, in vestibulum lacus viverra a. Vestibulum ac dignissim eros. In semper interdum augue, vitae accumsan justo bibendum vitae. Quisque finibus dolor nec augue posuere, nec porta nisl eleifend. Phasellus id purus lorem.
+<img class="full-width" width="400" height="400" src="{{ '/img/projects/hostandporter-category.png' | absolute_url }}" alt="">
 
-<img width="400" height="400" src="{{ '/img/projects/hostandporter-product.png' | absolute_url }}" alt="">
+### Plugin Features
 
-Vivamus vitae tellus volutpat, iaculis arcu a, feugiat sapien. Sed sagittis metus eget egestas mattis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam ut pretium libero. Proin sollicitudin blandit hendrerit. Ut hendrerit velit non neque molestie, sed blandit neque faucibus. Cras nec orci nibh.
+Products in a collection come in a variety of colors. I built the WordPress plugin to allow for multiple product images to be uploaded and grouped by color. The plugin also has a merchandising feature that allows for the selection of related products. I also installed two additional plugins, [Advanced Custom Fields Pro](https://www.advancedcustomfields.com/pro/), and Instagram Views to complete the project. Advanced Custom Fields Pro allowed me to create editable fields to manage all content in the page layouts. Marco Pelloni, a fellow Jiu-Jitsu practitioner, developed The Instagram Views plugin that was used on the homepage to pull images from the Instagram API.
+
+<img class="full-width" width="400" height="400" src="{{ '/img/projects/hostandporter-product.png' | absolute_url }}" alt="">
+
+### Conclusion
+
+Caava Design wrote a [case study](https://caavadesign.com/project/host-porter-brand-packaging-and-website/) outlining the full scope of the project. I got to challenge myself by designing a complex feature into a single WordPress Plugin while also building the beautiful front end of the website. Both Caava Design and Host & Porter were happy with the finished product, and I have to say I was pretty pleased too.

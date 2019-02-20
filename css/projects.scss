@@ -82,18 +82,15 @@ $img-max-width: 1440px;
 }
 
 .project {
-    // display: grid;
-    // grid-template-columns: 2fr 5fr;
-    // grid-template-rows: auto 1fr auto auto;
-    // grid-template-areas:
-    //     "title title"
-    //     "masthead masthead"
-    //     "sidebar post"
-    //     "sidebar comment";
 
     img {
         height: auto;
         max-width: 100%;
+
+        &.full-width {
+            width: 100%;
+            box-sizing: border-box;
+        }
     }
 
     &__masthead {
@@ -126,6 +123,7 @@ $img-max-width: 1440px;
         padding: 1px 0;
         text-align: right;
         display: block;
+        color: $brand-rich-blue;
     }
 
     &__comment {
@@ -134,7 +132,6 @@ $img-max-width: 1440px;
 
     &__link {
         float: right;
-        margin: 1rem 0 1rem 1.5rem;
         > span {
             display: none;
         }
@@ -151,7 +148,6 @@ $img-max-width: 1440px;
     }
 
     &__category {
-        color: #ccc;
         text-transform: capitalize;
     }
 
@@ -161,16 +157,16 @@ $img-max-width: 1440px;
 
     @media (min-width: $l-break) {
         display: grid;
-        grid-template-columns: 2fr 5fr;
+        grid-template-columns: 1fr 3rem 3fr;
         grid-template-rows: auto 1fr auto auto;
         grid-template-areas:
-            "title title"
-            "masthead masthead"
-            "sidebar post"
-            "sidebar comment";
+            "title title title"
+            "masthead masthead masthead"
+            "sidebar . post"
+            "sidebar . comment";
 
         &__sidebar {
-            padding: 1.5rem 3rem 0 0;
+            // padding: 1.5rem 0;
         }
 
         &__link {
