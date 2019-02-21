@@ -50,21 +50,16 @@ $img-max-width: 1440px;
     }
 
     &__title {
-        display: flex;
-        align-items: center;
-
-        i {
-            flex: 0 1 auto;
-            text-align: center;
-            font-size: 2rem;
-            opacity: .3;
-            padding-left: 1rem;
+        h2,h4,.date {
+            padding: 0 1.5rem;
         }
-
-        h2 {
-            font-family: 'Poppins', sans-serif;
-            flex: 1 0 auto;
-            padding: 0 1rem;
+        h4 {
+            margin-top: -1.5rem;
+            text-transform: capitalize;
+        }
+        .date {
+            float: right;
+            margin-top: -1.5rem;
         }
     }
 
@@ -95,7 +90,7 @@ $img-max-width: 1440px;
 
     &__masthead {
         grid-area: masthead;
-        background-color: rgba(black, .4);
+        background-color: rgba(black, .2);
         
         img {
             max-width: $img-max-width;
@@ -112,18 +107,28 @@ $img-max-width: 1440px;
         grid-area: title;
         text-align: center;
         padding: 1px 0;
+        position: relative;
+
+        h1 {
+            padding-left: 4rem;
+            padding-right: 4rem;
+        }
     }
 
     &__content {
         grid-area: post;
+        h1,h2,h3,h4,h5 {
+            font-weight: 400;
+        }
+        img {
+            max-width: $img-max-width;
+        }
     }
 
     &__sidebar {
         grid-area: sidebar;
         padding: 1px 0;
-        text-align: right;
         display: block;
-        color: $brand-rich-blue;
     }
 
     &__comment {
@@ -131,20 +136,20 @@ $img-max-width: 1440px;
     }
 
     &__link {
-        float: right;
         > span {
             display: none;
         }
     }
 
     &__back-link {
-        float: left;
         margin: 1.5rem 0;
         color: inherit;
         padding: .5rem (14/$size-units) + 0rem;
         line-height: 2rem;
         border-radius: $s-border-radius;
         background-color: $brand-purple;
+        position: absolute;
+        left: 0;
     }
 
     &__category {
@@ -158,22 +163,22 @@ $img-max-width: 1440px;
     @media (min-width: $l-break) {
         display: grid;
         grid-template-columns: 1fr 3rem 3fr;
-        grid-template-rows: auto 1fr auto auto;
+        grid-template-rows: auto auto auto auto;
         grid-template-areas:
             "title title title"
             "masthead masthead masthead"
             "sidebar . post"
             "sidebar . comment";
 
-        &__sidebar {
-            // padding: 1.5rem 0;
-        }
-
         &__link {
             float: none;
             > span {
                 display: inline;
             }
+        }
+
+        &__sidebar {
+            text-align: right;
         }
     }
 }

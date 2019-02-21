@@ -22,8 +22,9 @@ css_styles:
                     <a href="{{ project.url | absolute_url }}" title="View {{ project.title | downcase }} project">
                         <img class="projects__img" width="100" height="100" src="{{ project.image | absolute_url }}" alt="{{ project.title }} project image">
                         <div class="projects__title">
-                            {{ category_icon.icon }}
                             <h2 class="h4 weight-normal">{{ project.title }}</h2>
+                            <span class="date">{{ project.date | date: "%B %Y" }}</span>
+                            <h4 class="h5 weight-normal">{{ project.category }}&nbsp;{{ category_icon.icon }}</h4>
                         </div>
                     </a>
                 </li>
