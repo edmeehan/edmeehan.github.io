@@ -1,6 +1,7 @@
 {% comment %}TODO: add utm tracking params{% endcomment %}
+{% capture headline %}{% if page.seo-title %}{{ page.seo-title }}{% elsif page.title %}{{ page.title }}{% endif %}{% endcapture %}
 {% assign url_encoded = page.url | absolute_url | url_encode %}
-{% assign title_encoded = page.title | url_encode %}
+{% assign title_encoded = headline | url_encode %}
 {% assign img_encoded = page.og-image | absolute_url | url_encode %}
 <div class="share">
     <a target="_blank" href="https://facebook.com/sharer/sharer.php?u={{ url_encoded }}" class="share__facebook"><i class="fab fa-facebook-f"></i></a>
