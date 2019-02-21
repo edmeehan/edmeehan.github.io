@@ -17,7 +17,7 @@ css_styles:
             <ul class="projects__list">
                 {% assign sorted_projects = site.projects | reverse %}
                 {% for project in sorted_projects %}
-                {% assign category_icon = site.data.icons[project.category] %}
+                {% assign category_icon = site.data.icons-category[project.category] %}
                 <li class="projects__list-item projects__list-item--{{ project.category }}">
                     <a href="{{ project.url | absolute_url }}" title="View {{ project.title | downcase }} project">
                         <img class="projects__img" width="100" height="100" src="{{ project.image | absolute_url }}" alt="{{ project.title }} project image">

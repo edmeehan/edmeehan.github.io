@@ -126,6 +126,7 @@ defaults:
       theme_color: black
       layout: 2019_project_page
       comments: true
+      excerpt_separator: <!--more-->
       css_styles:
         -
           path: /css/projects.css

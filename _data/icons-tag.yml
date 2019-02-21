@@ -1,0 +1,26 @@
+WordPress:
+  icon: <i class="fab fa-wordpress"></i>
+
+PHP:
+  icon: <i class="fab fa-php"></i>
+
+Javascript:
+  icon: <i class="fab fa-js-square"></i>
+
+LESS:
+  icon: <i class="fab fa-less"></i>
+
+Laravel:
+  icon: <i class="fab fa-laravel"></i>
+
+Vue:
+  icon: <i class="fab fa-vuejs"></i>
+
+CSS:
+  icon: <i class="fab fa-css3-alt"></i>
+
+SASS:
+  icon: <i class="fab fa-sass"></i>
+
+Google:
+  icon: <i class="fab fa-google"></i>

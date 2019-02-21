@@ -8,6 +8,13 @@
         {{ page.description }}
     {% endif %}
 {% endcapture %}
+{% capture headline %}
+    {% if page.seo-title %}
+        {{ page.seo-title }}
+    {% elsif page.title %}
+        {{ page.title }}
+    {% endif %}
+{% endcapture %}
 {% assign theme_color = site.data.theme_colors[page.theme_color] %}
 <!DOCTYPE HTML>
 <html>
@@ -15,10 +22,10 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <title>{{ site.title }} | {{ page.title }}</title>
-        <meta name="twitter:title" content="{{ page.title }}">
-        <meta property="og:title" content="{{ page.title }}">
-        <meta itemprop="name" content="{{ page.title }}">
+        <title>{{ headline | normalize_whitespace }}</title>
+        <meta name="twitter:title" content="{{ headline | normalize_whitespace }}">
+        <meta property="og:title" content="{{ headline | normalize_whitespace }}">
+        <meta itemprop="name" content="{{ headline | normalize_whitespace }}">
         <meta name="description" content="{{ description | normalize_whitespace }}">
         <meta property="og:description" content="{{ description | normalize_whitespace }}">
         <meta itemprop="description" content="{{ description | normalize_whitespace }}">
@@ -41,7 +48,7 @@
         <!-- End Google Tag Manager -->
         {% endif %}
         <!-- Style Sheets -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         {% for item in site.css_styles %}<link rel="stylesheet" href="{% if item.absolute_url %}{{ item.path | absolute_url }}{% else %}{{ item.path }}{% endif %}{% if item.cache_bust %}?{{ site.time | date: '%s%N' }}{% endif %}" />{% endfor %}
         <link rel="stylesheet" href="{{ theme_color.css | absolute_url }}?{{ site.time | date: '%s%N' }}" />
         {% for item in layout.css_styles %}<link rel="stylesheet" href="{% if item.absolute_url %}{{ item.path | absolute_url }}{% else %}{{ item.path }}{% endif %}{% if item.cache_bust %}?{{ site.time | date: '%s%N' }}{% endif %}" />{% endfor %}

@@ -35,7 +35,7 @@ css_styles:
                 <ul class="blog__category-list">
                 {% for post in site.posts_categories %}
                     <li>
-                        {% assign category_icon = site.data.icons[post.category] %}
+                        {% assign category_icon = site.data.icons-category[post.category] %}
                         <a class="button button--cta-1" href="{{ post.url | absolute_url }}" title="View {{ post.category | downcase }} category posts">
                             {{ category_icon.icon }}<span>&nbsp;{{ post.category }}</span>
                         </a>
