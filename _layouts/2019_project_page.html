@@ -14,6 +14,9 @@ layout: 2019_default
             </header>
             <aside class="project__sidebar">
                 <h4 class="project__date weight-normal">{{ page.date | date: "%B %Y" }}</h4>
+                {% if page.read-time %}
+                <h4 class="project__readtime">{{ page.read-time }}</h4>
+                {% endif %}
                 <h4 class="project__category">{{ page.category }}&nbsp;{{ category_icon.icon }}</h4>
                 {% if page.project_url %}
                 <a href="{{ page.project_url }}" rel=”nofollow” target="_blank" class="button button--cta-2 project__link"><i class="fas fa-link"></i><span>&nbsp;Visit Project</span></a>

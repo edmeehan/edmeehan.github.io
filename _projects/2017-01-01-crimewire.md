@@ -6,6 +6,7 @@ image: /img/projects/crimewire-blog.png
 og-image: /img/projects/crimewire-blog.png
 excerpt: I got tasked with moving the Crimewire blog off of WordPress, and onto Laravel + Voyager.
 seo-title: Crimewire Blog Laravel Project
+read-time: 1.5 min read
 tags:
     - Laravel
     - PHP

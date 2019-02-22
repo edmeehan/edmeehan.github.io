@@ -4,6 +4,7 @@ category: development
 project_url: http://hostandporter.com/
 image: /img/projects/hostandporter-site.png
 og-image: /img/projects/hostandporter-site.png
+read-time: 1.5 min read
 # excerpt:
 seo-title: Host & Porter WordPress Project
 tags:
@@ -23,7 +24,7 @@ The client selected WordPress as the platform of choice. **The product catalog c
 
 <img class="full-width" width="400" height="400" src="{{ '/img/projects/hostandporter-homepage.png' | absolute_url }}" alt="screen shot of Host & Porter homepage">
 
-Products in a collection come in a variety of colors. I built the WordPress plugin to allow for multiple product images to be uploaded and grouped by color. The plugin also has a merchandising feature that allows for the selection of related products. I also installed two additional plugins, [Advanced Custom Fields Pro](https://www.advancedcustomfields.com/pro/), and Instagram Views to complete the project. Advanced Custom Fields Pro allowed me to create editable fields to manage all content in the page layouts. Marco Pelloni, a fellow Jiu-Jitsu practitioner, developed The Instagram Views plugin that was used on the homepage to pull images from the Instagram API.
+Products in a collection come in a variety of colors. I built the WordPress plugin to allow for multiple product images to be uploaded and grouped by color. The plugin also has a merchandising feature that allows for the selection of related products. I also installed two additional plugins, [Advanced Custom Fields Pro](https://www.advancedcustomfields.com/pro/), and Instagram Views to complete the project. Advanced Custom Fields Pro allowed me to create editable fields to manage all content in the page layouts. Marco Pelloni, a fellow Jiu-Jitsu practitioner, developed The Instagram Views plugin that was used on the homepage to pull images from the Instagram API. To document the plugin, I created a [13-page website](https://sites.google.com/view/hp-wordpress-site/) on Google Sites with annotated screenshots.
 
 ### Responsive Design & Scale
 
