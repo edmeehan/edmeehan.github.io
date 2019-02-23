@@ -30,16 +30,6 @@ $img-max-width: 1440px;
             border-radius: $s-border-radius;
             overflow: hidden;
         }
-
-        &:first-child {
-            flex: 0 0 100%;
-            max-width: $img-max-width;
-            margin-bottom: 3rem;
-
-            > a {
-                background-color: $brand-green;
-            }
-        }
     }
 
     &__img {
@@ -50,16 +40,15 @@ $img-max-width: 1440px;
     }
 
     &__title {
+        padding: .6rem .8rem;
         h2,h4,.date {
-            padding: 0 1.5rem;
+            margin: 0;
         }
         h4 {
-            margin-top: -1.5rem;
             text-transform: capitalize;
         }
         .date {
             float: right;
-            margin-top: -1.5rem;
         }
     }
 

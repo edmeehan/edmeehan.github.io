@@ -1,12 +1,12 @@
 ---
-title: Host & Porter
+title: Host & Porter Product Catalog
 category: development
 project_url: http://hostandporter.com/
-image: /img/projects/hostandporter-site.png
-og-image: /img/projects/hostandporter-site.png
+image: /img/projects/hostandporter-site.jpg
+og-image: /img/projects/hostandporter-site.jpg
 read-time: 1.5 min read
 # excerpt:
-seo-title: Host & Porter WordPress Project
+seo-title: Host & Porter Product Catalog WordPress Project
 tags:
     - WordPress
     - PHP
@@ -18,7 +18,7 @@ I was hired by [Caava design](https://caavadesign.com/) to build a product catal
 ### WordPress Development
 
 The client selected WordPress as the platform of choice. **The product catalog contained 450 SKU's, 26 collections (products grouped by design) and 6 categories.** The project had the size and complexity of an e-commerce store without the cart. I created a custom WordPress plugin that would allow for the management of the catalog within the admin UI.
-<img class="full-width" style="max-width: 1420px" width="400" height="400" src="{{ '/img/projects/hostandporter-site-map-alt.png' | absolute_url }}" alt="project sitemap">
+<img class="full-width" style="max-width: 1420px" width="400" height="400" src="{{ '/img/projects/hostandporter-site-map.png' | absolute_url }}" alt="project sitemap">
 
 ### Plugin Features
 

@@ -2,8 +2,8 @@
 title: TCG Google Analytics
 category: analytics
 # project_url:
-image: /img/projects/tcg-analytics.png
-og-image: /img/projects/tcg-analytics.png
+image: /img/projects/tcg-analytics.jpg
+og-image: /img/projects/tcg-analytics.jpg
 excerpt: While employed at TCG I took an interest in the companies Google Analytics account. I was sharing my findings but was not getting much buy-in from the team on the validity of the data. I spoke to the CTO about wanting to fix the GA setup, and a few weeks later I was given the challenge and resources to do it.
 seo-title: TCG Google Analytics Revamp Project
 tags:
