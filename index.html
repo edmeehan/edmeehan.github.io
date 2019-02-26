@@ -119,8 +119,34 @@ js_scripts:
         </div>
     </div>
 </section>
-
 {% comment %}
+<section class="section section--full-screen">
+    <div class="section__content layout">
+        <div class="latest-projects">
+            <h3 class="h2 font-serif">Latest Project</h3>
+            {% assign filtered_projects = site.projects | where_exp: "item", "item.category != 'development'" | reverse | limit: 2 %}
+            
+            {% for project in filtered_projects %}
+                <div class="latest-projects__item">
+                    <header class="latest-projects__header">
+                        <img width="400" height="200" src="{{ project.image | absolute_url }}" alt="{{ project.title }} project image">
+                    </header>
+                    <article class="latest-projects__excerpt">
+                        {{ project.title }}
+                        {{ project.excerpt }}
+                    </article>
+                    <footer class="latest-projects__footer">
+                        
+                    </footer>
+                </div>
+            {% endfor %}
+
+            
+        </div>
+    </div>
+</section>
+
+
 <section class="section section--full-screen js-scroll-in-view" id="contact">
     <div class="section__content layout">
         <div class="contact">
