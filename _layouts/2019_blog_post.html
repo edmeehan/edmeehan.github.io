@@ -5,9 +5,11 @@ layout: 2019_default
 <section class="section js-scroll-in-view">
     <div class="section__content layout">
         <article class="blog__article blog-post-grid">
+            {% if page.image %}            
             <header class="blog__masthead">
                 <img src="{{ page.image }}" alt="">
             </header>
+            {% endif %}
             <div class="blog__title">
                 <h1 class="h3 font-serif">{{ page.title }}</h1>
             </div>

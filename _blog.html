@@ -13,11 +13,13 @@ css_styles:
             <main class="blog-listing-grid__main">
                 {% for post in site.posts %}
                 <article class="blog__article">
+                    {% if post.image %}                    
                     <header class="blog__masthead">
                         <a href="{{ post.url | absolute_url }}">
                             <img src="{{ post.image | absolute_url }}" alt="">
                         </a>
                     </header>
+                    {% endif %}
                     <div class="blog__title">
                         <h3 class="font-serif"><a href="{{ post.url | absolute_url }}">{{ post.title }}</a></h3>
                     </div>
@@ -26,7 +28,7 @@ css_styles:
                     </footer>
                     <div class="blog__excerpt">
                         {{ post.excerpt }}
-                        <p><a href="">Read More&hellip;</a></p>
+                        <p><a href="{{ post.url | absolute_url }}">Read More&hellip;</a></p>
                     </div>
                 </article>
                 {% endfor %}

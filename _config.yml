@@ -48,6 +48,7 @@ exclude:
   - node_modules
   - package.json
   - emeehan.sublime-project
+  - emeehan.sublime-workspace
   - package-lock.json
   - Gemfile
   - Gemfile.lock
