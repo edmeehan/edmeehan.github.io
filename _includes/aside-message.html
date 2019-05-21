@@ -1,6 +1,6 @@
 {% capture meta %}aside-message - {{ page.url }}{% endcapture %}
 <div class="page__aside aside-message page--right page--med" id="aside-message" style="display: none;">
-    <button type="button" class="aside-message__btn-hide button button--small js-aside-hide" data-target="#aside-message"><i class="fas fa-times"></i></button>
+    <button type="button"  aria-label="Hide Contact Form" class="aside-message__btn-hide button button--small js-aside-hide" data-target="#aside-message"><i class="fas fa-times"></i></button>
     <div class="aside-message__content">
         <h4 class="h3 font-serif">Contact Me</h4>
         <p><strong>If you prefer to call you can leave a voicemail at <a href="tel:{{ site.phone }}">{{ site.phone }}</a></strong>, because of robo-calls I no longer answer unknown numbers.</p>
