@@ -13,7 +13,7 @@ tags:
     - Google
     - Vue
 ---
-While employed at [The Control Group](https://thecontrolgroup.com/) **(TCG)** I took an interest in the companies Google Analytics **(GA)** account. I was sharing my data findings with my team but was not getting much buy-in because the GA setup and data were not trusted.<!--more--> GA was not a source of truth at TCG for multiple reasons, but the primary was the marketing and optimization teams measured success with different tools. I spoke to the <abbr title="chief technology officer">CTO</abbr> about wanting to update the GA setup, and a few weeks later I was given the challenge and resources to fix it.
+While employed at [The Control Group](https://thecontrolgroup.com/) **(TCG)** I took an interest in the company's Google Analytics **(GA)** account. I was sharing my data findings with my team but was not getting much buy-in because the GA setup and data were not trusted.<!--more--> GA was not a source of truth at TCG for multiple reasons, but the primary was the marketing and optimization teams measured success with different tools. I spoke to the <abbr title="chief technology officer">CTO</abbr> about wanting to update the GA setup, and a few weeks later I was given the challenge and resources to fix it.
 
 ### Requirements
 One requirement was to add e-commerce tracking, but I also wanted to add some additional features. To compile my requirements, I began interviewing the team leaders and noting data they found valuable. I also hired a consultant to assist me with the GA setup and employee training. 
