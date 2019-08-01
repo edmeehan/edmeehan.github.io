@@ -24,3 +24,6 @@ SASS:
 
 Google:
   icon: <i class="fab fa-google"></i>
+
+React:
+  icon: <i class="fab fa-react"></i>
