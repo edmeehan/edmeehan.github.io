@@ -5,7 +5,7 @@ project_url: https://github.com/edmeehan/react-gas-gym-classes
 image: /img/projects/gym-attendance-app.jpg
 og-image: /img/projects/gym-attendance-app.jpg
 read-time: 1.5 min read
-# excerpt: 
+excerpt: I created a Gym Attendance web app using Google App Script and React that logs members attendance to be used for members and class metrics. 
 seo-title: Gym Attendance App built with Google App Script and React 
 tags: 
   - React
