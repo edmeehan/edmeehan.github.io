@@ -24,4 +24,4 @@ To build my gym attendance app, I used [ReactJS](https://reactjs.org/) to manage
 All of my code and files are available to view and use on my [GitHub project](https://github.com/edmeehan/react-gas-gym-classes). I enjoyed building this project and plan on adding some other features and apps to build upon it soon. Let me know what you think of this project or if you have some ideas of how I can make it better in the discussion section below.
 
 ### Video Demo
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m1CM4us6HCk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video-wrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/m1CM4us6HCk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
