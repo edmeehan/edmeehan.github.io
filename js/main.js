@@ -1,2 +1,630 @@
-!function(e){var t={};function n(i){if(t[i])return t[i].exports;var o=t[i]={i:i,l:!1,exports:{}};return e[i].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,i){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:i})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var i=Object.create(null);if(n.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(i,o,function(t){return e[t]}.bind(null,o));return i},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=30)}({30:function(e,t,n){"use strict";n.r(t);n(8);function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}var o=function(){function e(t,n){var i=this;!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e);var o=this,s=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.msRequestAnimationFrame||window.oRequestAnimationFrame;this.eventLabel=n,this.elements=t,this.boundaryArray=[],this.scrollTop=window.scrollY||window.pageYOffset,t.length>0&&(this.resized(),window.addEventListener("resize",function(e){i.resized()}),s&&function e(){var t=window.scrollY||window.pageYOffset;if(o.scrollTop===t)return void s(e);o.scrollTop=t,o.scroll(),s(e)}())}var t,n,o;return t=e,(n=[{key:"resized",value:function(){this.windowHeight=window.innerHeight,this.windowHalf=Math.round(.5*this.windowHeight),this.documentHeight=document.body.offsetHeight,this.documentHalf=Math.round(.5*this.documentHeight),this.measure()}},{key:"measure",value:function(e){e&&Array.isArray(e)&&(this.elements=e);for(var t=this.elements.length;t--;){var n=this.elements[t].offsetTop,i=this.elements[t].offsetHeight,o=n+i;this.boundaryArray[t]={top:n,height:i,bottom:o,index:t}}}},{key:"scroll",value:function(){var e,t=this.boundaryArray.slice(0),n=!1,i=this.scrollTop+this.windowHeight,o=this.scrollTop+this.windowHalf;this.scrollTop+this.windowHalf<this.documentHalf&&(n=!0,t.reverse());for(var s=t.length;s--&&!(n&&i<t[s].top)&&(n||!(this.scrollTop>t[s].bottom));)t[s].top<i&&t[s].bottom>this.scrollTop&&(e=t[s].top<this.scrollTop?t[s].bottom<i?"top":"large":t[s].bottom<i?"small":"bottom",this.elements[t[s].index].dispatchEvent(new CustomEvent(this.eventLabel,{bubbles:!1,detail:{visibility:e,window:{top:this.scrollTop,bottom:i,middle:o,height:this.windowHeight},element:{top:t[s].top,bottom:t[s].bottom,height:t[s].height}}})))}},{key:"boundary",get:function(){return this.boundaryArray}}])&&i(t.prototype,n),o&&i(t,o),e}();function s(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}!function(e){window.sections=e;var t=function e(t){this===t.target&&(this.style.display="none",this.removeEventListener("transitionend",e),window.activeAside=null)},n=function(e){var n=e.detail,o=e.element||document.querySelector(n.target);o.addEventListener("transitionend",t),o.classList.remove("active"),i.classList.remove("active"),document.body.classList.remove("locked")},i=document.getElementById("document");if(i){i.addEventListener("aside.show",function(e){var t=e.detail,o=e.element||document.querySelector(t.target);if(window.activeAside){if(o===window.activeAside)return;n({element:window.activeAside})}window.activeAside=o,o.style.display=null,setTimeout(function(){o.classList.add("active"),i.classList.add("active"),document.body.classList.add("locked")},50)}),i.addEventListener("aside.hide",n);var o=!0,s=!1,r=void 0;try{for(var a,l=document.getElementsByClassName("js-aside-show")[Symbol.iterator]();!(o=(a=l.next()).done);o=!0){a.value.addEventListener("click",function(e){i.dispatchEvent(new CustomEvent("aside.show",{bubbles:!1,detail:this.dataset}))})}}catch(e){s=!0,r=e}finally{try{o||null==l.return||l.return()}finally{if(s)throw r}}var c=!0,d=!1,u=void 0;try{for(var h,v=document.getElementsByClassName("js-aside-hide")[Symbol.iterator]();!(c=(h=v.next()).done);c=!0){h.value.addEventListener("click",function(e){i.dispatchEvent(new CustomEvent("aside.hide",{bubbles:!1,detail:this.dataset}))})}}catch(e){d=!0,u=e}finally{try{c||null==v.return||v.return()}finally{if(d)throw u}}}var f=document.getElementById("page-shadow");f&&f.addEventListener("click",function(e){window.activeAside&&n({element:window.activeAside})})}(new(function(){function e(t){var n=t.sections,i=t.background,s=t.randomCeiling,r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"view_event",a=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"background",l=arguments.length>3&&void 0!==arguments[3]?arguments[3]:"visible",c=arguments.length>4&&void 0!==arguments[4]?arguments[4]:"active";!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e),this.backgroundClass=a,this.backgroundVisibleClass=l,this.eventLabel=r,this.sectionsEle=n,this.backgroundEle=i,this.viewEvents=new o(n,"".concat(r,"_visible")),this.randomCeiling=s,this.prevRandom=null,this.sectionInFocus=null,this.sectionInFocusClass=c;var d=!0,u=!1,h=void 0;try{for(var v,f=n[Symbol.iterator]();!(d=(v=f.next()).done);d=!0){v.value.addEventListener("".concat(this.eventLabel,"_visible"),this.isVisible.bind(this))}}catch(e){u=!0,h=e}finally{try{d||null==f.return||f.return()}finally{if(u)throw h}}this.viewEvents.scroll()}var t,n,i;return t=e,(n=[{key:"isVisible",value:function(e){this.sectionInFocus!==e.target&&e.detail.element.top<e.detail.window.middle&&e.detail.element.bottom>e.detail.window.middle&&(null!==this.sectionInFocus&&this.sectionInFocus.dispatchEvent(new CustomEvent("".concat(this.eventLabel,"_blur"),{bubbles:!1})),this.sectionInFocus=e.target,this.changeBackground(),this.sectionInFocus.dispatchEvent(new CustomEvent("".concat(this.eventLabel,"_focus"),{bubbles:!1})))}},{key:"changeBackground",value:function(){var e,t=document.createElement("div");do{e=Math.floor(Math.random()*this.randomCeiling)+1}while(e===this.prevRandom);this.prevRandom=e,t.classList.add(this.backgroundClass,"".concat(this.backgroundClass,"__").concat(e));var n=!0,i=!1,o=void 0;try{for(var s,r=this.backgroundEle.children[Symbol.iterator]();!(n=(s=r.next()).done);n=!0){var a=s.value;a.classList.remove("".concat(this.backgroundClass,"--").concat(this.backgroundVisibleClass)),a.addEventListener("transitionend",function(){this.remove()})}}catch(e){i=!0,o=e}finally{try{n||null==r.return||r.return()}finally{if(i)throw o}}this.backgroundEle.appendChild(t),setTimeout(function(){t.classList.add("".concat(this.backgroundClass,"--").concat(this.backgroundVisibleClass))}.bind(this),5)}},{key:"sections",get:function(){return this.sectionsEle}},{key:"background",get:function(){return this.backgroundEle}},{key:"active_section",get:function(){return this.sectionInFocus}},{key:"view_event",get:function(){return this.viewEvents}}])&&s(t.prototype,n),i&&s(t,i),e}())({sections:document.getElementsByClassName("js-scroll-in-view"),background:document.getElementById("page-background"),randomCeiling:window.backgroundCount||1}))},8:function(e,t){!function(){if("undefined"!=typeof window)try{var e=new window.CustomEvent("test",{cancelable:!0});if(e.preventDefault(),!0!==e.defaultPrevented)throw new Error("Could not prevent default")}catch(e){var t=function(e,t){var n,i;return t=t||{bubbles:!1,cancelable:!1,detail:void 0},(n=document.createEvent("CustomEvent")).initCustomEvent(e,t.bubbles,t.cancelable,t.detail),i=n.preventDefault,n.preventDefault=function(){i.call(this);try{Object.defineProperty(this,"defaultPrevented",{get:function(){return!0}})}catch(e){this.defaultPrevented=!0}},n};t.prototype=window.Event.prototype,window.CustomEvent=t}}()}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./_javascript/main.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./_javascript/main.js":
+/*!*****************************!*\
+  !*** ./_javascript/main.js ***!
+  \*****************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/sections_manager */ "./_javascript/modules/sections_manager.js");
+
+
+(function (sections) {
+  'use strict'; // section manager controls background and
+  // events when sections become visible
+
+  window.sections = sections;
+
+  var hideEndEvent = function hideEndEvent(event) {
+    // condtion out bubbled events
+    if (this === event.target) {
+      this.style.display = 'none';
+      this.removeEventListener('transitionend', hideEndEvent);
+      window.activeAside = null;
+    }
+  };
+
+  var asideShowEvent = function asideShowEvent(_ref) {
+    var detail = _ref.detail,
+        element = _ref.element;
+    var aside = element || document.querySelector(detail.target); // handle active aside first
+    // - can also toggle
+
+    if (window.activeAside) {
+      if (aside === window.activeAside) return;
+      asideHideEvent({
+        element: window.activeAside
+      });
+    }
+
+    window.activeAside = aside;
+    aside.style.display = null;
+    setTimeout(function () {
+      //add classes to trigger animation
+      aside.classList.add('active');
+      docEle.classList.add('active'); // locks body to prevent scrolling
+
+      document.body.classList.add('locked');
+    }, 50);
+  };
+
+  var asideHideEvent = function asideHideEvent(_ref2) {
+    var detail = _ref2.detail,
+        element = _ref2.element;
+    var aside = element || document.querySelector(detail.target); //add listener for end of transition event
+
+    aside.addEventListener('transitionend', hideEndEvent); //add classes to trigger animation
+
+    aside.classList.remove('active');
+    docEle.classList.remove('active'); // locks body to prevent scrolling
+
+    document.body.classList.remove('locked');
+  };
+
+  var docEle = document.getElementById('document');
+
+  if (docEle) {
+    docEle.addEventListener('aside.show', asideShowEvent);
+    docEle.addEventListener('aside.hide', asideHideEvent);
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = document.getElementsByClassName('js-aside-show')[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var asideShow = _step.value;
+        asideShow.addEventListener('click', function (event) {
+          docEle.dispatchEvent(new CustomEvent('aside.show', {
+            bubbles: false,
+            detail: this.dataset
+          }));
+        });
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return != null) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+      for (var _iterator2 = document.getElementsByClassName('js-aside-hide')[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var asideHide = _step2.value;
+        asideHide.addEventListener('click', function (event) {
+          docEle.dispatchEvent(new CustomEvent('aside.hide', {
+            bubbles: false,
+            detail: this.dataset
+          }));
+        });
+      }
+    } catch (err) {
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+          _iterator2.return();
+        }
+      } finally {
+        if (_didIteratorError2) {
+          throw _iteratorError2;
+        }
+      }
+    }
+  }
+
+  var shadow = document.getElementById('page-shadow');
+
+  if (shadow) {
+    shadow.addEventListener('click', function (event) {
+      if (window.activeAside) asideHideEvent({
+        element: window.activeAside
+      });
+    });
+  }
+})(new _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
+  sections: document.getElementsByClassName('js-scroll-in-view'),
+  background: document.getElementById('page-background'),
+  randomCeiling: window.backgroundCount || 1
+}));
+
+/***/ }),
+
+/***/ "./_javascript/modules/scrolling_in_view.js":
+/*!**************************************************!*\
+  !*** ./_javascript/modules/scrolling_in_view.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var _default =
+/*#__PURE__*/
+function () {
+  function _default(elements, eventLabel) {
+    var _this = this;
+
+    _classCallCheck(this, _default);
+
+    var that = this,
+        raf = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame; // set some property values
+
+    this.eventLabel = eventLabel;
+    this.elements = elements;
+    this.boundaryArray = [];
+    this.scrollTop = window.scrollY || window.pageYOffset; // if we have scroll elements, then lets do this.
+
+    if (elements.length > 0) {
+      // call function to get some measurements        
+      this.resized(); // resize listener
+
+      window.addEventListener('resize', function (event) {
+        _this.resized();
+      });
+      if (raf) loop();
+    }
+
+    function loop() {
+      var scrollTop = window.scrollY || window.pageYOffset;
+
+      if (that.scrollTop === scrollTop) {
+        raf(loop);
+        return;
+      } else {
+        that.scrollTop = scrollTop;
+        that.scroll();
+        raf(loop);
+      }
+    }
+  }
+
+  _createClass(_default, [{
+    key: "resized",
+    value: function resized() {
+      this.windowHeight = window.innerHeight;
+      this.windowHalf = Math.round(this.windowHeight * 0.5);
+      this.documentHeight = document.body.offsetHeight;
+      this.documentHalf = Math.round(this.documentHeight * 0.5);
+      this.measure();
+    }
+  }, {
+    key: "measure",
+    value: function measure(updatedElements) {
+      if (updatedElements && Array.isArray(updatedElements)) {
+        this.elements = updatedElements;
+      }
+
+      for (var i = this.elements.length; i--;) {
+        var top = this.elements[i].offsetTop,
+            height = this.elements[i].offsetHeight,
+            bottom = top + height;
+        this.boundaryArray[i] = {
+          top: top,
+          height: height,
+          bottom: bottom,
+          index: i
+        };
+      }
+    }
+  }, {
+    key: "scroll",
+    value: function scroll() {
+      // clone array
+      var elements = this.boundaryArray.slice(0),
+          flipped = false,
+          scrollBottom = this.scrollTop + this.windowHeight,
+          windowMiddle = this.scrollTop + this.windowHalf,
+          visibility; // check how far we scrolled - and flip the array to make
+      // searching faster
+
+      if (this.scrollTop + this.windowHalf < this.documentHalf) {
+        flipped = true;
+        elements.reverse();
+      }
+
+      for (var i = elements.length; i--;) {
+        // check if all other elements our out of the window
+        // and exit the loop to save some resources
+        if (flipped && scrollBottom < elements[i].top) break;
+        if (!flipped && this.scrollTop > elements[i].bottom) break; // okay now check if the element is visible and by how much
+        // in order to be visible these basic rules must be true
+
+        if (elements[i].top < scrollBottom && elements[i].bottom > this.scrollTop) {
+          if (elements[i].top < this.scrollTop) {
+            if (elements[i].bottom < scrollBottom) {
+              // visible but off the top
+              visibility = 'top';
+            } else {
+              // visible but bigger then screen
+              visibility = 'large';
+            }
+          } else {
+            if (elements[i].bottom < scrollBottom) {
+              // visible but smaller then screen
+              visibility = 'small';
+            } else {
+              // visible but off bottom
+              visibility = 'bottom';
+            }
+          }
+
+          this.elements[elements[i].index].dispatchEvent(new CustomEvent(this.eventLabel, {
+            bubbles: false,
+            detail: {
+              visibility: visibility,
+              window: {
+                top: this.scrollTop,
+                bottom: scrollBottom,
+                middle: windowMiddle,
+                height: this.windowHeight
+              },
+              element: {
+                top: elements[i].top,
+                bottom: elements[i].bottom,
+                height: elements[i].height
+              }
+            }
+          }));
+        }
+      }
+    }
+  }, {
+    key: "boundary",
+    get: function get() {
+      return this.boundaryArray;
+    }
+  }]);
+
+  return _default;
+}();
+
+
+
+/***/ }),
+
+/***/ "./_javascript/modules/sections_manager.js":
+/*!*************************************************!*\
+  !*** ./_javascript/modules/sections_manager.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
+/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _scrolling_in_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scrolling_in_view */ "./_javascript/modules/scrolling_in_view.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+var _default =
+/*#__PURE__*/
+function () {
+  function _default(_ref) {
+    var sections = _ref.sections,
+        background = _ref.background,
+        randomCeiling = _ref.randomCeiling;
+    var eventLabel = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'view_event';
+    var backgroundClass = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'background';
+    var backgroundVisibleClass = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'visible';
+    var sectionActiveClass = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'active';
+
+    _classCallCheck(this, _default);
+
+    this.backgroundClass = backgroundClass;
+    this.backgroundVisibleClass = backgroundVisibleClass;
+    this.eventLabel = eventLabel;
+    this.sectionsEle = sections;
+    this.backgroundEle = background;
+    this.viewEvents = new _scrolling_in_view__WEBPACK_IMPORTED_MODULE_1__["default"](sections, "".concat(eventLabel, "_visible"));
+    this.randomCeiling = randomCeiling;
+    this.prevRandom = null;
+    this.sectionInFocus = null;
+    this.sectionInFocusClass = sectionActiveClass; // add visibile listener
+
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = sections[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var item = _step.value;
+        item.addEventListener("".concat(this.eventLabel, "_visible"), this.isVisible.bind(this));
+      } // init scroll to get started
+
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return != null) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+
+    this.viewEvents.scroll();
+  }
+
+  _createClass(_default, [{
+    key: "isVisible",
+    value: function isVisible(event) {
+      if (this.sectionInFocus !== event.target && event.detail.element.top < event.detail.window.middle && event.detail.element.bottom > event.detail.window.middle) {
+        // check if hass classList - not the null value form init
+        if (this.sectionInFocus !== null) {
+          this.sectionInFocus.dispatchEvent(new CustomEvent("".concat(this.eventLabel, "_blur"), {
+            bubbles: false
+          }));
+        }
+
+        this.sectionInFocus = event.target;
+        this.changeBackground();
+        this.sectionInFocus.dispatchEvent(new CustomEvent("".concat(this.eventLabel, "_focus"), {
+          bubbles: false
+        }));
+      }
+    }
+  }, {
+    key: "changeBackground",
+    value: function changeBackground() {
+      var div = document.createElement('div'),
+          random; // get a new random number differnt from the last
+
+      do {
+        random = Math.floor(Math.random() * this.randomCeiling) + 1;
+      } while (random === this.prevRandom);
+
+      this.prevRandom = random;
+      div.classList.add(this.backgroundClass, "".concat(this.backgroundClass, "__").concat(random)); // find and remove old backgrounds
+
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = this.backgroundEle.children[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var children = _step2.value;
+          children.classList.remove("".concat(this.backgroundClass, "--").concat(this.backgroundVisibleClass));
+          children.addEventListener('transitionend', function () {
+            this.remove();
+          });
+        } // add new background
+
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+            _iterator2.return();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
+      this.backgroundEle.appendChild(div); // add the class to trigger transition
+
+      setTimeout(function () {
+        div.classList.add("".concat(this.backgroundClass, "--").concat(this.backgroundVisibleClass));
+      }.bind(this), 5);
+    }
+  }, {
+    key: "sections",
+    get: function get() {
+      return this.sectionsEle;
+    }
+  }, {
+    key: "background",
+    get: function get() {
+      return this.backgroundEle;
+    }
+  }, {
+    key: "active_section",
+    get: function get() {
+      return this.sectionInFocus;
+    }
+  }, {
+    key: "view_event",
+    get: function get() {
+      return this.viewEvents;
+    }
+  }]);
+
+  return _default;
+}();
+
+
+
+/***/ }),
+
+/***/ "./node_modules/custom-event-polyfill/polyfill.js":
+/*!********************************************************!*\
+  !*** ./node_modules/custom-event-polyfill/polyfill.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Polyfill for creating CustomEvents on IE9/10/11
+
+// code pulled from:
+// https://github.com/d4tocchini/customevent-polyfill
+// https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent#Polyfill
+
+(function() {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  try {
+    var ce = new window.CustomEvent('test', { cancelable: true });
+    ce.preventDefault();
+    if (ce.defaultPrevented !== true) {
+      // IE has problems with .preventDefault() on custom events
+      // http://stackoverflow.com/questions/23349191
+      throw new Error('Could not prevent default');
+    }
+  } catch (e) {
+    var CustomEvent = function(event, params) {
+      var evt, origPrevent;
+      params = params || {
+        bubbles: false,
+        cancelable: false,
+        detail: undefined
+      };
+
+      evt = document.createEvent('CustomEvent');
+      evt.initCustomEvent(
+        event,
+        params.bubbles,
+        params.cancelable,
+        params.detail
+      );
+      origPrevent = evt.preventDefault;
+      evt.preventDefault = function() {
+        origPrevent.call(this);
+        try {
+          Object.defineProperty(this, 'defaultPrevented', {
+            get: function() {
+              return true;
+            }
+          });
+        } catch (e) {
+          this.defaultPrevented = true;
+        }
+      };
+      return evt;
+    };
+
+    CustomEvent.prototype = window.Event.prototype;
+    window.CustomEvent = CustomEvent; // expose definition to window
+  }
+})();
+
+
+/***/ })
+
+/******/ });
 //# sourceMappingURL=main.js.map
