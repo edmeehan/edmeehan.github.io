@@ -15,7 +15,6 @@ module.exports = {
   },
   module: {
     rules: [{
-      //test: /\.m?js$/,
       test: /\.jsx?$/,
       exclude: /(node_modules)/,
       use: {
