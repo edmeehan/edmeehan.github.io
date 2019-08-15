@@ -44,14 +44,14 @@ if (window.sections.active_section) {
 // Animations Below - its going to get ugly
 let animations = [];
 
-document.getElementById('testing').addEventListener('click', () => {
-    // debugger;
-    // animations.forEach((item) => {
-    //     item.play();
-    // });
+// document.getElementById('testing').addEventListener('click', () => {
+//     // debugger;
+//     // animations.forEach((item) => {
+//     //     item.play();
+//     // });
 
-    island.play();
-});
+//     island.play();
+// });
 
 {
     animations.push(anime.timeline({
@@ -174,16 +174,24 @@ document.getElementById('testing').addEventListener('click', () => {
 }
 
 let island = anime({
-    targets: '.svg-hawaii',
-    translateX: '0%',
-    translateY: '-100%',
-    autoplay: false,
-    complete: function(anim) {
-        animations.forEach((item) => {
-            item.play();
-        });
-    }
+    targets: '.svg-canvas',
+    delay: 800,
+    duration: 1500,
+    translateX: ['-20%', '-3%'],
+    translateY: ['100%', '-2%'],
+    scale: [0.5, 1.1],
+    easing: 'easeOutElastic(1, .8)',
+    // easing: 'easeOutElastic',
+    // easing: 'spring(1, 100, 10, 0)',
+    // autoplay: false,
+    // complete: function(anim) {
+    //     animations.forEach((item) => {
+    //         item.play();
+    //     });
+    // }
 });
+
+/*
 
 anime({
     targets: '#leash-hang',
@@ -243,3 +251,5 @@ let resting = () => {
 }
 
 setTimeout(smile, 6000);
+
+*/

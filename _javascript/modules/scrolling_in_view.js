@@ -2,7 +2,7 @@ export default class {
 
     constructor ( elements, eventLabel ) {
         let that = this,
-            raf = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame;
+            raf = window.requestAnimationFrame;
 
         // set some property values
         this.eventLabel = eventLabel;

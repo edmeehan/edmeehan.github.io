@@ -83,19 +83,19 @@
     }
 
     &--full-screen {
+        min-height: 100vh;
+
         .section__content {
-            min-height: 70vh;
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
+            padding-top: 0;
+            padding-bottom: 0;
         }
     }
 
-    &--top {
-        .section__content {
-            align-items: flex-start;
-        }
-    }
+    // &--top {
+    //     .section__content {
+    //         align-items: flex-start;
+    //     }
+    // }
 
     @media (min-width: $xl-break) {
         &__content {

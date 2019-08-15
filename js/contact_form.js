@@ -114,7 +114,7 @@ __webpack_require__.r(__webpack_exports__);
       contactForm.classList.add(formClass + 'success');
       contactForm.classList.remove(formClass + 'pending');
       form_response(true);
-    }).catch(function (error) {
+    })["catch"](function (error) {
       contactForm.classList.add(formClass + 'fail');
       contactForm.classList.remove(formClass + 'pending');
       form_response(false);

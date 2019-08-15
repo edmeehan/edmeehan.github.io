@@ -135,14 +135,14 @@ if (window.sections.active_section) {
 } // Animations Below - its going to get ugly
 
 
-var animations = [];
-document.getElementById('testing').addEventListener('click', function () {
-  // debugger;
-  // animations.forEach((item) => {
-  //     item.play();
-  // });
-  island.play();
-});
+var animations = []; // document.getElementById('testing').addEventListener('click', () => {
+//     // debugger;
+//     // animations.forEach((item) => {
+//     //     item.play();
+//     // });
+//     island.play();
+// });
+
 {
   animations.push(animejs_lib_anime_es_js__WEBPACK_IMPORTED_MODULE_0__["default"].timeline({
     duration: 2800,
@@ -267,59 +267,84 @@ document.getElementById('testing').addEventListener('click', function () {
   }, 0));
 }
 var island = Object(animejs_lib_anime_es_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
-  targets: '.svg-hawaii',
-  translateX: '0%',
-  translateY: '-100%',
-  autoplay: false,
-  complete: function complete(anim) {
-    animations.forEach(function (item) {
-      item.play();
-    });
-  }
-});
-Object(animejs_lib_anime_es_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
-  targets: '#leash-hang',
-  rotate: [5, -3],
-  easing: 'easeInOutQuad',
-  loop: true,
-  direction: 'alternate',
-  duration: 1200
-});
-Object(animejs_lib_anime_es_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
-  targets: '#tink-tail',
-  loop: true,
-  easing: 'linear',
-  direction: 'alternate',
-  duration: 1400,
-  endDelay: 1100,
-  rotate: [12, -2, 7, -2, 7, -2, 2, -2]
-});
-Object(animejs_lib_anime_es_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
-  targets: '#tink-head',
-  loop: true,
-  easing: 'linear',
-  direction: 'alternate',
-  duration: 450,
-  delay: 4200,
-  endDelay: 500,
-  rotate: 5
-});
-var faceResting = document.getElementById('ali-face-resting');
-var faceSmile = document.getElementById('ali-face-smile');
+  targets: '.svg-canvas',
+  delay: 800,
+  duration: 1500,
+  translateX: ['-20%', '-3%'],
+  translateY: ['100%', '-2%'],
+  scale: [0.5, 1.1],
+  easing: 'easeOutElastic(1, .8)' // easing: 'easeOutElastic',
+  // easing: 'spring(1, 100, 10, 0)',
+  // autoplay: false,
+  // complete: function(anim) {
+  //     animations.forEach((item) => {
+  //         item.play();
+  //     });
+  // }
 
-var smile = function smile() {
-  faceSmile.style.opacity = 1;
-  faceResting.style.opacity = 0;
-  setTimeout(resting, 2000);
-};
+});
+/*
 
-var resting = function resting() {
-  faceSmile.style.opacity = 0;
-  faceResting.style.opacity = 1;
-  setTimeout(smile, 12000);
-};
+anime({
+    targets: '#leash-hang',
+    rotate: [
+        5,
+        -3,
+    ],
+    easing: 'easeInOutQuad',
+    loop: true,
+    direction: 'alternate',
+    duration: 1200,
+})
+
+anime({
+    targets: '#tink-tail',
+    loop: true,
+    easing: 'linear',
+    direction: 'alternate',
+    duration: 1400,
+    endDelay: 1100,
+    rotate: [
+        12,
+        -2,
+        7,
+        -2,
+        7,
+        -2,
+        2,
+        -2
+    ]
+})
+
+anime({
+    targets: '#tink-head',
+    loop: true,
+    easing: 'linear',
+    direction: 'alternate',
+    duration: 450,
+    delay: 4200,
+    endDelay: 500,
+    rotate: 5,
+})
+
+let faceResting = document.getElementById('ali-face-resting');
+let faceSmile = document.getElementById('ali-face-smile');
+
+let smile = () => {
+    faceSmile.style.opacity = 1;
+    faceResting.style.opacity = 0;
+    setTimeout(resting, 2000);
+}
+
+let resting = () => {
+    faceSmile.style.opacity = 0;
+    faceResting.style.opacity = 1;
+    setTimeout(smile, 12000);
+}
 
 setTimeout(smile, 6000);
+
+*/
 
 /***/ }),
 

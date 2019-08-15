@@ -1,99 +1,101 @@
+// SVG Graphics styles
+
 .svg-hawaii {
-    .st3,
-    .st4,
-    .st6 {
-        fill-rule: evenodd;
-        clip-rule: evenodd;
-    }
+  .st3,
+  .st4,
+  .st6 {
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+  }
 
-    .st1 {
-        fill: #3ec675;
-    }
+  .st1 {
+    fill: #3ec675;
+  }
 
-    .st2 {
-        fill: #41e587;
-    }
+  .st2 {
+    fill: #41e587;
+  }
 
-    .st3,
-    .st4 {
-        fill: #45ef8a;
-    }
+  .st3,
+  .st4 {
+    fill: #45ef8a;
+  }
 
-    .st4 {
-        fill: #40dd7f;
-    }
+  .st4 {
+    fill: #40dd7f;
+  }
 
-    .st5,
-    .st6 {
-        fill: #3fd17a;
-    }
+  .st5,
+  .st6 {
+    fill: #3fd17a;
+  }
 
-    .st7 {
-        opacity: 0.3;
-    }
+  .st7 {
+    opacity: 0.3;
+  }
 
-    .st8 {
-        fill: #a3a3a3;
-    }
+  .st8 {
+    fill: #a3a3a3;
+  }
 
-    .st9 {
-        fill: url(#pin-head-grad);
-    }
+  .st9 {
+    fill: url(#pin-head-grad);
+  }
 
-    .st10 {
-        fill: #adcff2;
-        opacity: 0;
-    }
+  .st10 {
+    fill: #adcff2;
+    opacity: 0;
+  }
 }
 
 .svg-surf {
-    #leash-hang {
-        transform-origin: 83% 29%;
-    }
+  #leash-hang {
+    transform-origin: 83% 29%;
+  }
 
-    .st23 {
-      fill-rule: evenodd;
-      clip-rule: evenodd;
-    }
-    .st8 {
-        fill: #a3a3a3;
-    }
-    .st13 {
-        fill: #fff;
-    }
-    .st14 {
-        mask: url(#board-outline);
-    }
-    .st15 {
-        fill: #efefef;
-    }
-    .st16 {
-        fill: #725700;
-    }
-    .st17 {
-        fill: url(#left-color);
-    }
-    .st18 {
-        fill: url(#right-color);
-    }
-    .st19 {
-        fill: #443b39;
-    }
-    .st20 {
-        fill: #707;
-    }
-    .st21 {
-        fill: #93008c;
-    }
-    .st22 {
-        fill: #b900a9;
-    }
-    .st24 {
-        opacity: 0.1;
-    }
-    .st25 {
-        opacity: 9e-2;
-    }
+  .st23 {
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+  }
+  .st8 {
+    fill: #a3a3a3;
+  }
+  .st13 {
+    fill: #fff;
+  }
+  .st14 {
+    mask: url(#board-outline);
+  }
+  .st15 {
+    fill: #efefef;
+  }
+  .st16 {
+    fill: #725700;
+  }
+  .st17 {
+    fill: url(#left-color);
+  }
+  .st18 {
+    fill: url(#right-color);
+  }
+  .st19 {
+    fill: #443b39;
+  }
+  .st20 {
+    fill: #707;
+  }
+  .st21 {
+    fill: #93008c;
+  }
+  .st22 {
+    fill: #b900a9;
+  }
+  .st24 {
+    opacity: 0.1;
+  }
+  .st25 {
+    opacity: 9e-2;
+  }
 }
 
 .svg-ali-tink {
@@ -192,27 +194,4 @@
   .cls-25 {
     opacity: 0.1;
   }
-}
-
-.circle-mask {
-    width: 50%;
-    margin: -100px auto 0;
-    position: relative;
-    border-radius: 0 0 500px 500px;
-    overflow: hidden;
-
-    svg {
-        position: absolute;
-        // top:0;
-    }
-
-    &::before {
-        content: "";
-        display: block;
-        width: 100%;
-        padding-bottom: 100%;
-        border-radius: 100%;
-        background-color: #5199e4;
-        margin-top: 100px;
-    }
 }

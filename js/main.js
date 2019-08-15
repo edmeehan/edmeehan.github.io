@@ -96,138 +96,223 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/sections_manager */ "./_javascript/modules/sections_manager.js");
+/* harmony import */ var _modules_scroll_animations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/scroll_animations */ "./_javascript/modules/scroll_animations.js");
 
 
-(function (sections) {
-  'use strict'; // section manager controls background and
-  // events when sections become visible
+var test = new _modules_scroll_animations__WEBPACK_IMPORTED_MODULE_1__["default"]();
+console.log(test); // section manager controls background and
+// events when sections become visible
 
-  window.sections = sections;
-
-  var hideEndEvent = function hideEndEvent(event) {
-    // condtion out bubbled events
-    if (this === event.target) {
-      this.style.display = 'none';
-      this.removeEventListener('transitionend', hideEndEvent);
-      window.activeAside = null;
-    }
-  };
-
-  var asideShowEvent = function asideShowEvent(_ref) {
-    var detail = _ref.detail,
-        element = _ref.element;
-    var aside = element || document.querySelector(detail.target); // handle active aside first
-    // - can also toggle
-
-    if (window.activeAside) {
-      if (aside === window.activeAside) return;
-      asideHideEvent({
-        element: window.activeAside
-      });
-    }
-
-    window.activeAside = aside;
-    aside.style.display = null;
-    setTimeout(function () {
-      //add classes to trigger animation
-      aside.classList.add('active');
-      docEle.classList.add('active'); // locks body to prevent scrolling
-
-      document.body.classList.add('locked');
-    }, 50);
-  };
-
-  var asideHideEvent = function asideHideEvent(_ref2) {
-    var detail = _ref2.detail,
-        element = _ref2.element;
-    var aside = element || document.querySelector(detail.target); //add listener for end of transition event
-
-    aside.addEventListener('transitionend', hideEndEvent); //add classes to trigger animation
-
-    aside.classList.remove('active');
-    docEle.classList.remove('active'); // locks body to prevent scrolling
-
-    document.body.classList.remove('locked');
-  };
-
-  var docEle = document.getElementById('document');
-
-  if (docEle) {
-    docEle.addEventListener('aside.show', asideShowEvent);
-    docEle.addEventListener('aside.hide', asideHideEvent);
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-      for (var _iterator = document.getElementsByClassName('js-aside-show')[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var asideShow = _step.value;
-        asideShow.addEventListener('click', function (event) {
-          docEle.dispatchEvent(new CustomEvent('aside.show', {
-            bubbles: false,
-            detail: this.dataset
-          }));
-        });
-      }
-    } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion && _iterator.return != null) {
-          _iterator.return();
-        }
-      } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
-        }
-      }
-    }
-
-    var _iteratorNormalCompletion2 = true;
-    var _didIteratorError2 = false;
-    var _iteratorError2 = undefined;
-
-    try {
-      for (var _iterator2 = document.getElementsByClassName('js-aside-hide')[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-        var asideHide = _step2.value;
-        asideHide.addEventListener('click', function (event) {
-          docEle.dispatchEvent(new CustomEvent('aside.hide', {
-            bubbles: false,
-            detail: this.dataset
-          }));
-        });
-      }
-    } catch (err) {
-      _didIteratorError2 = true;
-      _iteratorError2 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-          _iterator2.return();
-        }
-      } finally {
-        if (_didIteratorError2) {
-          throw _iteratorError2;
-        }
-      }
-    }
-  }
-
-  var shadow = document.getElementById('page-shadow');
-
-  if (shadow) {
-    shadow.addEventListener('click', function (event) {
-      if (window.activeAside) asideHideEvent({
-        element: window.activeAside
-      });
-    });
-  }
-})(new _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
+window.sections = new _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
   sections: document.getElementsByClassName('js-scroll-in-view'),
   background: document.getElementById('page-background'),
   randomCeiling: window.backgroundCount || 1
-}));
+});
+var docEle = document.getElementById('document');
+
+if (docEle) {
+  docEle.addEventListener('aside.show', asideShowEvent);
+  docEle.addEventListener('aside.hide', asideHideEvent);
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = document.getElementsByClassName('js-aside-show')[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var asideShow = _step.value;
+      asideShow.addEventListener('click', function (event) {
+        docEle.dispatchEvent(new CustomEvent('aside.show', {
+          bubbles: false,
+          detail: this.dataset
+        }));
+      });
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+        _iterator["return"]();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
+
+  try {
+    for (var _iterator2 = document.getElementsByClassName('js-aside-hide')[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var asideHide = _step2.value;
+      asideHide.addEventListener('click', function (event) {
+        docEle.dispatchEvent(new CustomEvent('aside.hide', {
+          bubbles: false,
+          detail: this.dataset
+        }));
+      });
+    }
+  } catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+        _iterator2["return"]();
+      }
+    } finally {
+      if (_didIteratorError2) {
+        throw _iteratorError2;
+      }
+    }
+  }
+}
+
+var shadow = document.getElementById('page-shadow');
+
+if (shadow) {
+  shadow.addEventListener('click', function () {
+    if (window.activeAside) asideHideEvent({
+      element: window.activeAside
+    });
+  });
+}
+
+function hideEndEvent(event) {
+  // condtion out bubbled events
+  if (this === event.target) {
+    this.style.display = 'none';
+    this.removeEventListener('transitionend', hideEndEvent);
+    window.activeAside = null;
+  }
+}
+
+function asideHideEvent(_ref) {
+  var detail = _ref.detail,
+      element = _ref.element;
+  var aside = element || document.querySelector(detail.target); // add listener for end of transition event
+
+  aside.addEventListener('transitionend', hideEndEvent); // add classes to trigger animation
+
+  aside.classList.remove('active');
+  docEle.classList.remove('active'); // locks body to prevent scrolling
+
+  document.body.classList.remove('locked');
+}
+
+function asideShowEvent(_ref2) {
+  var detail = _ref2.detail,
+      element = _ref2.element;
+  var aside = element || document.querySelector(detail.target); // handle active aside first
+  // - can also toggle
+
+  if (window.activeAside) {
+    if (aside === window.activeAside) return;
+    asideHideEvent({
+      element: window.activeAside
+    });
+  }
+
+  window.activeAside = aside;
+  aside.style.display = null;
+  setTimeout(function () {
+    // add classes to trigger animation
+    aside.classList.add('active');
+    docEle.classList.add('active'); // locks body to prevent scrolling
+
+    document.body.classList.add('locked');
+  }, 50);
+}
+
+/***/ }),
+
+/***/ "./_javascript/modules/scroll_animations.js":
+/*!**************************************************!*\
+  !*** ./_javascript/modules/scroll_animations.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var _default =
+/*#__PURE__*/
+function () {
+  function _default() {
+    _classCallCheck(this, _default);
+
+    // Current scroll position
+    this.current = 0; // Target scroll position
+
+    this.target = 0; // Utility variables for `requestAnimationFrame`
+
+    this.rafId = undefined;
+    this.rafActive = false; // Listen for `resize` event to recalculate dimmensions
+
+    window.addEventListener('resize', this.setup.bind(this)); // Listen for `scroll` event to update `target` scroll position
+
+    window.addEventListener('scroll', this.scroll.bind(this)); // init the whole mess
+
+    this.setup();
+  } // used to calculate dimmensions
+
+
+  _createClass(_default, [{
+    key: "setup",
+    value: function setup() {
+      this.startAnimation();
+    } // bound to scroll event
+
+  }, {
+    key: "scroll",
+    value: function scroll() {
+      this.target = window.scrollY || window.pageYOffset;
+      this.startAnimation();
+    }
+  }, {
+    key: "startAnimation",
+    value: function startAnimation() {
+      if (!this.rafActive) {
+        this.rafActive = true;
+        this.rafId = requestAnimationFrame(this.updateAnimation.bind(this));
+      }
+    }
+  }, {
+    key: "updateAnimation",
+    value: function updateAnimation() {
+      console.log('running animation'); // const diff = this.target - this.current;
+      // const delta = 0;
+      // if (delta) { // If `delta !== 0`
+      //   // Update `current` scroll position
+      //   this.current += delta;
+      //   // Round value for better performance
+      //   this.current = parseFloat(this.current.toFixed(2));
+      //   // Call `update` again, using `requestAnimationFrame`
+      //   this.rafId = requestAnimationFrame(this.updateAnimation);
+      // } else { // If `delta === 0`
+      //   // Update `current`, and finish the animation loop
+      //   this.current = this.target;
+
+      this.rafActive = false;
+      cancelAnimationFrame(this.rafId); // }
+    }
+  }]);
+
+  return _default;
+}();
+
+
 
 /***/ }),
 
@@ -256,7 +341,7 @@ function () {
     _classCallCheck(this, _default);
 
     var that = this,
-        raf = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame; // set some property values
+        raf = window.requestAnimationFrame; // set some property values
 
     this.eventLabel = eventLabel;
     this.elements = elements;
@@ -453,8 +538,8 @@ function () {
       _iteratorError = err;
     } finally {
       try {
-        if (!_iteratorNormalCompletion && _iterator.return != null) {
-          _iterator.return();
+        if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+          _iterator["return"]();
         }
       } finally {
         if (_didIteratorError) {
@@ -515,8 +600,8 @@ function () {
         _iteratorError2 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-            _iterator2.return();
+          if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+            _iterator2["return"]();
           }
         } finally {
           if (_didIteratorError2) {
@@ -589,11 +674,9 @@ function () {
   } catch (e) {
     var CustomEvent = function(event, params) {
       var evt, origPrevent;
-      params = params || {
-        bubbles: false,
-        cancelable: false,
-        detail: undefined
-      };
+      params = params || {};
+      params.bubbles = !!params.bubbles;
+      params.cancelable = !!params.cancelable;
 
       evt = document.createEvent('CustomEvent');
       evt.initCustomEvent(
