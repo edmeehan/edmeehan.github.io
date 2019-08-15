@@ -96,11 +96,10 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/sections_manager */ "./_javascript/modules/sections_manager.js");
-/* harmony import */ var _modules_scroll_animations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/scroll_animations */ "./_javascript/modules/scroll_animations.js");
-
-
-var test = new _modules_scroll_animations__WEBPACK_IMPORTED_MODULE_1__["default"]();
-console.log(test); // section manager controls background and
+ // import Testing from './modules/scroll_animations';
+// const test = new Testing();
+// console.log(test);
+// section manager controls background and
 // events when sections become visible
 
 window.sections = new _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -230,47 +229,42 @@ function asideShowEvent(_ref2) {
 
 /***/ }),
 
-/***/ "./_javascript/modules/scroll_animations.js":
-/*!**************************************************!*\
-  !*** ./_javascript/modules/scroll_animations.js ***!
-  \**************************************************/
+/***/ "./_javascript/modules/scroll_listener.js":
+/*!************************************************!*\
+  !*** ./_javascript/modules/scroll_listener.js ***!
+  \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var _default =
+var ScollListener =
 /*#__PURE__*/
 function () {
-  function _default() {
-    _classCallCheck(this, _default);
+  function ScollListener() {
+    _classCallCheck(this, ScollListener);
 
-    // Current scroll position
-    this.current = 0; // Target scroll position
-
-    this.target = 0; // Utility variables for `requestAnimationFrame`
-
+    // Utility variables for `requestAnimationFrame`
     this.rafId = undefined;
-    this.rafActive = false; // Listen for `resize` event to recalculate dimmensions
+    this.rafActive = false;
+    this.target = 0;
 
-    window.addEventListener('resize', this.setup.bind(this)); // Listen for `scroll` event to update `target` scroll position
+    this.callBack = function () {};
+  }
 
-    window.addEventListener('scroll', this.scroll.bind(this)); // init the whole mess
+  _createClass(ScollListener, [{
+    key: "init",
+    value: function init(method) {
+      this.callBack = method; // Listen for `scroll` event to update `target` scroll position
 
-    this.setup();
-  } // used to calculate dimmensions
+      window.addEventListener('scroll', this.scroll.bind(this)); // init the whole mess
 
-
-  _createClass(_default, [{
-    key: "setup",
-    value: function setup() {
       this.startAnimation();
     } // bound to scroll event
 
@@ -291,28 +285,16 @@ function () {
   }, {
     key: "updateAnimation",
     value: function updateAnimation() {
-      console.log('running animation'); // const diff = this.target - this.current;
-      // const delta = 0;
-      // if (delta) { // If `delta !== 0`
-      //   // Update `current` scroll position
-      //   this.current += delta;
-      //   // Round value for better performance
-      //   this.current = parseFloat(this.current.toFixed(2));
-      //   // Call `update` again, using `requestAnimationFrame`
-      //   this.rafId = requestAnimationFrame(this.updateAnimation);
-      // } else { // If `delta === 0`
-      //   // Update `current`, and finish the animation loop
-      //   this.current = this.target;
-
+      this.callBack();
       this.rafActive = false;
-      cancelAnimationFrame(this.rafId); // }
+      cancelAnimationFrame(this.rafId);
     }
   }]);
 
-  return _default;
+  return ScollListener;
 }();
 
-
+/* harmony default export */ __webpack_exports__["default"] = (new ScollListener());
 
 /***/ }),
 
@@ -326,11 +308,14 @@ function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony import */ var _scroll_listener__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scroll_listener */ "./_javascript/modules/scroll_listener.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 var _default =
 /*#__PURE__*/
@@ -340,8 +325,23 @@ function () {
 
     _classCallCheck(this, _default);
 
-    var that = this,
-        raf = window.requestAnimationFrame; // set some property values
+    console.log(_scroll_listener__WEBPACK_IMPORTED_MODULE_0__["default"].init(this.testing.bind(this)));
+
+    var raf = window.requestAnimationFrame,
+        loop = function loop() {
+      var scrollTop = window.scrollY || window.pageYOffset;
+
+      if (_this.scrollTop === scrollTop) {
+        raf(loop);
+      } else {
+        _this.scrollTop = scrollTop;
+
+        _this.scroll();
+
+        raf(loop);
+      }
+    }; // set some property values
+
 
     this.eventLabel = eventLabel;
     this.elements = elements;
@@ -349,30 +349,22 @@ function () {
     this.scrollTop = window.scrollY || window.pageYOffset; // if we have scroll elements, then lets do this.
 
     if (elements.length > 0) {
-      // call function to get some measurements        
+      // call function to get some measurements
       this.resized(); // resize listener
 
-      window.addEventListener('resize', function (event) {
+      window.addEventListener('resize', function () {
         _this.resized();
       });
       if (raf) loop();
     }
-
-    function loop() {
-      var scrollTop = window.scrollY || window.pageYOffset;
-
-      if (that.scrollTop === scrollTop) {
-        raf(loop);
-        return;
-      } else {
-        that.scrollTop = scrollTop;
-        that.scroll();
-        raf(loop);
-      }
-    }
   }
 
   _createClass(_default, [{
+    key: "testing",
+    value: function testing() {
+      console.log(this, _scroll_listener__WEBPACK_IMPORTED_MODULE_0__["default"]);
+    }
+  }, {
     key: "resized",
     value: function resized() {
       this.windowHeight = window.innerHeight;

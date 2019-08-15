@@ -15,5 +15,8 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'one-var': ['error', 'always'],
+    camelcase: 'off',
+    'comma-dangle': 'off'
   },
 };

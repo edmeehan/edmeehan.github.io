@@ -1,9 +1,9 @@
 import SectionManager from './modules/sections_manager';
-import Testing from './modules/scroll_animations';
+// import Testing from './modules/scroll_animations';
 
-const test = new Testing();
+// const test = new Testing();
 
-console.log(test);
+// console.log(test);
 
 // section manager controls background and
 // events when sections become visible

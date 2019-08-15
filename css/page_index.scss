@@ -17,6 +17,15 @@
 //   animation-fill-mode: both;
 // }
 
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ani-block {
+  opacity: 0;
+}
+
 .intro {
   $graphic-width: 40%;
   $text-color: #fff;
@@ -28,6 +37,13 @@
     align-content: center;
     flex-direction: column;
     color: $text-color;
+    margin-left: $graphic-width;
+    padding-left: 2rem;
+    position: absolute;
+
+    &-wrapper {
+      z-index: 1;
+    }
 
     h1, h3, p {
       margin: 0;
@@ -62,35 +78,33 @@
         margin-right: .4rem;
       }
     }
-
-    &-wrapper {
-      margin-left: $graphic-width;
-      padding-left: 2rem;
-      position: relative;
-      z-index: 1;
-    }
   }
 
   &__graphics {
-    position: fixed;
     justify-content: flex-start;
     align-items: center;
     height: 100vh;
+    display: flex;
+    z-index: 0;
+  }
+
+  &__graphics,
+  &__content-wrapper {
+    position: fixed;
     top: 0;
     left: 50%;
-    display: flex;
     transform: translateX(-50%);
 
     @media (min-width: $m-break) {
-      width: $m-break - 100;
+      width: $m-break - 50;
     }
 
     @media (min-width: $l-break) {
-      width: $l-break - 100;
+      width: $l-break - 50;
     }
 
     @media (min-width: $xl-break) {
-      width: $xl-break - 100;
+      width: $xl-break - 50;
     }
   }
 

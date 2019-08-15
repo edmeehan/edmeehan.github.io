@@ -1,194 +1,203 @@
-import anime from 'animejs/lib/anime.es.js';
+import anime from 'animejs/lib/anime.es';
 
-let intro = document.getElementById('intro'),
-    services = document.getElementById('services'),
+const introScrollEle = document.getElementById('intro-scroll'),
+  introScrollWrapperEle = introScrollEle.getElementsByClassName('intro__content'),
+  introScrollBlockEle = introScrollEle.getElementsByClassName('ani-block'),
+  fakeScroll = document.createElement('div');
 
-    // homepage scripts
-    start_event = 'view_event_focus',
-    end_event = 'view_event_blur',
-    // intro
-    intro_in = 'bounceIn',
-    intro_out = 'bounceOut',
-    // services
-    services_in = 'bounceInRight',
-    services_out = 'bounceOutLeft';
+function setup() {
+  const height = (
+      introScrollWrapperEle[0].getBoundingClientRect().height * introScrollWrapperEle.length
+    ),
+    computedStyles = getComputedStyle(introScrollWrapperEle[0]),
+    leftMargin = parseInt(computedStyles.marginLeft, 0),
+    leftPadding = parseInt(computedStyles.paddingLeft, 0);
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const item of introScrollBlockEle) {
+    item.style.transformOrigin = `-${(leftMargin / 2) + leftPadding}px 50%`;
+  }
+
+  fakeScroll.style.height = `${height}px`;
+}
+
+// setup fakeScroll element
+fakeScroll.className = 'hidden';
+introScrollEle.appendChild(fakeScroll);
+
+setup();
+window.addEventListener('resize', setup);
+
+anime.timeline({
+  targets: '.intro__content--welcome .ani-block',
+}).add({
+  delay: 400,
+  duration: 1400,
+  rotate: [40, 0],
+  opacity: [0, 1],
+  easing: 'easeOutElastic'
+}).add({
+  delay: 3000,
+  duration: 800,
+  rotate: -40,
+  opacity: 0,
+  easing: 'easeInQuint'
+});
+
+/*
+const intro = document.getElementById('intro'),
+  services = document.getElementById('services'),
+  // homepage scripts
+  start_event = 'view_event_focus',
+  end_event = 'view_event_blur',
+  // intro
+  intro_in = 'bounceIn',
+  intro_out = 'bounceOut',
+  // services
+  services_in = 'bounceInRight',
+  services_out = 'bounceOutLeft';
 
 if (intro) {
-    intro.addEventListener(start_event, function(event){
-        event.target.classList.add('animate','active',intro_in);
-    });
+  intro.addEventListener(start_event, (event) => {
+    event.target.classList.add('animate', 'active', intro_in);
+  });
 
-    intro.addEventListener(end_event, function(event){
-        event.target.classList.remove('active');
-    });
+  intro.addEventListener(end_event, (event) => {
+    event.target.classList.remove('active');
+  });
 }
 
 if (services) {
-    services.addEventListener(start_event, function(event){
-        event.target.classList.add('animate','active',services_in);
-    });
+  services.addEventListener(start_event, (event) => {
+    event.target.classList.add('animate', 'active', services_in);
+  });
 
-    services.addEventListener(end_event, function(event){
-        event.target.classList.remove('active');
-    });
+  services.addEventListener(end_event, (event) => {
+    event.target.classList.remove('active');
+  });
 }
 
 // trigger event - an init event
 if (window.sections.active_section) {
-    window.sections.active_section.dispatchEvent(
-        new CustomEvent(start_event, { bubbles: false })
-    );
+  window.sections.active_section.dispatchEvent(
+    new CustomEvent(start_event, { bubbles: false })
+  );
 }
-
+*/
 
 // Animations Below - its going to get ugly
-let animations = [];
+const animations = [];
 
-// document.getElementById('testing').addEventListener('click', () => {
-//     // debugger;
-//     // animations.forEach((item) => {
-//     //     item.play();
-//     // });
+animations.push(
+  anime.timeline({
+    duration: 2800,
+    easing: 'linear',
+    loop: true,
+    autoplay: false,
+  }).add({
+    targets: '#wave-7',
+    translateX: '2%',
+    opacity: [{ value: 1 }, { value: 0 }],
+  }).add({
+    targets: '#wave-8',
+    translateX: '2%',
+    endDelay: 5000,
+    opacity: [{ value: 1 }, { value: 0 }],
+  }, '-=800')
+);
 
-//     island.play();
-// });
+animations.push(
+  anime.timeline({
+    duration: 2800,
+    easing: 'linear',
+    loop: true,
+    autoplay: false,
+  }).add({
+    targets: '#wave-3',
+    translateX: '2%',
+    delay: 3000,
+    opacity: [{ value: 1 }, { value: 0 }],
+  }).add({
+    targets: '#wave-4',
+    translateX: '2%',
+    endDelay: 8000,
+    opacity: [{ value: 1 }, { value: 0 }],
+  }, '-=800')
+);
 
-{
-    animations.push(anime.timeline({
-            duration: 2800,
-            easing: 'linear',
-            loop: true,
-            autoplay: false,
-        }).add({
-            targets: '#wave-7',
-            translateX: '2%',
-            opacity: [
-                {value: 1},
-                {value: 0}
-            ],
-        }).add({
-            targets: '#wave-8',
-            translateX: '2%',
-            endDelay: 5000,
-            opacity: [
-                {value: 1},
-                {value: 0}
-            ],
-        }, '-=800'));
-}
+animations.push(
+  anime.timeline({
+    duration: 2800,
+    easing: 'linear',
+    loop: true,
+    autoplay: false,
+  }).add({
+    targets: '#wave-5',
+    translateX: '-2%',
+    delay: 1200,
+    opacity: [{ value: 1 }, { value: 0 }],
+  }).add({
+    targets: '#wave-6',
+    translateX: '-2%',
+    endDelay: 3000,
+    opacity: [{ value: 1 }, { value: 0 }],
+  }, '-=800')
+);
 
-{
-    animations.push(anime.timeline({
-            duration: 2800,
-            easing: 'linear',
-            loop: true,
-            autoplay: false,
-        }).add({
-            targets: '#wave-3',
-            translateX: '2%',
-            delay: 3000,
-            opacity: [
-                {value: 1},
-                {value: 0}
-            ],
-        }).add({
-            targets: '#wave-4',
-            translateX: '2%',
-            endDelay: 8000,
-            opacity: [
-                {value: 1},
-                {value: 0}
-            ],
-        }, '-=800'));
-}
+animations.push(
+  anime.timeline({
+    duration: 2800,
+    easing: 'linear',
+    loop: true,
+    autoplay: false,
+  }).add({
+    targets: '#wave-1',
+    translateX: '-2%',
+    delay: 2200,
+    opacity: [{ value: 1 }, { value: 0 }],
+  }).add({
+    targets: '#wave-2',
+    translateX: '-2%',
+    endDelay: 9000,
+    opacity: [{ value: 1 }, { value: 0 }],
+  }, '-=800')
+);
 
-{
-    animations.push(anime.timeline({
-            duration: 2800,
-            easing: 'linear',
-            loop: true,
-            autoplay: false,
-        }).add({
-            targets: '#wave-5',
-            translateX: '-2%',
-            delay: 1200,
-            opacity: [
-                {value: 1},
-                {value: 0}
-            ],
-        }).add({
-            targets: '#wave-6',
-            translateX: '-2%',
-            endDelay: 3000,
-            opacity: [
-                {value: 1},
-                {value: 0}
-            ],
-        }, '-=800'));
-}
+animations.push(
+  anime.timeline({
+    duration: 400,
+    easing: 'linear',
+    autoplay: false,
+    direction: 'reverse',
+    endDelay: 1500,
+  }).add({
+    targets: '#pin',
+    translateX: '3%',
+    translateY: '-18%',
+    opacity: 0,
+    // delay: 1500,
+  }, 0).add({
+    targets: '#pin-shadow',
+    translateX: '10%',
+    translateY: '7%',
+    opacity: 0,
+  }, 0)
+);
 
-{
-    animations.push(anime.timeline({
-            duration: 2800,
-            easing: 'linear',
-            loop: true,
-            autoplay: false,
-        }).add({
-            targets: '#wave-1',
-            translateX: '-2%',
-            delay: 2200,
-            opacity: [
-                {value: 1},
-                {value: 0}
-            ],
-        }).add({
-            targets: '#wave-2',
-            translateX: '-2%',
-            endDelay: 9000,
-            opacity: [
-                {value: 1},
-                {value: 0}
-            ],
-        }, '-=800'));
-}
-
-{
-    animations.push(anime.timeline({
-        duration: 400,
-        easing: 'linear',
-        autoplay: false,
-        direction: 'reverse',
-        endDelay: 1500,
-    }).add({
-        targets: '#pin',
-        translateX: '3%',
-        translateY: '-18%',
-        opacity: 0,
-        // delay: 1500,
-    }, 0).add({
-        targets: '#pin-shadow',
-        translateX: '10%',
-        translateY: '7%',
-        opacity: 0,
-    }, 0));
-}
 
 let island = anime({
-    targets: '.svg-canvas',
-    delay: 800,
-    duration: 1500,
-    translateX: ['-20%', '-3%'],
-    translateY: ['100%', '-2%'],
-    scale: [0.5, 1.1],
-    easing: 'easeOutElastic(1, .8)',
-    // easing: 'easeOutElastic',
-    // easing: 'spring(1, 100, 10, 0)',
-    // autoplay: false,
-    // complete: function(anim) {
-    //     animations.forEach((item) => {
-    //         item.play();
-    //     });
-    // }
+  targets: '.svg-canvas',
+  delay: 800,
+  duration: 1500,
+  translateX: ['-20%', '-3%'],
+  translateY: ['100%', '-2%'],
+  scale: [0.5, 1.1],
+  easing: 'easeOutElastic(1, .8)',
+  complete: (anim) => {
+    animations.forEach((item) => {
+      item.play();
+    });
+  }
 });
 
 /*
