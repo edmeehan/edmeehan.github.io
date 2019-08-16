@@ -1,8 +1,7 @@
-import ViewEvents from './scroll_into_view';
+import scroll from './scroll_into_view';
 
 export default class {
   constructor(sections, background, randomCeiling) {
-    const event = 'view_event_visible';
     // Set arguments to properties
     this.sectionsArray = [...sections];
     this.backgroundEle = background;
@@ -10,11 +9,11 @@ export default class {
     // some other properties
     this.prevRandom = null;
     this.sectionInFocus = null;
-    // set the events
-    this.viewEvents = new ViewEvents(sections, event);
+    // add the elements to watch to start firing events
+    scroll.add(sections);
     // add visibile listener
     this.sectionsArray.forEach((item) => {
-      item.addEventListener(event, this.isVisible.bind(this));
+      item.addEventListener(scroll.event, this.isVisible.bind(this));
     });
   }
 
@@ -28,10 +27,6 @@ export default class {
 
   get active_section() {
     return this.sectionInFocus;
-  }
-
-  get view_event() {
-    return this.viewEvents;
   }
 
   /**

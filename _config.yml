@@ -17,6 +17,10 @@ title: Edward Meehan
 description: This is the default site description here. 
 js_scripts:
   - 
+    path: /js/commons.js
+    cache_bust: true
+    absolute_url: true
+  - 
     path: /js/main.js
     cache_bust: true
     absolute_url: true

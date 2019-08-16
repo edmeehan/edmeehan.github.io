@@ -13,6 +13,11 @@ module.exports = {
     filename: "[name].js",
     //sourceMapFilename: 'bundle.map'
   },
+  optimization: {
+    runtimeChunk: {
+      name: 'commons'
+    }
+  },
   module: {
     rules: [{
       test: /\.jsx?$/,

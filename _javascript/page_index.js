@@ -1,4 +1,14 @@
 import anime from 'animejs/lib/anime.es';
+import scroll from './modules/scroll_into_view';
+
+scroll.add(document.querySelectorAll('.intro'));
+scroll.add(document.getElementsByClassName('js-scroll-in-view'));
+
+setTimeout(() => {
+  console.log(scroll.watching);
+  scroll.remove(document.querySelectorAll('.intro'));
+  console.log(scroll.watching);
+}, 1500);
 
 const introScrollEle = document.getElementById('intro-scroll'),
   introScrollWrapperEle = introScrollEle.getElementsByClassName('intro__content'),

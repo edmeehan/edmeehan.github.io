@@ -1,90 +1,4 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./_javascript/main.js");
-/******/ })
-/************************************************************************/
-/******/ ({
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
 /***/ "./_javascript/main.js":
 /*!*****************************!*\
@@ -98,6 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/sections_manager */ "./_javascript/modules/sections_manager.js");
 /* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
 /* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/scroll_into_view */ "./_javascript/modules/scroll_into_view.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -108,6 +23,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
+
+_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_2__["default"].add(document.querySelectorAll('.testing'));
 var shadow = document.getElementById('page-shadow'),
     docEle = document.getElementById('document'); // section manager controls background and
 // events when sections become visible
@@ -202,7 +119,6 @@ if (shadow) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
 /* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
 /* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -221,16 +137,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var _default =
+var ScrollIntoView =
 /*#__PURE__*/
 function () {
-  function _default(elements, eventLabel) {
-    _classCallCheck(this, _default);
+  function ScrollIntoView() {
+    _classCallCheck(this, ScrollIntoView);
 
     // Set arguments to properties
-    this.eventLabel = eventLabel;
-    this.elemArray = _toConsumableArray(elements); // convert nodelist or html collection to array
-    // Utility variables for `requestAnimationFrame`
+    this.eventLabel = 'is_visible';
+    this.watchArray = []; // Utility variables for `requestAnimationFrame`
 
     this.rafId = undefined;
     this.rafActive = false; // Stuff
@@ -239,17 +154,45 @@ function () {
     this.windowHeight = 0; // Add listeners and start this party
 
     window.addEventListener('scroll', this.scroll.bind(this));
-    window.addEventListener('resize', this.resized.bind(this)); // Now we are ready
-
-    this.setup();
+    window.addEventListener('resize', this.resized.bind(this));
   }
-  /**
-   * getting dimensions info
-   * and other layout information
-   */
 
+  _createClass(ScrollIntoView, [{
+    key: "add",
 
-  _createClass(_default, [{
+    /**
+     * add elements to watch and trigger events from
+     * does not work with single node return and must be
+     * a nodeList or htmlcollection
+     * TODO: make work for single or collection of nodes
+     */
+    value: function add(nodeList) {
+      var _this = this;
+
+      this.watchArray = this.watchArray.concat( // make sure not to add duplicates
+      _toConsumableArray(nodeList).filter(function (item) {
+        return _this.watchArray.indexOf(item) < 0;
+      }));
+      this.setup();
+    }
+    /**
+     * remove elements from watch
+     */
+
+  }, {
+    key: "remove",
+    value: function remove(nodeList) {
+      this.watchArray = this.watchArray.filter(function (item) {
+        return _toConsumableArray(nodeList).indexOf(item) < 0;
+      });
+      this.setup();
+    }
+    /**
+     * getting dimensions info
+     * and other layout information
+     */
+
+  }, {
     key: "setup",
     value: function setup() {
       this.windowHeight = window.innerHeight;
@@ -266,7 +209,7 @@ function () {
   }, {
     key: "startAnimation",
     value: function startAnimation() {
-      if (!this.rafActive) {
+      if (!this.rafActive && this.watchArray.length > 0) {
         this.rafActive = true;
         this.rafId = requestAnimationFrame(this.updateAnimation.bind(this));
       }
@@ -281,13 +224,13 @@ function () {
   }, {
     key: "updateAnimation",
     value: function updateAnimation() {
-      var _this = this;
+      var _this2 = this;
 
       var height = this.windowHeight,
           half = height / 2; // loops array and filters out visable elements
       // and adds some info to use in the UI
 
-      this.elemArray.forEach(function (item) {
+      this.watchArray.forEach(function (item) {
         var rect = item.getBoundingClientRect(),
             isVisable = rect.top < height && rect.bottom > 0;
         var pixels;
@@ -295,7 +238,7 @@ function () {
 
         pixels = height - rect.bottom;
         pixels = height - (rect.top > 0 ? rect.top : 0) - (pixels > 0 ? pixels : 0);
-        item.dispatchEvent(new CustomEvent(_this.eventLabel, {
+        item.dispatchEvent(new CustomEvent(_this2.eventLabel, {
           bubbles: false,
           detail: {
             node: (pixels / rect.height).toFixed(3) * 1,
@@ -321,12 +264,22 @@ function () {
       this.target = window.scrollY || window.pageYOffset;
       this.startAnimation();
     }
+  }, {
+    key: "event",
+    get: function get() {
+      return this.eventLabel;
+    }
+  }, {
+    key: "watching",
+    get: function get() {
+      return this.watchArray;
+    }
   }]);
 
-  return _default;
+  return ScrollIntoView;
 }();
 
-
+/* harmony default export */ __webpack_exports__["default"] = (new ScrollIntoView());
 
 /***/ }),
 
@@ -365,19 +318,18 @@ function () {
 
     _classCallCheck(this, _default);
 
-    var event = 'view_event_visible'; // Set arguments to properties
-
+    // Set arguments to properties
     this.sectionsArray = _toConsumableArray(sections);
     this.backgroundEle = background;
     this.randomCeiling = randomCeiling; // some other properties
 
     this.prevRandom = null;
-    this.sectionInFocus = null; // set the events
+    this.sectionInFocus = null; // add the elements to watch to start firing events
 
-    this.viewEvents = new _scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"](sections, event); // add visibile listener
+    _scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].add(sections); // add visibile listener
 
     this.sectionsArray.forEach(function (item) {
-      item.addEventListener(event, _this.isVisible.bind(_this));
+      item.addEventListener(_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, _this.isVisible.bind(_this));
     });
   }
 
@@ -443,11 +395,6 @@ function () {
     key: "active_section",
     get: function get() {
       return this.sectionInFocus;
-    }
-  }, {
-    key: "view_event",
-    get: function get() {
-      return this.viewEvents;
     }
   }]);
 
@@ -522,5 +469,5 @@ function () {
 
 /***/ })
 
-/******/ });
+},[["./_javascript/main.js","commons"]]]);
 //# sourceMappingURL=main.js.map

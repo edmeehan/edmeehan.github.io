@@ -1,10 +1,10 @@
 import 'custom-event-polyfill';
 
-export default class {
-  constructor(elements, eventLabel) {
+class ScrollIntoView {
+  constructor() {
     // Set arguments to properties
-    this.eventLabel = eventLabel;
-    this.elemArray = [...elements]; // convert nodelist or html collection to array
+    this.eventLabel = 'is_visible';
+    this.watchArray = [];
     // Utility variables for `requestAnimationFrame`
     this.rafId = undefined;
     this.rafActive = false;
@@ -14,7 +14,35 @@ export default class {
     // Add listeners and start this party
     window.addEventListener('scroll', this.scroll.bind(this));
     window.addEventListener('resize', this.resized.bind(this));
-    // Now we are ready
+  }
+
+  get event() {
+    return this.eventLabel;
+  }
+
+  get watching() {
+    return this.watchArray;
+  }
+
+  /**
+   * add elements to watch and trigger events from
+   * does not work with single node return and must be
+   * a nodeList or htmlcollection
+   * TODO: make work for single or collection of nodes
+   */
+  add(nodeList) {
+    this.watchArray = this.watchArray.concat(
+      // make sure not to add duplicates
+      [...nodeList].filter((item) => this.watchArray.indexOf(item) < 0)
+    );
+    this.setup();
+  }
+
+  /**
+   * remove elements from watch
+   */
+  remove(nodeList) {
+    this.watchArray = this.watchArray.filter((item) => [...nodeList].indexOf(item) < 0);
     this.setup();
   }
 
@@ -36,7 +64,7 @@ export default class {
    * callback
    */
   startAnimation() {
-    if (!this.rafActive) {
+    if (!this.rafActive && this.watchArray.length > 0) {
       this.rafActive = true;
       this.rafId = requestAnimationFrame(this.updateAnimation.bind(this));
     }
@@ -53,7 +81,7 @@ export default class {
       half = (height / 2);
     // loops array and filters out visable elements
     // and adds some info to use in the UI
-    this.elemArray.forEach((item) => {
+    this.watchArray.forEach((item) => {
       const rect = item.getBoundingClientRect(),
         isVisable = rect.top < height && rect.bottom > 0;
       let pixels;
@@ -93,3 +121,5 @@ export default class {
     this.startAnimation();
   }
 }
+
+export default new ScrollIntoView();

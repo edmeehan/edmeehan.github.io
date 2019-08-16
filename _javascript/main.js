@@ -1,5 +1,8 @@
 import SectionManager from './modules/sections_manager';
 import 'custom-event-polyfill';
+import scroll from './modules/scroll_into_view';
+
+scroll.add(document.querySelectorAll('.testing'));
 
 const shadow = document.getElementById('page-shadow'),
   docEle = document.getElementById('document');
