@@ -412,12 +412,22 @@ function () {
 
   _createClass(_default, [{
     key: "isVisible",
+
+    /**
+     * bound to custom event listener
+     * called when element comes into view
+     */
     value: function isVisible(event) {
       if (this.sectionInFocus !== event.target && event.detail.focused) {
         this.sectionInFocus = event.target;
         this.changeBackground();
       }
     }
+    /**
+     * changes background graphic by random
+     * TODO: maybe make more options here and break up
+     */
+
   }, {
     key: "changeBackground",
     value: function changeBackground() {

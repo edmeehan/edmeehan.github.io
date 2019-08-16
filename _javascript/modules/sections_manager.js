@@ -34,6 +34,10 @@ export default class {
     return this.viewEvents;
   }
 
+  /**
+   * bound to custom event listener
+   * called when element comes into view
+   */
   isVisible(event) {
     if (this.sectionInFocus !== event.target && event.detail.focused) {
       this.sectionInFocus = event.target;
@@ -41,6 +45,10 @@ export default class {
     }
   }
 
+  /**
+   * changes background graphic by random
+   * TODO: maybe make more options here and break up
+   */
   changeBackground() {
     const div = document.createElement('div'),
       backgroundClass = 'background',
