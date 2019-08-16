@@ -1,97 +1,74 @@
-import "custom-event-polyfill";
-import ViewEvents from './scrolling_in_view';
+import ViewEvents from './scroll_into_view';
 
 export default class {
+  constructor(sections, background, randomCeiling) {
+    const event = 'view_event_visible';
+    // Set arguments to properties
+    this.sectionsArray = [...sections];
+    this.backgroundEle = background;
+    this.randomCeiling = randomCeiling;
+    // some other properties
+    this.prevRandom = null;
+    this.sectionInFocus = null;
+    // set the events
+    this.viewEvents = new ViewEvents(sections, event);
+    // add visibile listener
+    this.sectionsArray.forEach((item) => {
+      item.addEventListener(event, this.isVisible.bind(this));
+    });
+  }
 
-    constructor(
-        {sections, background, randomCeiling},
-        eventLabel = 'view_event',
-        backgroundClass = 'background',
-        backgroundVisibleClass = 'visible',
-        sectionActiveClass = 'active'
-    ) {
+  get sections() {
+    return this.sectionsArray;
+  }
 
-        this.backgroundClass = backgroundClass;
-        this.backgroundVisibleClass = backgroundVisibleClass;
-        this.eventLabel = eventLabel;
-        this.sectionsEle = sections;
-        this.backgroundEle = background;
-        this.viewEvents = new ViewEvents(sections, `${eventLabel}_visible`);
-        this.randomCeiling = randomCeiling;
-        this.prevRandom = null;
-        this.sectionInFocus = null;
-        this.sectionInFocusClass = sectionActiveClass;
+  get background() {
+    return this.backgroundEle;
+  }
 
-        // add visibile listener
-        for (let item of sections) {
-            item.addEventListener(`${this.eventLabel}_visible`, this.isVisible.bind(this));
-        }
+  get active_section() {
+    return this.sectionInFocus;
+  }
 
-        // init scroll to get started
-        this.viewEvents.scroll();
+  get view_event() {
+    return this.viewEvents;
+  }
+
+  isVisible(event) {
+    if (this.sectionInFocus !== event.target && event.detail.focused) {
+      this.sectionInFocus = event.target;
+      this.changeBackground();
     }
+  }
 
-    get sections() {
-        return this.sectionsEle;
-    }
+  changeBackground() {
+    const div = document.createElement('div'),
+      backgroundClass = 'background',
+      backgroundVisibleClass = 'background--visible';
+    let random;
 
-    get background() {
-        return this.backgroundEle;
-    }
+    // get a new random number differnt from the last
+    do random = Math.floor(Math.random() * this.randomCeiling) + 1;
+    while (random === this.prevRandom);
 
-    get active_section() {
-        return this.sectionInFocus;
-    }
+    this.prevRandom = random;
 
-    get view_event() {
-        return this.viewEvents;
-    }
+    // find and remove old backgrounds element when
+    // transition has finished
+    [...this.backgroundEle.children].forEach((child) => {
+      child.classList.remove(backgroundVisibleClass);
+      child.addEventListener('transitionend', (item) => {
+        item.target.remove();
+      });
+    });
 
-    isVisible(event) {
-        if (
-            this.sectionInFocus !== event.target &&
-            event.detail.element.top < event.detail.window.middle &&
-            event.detail.element.bottom > event.detail.window.middle
-        ) {
-            // check if hass classList - not the null value form init
-            if (this.sectionInFocus !== null) {
-                this.sectionInFocus.dispatchEvent(new CustomEvent(`${this.eventLabel}_blur`, { bubbles: false }));
-            }
-            
-            this.sectionInFocus = event.target;
-            this.changeBackground();
-            
-            this.sectionInFocus.dispatchEvent(new CustomEvent(`${this.eventLabel}_focus`, { bubbles: false }));
-        }        
-    }
+    // add new background
+    div.classList.add(backgroundClass, `${backgroundClass}__${random}`);
+    this.backgroundEle.appendChild(div);
 
-    changeBackground() {
-        let div = document.createElement('div'),
-            random;
-
-        // get a new random number differnt from the last
-        do
-          random = Math.floor(Math.random() * this.randomCeiling) + 1;
-        while (random === this.prevRandom);
-
-        this.prevRandom = random;
-
-        div.classList.add(this.backgroundClass, `${this.backgroundClass}__${random}`);
-
-        // find and remove old backgrounds
-        for (let children of this.backgroundEle.children) {
-            children.classList.remove(`${this.backgroundClass}--${this.backgroundVisibleClass}`);
-            children.addEventListener('transitionend', function(){
-                this.remove();
-            });
-        }
-
-        // add new background
-        this.backgroundEle.appendChild(div);
-
-        // add the class to trigger transition
-        setTimeout(function(){
-            div.classList.add(`${this.backgroundClass}--${this.backgroundVisibleClass}`);
-        }.bind(this), 5);
-    }
+    // add the class to trigger transition
+    setTimeout(() => {
+      div.classList.add(backgroundVisibleClass);
+    }, 5);
+  }
 }

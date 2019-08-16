@@ -96,17 +96,10 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/sections_manager */ "./_javascript/modules/sections_manager.js");
- // import Testing from './modules/scroll_animations';
-// const test = new Testing();
-// console.log(test);
-// section manager controls background and
+ // section manager controls background and
 // events when sections become visible
 
-window.sections = new _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  sections: document.getElementsByClassName('js-scroll-in-view'),
-  background: document.getElementById('page-background'),
-  randomCeiling: window.backgroundCount || 1
-});
+window.sections = new _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"](document.getElementsByClassName('js-scroll-in-view'), document.getElementById('page-background'), window.backgroundCount || 1);
 var docEle = document.getElementById('document');
 
 if (docEle) {
@@ -229,86 +222,26 @@ function asideShowEvent(_ref2) {
 
 /***/ }),
 
-/***/ "./_javascript/modules/scroll_listener.js":
-/*!************************************************!*\
-  !*** ./_javascript/modules/scroll_listener.js ***!
-  \************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var ScollListener =
-/*#__PURE__*/
-function () {
-  function ScollListener() {
-    _classCallCheck(this, ScollListener);
-
-    // Utility variables for `requestAnimationFrame`
-    this.rafId = undefined;
-    this.rafActive = false;
-    this.target = 0;
-
-    this.callBack = function () {};
-  }
-
-  _createClass(ScollListener, [{
-    key: "init",
-    value: function init(method) {
-      this.callBack = method; // Listen for `scroll` event to update `target` scroll position
-
-      window.addEventListener('scroll', this.scroll.bind(this)); // init the whole mess
-
-      this.startAnimation();
-    } // bound to scroll event
-
-  }, {
-    key: "scroll",
-    value: function scroll() {
-      this.target = window.scrollY || window.pageYOffset;
-      this.startAnimation();
-    }
-  }, {
-    key: "startAnimation",
-    value: function startAnimation() {
-      if (!this.rafActive) {
-        this.rafActive = true;
-        this.rafId = requestAnimationFrame(this.updateAnimation.bind(this));
-      }
-    }
-  }, {
-    key: "updateAnimation",
-    value: function updateAnimation() {
-      this.callBack();
-      this.rafActive = false;
-      cancelAnimationFrame(this.rafId);
-    }
-  }]);
-
-  return ScollListener;
-}();
-
-/* harmony default export */ __webpack_exports__["default"] = (new ScollListener());
-
-/***/ }),
-
-/***/ "./_javascript/modules/scrolling_in_view.js":
-/*!**************************************************!*\
-  !*** ./_javascript/modules/scrolling_in_view.js ***!
-  \**************************************************/
+/***/ "./_javascript/modules/scroll_into_view.js":
+/*!*************************************************!*\
+  !*** ./_javascript/modules/scroll_into_view.js ***!
+  \*************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
-/* harmony import */ var _scroll_listener__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scroll_listener */ "./_javascript/modules/scroll_listener.js");
+/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
+/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -321,143 +254,101 @@ var _default =
 /*#__PURE__*/
 function () {
   function _default(elements, eventLabel) {
-    var _this = this;
-
     _classCallCheck(this, _default);
 
-    console.log(_scroll_listener__WEBPACK_IMPORTED_MODULE_0__["default"].init(this.testing.bind(this)));
-
-    var raf = window.requestAnimationFrame,
-        loop = function loop() {
-      var scrollTop = window.scrollY || window.pageYOffset;
-
-      if (_this.scrollTop === scrollTop) {
-        raf(loop);
-      } else {
-        _this.scrollTop = scrollTop;
-
-        _this.scroll();
-
-        raf(loop);
-      }
-    }; // set some property values
-
-
+    // Set arguments to properties
     this.eventLabel = eventLabel;
-    this.elements = elements;
-    this.boundaryArray = [];
-    this.scrollTop = window.scrollY || window.pageYOffset; // if we have scroll elements, then lets do this.
+    this.elemArray = _toConsumableArray(elements); // convert nodelist or html collection to array
+    // Utility variables for `requestAnimationFrame`
 
-    if (elements.length > 0) {
-      // call function to get some measurements
-      this.resized(); // resize listener
+    this.rafId = undefined;
+    this.rafActive = false; // Stuff
 
-      window.addEventListener('resize', function () {
-        _this.resized();
-      });
-      if (raf) loop();
-    }
+    this.target = 0;
+    this.windowHeight = 0; // Add listeners and start this party
+
+    window.addEventListener('scroll', this.scroll.bind(this));
+    window.addEventListener('resize', this.resized.bind(this)); // Now we are ready
+
+    this.setup();
   }
+  /**
+   * getting dimensions info
+   * and other layout information
+   */
+
 
   _createClass(_default, [{
-    key: "testing",
-    value: function testing() {
-      console.log(this, _scroll_listener__WEBPACK_IMPORTED_MODULE_0__["default"]);
+    key: "setup",
+    value: function setup() {
+      this.windowHeight = window.innerHeight;
+      this.target = window.scrollY || window.pageYOffset;
+      this.startAnimation();
     }
+    /**
+     * Acts as a throttle for scrolling listener
+     * checks to see if animation frame has been
+     * requested and if so then let it handle the
+     * callback
+     */
+
+  }, {
+    key: "startAnimation",
+    value: function startAnimation() {
+      if (!this.rafActive) {
+        this.rafActive = true;
+        this.rafId = requestAnimationFrame(this.updateAnimation.bind(this));
+      }
+    }
+    /**
+     * Request Animation Frame Callback
+     * This is the work horse function
+     * safe to place more complex logic
+     * here - but don't be greedy
+     */
+
+  }, {
+    key: "updateAnimation",
+    value: function updateAnimation() {
+      var _this = this;
+
+      var height = this.windowHeight,
+          half = height / 2; // loops array and filters out visable elements
+      // and adds some info to use in the UI
+
+      this.elemArray.forEach(function (item) {
+        var rect = item.getBoundingClientRect(),
+            isVisable = rect.top < height && rect.bottom > 0;
+        var pixels;
+        if (!isVisable) return false; // simple math to show % of visable element on screen
+
+        pixels = height - rect.bottom;
+        pixels = height - (rect.top > 0 ? rect.top : 0) - (pixels > 0 ? pixels : 0);
+        item.dispatchEvent(new CustomEvent(_this.eventLabel, {
+          bubbles: false,
+          detail: {
+            node: (pixels / rect.height).toFixed(3) * 1,
+            window: (pixels / height).toFixed(3) * 1,
+            focused: rect.top < half && rect.bottom > half
+          }
+        }));
+        return true;
+      });
+      this.rafActive = false;
+      cancelAnimationFrame(this.rafId);
+    } // bound to resize event
+
   }, {
     key: "resized",
     value: function resized() {
-      this.windowHeight = window.innerHeight;
-      this.windowHalf = Math.round(this.windowHeight * 0.5);
-      this.documentHeight = document.body.offsetHeight;
-      this.documentHalf = Math.round(this.documentHeight * 0.5);
-      this.measure();
-    }
-  }, {
-    key: "measure",
-    value: function measure(updatedElements) {
-      if (updatedElements && Array.isArray(updatedElements)) {
-        this.elements = updatedElements;
-      }
+      this.setup();
+    } // bound to scroll event
 
-      for (var i = this.elements.length; i--;) {
-        var top = this.elements[i].offsetTop,
-            height = this.elements[i].offsetHeight,
-            bottom = top + height;
-        this.boundaryArray[i] = {
-          top: top,
-          height: height,
-          bottom: bottom,
-          index: i
-        };
-      }
-    }
   }, {
     key: "scroll",
     value: function scroll() {
-      // clone array
-      var elements = this.boundaryArray.slice(0),
-          flipped = false,
-          scrollBottom = this.scrollTop + this.windowHeight,
-          windowMiddle = this.scrollTop + this.windowHalf,
-          visibility; // check how far we scrolled - and flip the array to make
-      // searching faster
-
-      if (this.scrollTop + this.windowHalf < this.documentHalf) {
-        flipped = true;
-        elements.reverse();
-      }
-
-      for (var i = elements.length; i--;) {
-        // check if all other elements our out of the window
-        // and exit the loop to save some resources
-        if (flipped && scrollBottom < elements[i].top) break;
-        if (!flipped && this.scrollTop > elements[i].bottom) break; // okay now check if the element is visible and by how much
-        // in order to be visible these basic rules must be true
-
-        if (elements[i].top < scrollBottom && elements[i].bottom > this.scrollTop) {
-          if (elements[i].top < this.scrollTop) {
-            if (elements[i].bottom < scrollBottom) {
-              // visible but off the top
-              visibility = 'top';
-            } else {
-              // visible but bigger then screen
-              visibility = 'large';
-            }
-          } else {
-            if (elements[i].bottom < scrollBottom) {
-              // visible but smaller then screen
-              visibility = 'small';
-            } else {
-              // visible but off bottom
-              visibility = 'bottom';
-            }
-          }
-
-          this.elements[elements[i].index].dispatchEvent(new CustomEvent(this.eventLabel, {
-            bubbles: false,
-            detail: {
-              visibility: visibility,
-              window: {
-                top: this.scrollTop,
-                bottom: scrollBottom,
-                middle: windowMiddle,
-                height: this.windowHeight
-              },
-              element: {
-                top: elements[i].top,
-                bottom: elements[i].bottom,
-                height: elements[i].height
-              }
-            }
-          }));
-        }
-      }
-    }
-  }, {
-    key: "boundary",
-    get: function get() {
-      return this.boundaryArray;
+      this.target = window.scrollY || window.pageYOffset;
+      this.startAnimation();
     }
   }]);
 
@@ -478,9 +369,15 @@ function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
-/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
-/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _scrolling_in_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scrolling_in_view */ "./_javascript/modules/scrolling_in_view.js");
+/* harmony import */ var _scroll_into_view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scroll_into_view */ "./_javascript/modules/scroll_into_view.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -489,129 +386,72 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-
 var _default =
 /*#__PURE__*/
 function () {
-  function _default(_ref) {
-    var sections = _ref.sections,
-        background = _ref.background,
-        randomCeiling = _ref.randomCeiling;
-    var eventLabel = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'view_event';
-    var backgroundClass = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'background';
-    var backgroundVisibleClass = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'visible';
-    var sectionActiveClass = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'active';
+  function _default(sections, background, randomCeiling) {
+    var _this = this;
 
     _classCallCheck(this, _default);
 
-    this.backgroundClass = backgroundClass;
-    this.backgroundVisibleClass = backgroundVisibleClass;
-    this.eventLabel = eventLabel;
-    this.sectionsEle = sections;
+    var event = 'view_event_visible'; // Set arguments to properties
+
+    this.sectionsArray = _toConsumableArray(sections);
     this.backgroundEle = background;
-    this.viewEvents = new _scrolling_in_view__WEBPACK_IMPORTED_MODULE_1__["default"](sections, "".concat(eventLabel, "_visible"));
-    this.randomCeiling = randomCeiling;
+    this.randomCeiling = randomCeiling; // some other properties
+
     this.prevRandom = null;
-    this.sectionInFocus = null;
-    this.sectionInFocusClass = sectionActiveClass; // add visibile listener
+    this.sectionInFocus = null; // set the events
 
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
+    this.viewEvents = new _scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"](sections, event); // add visibile listener
 
-    try {
-      for (var _iterator = sections[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var item = _step.value;
-        item.addEventListener("".concat(this.eventLabel, "_visible"), this.isVisible.bind(this));
-      } // init scroll to get started
-
-    } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-          _iterator["return"]();
-        }
-      } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
-        }
-      }
-    }
-
-    this.viewEvents.scroll();
+    this.sectionsArray.forEach(function (item) {
+      item.addEventListener(event, _this.isVisible.bind(_this));
+    });
   }
 
   _createClass(_default, [{
     key: "isVisible",
     value: function isVisible(event) {
-      if (this.sectionInFocus !== event.target && event.detail.element.top < event.detail.window.middle && event.detail.element.bottom > event.detail.window.middle) {
-        // check if hass classList - not the null value form init
-        if (this.sectionInFocus !== null) {
-          this.sectionInFocus.dispatchEvent(new CustomEvent("".concat(this.eventLabel, "_blur"), {
-            bubbles: false
-          }));
-        }
-
+      if (this.sectionInFocus !== event.target && event.detail.focused) {
         this.sectionInFocus = event.target;
         this.changeBackground();
-        this.sectionInFocus.dispatchEvent(new CustomEvent("".concat(this.eventLabel, "_focus"), {
-          bubbles: false
-        }));
       }
     }
   }, {
     key: "changeBackground",
     value: function changeBackground() {
       var div = document.createElement('div'),
-          random; // get a new random number differnt from the last
+          backgroundClass = 'background',
+          backgroundVisibleClass = 'background--visible';
+      var random; // get a new random number differnt from the last
 
       do {
         random = Math.floor(Math.random() * this.randomCeiling) + 1;
       } while (random === this.prevRandom);
 
-      this.prevRandom = random;
-      div.classList.add(this.backgroundClass, "".concat(this.backgroundClass, "__").concat(random)); // find and remove old backgrounds
+      this.prevRandom = random; // find and remove old backgrounds element when
+      // transition has finished
 
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
+      _toConsumableArray(this.backgroundEle.children).forEach(function (child) {
+        child.classList.remove(backgroundVisibleClass);
+        child.addEventListener('transitionend', function (item) {
+          item.target.remove();
+        });
+      }); // add new background
 
-      try {
-        for (var _iterator2 = this.backgroundEle.children[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var children = _step2.value;
-          children.classList.remove("".concat(this.backgroundClass, "--").concat(this.backgroundVisibleClass));
-          children.addEventListener('transitionend', function () {
-            this.remove();
-          });
-        } // add new background
 
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-            _iterator2["return"]();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
-      }
-
+      div.classList.add(backgroundClass, "".concat(backgroundClass, "__").concat(random));
       this.backgroundEle.appendChild(div); // add the class to trigger transition
 
       setTimeout(function () {
-        div.classList.add("".concat(this.backgroundClass, "--").concat(this.backgroundVisibleClass));
-      }.bind(this), 5);
+        div.classList.add(backgroundVisibleClass);
+      }, 5);
     }
   }, {
     key: "sections",
     get: function get() {
-      return this.sectionsEle;
+      return this.sectionsArray;
     }
   }, {
     key: "background",

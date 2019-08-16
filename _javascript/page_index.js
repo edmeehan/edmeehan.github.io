@@ -13,10 +13,9 @@ function setup() {
     leftMargin = parseInt(computedStyles.marginLeft, 0),
     leftPadding = parseInt(computedStyles.paddingLeft, 0);
 
-  // eslint-disable-next-line no-restricted-syntax
-  for (const item of introScrollBlockEle) {
+  [...introScrollBlockEle].forEach((item) => {
     item.style.transformOrigin = `-${(leftMargin / 2) + leftPadding}px 50%`;
-  }
+  });
 
   fakeScroll.style.height = `${height}px`;
 }

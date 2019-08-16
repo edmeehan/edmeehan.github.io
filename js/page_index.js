@@ -96,6 +96,14 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs/lib/anime.es */ "./node_modules/animejs/lib/anime.es.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 var introScrollEle = document.getElementById('intro-scroll'),
     introScrollWrapperEle = introScrollEle.getElementsByClassName('intro__content'),
@@ -106,31 +114,11 @@ function setup() {
   var height = introScrollWrapperEle[0].getBoundingClientRect().height * introScrollWrapperEle.length,
       computedStyles = getComputedStyle(introScrollWrapperEle[0]),
       leftMargin = parseInt(computedStyles.marginLeft, 0),
-      leftPadding = parseInt(computedStyles.paddingLeft, 0); // eslint-disable-next-line no-restricted-syntax
+      leftPadding = parseInt(computedStyles.paddingLeft, 0);
 
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
-
-  try {
-    for (var _iterator = introScrollBlockEle[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var item = _step.value;
-      item.style.transformOrigin = "-".concat(leftMargin / 2 + leftPadding, "px 50%");
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-        _iterator["return"]();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
-  }
+  _toConsumableArray(introScrollBlockEle).forEach(function (item) {
+    item.style.transformOrigin = "-".concat(leftMargin / 2 + leftPadding, "px 50%");
+  });
 
   fakeScroll.style.height = "".concat(height, "px");
 } // setup fakeScroll element

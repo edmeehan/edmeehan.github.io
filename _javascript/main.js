@@ -1,17 +1,12 @@
 import SectionManager from './modules/sections_manager';
-// import Testing from './modules/scroll_animations';
-
-// const test = new Testing();
-
-// console.log(test);
 
 // section manager controls background and
 // events when sections become visible
-window.sections = new SectionManager({
-  sections: document.getElementsByClassName('js-scroll-in-view'),
-  background: document.getElementById('page-background'),
-  randomCeiling: window.backgroundCount || 1,
-});
+window.sections = new SectionManager(
+  document.getElementsByClassName('js-scroll-in-view'),
+  document.getElementById('page-background'),
+  window.backgroundCount || 1,
+);
 
 const docEle = document.getElementById('document');
 if (docEle) {
