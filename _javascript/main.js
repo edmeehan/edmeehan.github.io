@@ -1,4 +1,8 @@
 import SectionManager from './modules/sections_manager';
+import 'custom-event-polyfill';
+
+const shadow = document.getElementById('page-shadow'),
+  docEle = document.getElementById('document');
 
 // section manager controls background and
 // events when sections become visible
@@ -7,41 +11,6 @@ window.sections = new SectionManager(
   document.getElementById('page-background'),
   window.backgroundCount || 1,
 );
-
-const docEle = document.getElementById('document');
-if (docEle) {
-  docEle.addEventListener('aside.show', asideShowEvent);
-  docEle.addEventListener('aside.hide', asideHideEvent);
-
-  for (let asideShow of document.getElementsByClassName('js-aside-show')) {
-    asideShow.addEventListener('click', function(event) {
-      docEle.dispatchEvent(
-        new CustomEvent('aside.show', {
-          bubbles: false,
-          detail: this.dataset,
-        })
-      );
-    });
-  }
-
-  for (let asideHide of document.getElementsByClassName('js-aside-hide')) {
-    asideHide.addEventListener('click', function(event) {
-      docEle.dispatchEvent(
-        new CustomEvent('aside.hide', {
-          bubbles: false,
-          detail: this.dataset,
-        })
-      );
-    });
-  }
-}
-
-const shadow = document.getElementById('page-shadow');
-if (shadow) {
-  shadow.addEventListener('click', () => {
-    if (window.activeAside) asideHideEvent({ element: window.activeAside });
-  });
-}
 
 function hideEndEvent(event) {
   // condtion out bubbled events
@@ -84,4 +53,37 @@ function asideShowEvent({ detail, element }) {
     // locks body to prevent scrolling
     document.body.classList.add('locked');
   }, 50);
+}
+
+if (docEle) {
+  docEle.addEventListener('aside.show', asideShowEvent);
+  docEle.addEventListener('aside.hide', asideHideEvent);
+
+  [...document.getElementsByClassName('js-aside-show')].forEach((asideShow) => {
+    asideShow.addEventListener('click', () => {
+      docEle.dispatchEvent(
+        new CustomEvent('aside.show', {
+          bubbles: false,
+          detail: asideShow.dataset,
+        })
+      );
+    });
+  });
+
+  [...document.getElementsByClassName('js-aside-hide')].forEach((asideHide) => {
+    asideHide.addEventListener('click', () => {
+      docEle.dispatchEvent(
+        new CustomEvent('aside.hide', {
+          bubbles: false,
+          detail: asideHide.dataset,
+        })
+      );
+    });
+  });
+}
+
+if (shadow) {
+  shadow.addEventListener('click', () => {
+    if (window.activeAside) asideHideEvent({ element: window.activeAside });
+  });
 }

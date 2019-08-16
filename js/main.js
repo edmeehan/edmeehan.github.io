@@ -96,83 +96,23 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/sections_manager */ "./_javascript/modules/sections_manager.js");
- // section manager controls background and
+/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
+/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
+
+var shadow = document.getElementById('page-shadow'),
+    docEle = document.getElementById('document'); // section manager controls background and
 // events when sections become visible
 
 window.sections = new _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"](document.getElementsByClassName('js-scroll-in-view'), document.getElementById('page-background'), window.backgroundCount || 1);
-var docEle = document.getElementById('document');
-
-if (docEle) {
-  docEle.addEventListener('aside.show', asideShowEvent);
-  docEle.addEventListener('aside.hide', asideHideEvent);
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
-
-  try {
-    for (var _iterator = document.getElementsByClassName('js-aside-show')[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var asideShow = _step.value;
-      asideShow.addEventListener('click', function (event) {
-        docEle.dispatchEvent(new CustomEvent('aside.show', {
-          bubbles: false,
-          detail: this.dataset
-        }));
-      });
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-        _iterator["return"]();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
-  }
-
-  var _iteratorNormalCompletion2 = true;
-  var _didIteratorError2 = false;
-  var _iteratorError2 = undefined;
-
-  try {
-    for (var _iterator2 = document.getElementsByClassName('js-aside-hide')[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-      var asideHide = _step2.value;
-      asideHide.addEventListener('click', function (event) {
-        docEle.dispatchEvent(new CustomEvent('aside.hide', {
-          bubbles: false,
-          detail: this.dataset
-        }));
-      });
-    }
-  } catch (err) {
-    _didIteratorError2 = true;
-    _iteratorError2 = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-        _iterator2["return"]();
-      }
-    } finally {
-      if (_didIteratorError2) {
-        throw _iteratorError2;
-      }
-    }
-  }
-}
-
-var shadow = document.getElementById('page-shadow');
-
-if (shadow) {
-  shadow.addEventListener('click', function () {
-    if (window.activeAside) asideHideEvent({
-      element: window.activeAside
-    });
-  });
-}
 
 function hideEndEvent(event) {
   // condtion out bubbled events
@@ -218,6 +158,37 @@ function asideShowEvent(_ref2) {
 
     document.body.classList.add('locked');
   }, 50);
+}
+
+if (docEle) {
+  docEle.addEventListener('aside.show', asideShowEvent);
+  docEle.addEventListener('aside.hide', asideHideEvent);
+
+  _toConsumableArray(document.getElementsByClassName('js-aside-show')).forEach(function (asideShow) {
+    asideShow.addEventListener('click', function () {
+      docEle.dispatchEvent(new CustomEvent('aside.show', {
+        bubbles: false,
+        detail: asideShow.dataset
+      }));
+    });
+  });
+
+  _toConsumableArray(document.getElementsByClassName('js-aside-hide')).forEach(function (asideHide) {
+    asideHide.addEventListener('click', function () {
+      docEle.dispatchEvent(new CustomEvent('aside.hide', {
+        bubbles: false,
+        detail: asideHide.dataset
+      }));
+    });
+  });
+}
+
+if (shadow) {
+  shadow.addEventListener('click', function () {
+    if (window.activeAside) asideHideEvent({
+      element: window.activeAside
+    });
+  });
 }
 
 /***/ }),
