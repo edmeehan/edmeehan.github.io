@@ -3,7 +3,6 @@ import scroll from './scroll_into_view';
 export default class {
   constructor(sections, background, randomCeiling) {
     // Set arguments to properties
-    this.sectionsArray = [...sections];
     this.backgroundEle = background;
     this.randomCeiling = randomCeiling;
     // some other properties
@@ -12,17 +11,9 @@ export default class {
     // add the elements to watch to start firing events
     scroll.add(sections);
     // add visibile listener
-    this.sectionsArray.forEach((item) => {
+    [...sections].forEach((item) => {
       item.addEventListener(scroll.event, this.isVisible.bind(this));
     });
-  }
-
-  get sections() {
-    return this.sectionsArray;
-  }
-
-  get background() {
-    return this.backgroundEle;
   }
 
   get active_section() {

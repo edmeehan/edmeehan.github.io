@@ -12,7 +12,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/sections_manager */ "./_javascript/modules/sections_manager.js");
 /* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
 /* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/scroll_into_view */ "./_javascript/modules/scroll_into_view.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -23,8 +22,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
-
-_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_2__["default"].add(document.querySelectorAll('.testing'));
 var shadow = document.getElementById('page-shadow'),
     docEle = document.getElementById('document'); // section manager controls background and
 // events when sections become visible
@@ -319,7 +316,6 @@ function () {
     _classCallCheck(this, _default);
 
     // Set arguments to properties
-    this.sectionsArray = _toConsumableArray(sections);
     this.backgroundEle = background;
     this.randomCeiling = randomCeiling; // some other properties
 
@@ -328,7 +324,7 @@ function () {
 
     _scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].add(sections); // add visibile listener
 
-    this.sectionsArray.forEach(function (item) {
+    _toConsumableArray(sections).forEach(function (item) {
       item.addEventListener(_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, _this.isVisible.bind(_this));
     });
   }
@@ -380,16 +376,6 @@ function () {
       setTimeout(function () {
         div.classList.add(backgroundVisibleClass);
       }, 5);
-    }
-  }, {
-    key: "sections",
-    get: function get() {
-      return this.sectionsArray;
-    }
-  }, {
-    key: "background",
-    get: function get() {
-      return this.backgroundEle;
     }
   }, {
     key: "active_section",
