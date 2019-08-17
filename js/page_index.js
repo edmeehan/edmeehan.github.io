@@ -131,6 +131,7 @@ function () {
         item.dispatchEvent(new CustomEvent(_this2.eventLabel, {
           bubbles: false,
           detail: {
+            rect: rect,
             node: (pixels / rect.height).toFixed(3) * 1,
             window: (pixels / height).toFixed(3) * 1,
             focused: rect.top < half && rect.bottom > half
@@ -194,38 +195,128 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
-_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_1__["default"].add(document.querySelectorAll('.intro'));
-_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_1__["default"].add(document.getElementsByClassName('js-scroll-in-view'));
-setTimeout(function () {
-  console.log(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_1__["default"].watching);
-  _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_1__["default"].remove(document.querySelectorAll('.intro'));
-  console.log(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_1__["default"].watching);
-}, 1500);
-var introScrollEle = document.getElementById('intro-scroll'),
-    introScrollWrapperEle = introScrollEle.getElementsByClassName('intro__content'),
-    introScrollBlockEle = introScrollEle.getElementsByClassName('ani-block'),
-    fakeScroll = document.createElement('div');
+var introScrollerNode = document.getElementById('intro-scroll'),
+    introScrollerContentNodes = introScrollerNode.getElementsByClassName('intro__content');
+var fakeScrollNode,
+    contentNodeOfFocus = false;
+/**
+ * we need to build a block to displace for our scroller
+ * this function will make it or modify the node if passed
+ * back as an argument
+ */
 
-function setup() {
-  var height = introScrollWrapperEle[0].getBoundingClientRect().height * introScrollWrapperEle.length,
-      computedStyles = getComputedStyle(introScrollWrapperEle[0]),
+var prepFakeScroll = function prepFakeScroll(node) {
+  var fakeScroll = node || document.createElement('div'); // build the scroll height from the content
+
+  if (node) {
+    _toConsumableArray(introScrollerContentNodes).forEach(function (item) {
+      var scrollShim = node.querySelector(".".concat(item.dataset.scroll, "-shim"));
+      scrollShim.style.height = "".concat(item.getBoundingClientRect().height, "px");
+    });
+  } else {
+    _toConsumableArray(introScrollerContentNodes).reverse().forEach(function (item) {
+      var scrollShim = document.createElement('div');
+      scrollShim.style.height = "".concat(item.getBoundingClientRect().height, "px");
+      scrollShim.className = 'scroll-shim';
+      scrollShim.dataset.scroll = item.dataset.scroll;
+      fakeScroll.appendChild(scrollShim);
+    });
+  } // only if node was not passed to we insert in DOM
+
+
+  if (!node) {
+    fakeScroll.className = 'hidden';
+    introScrollerNode.appendChild(fakeScroll);
+  } // just return the element node, because why not
+
+
+  return fakeScroll;
+};
+/**
+ * we need to do some prep for animations
+ * like moving the transform origin location
+ * and other things
+ */
+
+
+var prepForAnimation = function prepForAnimation() {
+  var animationNodes = introScrollerNode.getElementsByClassName('ani-block'),
+      computedStyles = getComputedStyle(introScrollerContentNodes[0]),
       leftMargin = parseInt(computedStyles.marginLeft, 0),
-      leftPadding = parseInt(computedStyles.paddingLeft, 0);
+      leftPadding = parseInt(computedStyles.paddingLeft, 0); // setting transform origin for animation blocks
 
-  _toConsumableArray(introScrollBlockEle).forEach(function (item) {
+  _toConsumableArray(animationNodes).forEach(function (item) {
     item.style.transformOrigin = "-".concat(leftMargin / 2 + leftPadding, "px 50%");
   });
+};
 
-  fakeScroll.style.height = "".concat(height, "px");
-} // setup fakeScroll element
+var playIntoFocus = function playIntoFocus(scrollName) {
+  console.log('play in', scrollName);
+};
+
+var playOutOfFocus = function playOutOfFocus(scrollName) {
+  console.log('play out', scrollName);
+};
+/**
+ * attached to scroll listener and fires when
+ * dom node is visible on screen
+ * @param {obj} event listener object
+ */
 
 
-fakeScroll.className = 'hidden';
-introScrollEle.appendChild(fakeScroll);
-setup();
-window.addEventListener('resize', setup);
-animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].timeline({
-  targets: '.intro__content--welcome .ani-block'
+var introScrollerVisibleListener = function introScrollerVisibleListener(event) {
+  var name = event.target.dataset.scroll;
+
+  if (event.detail.focused && name !== contentNodeOfFocus) {
+    playIntoFocus(name);
+    if (contentNodeOfFocus) playOutOfFocus(contentNodeOfFocus);
+    contentNodeOfFocus = name;
+  }
+};
+/**
+ * something changed so we need to
+ * figure out the new dimensions
+ */
+
+
+var recalculate = function recalculate() {
+  prepFakeScroll(fakeScrollNode);
+  prepForAnimation();
+};
+/**
+ * this is what gets the whole party started!
+ */
+
+
+var init = function init() {
+  fakeScrollNode = prepFakeScroll();
+  prepForAnimation(); // setup the scroller and listeners
+
+  _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_1__["default"].add(fakeScrollNode.children);
+
+  _toConsumableArray(fakeScrollNode.children).forEach(function (item) {
+    item.addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_1__["default"].event, introScrollerVisibleListener);
+  }); // listen for change to recalculate
+
+
+  window.addEventListener('resize', recalculate);
+};
+/**
+ * must be at bottom
+ * this kicks off the party!
+ */
+
+
+init(); // scroll.add(document.querySelectorAll('.intro'));
+// scroll.add(document.getElementsByClassName('js-scroll-in-view'));
+// [...sections].forEach((item) => {
+//   item.addEventListener(scroll.event, this.isVisible.bind(this));
+// });
+// window.addEventListener('resize', setup);
+
+/*
+anime.timeline({
+  targets: '.intro__content--welcome .ani-block',
 }).add({
   delay: 400,
   duration: 1400,
@@ -239,7 +330,7 @@ animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].timeline({
   opacity: 0,
   easing: 'easeInQuint'
 });
-/*
+
 const intro = document.getElementById('intro'),
   services = document.getElementById('services'),
   // homepage scripts
@@ -278,124 +369,108 @@ if (window.sections.active_section) {
     new CustomEvent(start_event, { bubbles: false })
   );
 }
-*/
+
 // Animations Below - its going to get ugly
+const animations = [];
 
-var animations = [];
-animations.push(animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].timeline({
-  duration: 2800,
-  easing: 'linear',
-  loop: true,
-  autoplay: false
-}).add({
-  targets: '#wave-7',
-  translateX: '2%',
-  opacity: [{
-    value: 1
-  }, {
-    value: 0
-  }]
-}).add({
-  targets: '#wave-8',
-  translateX: '2%',
-  endDelay: 5000,
-  opacity: [{
-    value: 1
-  }, {
-    value: 0
-  }]
-}, '-=800'));
-animations.push(animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].timeline({
-  duration: 2800,
-  easing: 'linear',
-  loop: true,
-  autoplay: false
-}).add({
-  targets: '#wave-3',
-  translateX: '2%',
-  delay: 3000,
-  opacity: [{
-    value: 1
-  }, {
-    value: 0
-  }]
-}).add({
-  targets: '#wave-4',
-  translateX: '2%',
-  endDelay: 8000,
-  opacity: [{
-    value: 1
-  }, {
-    value: 0
-  }]
-}, '-=800'));
-animations.push(animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].timeline({
-  duration: 2800,
-  easing: 'linear',
-  loop: true,
-  autoplay: false
-}).add({
-  targets: '#wave-5',
-  translateX: '-2%',
-  delay: 1200,
-  opacity: [{
-    value: 1
-  }, {
-    value: 0
-  }]
-}).add({
-  targets: '#wave-6',
-  translateX: '-2%',
-  endDelay: 3000,
-  opacity: [{
-    value: 1
-  }, {
-    value: 0
-  }]
-}, '-=800'));
-animations.push(animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].timeline({
-  duration: 2800,
-  easing: 'linear',
-  loop: true,
-  autoplay: false
-}).add({
-  targets: '#wave-1',
-  translateX: '-2%',
-  delay: 2200,
-  opacity: [{
-    value: 1
-  }, {
-    value: 0
-  }]
-}).add({
-  targets: '#wave-2',
-  translateX: '-2%',
-  endDelay: 9000,
-  opacity: [{
-    value: 1
-  }, {
-    value: 0
-  }]
-}, '-=800'));
-animations.push(animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].timeline({
-  duration: 400,
-  easing: 'linear',
-  autoplay: false,
-  direction: 'reverse',
-  endDelay: 1500
-}).add({
-  targets: '#pin',
-  translateX: '3%',
-  translateY: '-18%',
-  opacity: 0 // delay: 1500,
+animations.push(
+  anime.timeline({
+    duration: 2800,
+    easing: 'linear',
+    loop: true,
+    autoplay: false,
+  }).add({
+    targets: '#wave-7',
+    translateX: '2%',
+    opacity: [{ value: 1 }, { value: 0 }],
+  }).add({
+    targets: '#wave-8',
+    translateX: '2%',
+    endDelay: 5000,
+    opacity: [{ value: 1 }, { value: 0 }],
+  }, '-=800')
+);
 
-}, 0).add({
-  targets: '#pin-shadow',
-  translateX: '10%',
-  translateY: '7%',
-  opacity: 0
-}, 0));
-var island = Object(animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"])({
+animations.push(
+  anime.timeline({
+    duration: 2800,
+    easing: 'linear',
+    loop: true,
+    autoplay: false,
+  }).add({
+    targets: '#wave-3',
+    translateX: '2%',
+    delay: 3000,
+    opacity: [{ value: 1 }, { value: 0 }],
+  }).add({
+    targets: '#wave-4',
+    translateX: '2%',
+    endDelay: 8000,
+    opacity: [{ value: 1 }, { value: 0 }],
+  }, '-=800')
+);
+
+animations.push(
+  anime.timeline({
+    duration: 2800,
+    easing: 'linear',
+    loop: true,
+    autoplay: false,
+  }).add({
+    targets: '#wave-5',
+    translateX: '-2%',
+    delay: 1200,
+    opacity: [{ value: 1 }, { value: 0 }],
+  }).add({
+    targets: '#wave-6',
+    translateX: '-2%',
+    endDelay: 3000,
+    opacity: [{ value: 1 }, { value: 0 }],
+  }, '-=800')
+);
+
+animations.push(
+  anime.timeline({
+    duration: 2800,
+    easing: 'linear',
+    loop: true,
+    autoplay: false,
+  }).add({
+    targets: '#wave-1',
+    translateX: '-2%',
+    delay: 2200,
+    opacity: [{ value: 1 }, { value: 0 }],
+  }).add({
+    targets: '#wave-2',
+    translateX: '-2%',
+    endDelay: 9000,
+    opacity: [{ value: 1 }, { value: 0 }],
+  }, '-=800')
+);
+
+animations.push(
+  anime.timeline({
+    duration: 400,
+    easing: 'linear',
+    autoplay: false,
+    direction: 'reverse',
+    endDelay: 1500,
+  }).add({
+    targets: '#pin',
+    translateX: '3%',
+    translateY: '-18%',
+    opacity: 0,
+    // delay: 1500,
+  }, 0).add({
+    targets: '#pin-shadow',
+    translateX: '10%',
+    translateY: '7%',
+    opacity: 0,
+  }, 0)
+);
+
+
+let island = anime({
   targets: '.svg-canvas',
   delay: 800,
   duration: 1500,
@@ -403,13 +478,12 @@ var island = Object(animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"]
   translateY: ['100%', '-2%'],
   scale: [0.5, 1.1],
   easing: 'easeOutElastic(1, .8)',
-  complete: function complete(anim) {
-    animations.forEach(function (item) {
+  complete: (anim) => {
+    animations.forEach((item) => {
       item.play();
     });
   }
 });
-/*
 
 anime({
     targets: '#leash-hang',

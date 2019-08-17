@@ -96,6 +96,7 @@ class ScrollIntoView {
         new CustomEvent(this.eventLabel, {
           bubbles: false,
           detail: {
+            rect,
             node: (pixels / rect.height).toFixed(3) * 1,
             window: (pixels / height).toFixed(3) * 1,
             focused: rect.top < half && rect.bottom > half

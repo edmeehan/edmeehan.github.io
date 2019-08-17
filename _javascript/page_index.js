@@ -1,42 +1,122 @@
 import anime from 'animejs/lib/anime.es';
 import scroll from './modules/scroll_into_view';
 
-scroll.add(document.querySelectorAll('.intro'));
-scroll.add(document.getElementsByClassName('js-scroll-in-view'));
+const introScrollerNode = document.getElementById('intro-scroll'),
+  introScrollerContentNodes = introScrollerNode.getElementsByClassName('intro__content');
+let fakeScrollNode,
+  contentNodeOfFocus = false;
 
-setTimeout(() => {
-  console.log(scroll.watching);
-  scroll.remove(document.querySelectorAll('.intro'));
-  console.log(scroll.watching);
-}, 1500);
+/**
+ * we need to build a block to displace for our scroller
+ * this function will make it or modify the node if passed
+ * back as an argument
+ */
+const prepFakeScroll = (node) => {
+  const fakeScroll = node || document.createElement('div');
+  // build the scroll height from the content
+  if (node) {
+    [...introScrollerContentNodes].forEach((item) => {
+      const scrollShim = node.querySelector(`.${item.dataset.scroll}-shim`);
+      scrollShim.style.height = `${item.getBoundingClientRect().height}px`;
+    });
+  } else {
+    [...introScrollerContentNodes].reverse().forEach((item) => {
+      const scrollShim = document.createElement('div');
+      scrollShim.style.height = `${item.getBoundingClientRect().height}px`;
+      scrollShim.className = 'scroll-shim';
+      scrollShim.dataset.scroll = item.dataset.scroll;
+      fakeScroll.appendChild(scrollShim);
+    });
+  }
+  // only if node was not passed to we insert in DOM
+  if (!node) {
+    fakeScroll.className = 'hidden';
+    introScrollerNode.appendChild(fakeScroll);
+  }
+  // just return the element node, because why not
+  return fakeScroll;
+};
 
-const introScrollEle = document.getElementById('intro-scroll'),
-  introScrollWrapperEle = introScrollEle.getElementsByClassName('intro__content'),
-  introScrollBlockEle = introScrollEle.getElementsByClassName('ani-block'),
-  fakeScroll = document.createElement('div');
-
-function setup() {
-  const height = (
-      introScrollWrapperEle[0].getBoundingClientRect().height * introScrollWrapperEle.length
-    ),
-    computedStyles = getComputedStyle(introScrollWrapperEle[0]),
+/**
+ * we need to do some prep for animations
+ * like moving the transform origin location
+ * and other things
+ */
+const prepForAnimation = () => {
+  const animationNodes = introScrollerNode.getElementsByClassName('ani-block'),
+    computedStyles = getComputedStyle(introScrollerContentNodes[0]),
     leftMargin = parseInt(computedStyles.marginLeft, 0),
     leftPadding = parseInt(computedStyles.paddingLeft, 0);
 
-  [...introScrollBlockEle].forEach((item) => {
+  // setting transform origin for animation blocks
+  [...animationNodes].forEach((item) => {
     item.style.transformOrigin = `-${(leftMargin / 2) + leftPadding}px 50%`;
   });
+};
 
-  fakeScroll.style.height = `${height}px`;
-}
+const playIntoFocus = (scrollName) => {
+  console.log('play in', scrollName);
+};
 
-// setup fakeScroll element
-fakeScroll.className = 'hidden';
-introScrollEle.appendChild(fakeScroll);
+const playOutOfFocus = (scrollName) => {
+  console.log('play out', scrollName);
+};
 
-setup();
-window.addEventListener('resize', setup);
+/**
+ * attached to scroll listener and fires when
+ * dom node is visible on screen
+ * @param {obj} event listener object
+ */
+const introScrollerVisibleListener = (event) => {
+  const name = event.target.dataset.scroll;
+  if (event.detail.focused && name !== contentNodeOfFocus) {
+    playIntoFocus(name);
+    if (contentNodeOfFocus) playOutOfFocus(contentNodeOfFocus);
+    contentNodeOfFocus = name;
+  }
+};
 
+/**
+ * something changed so we need to
+ * figure out the new dimensions
+ */
+const recalculate = () => {
+  prepFakeScroll(fakeScrollNode);
+  prepForAnimation();
+};
+
+/**
+ * this is what gets the whole party started!
+ */
+const init = () => {
+  fakeScrollNode = prepFakeScroll();
+  prepForAnimation();
+  // setup the scroller and listeners
+  scroll.add(fakeScrollNode.children);
+  [...fakeScrollNode.children].forEach((item) => {
+    item.addEventListener(scroll.event, introScrollerVisibleListener);
+  });
+  // listen for change to recalculate
+  window.addEventListener('resize', recalculate);
+};
+
+/**
+ * must be at bottom
+ * this kicks off the party!
+ */
+init();
+
+
+// scroll.add(document.querySelectorAll('.intro'));
+// scroll.add(document.getElementsByClassName('js-scroll-in-view'));
+
+// [...sections].forEach((item) => {
+//   item.addEventListener(scroll.event, this.isVisible.bind(this));
+// });
+
+// window.addEventListener('resize', setup);
+
+/*
 anime.timeline({
   targets: '.intro__content--welcome .ani-block',
 }).add({
@@ -53,7 +133,6 @@ anime.timeline({
   easing: 'easeInQuint'
 });
 
-/*
 const intro = document.getElementById('intro'),
   services = document.getElementById('services'),
   // homepage scripts
@@ -92,7 +171,6 @@ if (window.sections.active_section) {
     new CustomEvent(start_event, { bubbles: false })
   );
 }
-*/
 
 // Animations Below - its going to get ugly
 const animations = [];
@@ -208,8 +286,6 @@ let island = anime({
     });
   }
 });
-
-/*
 
 anime({
     targets: '#leash-hang',

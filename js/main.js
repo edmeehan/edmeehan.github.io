@@ -238,6 +238,7 @@ function () {
         item.dispatchEvent(new CustomEvent(_this2.eventLabel, {
           bubbles: false,
           detail: {
+            rect: rect,
             node: (pixels / rect.height).toFixed(3) * 1,
             window: (pixels / height).toFixed(3) * 1,
             focused: rect.top < half && rect.bottom > half
