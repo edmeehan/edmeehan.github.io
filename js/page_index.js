@@ -203,6 +203,8 @@ var fakeScrollNode,
  * we need to build a block to displace for our scroller
  * this function will make it or modify the node if passed
  * back as an argument
+ * @param {Element} node prepFake DOM node
+ * @returns {Element} prepFake DOM node
  */
 
 var prepFakeScroll = function prepFakeScroll(node) {
@@ -249,10 +251,20 @@ var prepForAnimation = function prepForAnimation() {
     item.style.transformOrigin = "-".concat(leftMargin / 2 + leftPadding, "px 50%");
   });
 };
+/**
+ * triggers the play into focus animation
+ * @param {String} scrollName name of animation
+ */
+
 
 var playIntoFocus = function playIntoFocus(scrollName) {
   console.log('play in', scrollName);
 };
+/**
+ * triggers the play out of focus animation
+ * @param {String} scrollName name of animation
+ */
+
 
 var playOutOfFocus = function playOutOfFocus(scrollName) {
   console.log('play out', scrollName);
@@ -260,7 +272,7 @@ var playOutOfFocus = function playOutOfFocus(scrollName) {
 /**
  * attached to scroll listener and fires when
  * dom node is visible on screen
- * @param {obj} event listener object
+ * @param {Event} event listener object
  */
 
 

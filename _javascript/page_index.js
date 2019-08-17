@@ -10,6 +10,8 @@ let fakeScrollNode,
  * we need to build a block to displace for our scroller
  * this function will make it or modify the node if passed
  * back as an argument
+ * @param {Element} node prepFake DOM node
+ * @returns {Element} prepFake DOM node
  */
 const prepFakeScroll = (node) => {
   const fakeScroll = node || document.createElement('div');
@@ -54,10 +56,18 @@ const prepForAnimation = () => {
   });
 };
 
+/**
+ * triggers the play into focus animation
+ * @param {String} scrollName name of animation
+ */
 const playIntoFocus = (scrollName) => {
   console.log('play in', scrollName);
 };
 
+/**
+ * triggers the play out of focus animation
+ * @param {String} scrollName name of animation
+ */
 const playOutOfFocus = (scrollName) => {
   console.log('play out', scrollName);
 };
@@ -65,7 +75,7 @@ const playOutOfFocus = (scrollName) => {
 /**
  * attached to scroll listener and fires when
  * dom node is visible on screen
- * @param {obj} event listener object
+ * @param {Event} event listener object
  */
 const introScrollerVisibleListener = (event) => {
   const name = event.target.dataset.scroll;
