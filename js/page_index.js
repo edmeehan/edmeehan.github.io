@@ -1,5 +1,313 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["page_index"],{
 
+/***/ "./_javascript/modules/animations.js":
+/*!*******************************************!*\
+  !*** ./_javascript/modules/animations.js ***!
+  \*******************************************/
+/*! exports provided: welcome, origin, recreation, family */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "welcome", function() { return welcome; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "origin", function() { return origin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recreation", function() { return recreation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "family", function() { return family; });
+/* harmony import */ var animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs/lib/anime.es */ "./node_modules/animejs/lib/anime.es.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+var defaults = {
+  duration: 600,
+  delay: 400,
+  autoplay: false,
+  easing: 'easeOutElastic(1, .8)'
+};
+
+var AnimationBlock = function AnimationBlock(config, loopAni, contentAni) {
+  var _this = this;
+
+  _classCallCheck(this, AnimationBlock);
+
+  this.config = _objectSpread({}, config, {}, defaults);
+
+  this.config.complete = function (ani) {
+    return _this.complete(ani);
+  };
+
+  this.loop = loopAni;
+  this.content = contentAni;
+  this.anime = Object(animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"])(this.config);
+};
+
+AnimationBlock.prototype.playIn = function playIn() {
+  if (this.anime.reversed) this.anime.reverse();
+  this.anime.play();
+};
+
+AnimationBlock.prototype.playOut = function playOut() {
+  if (!this.anime.reversed) this.anime.reverse();
+  this.anime.play();
+};
+
+AnimationBlock.prototype.complete = function complete(ani) {
+  console.log('prototype complete', this);
+};
+
+var welcome = new AnimationBlock({
+  targets: '#svg-emeehan',
+  translateX: ['-20%', '-12%'],
+  translateY: ['100%', '-2%'],
+  scale: [0.5, 1.25],
+  opacity: [1, 1]
+});
+var origin = new AnimationBlock({
+  targets: '#svg-hawaii',
+  translateX: ['-20%', '-8%'],
+  translateY: ['100%', '7%'],
+  scale: [0.5, 1.1],
+  opacity: [1, 1]
+}, [animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].timeline({
+  duration: 2800,
+  easing: 'linear',
+  loop: true,
+  autoplay: false
+}).add({
+  targets: '#wave-7',
+  translateX: '2%',
+  opacity: [{
+    value: 1
+  }, {
+    value: 0
+  }]
+}).add({
+  targets: '#wave-8',
+  translateX: '2%',
+  endDelay: 5000,
+  opacity: [{
+    value: 1
+  }, {
+    value: 0
+  }]
+}, '-=800'), animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].timeline({
+  duration: 2800,
+  easing: 'linear',
+  loop: true,
+  autoplay: false
+}).add({
+  targets: '#wave-3',
+  translateX: '2%',
+  delay: 3000,
+  opacity: [{
+    value: 1
+  }, {
+    value: 0
+  }]
+}).add({
+  targets: '#wave-4',
+  translateX: '2%',
+  endDelay: 8000,
+  opacity: [{
+    value: 1
+  }, {
+    value: 0
+  }]
+}, '-=800'), animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].timeline({
+  duration: 2800,
+  easing: 'linear',
+  loop: true,
+  autoplay: false
+}).add({
+  targets: '#wave-5',
+  translateX: '-2%',
+  delay: 1200,
+  opacity: [{
+    value: 1
+  }, {
+    value: 0
+  }]
+}).add({
+  targets: '#wave-6',
+  translateX: '-2%',
+  endDelay: 3000,
+  opacity: [{
+    value: 1
+  }, {
+    value: 0
+  }]
+}, '-=800'), animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].timeline({
+  duration: 2800,
+  easing: 'linear',
+  loop: true,
+  autoplay: false
+}).add({
+  targets: '#wave-1',
+  translateX: '-2%',
+  delay: 2200,
+  opacity: [{
+    value: 1
+  }, {
+    value: 0
+  }]
+}).add({
+  targets: '#wave-2',
+  translateX: '-2%',
+  endDelay: 9000,
+  opacity: [{
+    value: 1
+  }, {
+    value: 0
+  }]
+}, '-=800'), animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].timeline({
+  duration: 400,
+  easing: 'linear',
+  autoplay: false,
+  direction: 'reverse',
+  endDelay: 1500
+}).add({
+  targets: '#pin',
+  translateX: '3%',
+  translateY: '-18%',
+  opacity: 0 // delay: 1500,
+
+}, 0).add({
+  targets: '#pin-shadow',
+  translateX: '10%',
+  translateY: '7%',
+  opacity: 0
+}, 0)]);
+
+origin.complete = function complete(ani) {
+  this.loop.forEach(function (item) {
+    if (!ani.reversed) {
+      item.play();
+    } else {
+      item.pause();
+    }
+  });
+};
+
+var recreation = new AnimationBlock({
+  targets: '#svg-surf',
+  translateX: ['-20%', '-5%'],
+  translateY: ['100%', '0%'],
+  scale: [0.5, 1.15],
+  opacity: [1, 1]
+});
+var family = new AnimationBlock({
+  targets: '#svg-ali-tink',
+  translateX: ['-20%', '-1%'],
+  translateY: ['100%', '6%'],
+  scale: [0.5, 1.05],
+  opacity: [1, 1]
+});
+/*
+anime.timeline({
+  targets: '.intro__content--welcome .ani-block',
+}).add({
+  delay: 400,
+  duration: 1400,
+  rotate: [40, 0],
+  opacity: [0, 1],
+  easing: 'easeOutElastic'
+}).add({
+  delay: 3000,
+  duration: 800,
+  rotate: -40,
+  opacity: 0,
+  easing: 'easeInQuint'
+});
+
+// Animations Below - its going to get ugly
+const animations = [];
+
+
+
+
+let island = anime({
+  targets: '.svg-canvas',
+  delay: 800,
+  duration: 1500,
+  translateX: ['-20%', '-3%'],
+  translateY: ['100%', '-2%'],
+  scale: [0.5, 1.1],
+  easing: 'easeOutElastic(1, .8)',
+  complete: (anim) => {
+    animations.forEach((item) => {
+      item.play();
+    });
+  }
+});
+
+anime({
+    targets: '#leash-hang',
+    rotate: [
+        5,
+        -3,
+    ],
+    easing: 'easeInOutQuad',
+    loop: true,
+    direction: 'alternate',
+    duration: 1200,
+})
+
+anime({
+    targets: '#tink-tail',
+    loop: true,
+    easing: 'linear',
+    direction: 'alternate',
+    duration: 1400,
+    endDelay: 1100,
+    rotate: [
+        12,
+        -2,
+        7,
+        -2,
+        7,
+        -2,
+        2,
+        -2
+    ]
+})
+
+anime({
+    targets: '#tink-head',
+    loop: true,
+    easing: 'linear',
+    direction: 'alternate',
+    duration: 450,
+    delay: 4200,
+    endDelay: 500,
+    rotate: 5,
+})
+
+let faceResting = document.getElementById('ali-face-resting');
+let faceSmile = document.getElementById('ali-face-smile');
+
+let smile = () => {
+    faceSmile.style.opacity = 1;
+    faceResting.style.opacity = 0;
+    setTimeout(resting, 2000);
+}
+
+let resting = () => {
+    faceSmile.style.opacity = 0;
+    faceResting.style.opacity = 1;
+    setTimeout(smile, 12000);
+}
+
+setTimeout(smile, 6000);
+
+*/
+
+/***/ }),
+
 /***/ "./_javascript/modules/scroll_into_view.js":
 /*!*************************************************!*\
   !*** ./_javascript/modules/scroll_into_view.js ***!
@@ -183,8 +491,8 @@ function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs/lib/anime.es */ "./node_modules/animejs/lib/anime.es.js");
-/* harmony import */ var _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/scroll_into_view */ "./_javascript/modules/scroll_into_view.js");
+/* harmony import */ var _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/scroll_into_view */ "./_javascript/modules/scroll_into_view.js");
+/* harmony import */ var _modules_animations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/animations */ "./_javascript/modules/animations.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -211,12 +519,12 @@ var prepFakeScroll = function prepFakeScroll(node) {
   var fakeScroll = node || document.createElement('div'); // build the scroll height from the content
 
   if (node) {
-    _toConsumableArray(introScrollerContentNodes).forEach(function (item) {
-      var scrollShim = node.querySelector(".".concat(item.dataset.scroll, "-shim"));
+    _toConsumableArray(introScrollerContentNodes).forEach(function (item, index) {
+      var scrollShim = node.children[index];
       scrollShim.style.height = "".concat(item.getBoundingClientRect().height, "px");
     });
   } else {
-    _toConsumableArray(introScrollerContentNodes).reverse().forEach(function (item) {
+    _toConsumableArray(introScrollerContentNodes).forEach(function (item) {
       var scrollShim = document.createElement('div');
       scrollShim.style.height = "".concat(item.getBoundingClientRect().height, "px");
       scrollShim.className = 'scroll-shim';
@@ -252,24 +560,6 @@ var prepForAnimation = function prepForAnimation() {
   });
 };
 /**
- * triggers the play into focus animation
- * @param {String} scrollName name of animation
- */
-
-
-var playIntoFocus = function playIntoFocus(scrollName) {
-  console.log('play in', scrollName);
-};
-/**
- * triggers the play out of focus animation
- * @param {String} scrollName name of animation
- */
-
-
-var playOutOfFocus = function playOutOfFocus(scrollName) {
-  console.log('play out', scrollName);
-};
-/**
  * attached to scroll listener and fires when
  * dom node is visible on screen
  * @param {Event} event listener object
@@ -280,9 +570,12 @@ var introScrollerVisibleListener = function introScrollerVisibleListener(event) 
   var name = event.target.dataset.scroll;
 
   if (event.detail.focused && name !== contentNodeOfFocus) {
-    playIntoFocus(name);
-    if (contentNodeOfFocus) playOutOfFocus(contentNodeOfFocus);
+    if (contentNodeOfFocus) {
+      _modules_animations__WEBPACK_IMPORTED_MODULE_1__[contentNodeOfFocus].playOut();
+    }
+
     contentNodeOfFocus = name;
+    _modules_animations__WEBPACK_IMPORTED_MODULE_1__[name].playIn();
   }
 };
 /**
@@ -304,10 +597,10 @@ var init = function init() {
   fakeScrollNode = prepFakeScroll();
   prepForAnimation(); // setup the scroller and listeners
 
-  _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_1__["default"].add(fakeScrollNode.children);
+  _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].add(fakeScrollNode.children);
 
   _toConsumableArray(fakeScrollNode.children).forEach(function (item) {
-    item.addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_1__["default"].event, introScrollerVisibleListener);
+    item.addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, introScrollerVisibleListener);
   }); // listen for change to recalculate
 
 
@@ -319,244 +612,7 @@ var init = function init() {
  */
 
 
-init(); // scroll.add(document.querySelectorAll('.intro'));
-// scroll.add(document.getElementsByClassName('js-scroll-in-view'));
-// [...sections].forEach((item) => {
-//   item.addEventListener(scroll.event, this.isVisible.bind(this));
-// });
-// window.addEventListener('resize', setup);
-
-/*
-anime.timeline({
-  targets: '.intro__content--welcome .ani-block',
-}).add({
-  delay: 400,
-  duration: 1400,
-  rotate: [40, 0],
-  opacity: [0, 1],
-  easing: 'easeOutElastic'
-}).add({
-  delay: 3000,
-  duration: 800,
-  rotate: -40,
-  opacity: 0,
-  easing: 'easeInQuint'
-});
-
-const intro = document.getElementById('intro'),
-  services = document.getElementById('services'),
-  // homepage scripts
-  start_event = 'view_event_focus',
-  end_event = 'view_event_blur',
-  // intro
-  intro_in = 'bounceIn',
-  intro_out = 'bounceOut',
-  // services
-  services_in = 'bounceInRight',
-  services_out = 'bounceOutLeft';
-
-if (intro) {
-  intro.addEventListener(start_event, (event) => {
-    event.target.classList.add('animate', 'active', intro_in);
-  });
-
-  intro.addEventListener(end_event, (event) => {
-    event.target.classList.remove('active');
-  });
-}
-
-if (services) {
-  services.addEventListener(start_event, (event) => {
-    event.target.classList.add('animate', 'active', services_in);
-  });
-
-  services.addEventListener(end_event, (event) => {
-    event.target.classList.remove('active');
-  });
-}
-
-// trigger event - an init event
-if (window.sections.active_section) {
-  window.sections.active_section.dispatchEvent(
-    new CustomEvent(start_event, { bubbles: false })
-  );
-}
-
-// Animations Below - its going to get ugly
-const animations = [];
-
-animations.push(
-  anime.timeline({
-    duration: 2800,
-    easing: 'linear',
-    loop: true,
-    autoplay: false,
-  }).add({
-    targets: '#wave-7',
-    translateX: '2%',
-    opacity: [{ value: 1 }, { value: 0 }],
-  }).add({
-    targets: '#wave-8',
-    translateX: '2%',
-    endDelay: 5000,
-    opacity: [{ value: 1 }, { value: 0 }],
-  }, '-=800')
-);
-
-animations.push(
-  anime.timeline({
-    duration: 2800,
-    easing: 'linear',
-    loop: true,
-    autoplay: false,
-  }).add({
-    targets: '#wave-3',
-    translateX: '2%',
-    delay: 3000,
-    opacity: [{ value: 1 }, { value: 0 }],
-  }).add({
-    targets: '#wave-4',
-    translateX: '2%',
-    endDelay: 8000,
-    opacity: [{ value: 1 }, { value: 0 }],
-  }, '-=800')
-);
-
-animations.push(
-  anime.timeline({
-    duration: 2800,
-    easing: 'linear',
-    loop: true,
-    autoplay: false,
-  }).add({
-    targets: '#wave-5',
-    translateX: '-2%',
-    delay: 1200,
-    opacity: [{ value: 1 }, { value: 0 }],
-  }).add({
-    targets: '#wave-6',
-    translateX: '-2%',
-    endDelay: 3000,
-    opacity: [{ value: 1 }, { value: 0 }],
-  }, '-=800')
-);
-
-animations.push(
-  anime.timeline({
-    duration: 2800,
-    easing: 'linear',
-    loop: true,
-    autoplay: false,
-  }).add({
-    targets: '#wave-1',
-    translateX: '-2%',
-    delay: 2200,
-    opacity: [{ value: 1 }, { value: 0 }],
-  }).add({
-    targets: '#wave-2',
-    translateX: '-2%',
-    endDelay: 9000,
-    opacity: [{ value: 1 }, { value: 0 }],
-  }, '-=800')
-);
-
-animations.push(
-  anime.timeline({
-    duration: 400,
-    easing: 'linear',
-    autoplay: false,
-    direction: 'reverse',
-    endDelay: 1500,
-  }).add({
-    targets: '#pin',
-    translateX: '3%',
-    translateY: '-18%',
-    opacity: 0,
-    // delay: 1500,
-  }, 0).add({
-    targets: '#pin-shadow',
-    translateX: '10%',
-    translateY: '7%',
-    opacity: 0,
-  }, 0)
-);
-
-
-let island = anime({
-  targets: '.svg-canvas',
-  delay: 800,
-  duration: 1500,
-  translateX: ['-20%', '-3%'],
-  translateY: ['100%', '-2%'],
-  scale: [0.5, 1.1],
-  easing: 'easeOutElastic(1, .8)',
-  complete: (anim) => {
-    animations.forEach((item) => {
-      item.play();
-    });
-  }
-});
-
-anime({
-    targets: '#leash-hang',
-    rotate: [
-        5,
-        -3,
-    ],
-    easing: 'easeInOutQuad',
-    loop: true,
-    direction: 'alternate',
-    duration: 1200,
-})
-
-anime({
-    targets: '#tink-tail',
-    loop: true,
-    easing: 'linear',
-    direction: 'alternate',
-    duration: 1400,
-    endDelay: 1100,
-    rotate: [
-        12,
-        -2,
-        7,
-        -2,
-        7,
-        -2,
-        2,
-        -2
-    ]
-})
-
-anime({
-    targets: '#tink-head',
-    loop: true,
-    easing: 'linear',
-    direction: 'alternate',
-    duration: 450,
-    delay: 4200,
-    endDelay: 500,
-    rotate: 5,
-})
-
-let faceResting = document.getElementById('ali-face-resting');
-let faceSmile = document.getElementById('ali-face-smile');
-
-let smile = () => {
-    faceSmile.style.opacity = 1;
-    faceResting.style.opacity = 0;
-    setTimeout(resting, 2000);
-}
-
-let resting = () => {
-    faceSmile.style.opacity = 0;
-    faceResting.style.opacity = 1;
-    setTimeout(smile, 12000);
-}
-
-setTimeout(smile, 6000);
-
-*/
+init();
 
 /***/ }),
 
