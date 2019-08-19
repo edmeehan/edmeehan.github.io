@@ -4,7 +4,8 @@ import * as ani from './modules/animations';
 const introScrollerNode = document.getElementById('intro-scroll'),
   introScrollerContentNodes = introScrollerNode.getElementsByClassName('intro__content');
 let fakeScrollNode,
-  contentNodeOfFocus = false;
+  contentNodeOfFocus = false,
+  wrapperFixed = true;
 
 /**
  * we need to build a block to displace for our scroller
@@ -63,12 +64,28 @@ const prepForAnimation = () => {
  */
 const introScrollerVisibleListener = (event) => {
   const name = event.target.dataset.scroll;
+  // controls which scroll element is in focus
+  // we do some class toggles to make text and buttons clickable
   if (event.detail.focused && name !== contentNodeOfFocus) {
     if (contentNodeOfFocus) {
+      introScrollerNode.querySelector(`[data-scroll="${contentNodeOfFocus}"]`).classList.remove('intro__content--focus');
       ani[contentNodeOfFocus].playOut();
     }
     contentNodeOfFocus = name;
+    introScrollerNode.querySelector(`[data-scroll="${name}"]`).classList.add('intro__content--focus');
     ani[name].playIn();
+  }
+  // when we scroll off screen we need to switch from
+  // position fixed so the elements will go off screen
+  if (event.target === fakeScrollNode.lastChild) {
+    if (event.detail.rect.bottom <= event.detail.rect.height && wrapperFixed) {
+      wrapperFixed = false;
+      introScrollerNode.classList.add('intro--not-fixed');
+    }
+    if (event.detail.rect.bottom > event.detail.rect.height && !wrapperFixed) {
+      wrapperFixed = true;
+      introScrollerNode.classList.remove('intro--not-fixed');
+    }
   }
 };
 
@@ -87,8 +104,9 @@ const recalculate = () => {
 const init = () => {
   fakeScrollNode = prepFakeScroll();
   prepForAnimation();
-  // setup the scroller and listeners
+  // setup the scroller events
   scroll.add(fakeScrollNode.children);
+  // setup the scroller listeners
   [...fakeScrollNode.children].forEach((item) => {
     item.addEventListener(scroll.event, introScrollerVisibleListener);
   });
