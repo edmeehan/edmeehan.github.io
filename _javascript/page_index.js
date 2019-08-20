@@ -2,7 +2,8 @@ import scroll from './modules/scroll_into_view';
 import * as ani from './modules/animations';
 
 const introScrollerNode = document.getElementById('intro-scroll'),
-  introScrollerContentNodes = introScrollerNode.getElementsByClassName('intro__content');
+  introScrollerContentNodes = introScrollerNode.getElementsByClassName('intro__content'),
+  isMobileMQ = window.matchMedia('(max-width: 767px)');
 let fakeScrollNode,
   contentNodeOfFocus = false,
   wrapperFixed = true;
@@ -46,15 +47,24 @@ const prepFakeScroll = (node) => {
  * and other things
  */
 const prepForAnimation = () => {
-  const animationNodes = introScrollerNode.getElementsByClassName('ani-block'),
-    computedStyles = getComputedStyle(introScrollerContentNodes[0]),
-    leftMargin = parseInt(computedStyles.marginLeft, 0),
-    leftPadding = parseInt(computedStyles.paddingLeft, 0);
+  const animationNodes = introScrollerNode.getElementsByClassName('ani-block');
 
-  // setting transform origin for animation blocks
-  [...animationNodes].forEach((item) => {
-    item.style.transformOrigin = `-${(leftMargin / 2) + leftPadding}px 50%`;
-  });
+  // check if mobile break point
+  // if not mobile then do some math
+  if (!isMobileMQ.matches) {
+    const computedStyles = getComputedStyle(introScrollerContentNodes[0]),
+      leftMargin = parseInt(computedStyles.marginLeft, 0),
+      leftPadding = parseInt(computedStyles.paddingLeft, 0);
+
+    // setting transform origin for animation blocks
+    [...animationNodes].forEach((item) => {
+      item.style.transformOrigin = `-${(leftMargin / 2) + leftPadding}px 50%`;
+    });
+  } else { // else lets do some stuff for the mobile layout
+    [...animationNodes].forEach((item) => {
+      item.style.transformOrigin = '50% -100px';
+    });
+  }
 };
 
 /**

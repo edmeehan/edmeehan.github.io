@@ -5,6 +5,8 @@
 @import "variables";
 @import "home-animations";
 
+$xs-break: 360px;
+
 // .animated {
 //   visibility: hidden;
 //   &.animate {
@@ -26,6 +28,13 @@
   opacity: 0;
 }
 
+#intro .layout {
+  @media (max-width: $s-break-max) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .intro {
   $graphic-width: 40%;
   $text-color: #fff;
@@ -33,23 +42,8 @@
 
   &__content {
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
     color: $text-color;
-    margin-left: $graphic-width;
-    padding-left: 2rem;
     position: absolute;
-
-    &-wrapper {
-      z-index: 1;
-      height: 100vh;
-    }
-
-    &--focus {
-      z-index: 1;
-    }
 
     h1, h3, p {
       margin: 0;
@@ -75,46 +69,138 @@
       margin-top: 2rem;
       border-radius: $l-border-radius;
       background-color: fade-out($color: #fff, $amount: .8);
-      line-height: 2.5rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
+      line-height: 1.3rem;
+      padding: .5rem 1rem;
       display: inline-block;
 
       i {
         margin-right: .4rem;
       }
     }
+
+    @media (max-width: $s-break-max) {
+      width: inherit;
+      text-align: center;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      padding-top: 2rem;
+      box-sizing: border-box;
+      transform: translateY(50%);
+    }
+
+    @media (max-width: $xs-break) {
+      transform: translateY(45%);
+    }
+
+    @media (min-width: $m-break) {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      flex-direction: column;
+      margin-left: $graphic-width;
+      padding-left: 2rem;
+    }
+
+    @media (max-width: $m-break-max) {
+      .subheadline {
+        font-size: 1.5rem;
+        line-height: 1.8rem;
+      }
+  
+      .headline {
+        font-size: 2.3rem;
+        line-height: 2.7rem;
+      }
+
+      .tidbit {
+        font-size: .85rem;
+      }
+    }
+
+    @media (max-width: $xs-break) {
+      .subheadline {
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+      }
+  
+      .headline {
+        font-size: 2rem;
+        line-height: 2.3rem;
+      }
+
+      .tidbit {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  &__content-wrapper {
+    z-index: 1;
+    height: 100vh;
+  }
+
+  &__content--focus {
+    z-index: 1;
   }
 
   &__graphics {
-    justify-content: flex-start;
-    align-items: center;
-    height: 100vh;
-    display: flex;
+    height: 50vh;
     z-index: 0;
+
+    @media (max-width: $xs-break) {
+      height: 45vh;
+    }
+
+    @media (min-width: $m-break) {
+      height: 100vh;
+      justify-content: flex-start;
+      align-items: center;
+      display: flex;
+    }
+  }
+
+  &__graphics-nav {
+    display: none;
+    position: absolute;
+    left: -2rem;
+
+    @media (min-width: $xl-break) {
+      left: 0;
+    }
   }
 
   &__graphics-wrapper {
     width: $graphic-width;
+
+    @media (max-width: $s-break-max) {
+      width: 65%;
+      margin: 0 auto;
+      height: inherit;
+    }
   }
 
   &__graphics,
   &__content-wrapper {
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-
+    
     @media (min-width: $m-break) {
-      width: $m-break - 50;
+      width: $m-break - 80;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     @media (min-width: $l-break) {
-      width: $l-break - 50;
+      width: $l-break - 80;
     }
 
     @media (min-width: $xl-break) {
-      width: $xl-break - 50;
+      width: $xl-break - 80;
+    }
+
+    @media (max-width: $s-break-max) {
+      width: 100%;
+      left: 0;
     }
   }
 
@@ -145,6 +231,30 @@
       background-color: #5199e4;
       margin-top: 16%;
     }
+
+    @media (max-width: $s-break-max) {
+      position: absolute;
+      width: inherit;
+      bottom: 0;
+    }
+  }
+
+  &__scroll-on {
+    color: $text-color;
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+
+    .icon {
+      font-size: 2rem;
+    }
+  }
+
+  &--not-fixed &__scroll-on {
+    opacity: 0;
+    pointer-events: none;
   }
 
   &--not-fixed &__graphics,
@@ -153,128 +263,19 @@
     bottom: 0;
     top: auto;
   }
+
+  @media (max-width: $s-break-max) {
+    &--not-fixed &__graphics {
+      transform: translateY(-100%);
+    }
+  }
+
+  @media (max-width: $xs-break) {
+    &--not-fixed &__graphics {
+      height: 55vh;
+    }
+  }
 }
-
-// this section is being rebuilt
-/*
-.intro {
-    transform: rotate(1.5deg);
-    display: flex;
-    flex-direction: column-reverse;
-
-    &__headshot {
-        img {
-            border-radius: $circle-radius;
-            width: 200px;
-            height: auto;
-        }
-    }
-
-    &__text {
-        background-color: $bg-color;
-        padding: 1px 1.5rem;
-        border-radius: $m-border-radius;
-        position: relative;
-
-        .headline {
-            line-height: 1em;
-        }
-
-        .subheadline {
-            line-height: 1.3em;
-            letter-spacing: -(1/$size-units) + 0rem
-        }
-    }
-
-    @media (max-width: 449px) {
-        &__text {
-            .headline {
-                font-size: 10vw;
-            }
-
-            .subheadline {
-                font-size: 6.5vw;
-            }
-        }
-    }
-
-    @media (min-width: 450px) {
-        &__text {
-            .headline {
-                font-size: 3rem;
-            }
-
-            .subheadline {
-                font-size: 2rem;
-            }
-        }
-    }
-
-    @media (max-width: $m-break-max) {
-        text-align: center;
-
-        &__headshot {
-            margin-top: 1.5rem;
-        }
-
-        &__text {
-            &::after {
-                display: block;
-                content: '';
-                width:0;
-                height:0;
-                border: solid transparent 1rem;
-                position: absolute;
-                border-top-color: $bg-color;
-                bottom: -2rem;
-                left: 20%;
-            }
-        }
-    }
-
-    @media (min-width: $m-break) {
-        transform: rotate(3deg);
-
-        &__headshot {
-            img {
-                width: (240/$size-units) + 0rem;
-            }
-        }
-    }
-
-    @media (min-width: $l-break) {
-        flex-direction: row;
-        align-items: center;
-
-        &__text {
-            margin-left: 1.5rem;
-            &::before {
-                display: block;
-                content: '';
-                width:0;
-                height:0;
-                border: solid transparent 1rem;
-                position: absolute;
-                border-right-color: $bg-color;
-                top: 20%;
-                left: -2rem;
-            }
-        }
-    }
-
-    @media (min-width: $xl-break) {
-        &__text {
-            .headline {
-                font-size: 4.45rem;
-            }
-
-            .subheadline {
-                font-size: 2.6rem;
-            }
-        }
-    }
-}
-*/
 
 #about {
   background-color: $bg-color;

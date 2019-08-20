@@ -422,7 +422,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 var introScrollerNode = document.getElementById('intro-scroll'),
-    introScrollerContentNodes = introScrollerNode.getElementsByClassName('intro__content');
+    introScrollerContentNodes = introScrollerNode.getElementsByClassName('intro__content'),
+    isMobileMQ = window.matchMedia('(max-width: 767px)');
 var fakeScrollNode,
     contentNodeOfFocus = false,
     wrapperFixed = true;
@@ -469,14 +470,23 @@ var prepFakeScroll = function prepFakeScroll(node) {
 
 
 var prepForAnimation = function prepForAnimation() {
-  var animationNodes = introScrollerNode.getElementsByClassName('ani-block'),
-      computedStyles = getComputedStyle(introScrollerContentNodes[0]),
-      leftMargin = parseInt(computedStyles.marginLeft, 0),
-      leftPadding = parseInt(computedStyles.paddingLeft, 0); // setting transform origin for animation blocks
+  var animationNodes = introScrollerNode.getElementsByClassName('ani-block'); // check if mobile break point
+  // if not mobile then do some math
 
-  _toConsumableArray(animationNodes).forEach(function (item) {
-    item.style.transformOrigin = "-".concat(leftMargin / 2 + leftPadding, "px 50%");
-  });
+  if (!isMobileMQ.matches) {
+    var computedStyles = getComputedStyle(introScrollerContentNodes[0]),
+        leftMargin = parseInt(computedStyles.marginLeft, 0),
+        leftPadding = parseInt(computedStyles.paddingLeft, 0); // setting transform origin for animation blocks
+
+    _toConsumableArray(animationNodes).forEach(function (item) {
+      item.style.transformOrigin = "-".concat(leftMargin / 2 + leftPadding, "px 50%");
+    });
+  } else {
+    // else lets do some stuff for the mobile layout
+    _toConsumableArray(animationNodes).forEach(function (item) {
+      item.style.transformOrigin = '50% -100px';
+    });
+  }
 };
 /**
  * attached to scroll listener and fires when
