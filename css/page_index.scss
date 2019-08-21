@@ -7,18 +7,6 @@
 
 $xs-break: 360px;
 
-// .animated {
-//   visibility: hidden;
-//   &.animate {
-//     visibility: visible;
-//   }
-// }
-
-// .section {
-//   animation-duration: 0.9s;
-//   animation-fill-mode: both;
-// }
-
 .hidden {
   opacity: 0;
   pointer-events: none;
@@ -277,6 +265,131 @@ $xs-break: 360px;
   }
 }
 
+#hireme {
+  background-color: $brand-blue;
+}
+
+// setting all the list styles
+.callouts,
+.callouts__list,
+.hireme__notes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hireme {
+  color: #fff;
+
+  &__intro {
+    text-align: center;
+    margin-bottom: 8rem;
+    margin-top: 2rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+
+    .subtitle {
+      color: $brand-lite-blue;
+      margin-top: 0;
+    }
+    .title {
+      margin-bottom: 0;
+    }
+  }
+  &__notes {
+    text-align: center;
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+
+    .title {
+      margin-top: 0;
+      margin-bottom: 1rem;
+
+      + p {
+        color: $brand-lite-text;
+        margin: 0;
+      }
+    }
+
+    &-item {
+      border-top: solid 1px $brand-lite-blue;
+      flex: 0 0 45%;
+      margin-bottom: 4rem;
+      padding: 1.5rem 2.5rem;
+      box-sizing: border-box;
+    }
+  }
+  &__frontend {
+
+  }
+  &__cro {
+
+  }
+  &__ga {
+
+  }
+}
+
+.service-block {
+  margin-bottom: 8rem;
+  padding-top: 1.5rem;
+  border-top: solid 1px $brand-lite-blue;
+  display: grid;
+  grid-template-columns: 1fr 10% 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+      "title title title"
+      "content . callouts";
+
+  &__title {
+    grid-area: title;
+  }
+  &__content {
+    grid-area: content;
+  }
+  &__callouts {
+    grid-area: callouts;
+  }
+
+  .title {
+    margin-top: 0;
+    + p {
+      color: $brand-lite-text;
+    }
+  }
+  .subtitle {
+    color: $brand-lite-blue;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.callouts {
+  &__title {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: $brand-lite-blue;
+  }
+  &__item {
+    margin-bottom: 1.5rem;
+  }
+  &__list {
+    > li {
+      display: inline-block;
+      &::after {
+        content: ',';
+      }
+      &:last-child::after {
+        content: '';
+      }
+    }
+  }
+}
+
 #about {
   background-color: $bg-color;
 }
@@ -370,37 +483,6 @@ $xs-break: 360px;
       }
       &:last-child {
         transform: translate(0, 1.3%) scale(0.95) rotate(-0.8deg);
-      }
-    }
-  }
-}
-
-#contact {
-  background-color: $bg-color;
-}
-
-.contact {
-  width: 100%;
-
-  &__text {
-    text-align: center;
-  }
-
-  &__form {
-    .form__wrapper {
-    }
-
-    .form__response-message {
-      text-align: center;
-    }
-  }
-
-  @media (min-width: $m-break) {
-    &__form {
-      .form__wrapper {
-        width: 60%;
-        margin-left: auto;
-        margin-right: auto;
       }
     }
   }
