@@ -1,8 +1,10 @@
 import scroll from './modules/scroll_into_view';
-import * as ani from './modules/animations';
+import * as aniIntro from './modules/animations_index_intro';
+import * as aniHireMe from './modules/animations_index_hireme';
 
 const introScrollerNode = document.getElementById('intro-scroll'),
   introScrollerContentNodes = introScrollerNode.getElementsByClassName('intro__content'),
+  hireMeScrollerNodes = document.querySelectorAll('.hireme [data-animate]'),
   isMobileMQ = window.matchMedia('(max-width: 767px)');
 let fakeScrollNode,
   contentNodeOfFocus = false,
@@ -79,11 +81,11 @@ const introScrollerVisibleListener = (event) => {
   if (event.detail.focused && name !== contentNodeOfFocus) {
     if (contentNodeOfFocus) {
       introScrollerNode.querySelector(`[data-scroll="${contentNodeOfFocus}"]`).classList.remove('intro__content--focus');
-      ani[contentNodeOfFocus].playOut();
+      aniIntro[contentNodeOfFocus].playOut();
     }
     contentNodeOfFocus = name;
     introScrollerNode.querySelector(`[data-scroll="${name}"]`).classList.add('intro__content--focus');
-    ani[name].playIn();
+    aniIntro[name].playIn();
   }
   // when we scroll off screen we need to switch from
   // position fixed so the elements will go off screen
@@ -96,6 +98,27 @@ const introScrollerVisibleListener = (event) => {
       wrapperFixed = true;
       introScrollerNode.classList.remove('intro--not-fixed');
     }
+  }
+};
+
+/**
+ * attached to scroll listener and fires when
+ * dom node is visible on screen
+ * @param {Event} event listener object
+ */
+const hireMeScrollerVisibleListener = ({ target: node, detail: { node: visible } }) => {
+  let cleanup = false;
+
+  // animate when greater than 65% in view
+  if (visible > 0.65) {
+    cleanup = true;
+    if (node.dataset.animate) aniHireMe[node.dataset.animate].play();
+  }
+
+  // clean up listeners
+  if (cleanup) {
+    node.removeEventListener(scroll.event, hireMeScrollerVisibleListener);
+    scroll.remove([node]);
   }
 };
 
@@ -116,10 +139,20 @@ const init = () => {
   prepForAnimation();
   // setup the scroller events
   scroll.add(fakeScrollNode.children);
-  // setup the scroller listeners
+  scroll.add(hireMeScrollerNodes);
+  // setup the scroller listeners for intro section
   [...fakeScrollNode.children].forEach((item) => {
     item.addEventListener(scroll.event, introScrollerVisibleListener);
   });
+  // setup the scroller listeners for the hireme section
+  [...hireMeScrollerNodes].forEach((item) => {
+    item.addEventListener(scroll.event, hireMeScrollerVisibleListener);
+  });
+  // intro section listner
+  // document.getElementById('intro').addEventListener(scroll.event, (event) => {
+  //   const node = event.target.classList;
+  //   // if (!node.contains('intro--active')) node.add('intro--active');
+  // });
   // listen for change to recalculate
   window.addEventListener('resize', recalculate);
 };

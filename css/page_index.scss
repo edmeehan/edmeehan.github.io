@@ -29,8 +29,8 @@ $xs-break: 360px;
   position: relative;
 
   &__content {
-    height: 100vh;
     color: $text-color;
+    height: 100vh;
     position: absolute;
 
     h1, h3, p {
@@ -273,8 +273,6 @@ $xs-break: 360px;
 .callouts,
 .callouts__list,
 .hireme__notes {
-  list-style: none;
-  padding: 0;
   margin: 0;
 }
 
@@ -283,10 +281,7 @@ $xs-break: 360px;
 
   &__intro {
     text-align: center;
-    margin-bottom: 8rem;
-    margin-top: 2rem;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    margin-bottom: 4rem;
 
     .subtitle {
       color: $brand-lite-blue;
@@ -295,15 +290,17 @@ $xs-break: 360px;
     .title {
       margin-bottom: 0;
     }
+
+    @media (min-width: $m-break) {
+      margin-bottom: 8rem;
+      margin-top: 2rem;
+    }
   }
+
   &__notes {
     text-align: center;
-    margin-bottom: 4rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: stretch;
+    margin-bottom: 0;
+    border: solid 1px $brand-lite-blue;
 
     .title {
       margin-top: 0;
@@ -317,33 +314,54 @@ $xs-break: 360px;
 
     &-item {
       border-top: solid 1px $brand-lite-blue;
-      flex: 0 0 45%;
-      margin-bottom: 4rem;
       padding: 1.5rem 2.5rem;
       box-sizing: border-box;
     }
-  }
-  &__frontend {
 
-  }
-  &__cro {
+    @media (max-width: $s-break-max) {
+      &-item {
+        &:first-child {
+          border-top: none;
+        }
+      }
+    }
 
-  }
-  &__ga {
+    @media (min-width: $m-break) {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: stretch;
+      border: none;
+      margin-bottom: 4rem;
 
+      &-item {
+        flex: 0 0 45%;
+        margin-bottom: 4rem;
+      }
+    }
+  }
+
+  & &__ga {
+    margin-bottom: 0;
+
+    @media (min-width: $m-break) {
+      margin-bottom: 2rem;
+    }
   }
 }
 
 .service-block {
-  margin-bottom: 8rem;
-  padding-top: 1.5rem;
+  margin-bottom: 4rem;
+  padding-top: 5rem;
   border-top: solid 1px $brand-lite-blue;
   display: grid;
-  grid-template-columns: 1fr 10% 1fr;
-  grid-template-rows: auto auto;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
   grid-template-areas:
-      "title title title"
-      "content . callouts";
+      "title"
+      "content"
+      "callouts";
 
   &__title {
     grid-area: title;
@@ -363,8 +381,25 @@ $xs-break: 360px;
   }
   .subtitle {
     color: $brand-lite-blue;
+    line-height: 1.5em;
     margin-top: 0;
     margin-bottom: 0;
+  }
+
+  @media (max-width: $s-break-max) {
+    &.hireme__frontend {
+      border-top: none;
+    }
+  }
+
+  @media (min-width: $m-break) {
+    margin-bottom: 8rem;
+    padding-top: 1.5rem;
+    grid-template-columns: 1fr 10% 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "title title title"
+        "content . callouts";
   }
 }
 

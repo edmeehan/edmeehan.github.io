@@ -105,7 +105,6 @@ textarea {
     box-sizing: border-box;
     border: solid 1px transparent;
     border-radius: $s-border-radius;
-    padding: 0 .5rem;
     display: block;
     outline: none;
 }
@@ -115,6 +114,7 @@ textarea {
 }
 
 input {
+    padding: 0 .5rem;
     line-height: 2rem;
     height: 2rem;
 }

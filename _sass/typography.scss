@@ -1,41 +1,71 @@
-@mixin serif() {
-    font-family: 'Roboto Slab', serif;
-}
-
-@mixin sans() {
-    font-family: 'Noto Sans', sans-serif;
-}
-
 .font {
-    &.sans,
     &-sans {
-        @include sans();
+        font-family: 'Noto Sans', sans-serif;
     }
-
-    &.serif,
     &-serif {
-        @include serif();
+        font-family: 'Roboto Slab', serif;
     }
+    &-normal {
+        font-weight: 400;
+    }
+    &-bold {
+        font-weight: 600;
+    }
+    &-big {
+        font-size: (22/$size-units) + 0rem;
+    }
+    &-medium {
+        font-size: (18/$size-units) + 0rem;
+    }
+    &-small {
+        font-size: (14/$size-units) + 0rem;
+    }
+    &-x-small {
+        font-size: (12/$size-units) + 0rem;
+    }
+}
+
+p,ol,ul,hr {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5rem;
 }
 
 h1,h2,h3,h4,h5,
 .h1,.h2,.h3,.h4,.h5 {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
-    line-height: 1.5rem;
+    line-height: 1em;
+
+    &:not(.font-serif),
+    .font-sans {
+        letter-spacing: -0.04em;
+        margin-left: -0.07em;
+    }
 }
 
 h1,.h1 {
-    @extend %h1;
+    font-size: (36/$size-units) + 0rem;
+
+    @media (min-width: $m-break) {
+        font-size: (52/$size-units) + 0rem;
+    }
 }
 
 h2,.h2 {
-    font-size: (42/$size-units) + 0rem;
-    line-height: 3rem;
+    font-size: (32/$size-units) + 0rem;
+
+    @media (min-width: $m-break) {
+        font-size: (42/$size-units) + 0rem;
+    }
 }
 
 h3,.h3 {
-    @extend %h3;
+    font-size: (26/$size-units) + 0rem;
+
+    @media (min-width: $m-break) {
+        font-size: (36/$size-units) + 0rem;
+    }
 }
 
 h4,.h4 {
@@ -46,21 +76,19 @@ h5,.h5 {
     font-size: 1rem;
 }
 
-p {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.5em;
-}
+ol, ul {
+    padding-left: 1.5rem;
+    padding-inline-start: 1.5rem;
 
-ol,
-ul {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+    &.list {
+        &-clean {
+            list-style: none;
+            padding-left: 0;
+        }
+    }
 }
 
 hr {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
     border: none;
     height: 0;
     border-top: solid 1px $hr-color;
@@ -76,25 +104,4 @@ p {
         margin-right: -(2/$size-units) + 0rem;
         text-decoration: none;
     }
-}
-
-.big {
-    font-size: (42/$size-units) + 0rem;
-}
-.medium {
-    font-size: (18/$size-units) + 0rem;
-}
-.small {
-    font-size: (14/$size-units) + 0rem;
-}
-// .x-small {
-//     font-size: (14/$size-units) + 0rem;
-// }
-
-.weight-normal {
-    font-weight: 400;
-}
-
-.weight-bold {
-    font-weight: 600;
 }

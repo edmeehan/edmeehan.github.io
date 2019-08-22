@@ -1,9 +1,87 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["page_index"],{
 
-/***/ "./_javascript/modules/animations.js":
-/*!*******************************************!*\
-  !*** ./_javascript/modules/animations.js ***!
-  \*******************************************/
+/***/ "./_javascript/modules/animations_index_hireme.js":
+/*!********************************************************!*\
+  !*** ./_javascript/modules/animations_index_hireme.js ***!
+  \********************************************************/
+/*! exports provided: intro, notes, frontend, cro, ga */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "intro", function() { return intro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "notes", function() { return notes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "frontend", function() { return frontend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cro", function() { return cro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ga", function() { return ga; });
+/* harmony import */ var animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs/lib/anime.es */ "./node_modules/animejs/lib/anime.es.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+var defaults = {
+  duration: 1400,
+  opacity: [0, 1],
+  autoplay: false
+};
+
+var AnimationBlock = function AnimationBlock(config) {
+  _classCallCheck(this, AnimationBlock);
+
+  this.config = _objectSpread({}, config, {}, defaults); // this.config.complete = (ani) => this.complete(ani);
+
+  this.anime = Object(animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"])(this.config);
+};
+
+AnimationBlock.prototype.play = function play() {
+  if (!this.started) this.anime.play();
+}; // AnimationBlock.prototype.complete = function complete(ani) {
+//   // console.log(ani);
+// };
+
+
+var intro = new AnimationBlock({
+  targets: '.hireme__intro > *',
+  translateY: ['25px', 0],
+  scale: [1.1, 1],
+  delay: animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].stagger(500)
+});
+var notes = new AnimationBlock({
+  targets: '.hireme__notes-item',
+  translateY: ['25px', 0],
+  scale: [1.5, 1],
+  delay: animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].stagger(250)
+});
+var frontend = new AnimationBlock({
+  targets: '.hireme__frontend > *',
+  translateY: ['25px', 0],
+  scale: [1.5, 1],
+  delay: animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].stagger(250)
+});
+var cro = new AnimationBlock({
+  targets: '.hireme__cro > *',
+  translateY: ['25px', 0],
+  scale: [1.5, 1],
+  delay: animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].stagger(250)
+});
+var ga = new AnimationBlock({
+  targets: '.hireme__ga > *',
+  translateY: ['25px', 0],
+  scale: [1.5, 1],
+  delay: animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"].stagger(250)
+});
+
+/***/ }),
+
+/***/ "./_javascript/modules/animations_index_intro.js":
+/*!*******************************************************!*\
+  !*** ./_javascript/modules/animations_index_intro.js ***!
+  \*******************************************************/
 /*! exports provided: welcome, origin, recreation, family */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -410,7 +488,8 @@ function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/scroll_into_view */ "./_javascript/modules/scroll_into_view.js");
-/* harmony import */ var _modules_animations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/animations */ "./_javascript/modules/animations.js");
+/* harmony import */ var _modules_animations_index_intro__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/animations_index_intro */ "./_javascript/modules/animations_index_intro.js");
+/* harmony import */ var _modules_animations_index_hireme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/animations_index_hireme */ "./_javascript/modules/animations_index_hireme.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -421,8 +500,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
+
 var introScrollerNode = document.getElementById('intro-scroll'),
     introScrollerContentNodes = introScrollerNode.getElementsByClassName('intro__content'),
+    hireMeScrollerNodes = document.querySelectorAll('.hireme [data-animate]'),
     isMobileMQ = window.matchMedia('(max-width: 767px)');
 var fakeScrollNode,
     contentNodeOfFocus = false,
@@ -502,12 +583,12 @@ var introScrollerVisibleListener = function introScrollerVisibleListener(event) 
   if (event.detail.focused && name !== contentNodeOfFocus) {
     if (contentNodeOfFocus) {
       introScrollerNode.querySelector("[data-scroll=\"".concat(contentNodeOfFocus, "\"]")).classList.remove('intro__content--focus');
-      _modules_animations__WEBPACK_IMPORTED_MODULE_1__[contentNodeOfFocus].playOut();
+      _modules_animations_index_intro__WEBPACK_IMPORTED_MODULE_1__[contentNodeOfFocus].playOut();
     }
 
     contentNodeOfFocus = name;
     introScrollerNode.querySelector("[data-scroll=\"".concat(name, "\"]")).classList.add('intro__content--focus');
-    _modules_animations__WEBPACK_IMPORTED_MODULE_1__[name].playIn();
+    _modules_animations_index_intro__WEBPACK_IMPORTED_MODULE_1__[name].playIn();
   } // when we scroll off screen we need to switch from
   // position fixed so the elements will go off screen
 
@@ -522,6 +603,29 @@ var introScrollerVisibleListener = function introScrollerVisibleListener(event) 
       wrapperFixed = true;
       introScrollerNode.classList.remove('intro--not-fixed');
     }
+  }
+};
+/**
+ * attached to scroll listener and fires when
+ * dom node is visible on screen
+ * @param {Event} event listener object
+ */
+
+
+var hireMeScrollerVisibleListener = function hireMeScrollerVisibleListener(_ref) {
+  var node = _ref.target,
+      visible = _ref.detail.node;
+  var cleanup = false; // animate when greater than 65% in view
+
+  if (visible > 0.65) {
+    cleanup = true;
+    if (node.dataset.animate) _modules_animations_index_hireme__WEBPACK_IMPORTED_MODULE_2__[node.dataset.animate].play();
+  } // clean up listeners
+
+
+  if (cleanup) {
+    node.removeEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, hireMeScrollerVisibleListener);
+    _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].remove([node]);
   }
 };
 /**
@@ -543,11 +647,22 @@ var init = function init() {
   fakeScrollNode = prepFakeScroll();
   prepForAnimation(); // setup the scroller events
 
-  _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].add(fakeScrollNode.children); // setup the scroller listeners
+  _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].add(fakeScrollNode.children);
+  _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].add(hireMeScrollerNodes); // setup the scroller listeners for intro section
 
   _toConsumableArray(fakeScrollNode.children).forEach(function (item) {
     item.addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, introScrollerVisibleListener);
-  }); // listen for change to recalculate
+  }); // setup the scroller listeners for the hireme section
+
+
+  _toConsumableArray(hireMeScrollerNodes).forEach(function (item) {
+    item.addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, hireMeScrollerVisibleListener);
+  }); // intro section listner
+  // document.getElementById('intro').addEventListener(scroll.event, (event) => {
+  //   const node = event.target.classList;
+  //   // if (!node.contains('intro--active')) node.add('intro--active');
+  // });
+  // listen for change to recalculate
 
 
   window.addEventListener('resize', recalculate);

@@ -78,8 +78,8 @@
 
 .section {
     &__content {
-        padding-top: $header-height;
-        padding-bottom: $header-height;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
     }
 
     &--full-screen {
@@ -91,128 +91,38 @@
         }
     }
 
-    // &--top {
-    //     .section__content {
-    //         align-items: flex-start;
-    //     }
-    // }
-
-    @media (min-width: $xl-break) {
+    @media (min-width: $m-break) {
         &__content {
-            padding-top: $header-height-xl;
-        }
-
-        &--full-screen {
-            .section__content {
-                padding-bottom: $header-height-xl;
-            }
+            padding-top: 6rem;
+            padding-bottom: 6rem;
         }
     }
 }
 
 .layout {
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+
+    @media (max-width: $xs-break-max) {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+
+    @media (min-width: $s-break) and (max-width: $s-break-max) {
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
 
     @media (min-width: $m-break) {
-        width: $m-break - 100;
+        width: 70%;
+        max-width: $m-break - 100;
         margin-left: auto;
         margin-right: auto;
     }
 
     @media (min-width: $l-break) {
-        width: $l-break - 100;
+        max-width: $l-break - 100;
     }
 
     @media (min-width: $xl-break) {
-        width: $xl-break - 100;
+        max-width: $xl-break - 100;
     }
 }
-
-/*
-.tabbed {
-    display: flex;
-
-    &__tabs {
-        // background-color: rgba(white, .4);
-    }
-
-    &__tab-list {
-        margin:0;
-        padding:0;
-        list-style:none;
-        position: sticky;
-        top: 5.75rem;
-    }
-
-    &__tab-title {
-        background-color: rgba(white, .4);
-        margin-bottom: .75rem;
-        margin-right: .75rem;
-        padding-right: 0;
-        transition: margin-right 600ms, padding-right 600ms, background-color 600ms;
-
-        a {
-            padding: .75rem;
-            display: block;
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .title {
-            display: none;
-        }
-
-        &.active {
-            background-color: $bg-color;
-            margin-right: 0;
-            padding-right: .75rem;
-        }
-    }
-
-    &__contents {
-        background-color: $bg-color;
-    }
-
-    &__content-list {
-        margin:0;
-        padding:1px 1.5rem;
-        list-style:none;
-    }
-
-    &__tab-content {
-        display:none;
-
-        &.active {
-            display: block;
-        }
-    }
-
-    &--white {
-        &.tabbed {
-
-        }
-    }
-
-    @media (min-width: $m-break) {
-        &__tabs {
-            flex: 0 1 30%;
-        }
-
-        &__contents {
-            flex: 0 1 70%;
-        }
-
-        &__tab-list {
-            position: sticky;
-            top: 5.75rem;
-        }
-
-        &__tab-title {
-            .title {
-                display: inline;
-            }
-        }
-    }
-}
-*/

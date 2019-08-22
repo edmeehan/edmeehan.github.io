@@ -11,14 +11,14 @@
 html,
 body {
     line-height: 1.5rem;
-    font-size: 16px;
+    font-size: 12px;
 
     &.locked {
         overflow: hidden;
     }
 
-    @media (max-width: $s-break-max) {
-        font-size: 14px;
+    @media (min-width: $m-break) {
+        font-size: $size-units + 0px;
     }
 
     @media (min-width: $xl-break) {
@@ -222,7 +222,6 @@ body {
                 box-sizing: border-box;
 
                 h3 {
-                    @include serif();
                     font-size: (22/$size-units) + 0rem;
                     line-height: 1.5rem;
                 }

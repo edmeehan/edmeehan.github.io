@@ -38,10 +38,9 @@ $m-break-max: $l-break - 1;
 $m-break: 768px;
 
 $s-break-max: $m-break - 1;
+$s-break: 321px;
 
-// defined
-$header-height: 6rem;
-$header-height-xl: $header-height;
+$xs-break-max: $s-break - 1;
 
 // border radius sizes
 $s-border-radius: 4px;
