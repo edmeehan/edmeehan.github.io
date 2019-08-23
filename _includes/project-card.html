@@ -1,10 +1,12 @@
-<div class="project-card project-card--{{ include.project.category }}">
-    <a class="project-card__link" href="{{ include.project.url | absolute_url }}" title="View {{ include.project.title | downcase }} project">
-        <img class="project-card__img" width="400" height="200" src="{{ include.project.image | absolute_url }}" alt="{{ include.project.title }} project image">
+{%- assign project = include.project -%}
+{%- assign category_icon = site.data.icons-category[project.category] -%}
+<div class="project-card project-card--{{ project.category }}">
+    <a class="project-card__link" href="{{ project.url | absolute_url }}" title="View {{ project.title | downcase }} project">
+        <img class="project-card__img" width="400" height="200" src="{{ project.image | absolute_url }}" alt="{{ project.title }} project image">
         <div class="project-card__title">
-            <h2 class="h4 font-normal">{{ include.project.title }}</h2>
-            <span class="date">{{ include.project.date | date: "%B %Y" }}</span>
-            <h4 class="h5 font-normal">{{ include.project.category }}&nbsp;{{ include.category_icon.icon }}</h4>
+            <h2 class="title h4 font-normal overflow">{{ project.title }}</h2>
+            <h4 class="category h5 font-normal">{{ project.category }}&nbsp;{{ category_icon.icon }}</h4>
+            <span class="date">{{ project.date | date: "%B %Y" }}</span>
         </div>
     </a>
 </div>
