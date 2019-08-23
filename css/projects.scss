@@ -2,7 +2,7 @@
 # Front matter comment to ensure Jekyll properly reads file.
 ---
 @import 'variables';
-$img-max-width: 1440px;
+// $img-max-width: 1440px;
 
 .projects {
 
@@ -11,45 +11,10 @@ $img-max-width: 1440px;
     }
 
     &__list {
-        list-style: none;
         margin:0;
-        padding:0;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-    }
-
-    &__list-item {
-
-        > a {
-            background-color: $brand-purple;
-            margin: .5rem;
-            display: block;
-            text-decoration: none;
-            color: inherit;
-            border-radius: $s-border-radius;
-            overflow: hidden;
-        }
-    }
-
-    &__img {
-        max-width: $img-max-width;
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    &__title {
-        padding: .6rem .8rem;
-        h2,h4,.date {
-            margin: 0;
-        }
-        h4 {
-            text-transform: capitalize;
-        }
-        .date {
-            float: right;
-        }
     }
 
     @media (min-width: $l-break) {

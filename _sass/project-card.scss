@@ -1,0 +1,33 @@
+.project-card {
+  &__link {
+    background-color: $brand-purple;
+    margin: 0.5rem;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: $s-border-radius;
+    overflow: hidden;
+  }
+
+  &__img {
+    max-width: $img-max-width;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  &__title {
+    padding: 0.6rem 0.8rem;
+    h2,
+    h4,
+    .date {
+      margin: 0;
+    }
+    h4 {
+      text-transform: capitalize;
+    }
+    .date {
+      float: right;
+    }
+  }
+}

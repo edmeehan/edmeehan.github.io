@@ -5,7 +5,7 @@ project_url: http://hostandporter.com/
 image: /img/projects/hostandporter-site.jpg
 og-image: /img/projects/hostandporter-site.jpg
 read-time: 1.5 min read
-# excerpt:
+excerpt: I was hired by Caava design to build a product catalog website for their client Host & Porter.
 seo-title: Host & Porter Product Catalog WordPress Project
 tags:
     - WordPress
@@ -13,7 +13,7 @@ tags:
     - Javascript
     - LESS
 ---
-I was hired by [Caava design](https://caavadesign.com/) to build a product catalog website for their client Host & Porter.<!--more--> I have been following their owner and creative director [Cody Small on behance.com](https://www.behance.net/codysmall) for some time and was excited to have an opportunity to work with them.
+I was hired by [Caava design](https://caavadesign.com/) to build a product catalog website for their client Host & Porter. I have been following their owner and creative director [Cody Small on behance.com](https://www.behance.net/codysmall) for some time and was excited to have an opportunity to work with them.
 
 ### WordPress Development
 

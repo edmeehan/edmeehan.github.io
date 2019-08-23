@@ -14,20 +14,11 @@ css_styles:
             <header class="projects__header">
                 <h1 class="font-serif">Projects</h1>
             </header>
-            <ul class="projects__list">
+            <ul class="projects__list list-clean">
                 {% assign sorted_projects = site.projects | reverse %}
                 {% for project in sorted_projects %}
-                {% assign category_icon = site.data.icons-category[project.category] %}
-                <li class="projects__list-item projects__list-item--{{ project.category }}">
-                    <a href="{{ project.url | absolute_url }}" title="View {{ project.title | downcase }} project">
-                        <img class="projects__img" width="400" height="200" src="{{ project.image | absolute_url }}" alt="{{ project.title }} project image">
-                        <div class="projects__title">
-                            <h2 class="h4 font-normal">{{ project.title }}</h2>
-                            <span class="date">{{ project.date | date: "%B %Y" }}</span>
-                            <h4 class="h5 font-normal">{{ project.category }}&nbsp;{{ category_icon.icon }}</h4>
-                        </div>
-                    </a>
-                </li>
+                    {% assign category_icon = site.data.icons-category[project.category] %}
+                    <li class="projects__list-item">{% include project-card.html icon=category_icon project=project %}</li>
                 {% endfor %}
             </ul>
         </div>

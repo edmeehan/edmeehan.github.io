@@ -19,15 +19,18 @@ js_scripts:
             <div class="intro__content-wrapper">
                 <div class="intro__content intro__content--welcome" data-scroll="welcome">
                     <div class="ani-block">
-                        <h3 class="subheadline">Hi, my name is Edward.</h3>
-                        <h1><span class="font-serif headline">Front-End Developer</span> <span class="subheadline">avalible for freelance and contract.</span></h1>
+                        <div class="headline">
+                            <h3 class="font-normal">Hi, my name is Edward.</h3>
+                            <h1><span class="block h1 font-serif">Front-End Developer</span> <span class="h3 font-normal font-sans">avalible for freelance and contract.</span></h1>
+                        </div>
                         <a href="#hireme" class="button button--cta-1">Hire Me</a>
                     </div>
                 </div>
                 <div class="intro__content intro__content--origin" data-scroll="origin">
                     <div class="ani-block">
-                        <p class="subheadline">I was raised on the <strong class="font-serif headline">Big Island of Hawaii</strong> in the village of Mountain View just outside the
-                            town of Hilo.</p>
+                        <div class="headline">
+                            <p class="h3">I was raised on the <strong class="font-serif h1 block">Big Island of Hawaii</strong> in the village of Mountain View just outside the town of Hilo.</p>
+                        </div>
                         <div class="tidbit">
                             <span><i class="fas fa-umbrella"></i> Hilo gets over 140 inches of rain per year.</span>
                         </div>
@@ -35,8 +38,9 @@ js_scripts:
                 </div>
                 <div class="intro__content intro__content--recreation" data-scroll="recreation">
                     <div class="ani-block">
-                        <p class="subheadline">When not working I enjoy <strong class="font-serif headline">Roadtrips, Camping, Surfing &amp; Jiu-Jitsu.</strong> My idea of a good time
-                            is hanging out at the beach, surfing and exploring the coastline.</p>
+                        <div class="headline">
+                            <p class="h3">When not working I enjoy <strong class="font-serif h1 block">Roadtrips, Camping, Surfing &amp; Jiu-Jitsu.</strong> My idea of a good time is hanging out at the beach, surfing and exploring the coastline.</p>
+                        </div>
                         <div class="tidbit">
                             <span><i class="fas fa-car"></i> I made a solo road trip from Florida to California</span>
                         </div>
@@ -44,7 +48,9 @@ js_scripts:
                 </div>
                 <div class="intro__content intro__content--family" data-scroll="family">
                     <div class="ani-block">
-                        <p class="subheadline">I currently live in <strong class="font-serif headline">San Diego, California</strong> with my beautiful wife Ali &amp; our awesome dog, Tink.</p>
+                        <div class="headline">
+                            <p class="h3">I currently live in <strong class="font-serif h1 block">San Diego, California</strong> with my beautiful wife Ali &amp; our awesome dog, Tink.</p>
+                        </div>
                         <div class="tidbit">
                             <span><i class="fas fa-sun"></i> San Diego gets over 150 sunny days per year.</span>
                         </div>
@@ -543,88 +549,17 @@ js_scripts:
     </div>
 </section>
 
-{% comment %}
-<section class="section section--full-screen js-scroll-in-view animated" id="services">
-    <div class="section__content layout">
-        <div class="services">
-            <div class="services__columns">
-                <h2 class="h1 font-serif">Services</h2>
-
-                <ul class="services__items">
-                    <li class="services__item">
-                        <div class="services__icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="services__text">
-                            <h3 class="font-serif">Development</h3>
-                            <div class="font-medium">
-                                <p>Front-end development with Javascript, CSS, and HTML. Application development in LEMP stack. Did I mention I love building with Laravel?</p>
-                                <!-- <ul>
-                                    <li>Lots of cool stuff.</li>
-                                    <li>More stuff here.</li>
-                                </ul> -->
-                            </div>
-                        </div>
-                    </li>
-                    <li class="services__item services__item--top">
-                        <div class="services__icon">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                        <div class="services__text">
-                            <h3 class="font-serif">Optimization</h3>
-                            <div class="font-medium">
-                                <p>Planning, measuring, and building AB user tests with tools like Optimizely and Google Optimize & Analytics.</p>
-                                <!-- <ul>
-                                    <li>Lots of cool stuff.</li>
-                                    <li>More stuff here.</li>
-                                </ul> -->
-                            </div>
-                        </div>
-                    </li>
-                    <li class="services__item">
-                        <div class="services__icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <div class="services__text">
-                            <h3 class="font-serif">Analytics</h3>
-                            <div class="font-medium">
-                                <p>Application integration of Google Analytics and Google Tag Manager. Online marketing tracking and reporting, ecommerce tracking.</p>
-                                <!-- <ul>
-                                    <li>Lots of cool stuff.</li>
-                                    <li>More stuff here.</li>
-                                </ul> -->
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section section--full-screen">
+<section class="section js-scroll-in-view">
     <div class="section__content layout">
         <div class="latest-projects">
             <h3 class="h2 font-serif">Latest Project</h3>
-            {% assign filtered_projects = site.projects | where_exp: "item", "item.category != 'development'" | reverse | limit: 2 %}
-            
-            {% for project in filtered_projects %}
-                <div class="latest-projects__item">
-                    <header class="latest-projects__header">
-                        <img width="400" height="200" src="{{ project.image | absolute_url }}" alt="{{ project.title }} project image">
-                    </header>
-                    <article class="latest-projects__excerpt">
-                        {{ project.title }}
-                        {{ project.excerpt }}
-                    </article>
-                    <footer class="latest-projects__footer">
-                        
-                    </footer>
-                </div>
-            {% endfor %}
-
-            
+            <ul class="projects__list list-clean">
+                {%- assign filtered_projects = site.projects | reverse -%}
+                {%- for project in filtered_projects limit:2 -%}
+                    {%- assign category_icon = site.data.icons-category[project.category] -%}
+                    <li class="projects__list-item">{% include project-card.html icon=category_icon project=project %}</li>
+                {%- endfor -%}
+            </ul>
         </div>
     </div>
 </section>
-{% endcomment %}

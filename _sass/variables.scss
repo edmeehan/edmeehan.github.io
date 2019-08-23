@@ -48,13 +48,4 @@ $m-border-radius: 1rem;
 $l-border-radius: 1.8rem;
 $circle-radius: 1000px;
 
-// placeholders
-%h1 {
-  font-size: (52/$size-units) + 0rem;
-  line-height: 3rem;
-}
-
-%h3 {
-  font-size: (36/$size-units) + 0rem;
-  line-height: 3rem;
-}
+$img-max-width: 1440px;
