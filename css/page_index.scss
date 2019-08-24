@@ -186,9 +186,9 @@
   }
 
   &__graphics-nav {
-    display: none;
+    // display: none;
     position: absolute;
-    left: -2rem;
+    left: -7rem;
 
     @media (min-width: $xl-break) {
       left: 0;
