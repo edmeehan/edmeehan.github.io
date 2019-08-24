@@ -6,6 +6,7 @@ const introScrollerNode = document.getElementById('intro-scroll'),
   introScrollerContentNodes = introScrollerNode.getElementsByClassName('intro__content'),
   hireMeScrollerNodes = document.querySelectorAll('.hireme [data-animate]'),
   isMobileMQ = window.matchMedia('(max-width: 767px)');
+
 let fakeScrollNode,
   contentNodeOfFocus = false,
   wrapperFixed = true;
@@ -74,11 +75,11 @@ const prepForAnimation = () => {
  * dom node is visible on screen
  * @param {Event} event listener object
  */
-const introScrollerVisibleListener = (event) => {
-  const name = event.target.dataset.scroll;
+const introScrollerVisibleListener = ({ target, detail: { rect, focused } }) => {
+  const name = target.dataset.scroll;
   // controls which scroll element is in focus
   // we do some class toggles to make text and buttons clickable
-  if (event.detail.focused && name !== contentNodeOfFocus) {
+  if (focused && name !== contentNodeOfFocus) {
     if (contentNodeOfFocus) {
       introScrollerNode.querySelector(`[data-scroll="${contentNodeOfFocus}"]`).classList.remove('intro__content--focus');
       aniIntro[contentNodeOfFocus].playOut();
@@ -89,15 +90,17 @@ const introScrollerVisibleListener = (event) => {
   }
   // when we scroll off screen we need to switch from
   // position fixed so the elements will go off screen
-  if (event.target === fakeScrollNode.lastChild) {
-    if (event.detail.rect.bottom <= event.detail.rect.height && wrapperFixed) {
+  if (target === fakeScrollNode.lastChild) {
+    if (rect.bottom <= rect.height && wrapperFixed) {
       wrapperFixed = false;
       introScrollerNode.classList.add('intro--not-fixed');
     }
-    if (event.detail.rect.bottom > event.detail.rect.height && !wrapperFixed) {
+    if (rect.bottom > rect.height && !wrapperFixed) {
       wrapperFixed = true;
       introScrollerNode.classList.remove('intro--not-fixed');
     }
+  } else if (introScrollerNode.classList.contains('intro--not-fixed')) {
+    introScrollerNode.classList.remove('intro--not-fixed');
   }
 };
 

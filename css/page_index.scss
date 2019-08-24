@@ -5,7 +5,7 @@
 @import "variables";
 @import "home-animations";
 
-$xs-break: 360px;
+// $xs-break: 360px;
 
 .hidden {
   opacity: 0;
@@ -16,15 +16,15 @@ $xs-break: 360px;
   opacity: 0;
 }
 
-#intro .layout {
-  @media (max-width: $s-break-max) {
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
+// #intro .layout {
+//   @media (max-width: $s-break-max) {
+//     margin-left: 0;
+//     margin-right: 0;
+//   }
+// }
 
 .intro {
-  $graphic-width: 40%;
+  $graphic-width: 36%;
   $text-color: #fff;
   position: relative;
 
@@ -38,17 +38,46 @@ $xs-break: 360px;
     }
 
     .headline {
-      line-height: 2.6rem;
+      line-height: 1.8rem;
       * {
         line-height: inherit;
         margin: 0;
       }
       .h1 {
-        line-height: 3.6rem;
+        line-height: 2.5rem;
         letter-spacing: normal;
       }
       + .button {
         margin-top: 2rem;
+      }
+
+      @media (max-width: $s-break-max) {
+        max-width: 340px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @media (min-width: $m-break) {
+        line-height: 1.6rem;
+        .h1 {
+          line-height: 2.8rem;
+        }
+      }
+
+      @media (min-width: $m-break) and (max-width: $m-break-max) {
+        .h1 {
+          font-size: 2.5rem;
+        }
+        .h3 {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (min-width: $l-break) {
+        line-height: 2.6rem;
+        .h1 {
+          line-height: 3.6rem;
+        }
       }
     }
 
@@ -70,14 +99,14 @@ $xs-break: 360px;
       text-align: center;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
-      padding-top: 2rem;
+      padding-top: calc(2rem + 50vh);
       box-sizing: border-box;
-      transform: translateY(50%);
+      // transform: translateY(50%);
     }
 
-    @media (max-width: $xs-break) {
-      transform: translateY(45%);
-    }
+    // @media (max-width: $xs-break) {
+    //   // transform: translateY(45%);
+    // }
 
     @media (min-width: $m-break) {
       display: flex;
@@ -104,19 +133,33 @@ $xs-break: 360px;
       }
     }
 
-    @media (max-width: $xs-break) {
-      // .subheadline {
-      //   font-size: 1.25rem;
-      //   line-height: 1.5rem;
-      // }
+    // @media (max-width: $xs-break) {
+    //   // .subheadline {
+    //   //   font-size: 1.25rem;
+    //   //   line-height: 1.5rem;
+    //   // }
   
-      // .headline {
-      //   font-size: 2rem;
-      //   line-height: 2.3rem;
-      // }
+    //   // .headline {
+    //   //   font-size: 2rem;
+    //   //   line-height: 2.3rem;
+    //   // }
 
-      .tidbit {
-        margin-top: 1rem;
+    //   .tidbit {
+    //     margin-top: 1rem;
+    //   }
+    // }
+  }
+
+  &__content--focus {
+    z-index: 1;
+  }
+
+  &__content--welcome {
+    @media (min-width: $m-break) and (max-width: $m-break-max) {
+      .headline {
+        .h1 {
+          margin-bottom: -.7rem;
+        }
       }
     }
   }
@@ -126,17 +169,13 @@ $xs-break: 360px;
     height: 100vh;
   }
 
-  &__content--focus {
-    z-index: 1;
-  }
-
   &__graphics {
-    height: 50vh;
     z-index: 0;
+    height: 50vh;
 
-    @media (max-width: $xs-break) {
-      height: 45vh;
-    }
+    // @media (max-width: $xs-break-max) {
+    //   height: 50vh;
+    // }
 
     @media (min-width: $m-break) {
       height: 100vh;
@@ -161,39 +200,34 @@ $xs-break: 360px;
 
     @media (max-width: $s-break-max) {
       width: 65%;
+      max-width: 300px;
       margin: 0 auto;
       height: inherit;
     }
   }
 
+  // had differt plans for scroller
+  // keeping the two sections since I might change it later
   &__graphics,
   &__content-wrapper {
+    width: 100vw;
     position: fixed;
     top: 0;
-    
-    @media (min-width: $m-break) {
-      width: $m-break - 80;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    @media (min-width: $l-break) {
-      width: $l-break - 80;
-    }
-
-    @media (min-width: $xl-break) {
-      width: $xl-break - 80;
-    }
 
     @media (max-width: $s-break-max) {
-      width: 100%;
-      left: 0;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    @media (min-width: $m-break) {
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 
   &__circle-mask {
     max-width: 450px;
-    margin: -8% 0 0 auto;
+    margin: -16% 0 0 auto;
     position: relative;
     border-radius: 0 0 500px 500px;
     overflow: hidden;
@@ -222,6 +256,7 @@ $xs-break: 360px;
     @media (max-width: $s-break-max) {
       position: absolute;
       width: inherit;
+      max-width: 300px;
       bottom: 0;
     }
   }
@@ -257,11 +292,11 @@ $xs-break: 360px;
     }
   }
 
-  @media (max-width: $xs-break) {
-    &--not-fixed &__graphics {
-      height: 55vh;
-    }
-  }
+  // @media (max-width: $xs-break) {
+  //   &--not-fixed &__graphics {
+  //     height: 55vh;
+  //   }
+  // }
 }
 
 #hireme {

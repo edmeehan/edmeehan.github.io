@@ -24,9 +24,9 @@ export default class {
    * bound to custom event listener
    * called when element comes into view
    */
-  isVisible(event) {
-    if (this.sectionInFocus !== event.target && event.detail.focused) {
-      this.sectionInFocus = event.target;
+  isVisible({ target, detail: { focused } }) {
+    if (this.sectionInFocus !== target && focused) {
+      this.sectionInFocus = target;
       this.changeBackground();
     }
   }
@@ -39,6 +39,7 @@ export default class {
     const div = document.createElement('div'),
       backgroundClass = 'background',
       backgroundVisibleClass = 'background--visible';
+
     let random;
 
     // get a new random number differnt from the last

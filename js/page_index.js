@@ -576,11 +576,15 @@ var prepForAnimation = function prepForAnimation() {
  */
 
 
-var introScrollerVisibleListener = function introScrollerVisibleListener(event) {
-  var name = event.target.dataset.scroll; // controls which scroll element is in focus
+var introScrollerVisibleListener = function introScrollerVisibleListener(_ref) {
+  var target = _ref.target,
+      _ref$detail = _ref.detail,
+      rect = _ref$detail.rect,
+      focused = _ref$detail.focused;
+  var name = target.dataset.scroll; // controls which scroll element is in focus
   // we do some class toggles to make text and buttons clickable
 
-  if (event.detail.focused && name !== contentNodeOfFocus) {
+  if (focused && name !== contentNodeOfFocus) {
     if (contentNodeOfFocus) {
       introScrollerNode.querySelector("[data-scroll=\"".concat(contentNodeOfFocus, "\"]")).classList.remove('intro__content--focus');
       _modules_animations_index_intro__WEBPACK_IMPORTED_MODULE_1__[contentNodeOfFocus].playOut();
@@ -593,16 +597,18 @@ var introScrollerVisibleListener = function introScrollerVisibleListener(event) 
   // position fixed so the elements will go off screen
 
 
-  if (event.target === fakeScrollNode.lastChild) {
-    if (event.detail.rect.bottom <= event.detail.rect.height && wrapperFixed) {
+  if (target === fakeScrollNode.lastChild) {
+    if (rect.bottom <= rect.height && wrapperFixed) {
       wrapperFixed = false;
       introScrollerNode.classList.add('intro--not-fixed');
     }
 
-    if (event.detail.rect.bottom > event.detail.rect.height && !wrapperFixed) {
+    if (rect.bottom > rect.height && !wrapperFixed) {
       wrapperFixed = true;
       introScrollerNode.classList.remove('intro--not-fixed');
     }
+  } else if (introScrollerNode.classList.contains('intro--not-fixed')) {
+    introScrollerNode.classList.remove('intro--not-fixed');
   }
 };
 /**
@@ -612,9 +618,9 @@ var introScrollerVisibleListener = function introScrollerVisibleListener(event) 
  */
 
 
-var hireMeScrollerVisibleListener = function hireMeScrollerVisibleListener(_ref) {
-  var node = _ref.target,
-      visible = _ref.detail.node;
+var hireMeScrollerVisibleListener = function hireMeScrollerVisibleListener(_ref2) {
+  var node = _ref2.target,
+      visible = _ref2.detail.node;
   var cleanup = false; // animate when greater than 65% in view
 
   if (visible > 0.65) {

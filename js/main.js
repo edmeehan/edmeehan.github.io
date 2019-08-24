@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/sections_manager */ "./_javascript/modules/sections_manager.js");
+/* harmony import */ var _modules_change_background__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/change_background */ "./_javascript/modules/change_background.js");
 /* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
 /* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -26,21 +26,23 @@ var shadow = document.getElementById('page-shadow'),
     docEle = document.getElementById('document'); // section manager controls background and
 // events when sections become visible
 
-window.sections = new _modules_sections_manager__WEBPACK_IMPORTED_MODULE_0__["default"](document.getElementsByClassName('js-scroll-in-view'), document.getElementById('page-background'), window.backgroundCount || 1);
+window.sections = new _modules_change_background__WEBPACK_IMPORTED_MODULE_0__["default"](document.getElementsByClassName('js-scroll-in-view'), document.getElementById('page-background'), window.backgroundCount || 1);
 
-function hideEndEvent(event) {
+function hideEndEvent(_ref) {
+  var target = _ref.target;
+
   // condtion out bubbled events
-  if (this === event.target) {
+  if (this === target) {
     this.style.display = 'none';
     this.removeEventListener('transitionend', hideEndEvent);
     window.activeAside = null;
   }
 }
 
-function asideHideEvent(_ref) {
-  var detail = _ref.detail,
-      element = _ref.element;
-  var aside = element || document.querySelector(detail.target); // add listener for end of transition event
+function asideHideEvent(_ref2) {
+  var target = _ref2.detail.target,
+      element = _ref2.element;
+  var aside = element || document.querySelector(target); // add listener for end of transition event
 
   aside.addEventListener('transitionend', hideEndEvent); // add classes to trigger animation
 
@@ -50,10 +52,10 @@ function asideHideEvent(_ref) {
   document.body.classList.remove('locked');
 }
 
-function asideShowEvent(_ref2) {
-  var detail = _ref2.detail,
-      element = _ref2.element;
-  var aside = element || document.querySelector(detail.target); // handle active aside first
+function asideShowEvent(_ref3) {
+  var target = _ref3.detail.target,
+      element = _ref3.element;
+  var aside = element || document.querySelector(target); // handle active aside first
   // - can also toggle
 
   if (window.activeAside) {
@@ -104,6 +106,120 @@ if (shadow) {
     });
   });
 }
+
+/***/ }),
+
+/***/ "./_javascript/modules/change_background.js":
+/*!**************************************************!*\
+  !*** ./_javascript/modules/change_background.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony import */ var _scroll_into_view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scroll_into_view */ "./_javascript/modules/scroll_into_view.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var _default =
+/*#__PURE__*/
+function () {
+  function _default(sections, background, randomCeiling) {
+    var _this = this;
+
+    _classCallCheck(this, _default);
+
+    // Set arguments to properties
+    this.backgroundEle = background;
+    this.randomCeiling = randomCeiling; // some other properties
+
+    this.prevRandom = null;
+    this.sectionInFocus = null; // add the elements to watch to start firing events
+
+    _scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].add(sections); // add visibile listener
+
+    _toConsumableArray(sections).forEach(function (item) {
+      item.addEventListener(_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, _this.isVisible.bind(_this));
+    });
+  }
+
+  _createClass(_default, [{
+    key: "isVisible",
+
+    /**
+     * bound to custom event listener
+     * called when element comes into view
+     */
+    value: function isVisible(_ref) {
+      var target = _ref.target,
+          focused = _ref.detail.focused;
+
+      if (this.sectionInFocus !== target && focused) {
+        this.sectionInFocus = target;
+        this.changeBackground();
+      }
+    }
+    /**
+     * changes background graphic by random
+     * TODO: maybe make more options here and break up
+     */
+
+  }, {
+    key: "changeBackground",
+    value: function changeBackground() {
+      var div = document.createElement('div'),
+          backgroundClass = 'background',
+          backgroundVisibleClass = 'background--visible';
+      var random; // get a new random number differnt from the last
+
+      do {
+        random = Math.floor(Math.random() * this.randomCeiling) + 1;
+      } while (random === this.prevRandom);
+
+      this.prevRandom = random; // find and remove old backgrounds element when
+      // transition has finished
+
+      _toConsumableArray(this.backgroundEle.children).forEach(function (child) {
+        child.classList.remove(backgroundVisibleClass);
+        child.addEventListener('transitionend', function (item) {
+          item.target.remove();
+        });
+      }); // add new background
+
+
+      div.classList.add(backgroundClass, "".concat(backgroundClass, "__").concat(random));
+      this.backgroundEle.appendChild(div); // add the class to trigger transition
+
+      setTimeout(function () {
+        div.classList.add(backgroundVisibleClass);
+      }, 5);
+    }
+  }, {
+    key: "active_section",
+    get: function get() {
+      return this.sectionInFocus;
+    }
+  }]);
+
+  return _default;
+}();
+
+
 
 /***/ }),
 
@@ -278,117 +394,6 @@ function () {
 }();
 
 /* harmony default export */ __webpack_exports__["default"] = (new ScrollIntoView());
-
-/***/ }),
-
-/***/ "./_javascript/modules/sections_manager.js":
-/*!*************************************************!*\
-  !*** ./_javascript/modules/sections_manager.js ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
-/* harmony import */ var _scroll_into_view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scroll_into_view */ "./_javascript/modules/scroll_into_view.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-var _default =
-/*#__PURE__*/
-function () {
-  function _default(sections, background, randomCeiling) {
-    var _this = this;
-
-    _classCallCheck(this, _default);
-
-    // Set arguments to properties
-    this.backgroundEle = background;
-    this.randomCeiling = randomCeiling; // some other properties
-
-    this.prevRandom = null;
-    this.sectionInFocus = null; // add the elements to watch to start firing events
-
-    _scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].add(sections); // add visibile listener
-
-    _toConsumableArray(sections).forEach(function (item) {
-      item.addEventListener(_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, _this.isVisible.bind(_this));
-    });
-  }
-
-  _createClass(_default, [{
-    key: "isVisible",
-
-    /**
-     * bound to custom event listener
-     * called when element comes into view
-     */
-    value: function isVisible(event) {
-      if (this.sectionInFocus !== event.target && event.detail.focused) {
-        this.sectionInFocus = event.target;
-        this.changeBackground();
-      }
-    }
-    /**
-     * changes background graphic by random
-     * TODO: maybe make more options here and break up
-     */
-
-  }, {
-    key: "changeBackground",
-    value: function changeBackground() {
-      var div = document.createElement('div'),
-          backgroundClass = 'background',
-          backgroundVisibleClass = 'background--visible';
-      var random; // get a new random number differnt from the last
-
-      do {
-        random = Math.floor(Math.random() * this.randomCeiling) + 1;
-      } while (random === this.prevRandom);
-
-      this.prevRandom = random; // find and remove old backgrounds element when
-      // transition has finished
-
-      _toConsumableArray(this.backgroundEle.children).forEach(function (child) {
-        child.classList.remove(backgroundVisibleClass);
-        child.addEventListener('transitionend', function (item) {
-          item.target.remove();
-        });
-      }); // add new background
-
-
-      div.classList.add(backgroundClass, "".concat(backgroundClass, "__").concat(random));
-      this.backgroundEle.appendChild(div); // add the class to trigger transition
-
-      setTimeout(function () {
-        div.classList.add(backgroundVisibleClass);
-      }, 5);
-    }
-  }, {
-    key: "active_section",
-    get: function get() {
-      return this.sectionInFocus;
-    }
-  }]);
-
-  return _default;
-}();
-
-
 
 /***/ }),
 

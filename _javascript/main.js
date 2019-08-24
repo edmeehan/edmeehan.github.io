@@ -1,4 +1,4 @@
-import SectionManager from './modules/sections_manager';
+import ChangeBackground from './modules/change_background';
 import 'custom-event-polyfill';
 
 const shadow = document.getElementById('page-shadow'),
@@ -6,23 +6,23 @@ const shadow = document.getElementById('page-shadow'),
 
 // section manager controls background and
 // events when sections become visible
-window.sections = new SectionManager(
+window.sections = new ChangeBackground(
   document.getElementsByClassName('js-scroll-in-view'),
   document.getElementById('page-background'),
   window.backgroundCount || 1,
 );
 
-function hideEndEvent(event) {
+function hideEndEvent({ target }) {
   // condtion out bubbled events
-  if (this === event.target) {
+  if (this === target) {
     this.style.display = 'none';
     this.removeEventListener('transitionend', hideEndEvent);
     window.activeAside = null;
   }
 }
 
-function asideHideEvent({ detail, element }) {
-  const aside = element || document.querySelector(detail.target);
+function asideHideEvent({ detail: { target }, element }) {
+  const aside = element || document.querySelector(target);
   // add listener for end of transition event
   aside.addEventListener('transitionend', hideEndEvent);
   // add classes to trigger animation
@@ -32,8 +32,8 @@ function asideHideEvent({ detail, element }) {
   document.body.classList.remove('locked');
 }
 
-function asideShowEvent({ detail, element }) {
-  const aside = element || document.querySelector(detail.target);
+function asideShowEvent({ detail: { target }, element }) {
+  const aside = element || document.querySelector(target);
 
   // handle active aside first
   // - can also toggle
