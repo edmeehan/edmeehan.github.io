@@ -13,7 +13,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://emeehan.com" # the base hostname & protocol for your site
 
 # Meta settings
-title: Edward Meehan
+title: Front-End Developer | Edward Meehan
 description: This is the default site description here. 
 js_scripts:
   - 
