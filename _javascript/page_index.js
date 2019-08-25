@@ -3,8 +3,9 @@ import * as aniIntro from './modules/animations_index_intro';
 import * as aniHireMe from './modules/animations_index_hireme';
 
 const introScrollerNode = document.getElementById('intro-scroll'),
+  hireMeNode = document.getElementById('hire-me'),
   introScrollerContentNodes = introScrollerNode.getElementsByClassName('intro__content'),
-  hireMeScrollerNodes = document.querySelectorAll('.hireme [data-animate]'),
+  hireMeScrollerNodes = hireMeNode.querySelectorAll('[data-animate]'),
   isMobileMQ = window.matchMedia('(max-width: 767px)');
 
 let fakeScrollNode,
@@ -31,7 +32,7 @@ const prepFakeScroll = (node) => {
       const scrollShim = document.createElement('div');
       scrollShim.style.height = `${item.getBoundingClientRect().height}px`;
       scrollShim.className = 'scroll-shim';
-      scrollShim.dataset.scroll = item.dataset.scroll;
+      scrollShim.dataset.scrollTarget = item.dataset.scroll;
       fakeScroll.appendChild(scrollShim);
     });
   }
@@ -76,7 +77,7 @@ const prepForAnimation = () => {
  * @param {Event} event listener object
  */
 const introScrollerVisibleListener = ({ target, detail: { rect, window: visible } }) => {
-  const name = target.dataset.scroll;
+  const name = target.dataset.scrollTarget;
   // controls which scroll element is in focus
   // we do some class toggles to make text and buttons clickable
   if (visible > 0.65 && name !== contentNodeOfFocus) {
@@ -143,6 +144,15 @@ const introScrollerProgressListener = ({ detail: { rect } }) => {
   }
 };
 
+const scrollToTargetListerner = ({ target }) => {
+  const name = target.dataset.scrollTo,
+    targetNode = document.querySelector(`[data-scroll-target="${name}"]`),
+    rect = targetNode.getBoundingClientRect(),
+    offset = window.pageYOffset || document.documentElement.scrollTop;
+
+  window.scrollTo(0, rect.top + offset);
+};
+
 /**
  * something changed so we need to
  * figure out the new dimensions
@@ -161,6 +171,7 @@ const init = () => {
   // setup the scroller events
   scroll.add(fakeScrollNode.children);
   scroll.add(hireMeScrollerNodes);
+  scroll.add([hireMeNode]);
   // setup the scroller listeners for intro section
   [...fakeScrollNode.children].forEach((item) => {
     item.addEventListener(scroll.event, introScrollerVisibleListener);
@@ -169,8 +180,16 @@ const init = () => {
   [...hireMeScrollerNodes].forEach((item) => {
     item.addEventListener(scroll.event, hireMeScrollerVisibleListener);
   });
-  // intro section listner
+  // intro section listener
   document.getElementById('intro').addEventListener(scroll.event, introScrollerProgressListener);
+  // scroll to triggers
+  [...document.querySelectorAll('[data-scroll-to]')].forEach((item) => {
+    item.addEventListener('click', scrollToTargetListerner);
+  });
+  // hireme node listener - fix bug when we jump to hire me section
+  hireMeNode.addEventListener(scroll.event, () => {
+    if (!introScrollerNode.classList.contains('intro--not-fixed')) introScrollerNode.classList.add('intro--not-fixed');
+  });
   // listen for change to recalculate
   window.addEventListener('resize', recalculate);
 };

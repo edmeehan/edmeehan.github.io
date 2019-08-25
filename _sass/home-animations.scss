@@ -270,7 +270,7 @@
 .progress-bar {
   .st1{fill:rgba(255, 255, 255, 0.4)}
   .st2{fill:$brand-green}
-  .st3{fill:$brand-purple}
+  .st3{fill:$brand-purple; cursor: pointer;}
   #hit-1{transform-origin: 50% 5%;}
   #hit-2{transform-origin: 50% 35%;}
   #hit-3{transform-origin: 50% 64.5%;}

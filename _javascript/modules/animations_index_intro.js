@@ -35,8 +35,8 @@ class AnimationBlock {
     this.nav = navTargets ? anime({
       targets: navTargets,
       autoplay: false,
-      fill: '#58d79c',
-      scale: [1.5, 0],
+      // fill: '#58d79c',
+      scale: [1.9, 0.5],
       duration: 800
     }) : false;
   }

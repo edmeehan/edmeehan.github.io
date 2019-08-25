@@ -147,8 +147,8 @@ var AnimationBlock = function AnimationBlock(config) {
   this.nav = navTargets ? Object(animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"])({
     targets: navTargets,
     autoplay: false,
-    fill: '#58d79c',
-    scale: [1.5, 0],
+    // fill: '#58d79c',
+    scale: [1.9, 0.5],
     duration: 800
   }) : false;
 };
@@ -521,8 +521,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 var introScrollerNode = document.getElementById('intro-scroll'),
+    hireMeNode = document.getElementById('hire-me'),
     introScrollerContentNodes = introScrollerNode.getElementsByClassName('intro__content'),
-    hireMeScrollerNodes = document.querySelectorAll('.hireme [data-animate]'),
+    hireMeScrollerNodes = hireMeNode.querySelectorAll('[data-animate]'),
     isMobileMQ = window.matchMedia('(max-width: 767px)');
 var fakeScrollNode,
     contentNodeOfFocus = false,
@@ -548,7 +549,7 @@ var prepFakeScroll = function prepFakeScroll(node) {
       var scrollShim = document.createElement('div');
       scrollShim.style.height = "".concat(item.getBoundingClientRect().height, "px");
       scrollShim.className = 'scroll-shim';
-      scrollShim.dataset.scroll = item.dataset.scroll;
+      scrollShim.dataset.scrollTarget = item.dataset.scroll;
       fakeScroll.appendChild(scrollShim);
     });
   } // only if node was not passed to we insert in DOM
@@ -600,7 +601,7 @@ var introScrollerVisibleListener = function introScrollerVisibleListener(_ref) {
       _ref$detail = _ref.detail,
       rect = _ref$detail.rect,
       visible = _ref$detail.window;
-  var name = target.dataset.scroll; // controls which scroll element is in focus
+  var name = target.dataset.scrollTarget; // controls which scroll element is in focus
   // we do some class toggles to make text and buttons clickable
 
   if (visible > 0.65 && name !== contentNodeOfFocus) {
@@ -673,6 +674,15 @@ var introScrollerProgressListener = function introScrollerProgressListener(_ref3
     document.getElementById('prgress-target').setAttribute('y', '0%');
   }
 };
+
+var scrollToTargetListerner = function scrollToTargetListerner(_ref4) {
+  var target = _ref4.target;
+  var name = target.dataset.scrollTo,
+      targetNode = document.querySelector("[data-scroll-target=\"".concat(name, "\"]")),
+      rect = targetNode.getBoundingClientRect(),
+      offset = window.pageYOffset || document.documentElement.scrollTop;
+  window.scrollTo(0, rect.top + offset);
+};
 /**
  * something changed so we need to
  * figure out the new dimensions
@@ -693,7 +703,8 @@ var init = function init() {
   prepForAnimation(); // setup the scroller events
 
   _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].add(fakeScrollNode.children);
-  _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].add(hireMeScrollerNodes); // setup the scroller listeners for intro section
+  _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].add(hireMeScrollerNodes);
+  _modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].add([hireMeNode]); // setup the scroller listeners for intro section
 
   _toConsumableArray(fakeScrollNode.children).forEach(function (item) {
     item.addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, introScrollerVisibleListener);
@@ -702,10 +713,19 @@ var init = function init() {
 
   _toConsumableArray(hireMeScrollerNodes).forEach(function (item) {
     item.addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, hireMeScrollerVisibleListener);
-  }); // intro section listner
+  }); // intro section listener
 
 
-  document.getElementById('intro').addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, introScrollerProgressListener); // listen for change to recalculate
+  document.getElementById('intro').addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, introScrollerProgressListener); // scroll to triggers
+
+  _toConsumableArray(document.querySelectorAll('[data-scroll-to]')).forEach(function (item) {
+    item.addEventListener('click', scrollToTargetListerner);
+  }); // hireme node listener - fix bug when we jump to hire me section
+
+
+  hireMeNode.addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, function () {
+    if (!introScrollerNode.classList.contains('intro--not-fixed')) introScrollerNode.classList.add('intro--not-fixed');
+  }); // listen for change to recalculate
 
   window.addEventListener('resize', recalculate);
 };

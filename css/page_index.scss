@@ -244,13 +244,17 @@
   &__scroll-on {
     color: $text-color;
     position: fixed;
-    bottom: 20px;
+    bottom: 0;
     left: 0;
     width: 100%;
     text-align: center;
 
     .icon {
       font-size: 2rem;
+    }
+
+    @media (min-width: $m-break) {
+      bottom: 20px;
     }
   }
 
@@ -280,7 +284,7 @@
   }
 }
 
-#hireme {
+#hire-me {
   background-color: $brand-blue;
 }
 
