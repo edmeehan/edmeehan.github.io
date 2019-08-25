@@ -126,6 +126,7 @@ var AnimationBlock = function AnimationBlock(config) {
 
   var loopAni = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
   var contentAni = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  var navTargets = arguments.length > 3 ? arguments[3] : undefined;
 
   _classCallCheck(this, AnimationBlock);
 
@@ -141,12 +142,25 @@ var AnimationBlock = function AnimationBlock(config) {
   this.loop = Array.isArray(loopAni) ? loopAni : [loopAni]; // content animation
 
   this.content = contentAni;
-  this.contentAnime = false;
+  this.contentAnime = false; // nav animation
+
+  this.nav = navTargets ? Object(animejs_lib_anime_es__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    targets: navTargets,
+    autoplay: false,
+    fill: '#58d79c',
+    scale: [1.5, 0],
+    duration: 800
+  }) : false;
 };
 
 AnimationBlock.prototype.playIn = function playIn() {
   if (this.anime.reversed) this.anime.reverse();
   this.anime.play();
+
+  if (this.nav) {
+    if (this.nav.reversed) this.nav.reverse();
+    this.nav.play();
+  }
 
   if (this.content) {
     if (this.contentAnime) this.contentAnime.pause();
@@ -157,6 +171,11 @@ AnimationBlock.prototype.playIn = function playIn() {
 AnimationBlock.prototype.playOut = function playOut() {
   if (!this.anime.reversed) this.anime.reverse();
   this.anime.play();
+
+  if (this.nav) {
+    if (!this.nav.reversed) this.nav.reverse();
+    this.nav.play();
+  }
 
   if (this.content) {
     if (this.contentAnime) this.contentAnime.pause();
@@ -187,7 +206,7 @@ var welcome = new AnimationBlock({
   opacity: [1, 1]
 }, false, {
   targets: '.intro__content--welcome .ani-block'
-});
+}, '#hit-1');
 var origin = new AnimationBlock({
   targets: '#svg-hawaii',
   translateX: ['-20%', '-8%'],
@@ -237,7 +256,7 @@ var origin = new AnimationBlock({
   opacity: [0, 0.3]
 }, 0)], {
   targets: '.intro__content--origin .ani-block'
-});
+}, '#hit-2');
 var recreation = new AnimationBlock({
   targets: '#svg-surf',
   translateX: ['-20%', '-5%'],
@@ -254,7 +273,7 @@ var recreation = new AnimationBlock({
   autoplay: false
 }), {
   targets: '.intro__content--recreation .ani-block'
-});
+}, '#hit-3');
 var family = new AnimationBlock({
   targets: '#svg-ali-tink',
   translateX: ['-20%', '-1%'],
@@ -300,7 +319,7 @@ var family = new AnimationBlock({
   opacity: [0, 1]
 })], {
   targets: '.intro__content--family .ani-block'
-});
+}, '#hit-4');
 
 /***/ }),
 
@@ -580,11 +599,11 @@ var introScrollerVisibleListener = function introScrollerVisibleListener(_ref) {
   var target = _ref.target,
       _ref$detail = _ref.detail,
       rect = _ref$detail.rect,
-      focused = _ref$detail.focused;
+      visible = _ref$detail.window;
   var name = target.dataset.scroll; // controls which scroll element is in focus
   // we do some class toggles to make text and buttons clickable
 
-  if (focused && name !== contentNodeOfFocus) {
+  if (visible > 0.65 && name !== contentNodeOfFocus) {
     if (contentNodeOfFocus) {
       introScrollerNode.querySelector("[data-scroll=\"".concat(contentNodeOfFocus, "\"]")).classList.remove('intro__content--focus');
       _modules_animations_index_intro__WEBPACK_IMPORTED_MODULE_1__[contentNodeOfFocus].playOut();
@@ -635,6 +654,26 @@ var hireMeScrollerVisibleListener = function hireMeScrollerVisibleListener(_ref2
   }
 };
 /**
+ * attached to scroll listener and fires when
+ * dom node is visible on screen
+ * @param {Event} event listener object
+ */
+
+
+var introScrollerProgressListener = function introScrollerProgressListener(_ref3) {
+  var rect = _ref3.detail.rect;
+  var windowHeight = window.innerHeight,
+      boxHeight = rect.height - windowHeight,
+      boxBottom = rect.bottom - windowHeight,
+      percent = (boxBottom / boxHeight * 100).toFixed(0) - 10;
+
+  if (percent > 0) {
+    document.getElementById('prgress-target').setAttribute('y', "-".concat(percent, "%"));
+  } else {
+    document.getElementById('prgress-target').setAttribute('y', '0%');
+  }
+};
+/**
  * something changed so we need to
  * figure out the new dimensions
  */
@@ -664,12 +703,9 @@ var init = function init() {
   _toConsumableArray(hireMeScrollerNodes).forEach(function (item) {
     item.addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, hireMeScrollerVisibleListener);
   }); // intro section listner
-  // document.getElementById('intro').addEventListener(scroll.event, (event) => {
-  //   const node = event.target.classList;
-  //   // if (!node.contains('intro--active')) node.add('intro--active');
-  // });
-  // listen for change to recalculate
 
+
+  document.getElementById('intro').addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, introScrollerProgressListener); // listen for change to recalculate
 
   window.addEventListener('resize', recalculate);
 };

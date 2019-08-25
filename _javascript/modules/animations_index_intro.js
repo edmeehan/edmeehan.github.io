@@ -21,7 +21,7 @@ const defaults = {
   };
 
 class AnimationBlock {
-  constructor(config, loopAni = false, contentAni = false) {
+  constructor(config, loopAni = false, contentAni = false, navTargets) {
     // main animation
     this.config = { ...config, ...defaults };
     this.config.complete = (ani) => this.complete(ani);
@@ -31,12 +31,26 @@ class AnimationBlock {
     // content animation
     this.content = contentAni;
     this.contentAnime = false;
+    // nav animation
+    this.nav = navTargets ? anime({
+      targets: navTargets,
+      autoplay: false,
+      fill: '#58d79c',
+      scale: [1.5, 0],
+      duration: 800
+    }) : false;
   }
 }
 
 AnimationBlock.prototype.playIn = function playIn() {
   if (this.anime.reversed) this.anime.reverse();
   this.anime.play();
+
+  if (this.nav) {
+    if (this.nav.reversed) this.nav.reverse();
+    this.nav.play();
+  }
+
   if (this.content) {
     if (this.contentAnime) this.contentAnime.pause();
     this.contentAnime = anime({ ...this.content, ...contentIn });
@@ -46,6 +60,12 @@ AnimationBlock.prototype.playIn = function playIn() {
 AnimationBlock.prototype.playOut = function playOut() {
   if (!this.anime.reversed) this.anime.reverse();
   this.anime.play();
+
+  if (this.nav) {
+    if (!this.nav.reversed) this.nav.reverse();
+    this.nav.play();
+  }
+
   if (this.content) {
     if (this.contentAnime) this.contentAnime.pause();
     this.contentAnime = anime({ ...this.content, ...contentOut });
@@ -78,7 +98,8 @@ export const welcome = new AnimationBlock(
   false,
   {
     targets: '.intro__content--welcome .ani-block'
-  }
+  },
+  '#hit-1'
 );
 
 export const origin = new AnimationBlock(
@@ -122,7 +143,8 @@ export const origin = new AnimationBlock(
     }, 0)
   ], {
     targets: '.intro__content--origin .ani-block',
-  }
+  },
+  '#hit-2'
 );
 
 export const recreation = new AnimationBlock(
@@ -142,7 +164,8 @@ export const recreation = new AnimationBlock(
     autoplay: false,
   }), {
     targets: '.intro__content--recreation .ani-block'
-  }
+  },
+  '#hit-3'
 );
 
 export const family = new AnimationBlock(
@@ -196,5 +219,6 @@ export const family = new AnimationBlock(
     })
   ], {
     targets: '.intro__content--family .ani-block'
-  }
+  },
+  '#hit-4'
 );

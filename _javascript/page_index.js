@@ -75,11 +75,11 @@ const prepForAnimation = () => {
  * dom node is visible on screen
  * @param {Event} event listener object
  */
-const introScrollerVisibleListener = ({ target, detail: { rect, focused } }) => {
+const introScrollerVisibleListener = ({ target, detail: { rect, window: visible } }) => {
   const name = target.dataset.scroll;
   // controls which scroll element is in focus
   // we do some class toggles to make text and buttons clickable
-  if (focused && name !== contentNodeOfFocus) {
+  if (visible > 0.65 && name !== contentNodeOfFocus) {
     if (contentNodeOfFocus) {
       introScrollerNode.querySelector(`[data-scroll="${contentNodeOfFocus}"]`).classList.remove('intro__content--focus');
       aniIntro[contentNodeOfFocus].playOut();
@@ -126,6 +126,24 @@ const hireMeScrollerVisibleListener = ({ target: node, detail: { node: visible }
 };
 
 /**
+ * attached to scroll listener and fires when
+ * dom node is visible on screen
+ * @param {Event} event listener object
+ */
+const introScrollerProgressListener = ({ detail: { rect } }) => {
+  const windowHeight = window.innerHeight,
+    boxHeight = rect.height - windowHeight,
+    boxBottom = rect.bottom - windowHeight,
+    percent = (((boxBottom / boxHeight)) * 100).toFixed(0) - 10;
+
+  if (percent > 0) {
+    document.getElementById('prgress-target').setAttribute('y', `-${percent}%`);
+  } else {
+    document.getElementById('prgress-target').setAttribute('y', '0%');
+  }
+};
+
+/**
  * something changed so we need to
  * figure out the new dimensions
  */
@@ -152,10 +170,7 @@ const init = () => {
     item.addEventListener(scroll.event, hireMeScrollerVisibleListener);
   });
   // intro section listner
-  // document.getElementById('intro').addEventListener(scroll.event, (event) => {
-  //   const node = event.target.classList;
-  //   // if (!node.contains('intro--active')) node.add('intro--active');
-  // });
+  document.getElementById('intro').addEventListener(scroll.event, introScrollerProgressListener);
   // listen for change to recalculate
   window.addEventListener('resize', recalculate);
 };
