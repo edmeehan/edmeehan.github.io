@@ -64,7 +64,7 @@
         {{ content }}
         <!-- Scripts -->
         <script>window.backgroundCount = {{ theme_color.count }};</script>
-        {% for item in site.js_scripts %}<script src="{% if item.absolute_url %}{{ item.path }}{% else %}{{ item.path | absolute_url }}{% endif %}"></script>{% endfor %}
+        {% for item in site.js_scripts %}<script src="{% if item.absolute_url %}{{ item.path | absolute_url }}{% else %}{{ item.path }}{% endif %}{% if item.cache_bust %}?{{ site.time | date: '%s%N' }}{% endif %}"></script>{% endfor %}
         {% for item in layout.js_scripts %}<script src="{% if item.absolute_url %}{{ item.path | absolute_url }}{% else %}{{ item.path }}{% endif %}{% if item.cache_bust %}?{{ site.time | date: '%s%N' }}{% endif %}"></script>{% endfor %}
         {% for item in page.js_scripts %}<script src="{% if item.absolute_url %}{{ item.path | absolute_url }}{% else %}{{ item.path }}{% endif %}{% if item.cache_bust %}?{{ site.time | date: '%s%N' }}{% endif %}"></script>{% endfor %}
     </body>
