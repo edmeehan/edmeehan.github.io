@@ -33,7 +33,9 @@ function asideHideEvent({ detail: { target }, element }) {
 }
 
 function asideShowEvent({ detail: { target }, element }) {
-  const aside = element || document.querySelector(target);
+  const aside = element || document.querySelector(target),
+    labelName = target.substring(1),
+    eventName = `show-${labelName}`;
 
   // handle active aside first
   // - can also toggle
@@ -41,6 +43,8 @@ function asideShowEvent({ detail: { target }, element }) {
     if (aside === window.activeAside) return;
     asideHideEvent({ element: window.activeAside });
   }
+
+  window.dataLayer.push({ 'event': eventName, 'event_label': labelName });
 
   window.activeAside = aside;
 

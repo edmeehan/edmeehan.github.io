@@ -55,7 +55,9 @@ function asideHideEvent(_ref2) {
 function asideShowEvent(_ref3) {
   var target = _ref3.detail.target,
       element = _ref3.element;
-  var aside = element || document.querySelector(target); // handle active aside first
+  var aside = element || document.querySelector(target),
+      labelName = target.substring(1),
+      eventName = "show-".concat(labelName); // handle active aside first
   // - can also toggle
 
   if (window.activeAside) {
@@ -65,6 +67,10 @@ function asideShowEvent(_ref3) {
     });
   }
 
+  window.dataLayer.push({
+    'event': eventName,
+    'event_label': labelName
+  });
   window.activeAside = aside;
   aside.style.display = null;
   setTimeout(function () {

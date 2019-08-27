@@ -1,57 +1,59 @@
 import axios from 'axios';
 
-(function() {
+const contactForm = document.getElementById('contact-form'),
+  formClass = 'form--';
+let formData;
 
-    let contactForm = document.getElementById('contact-form'),
-        formClass = 'form--',
-        formData;
+function form_response(isSuccess) {
+  const wrapper = document.createElement('div'),
+    headline = document.createElement('h3'),
+    message = document.createElement('p');
+    // button = document.createElement('button');
 
-    if (contactForm) contactForm.addEventListener('submit', form_submit, false);
+  wrapper.classList.add('form__response-message');
 
-    function form_submit(event) {
-        event.preventDefault();
-        formData = new FormData(contactForm);
+  headline.appendChild(
+    document.createTextNode(isSuccess ? 'Thanks for the message!' : 'Oops!?!')
+  );
 
-        // set visual pending
-        contactForm.classList.add(formClass + 'pending');
+  message.appendChild(
+    document.createTextNode(
+      isSuccess
+        ? 'I will do my best to responde withen 24 hours.'
+        : 'Something went wrong, please try again later or give me a call.'
+    )
+  );
 
-        axios.post( contactForm.getAttribute('action'), formData)
-            .then(function(response){
-                contactForm.classList.add(formClass + 'success');
-                contactForm.classList.remove(formClass + 'pending');
-                form_response(true);
-            }).catch(function(error){
-                contactForm.classList.add(formClass + 'fail');
-                contactForm.classList.remove(formClass + 'pending');
-                form_response(false);
-            });
-    }
+  wrapper.appendChild(headline);
+  wrapper.appendChild(message);
+  contactForm.appendChild(wrapper);
 
-    function form_response(isSuccess) {
-        let wrapper = document.createElement("div"),
-            headline = document.createElement("h3"),
-            message = document.createElement("p"),
-            button = document.createElement("button");
+  setTimeout(() => {
+    wrapper.classList.add('active');
+  }, 10);
+}
 
-        wrapper.classList.add('form__response-message');
+function form_submit(event) {
+  event.preventDefault();
+  formData = new FormData(contactForm);
 
-        headline.appendChild(document.createTextNode(isSuccess
-            ? 'Thanks for the message!'
-            : 'Oops!?!'
-        ));
+  // set visual pending
+  contactForm.classList.add(`${formClass}pending`);
 
-        message.appendChild(document.createTextNode(isSuccess
-            ? 'I will do my best to responde withen 24 hours.'
-            : 'Something went wrong, please try again later or give me a call.'
-        ));
+  axios
+    .post(contactForm.getAttribute('action'), formData)
+    .then((response) => {
+      window.dataLayer.push({ 'event': 'contact-form-success', 'event_label': 'success' });
+      contactForm.classList.add(`${formClass}success`);
+      contactForm.classList.remove(`${formClass}pending`);
+      form_response(true);
+    })
+    .catch((error) => {
+      window.dataLayer.push({ 'event': 'contact-form-fail', 'event_label': 'fail' });
+      contactForm.classList.add(`${formClass}fail`);
+      contactForm.classList.remove(`${formClass}pending`);
+      form_response(false);
+    });
+}
 
-        wrapper.appendChild(headline);
-        wrapper.appendChild(message);        
-        contactForm.appendChild(wrapper);
-
-        setTimeout(function(){
-            wrapper.classList.add('active');
-        },10);
-    }
-
-})();
+if (contactForm) contactForm.addEventListener('submit', form_submit, false);

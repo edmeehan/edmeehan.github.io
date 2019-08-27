@@ -39,6 +39,7 @@
         <meta property="og:url" content="{{ page.url | absolute_url }}">
         <meta property="og:image" content="{{ page.og-image | absolute_url }}">
         {% if site.gtm_container_id %}
+        <script>dataLayer = [];</script>
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
