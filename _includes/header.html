@@ -7,13 +7,13 @@
     </div>
     <nav class="site-header__nav">
         <ul class="js-aside-hide" data-target="#aside-nav">
-            <li><a href="{{ site.baseurl | prepend: site.url }}{% link index.html %}">Hello</a></li>
-            <li><a href="{{ site.baseurl | prepend: site.url }}{% link index.html %}#hire-me">Hire Me</a></li>
-            <li><a href="{{ site.baseurl | prepend: site.url }}{% link projects.html %}">Projects</a></li>
-            {% comment %}
-            <li><a href="{{ site.baseurl | prepend: site.url }}{% link blog.html %}">Blog</a></li>
-            <li><a href="{{ site.baseurl | prepend: site.url }}{% link hire-me.html %}" class="cta"><i class="fas fa-handshake"></i> Hire Me</a></li>
-            {% endcomment %}
+            <li><a href="{{ site.baseurl | prepend: site.url }}{%- link index.html -%}">Hello</a></li>
+            <li><a href="{{ site.baseurl | prepend: site.url }}{%- link index.html -%}#hire-me">Hire Me</a></li>
+            <li><a href="{{ site.baseurl | prepend: site.url }}{%- link projects.html -%}">Projects</a></li>
+            {%- comment -%}
+            <li><a href="{{ site.baseurl | prepend: site.url }}{%- link blog.html -%}">Blog</a></li>
+            <li><a href="{{ site.baseurl | prepend: site.url }}{%- link hire-me.html -%}" class="cta"><i class="fas fa-handshake"></i> Hire Me</a></li>
+            {%- endcomment -%}
         </ul>
     </nav>
 </header>

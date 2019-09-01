@@ -1,15 +1,15 @@
 ---
 layout: 2019_default
 ---
-{% assign category_icon = site.data.icons-category[page.category] %}
+{%- assign category_icon = site.data.icons-category[page.category] -%}
 <section class="section js-scroll-in-view">
     <div class="section__content layout">
         <article class="blog__article blog-post-grid">
-            {% if page.image %}            
+            {%- if page.image -%}            
             <header class="blog__masthead">
                 <img src="{{ page.image }}" alt="">
             </header>
-            {% endif %}
+            {%- endif -%}
             <div class="blog__title">
                 <h1 class="h3 font-serif">{{ page.title }}</h1>
             </div>
@@ -20,10 +20,10 @@ layout: 2019_default
                 {{ page.content | markdownify }}
             </div>
         </article>
-        {% if page.comments %}
+        {%- if page.comments -%}
         <div class="blog__comment">
-            {% include disqus_comments.html %}
+            {%- include disqus_comments.html -%}
         </div>
-        {% endif %}
+        {%- endif -%}
     </div>
 </section>
