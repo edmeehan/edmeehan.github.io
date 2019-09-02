@@ -12,7 +12,7 @@ js_scripts:
         cache_bust: true
         absolute_url: true
 ---
-<section class="section section--full-screen js-scroll-in-view" id="intro">
+<section class="section section--full-screen" id="intro" data-change-bkg>
     <div class="section__content">
         <div class="intro intro--not-fixed" id="intro-scroll">
             <div class="intro__content-wrapper layout">
@@ -22,7 +22,7 @@ js_scripts:
                             <h3 class="h3 font-normal">Hi, my name is Edward.</h3>
                             <h1><span class="block h1 font-serif">Front-End Developer</span> <span class="h3 font-normal font-sans">available for freelance and contract.</span></h1>
                         </div>
-                        <a href="#hire-me" data-scroll-to="hireme" class="button button--cta-1">Hire Me</a>
+                        <a href="#hire-me" data-scroll-to="hire-me" class="button button--cta-1">Hire Me</a>
                     </div>
                 </div>
                 <div class="intro__content intro__content--origin" data-scroll="origin">
@@ -87,7 +87,7 @@ js_scripts:
         </div>
     </div>
 </section>
-<section class="section" id="hire-me" data-scroll-target="hireme">
+<section class="section" id="hire-me">
     <div class="section__content layout">
         <div class="hireme">
             <div class="hireme__intro" data-animate="intro">
@@ -112,22 +112,21 @@ js_scripts:
                     <p>If I'm honest I never liked it, but it's okay, I know lots of excellent people who do.</p>
                 </li>
             </ul>
-            <div class="hireme__frontend service-block" data-animate="frontend">
-                <div class="service-block__title">
+            <div class="hireme__service hireme__service--frontend" data-animate="frontend">
+                <div class="hireme__service-title">
                     <h3 class="subtitle font-normal h4">Front-End Development</h3>
                 </div>
-                <div class="service-block__content">
+                <div class="hireme__service-content">
                     <h2 class="title font-serif">I build your vision.</h2>
                     <p>I love working with creative teams and agencies to create business solutions using front-end technologies.
-                        <!-- I'm pretty good at it too &mdash; check out what some of my clients have said about me <a>here</a>. -->
                         I have used a lot of tools over the years, but I prefer building applications with Laravel, static sites with Jekyll, and e-commerce stores with Shopify.
                         If you have a freelance project or a need for a longer commitment, then <button class="link js-aside-show" data-target="#aside-message">let's talk</button>.</p>
                 </div>
-                <div class="service-block__callouts">
+                <div class="hireme__service-callouts">
                     <ul class="callouts list-clean">
                         <li class="callouts__item">
                             <h4 class="callouts__title font-serif h5 font-normal">Languages</h4>
-                            <ul class="callouts__list list-clean">
+                            <ul class="callouts__list list-comma list-clean">
                                 <li>Javascript</li>
                                 <li>PHP</li>
                                 <li>HTML</li>
@@ -137,7 +136,7 @@ js_scripts:
                         </li>
                         <li class="callouts__item">
                             <h4 class="callouts__title font-serif h5 font-normal">Frameworks</h4>
-                            <ul class="callouts__list list-clean">
+                            <ul class="callouts__list list-comma list-clean">
                                 <li>Vue</li>
                                 <li>React</li>
                                 <li>Laravel</li>
@@ -149,7 +148,7 @@ js_scripts:
                         </li>
                         <li class="callouts__item">
                             <h4 class="callouts__title font-serif h5 font-normal">Tools</h4>
-                            <ul class="callouts__list list-clean">
+                            <ul class="callouts__list list-comma list-clean">
                                 <li>Git</li>
                                 <li>NPM</li>
                                 <li>Composer</li>
@@ -162,7 +161,7 @@ js_scripts:
                         </li>
                         <li class="callouts__item">
                             <h4 class="callouts__title font-serif h5 font-normal">Platforms</h4>
-                            <ul class="callouts__list list-clean">
+                            <ul class="callouts__list list-comma list-clean">
                                 <li>Shopify</li>
                                 <li>Google App Scripts</li>
                             </ul>
@@ -170,21 +169,21 @@ js_scripts:
                     </ul>
                 </div>
             </div>
-            <div class="hireme__cro service-block" data-animate="cro">
-                <div class="service-block__title">
+            <div class="hireme__service hireme__service--cro" data-animate="cro">
+                <div class="hireme__service-title">
                     <h3 class="subtitle font-normal h4">Conversion Rate Optimization</h3>
                 </div>
-                <div class="service-block__content">
+                <div class="hireme__service-content">
                     <h2 class="title font-serif">Grow by reducing abandonment.</h2>
                     <p>I have completed 250+ A/B tests for well-known brands like Callaway Golf, Intuit, Adidas, Patagonia, Warner Music Group, and Keurig.
                         If you're investing money or resources on traffic then <button class="link js-aside-show" data-target="#aside-message">let's talk about CRO</button>.
                         And if your project is too big for me, I can introduce you to some brilliant people.</p>
                 </div>
-                <div class="service-block__callouts">
+                <div class="hireme__service-callouts">
                     <ul class="callouts list-clean">
                         <li class="callouts__item">
                             <h4 class="callouts__title font-serif h5 font-normal">Tools</h4>
-                            <ul class="callouts__list list-clean">
+                            <ul class="callouts__list list-comma list-clean">
                                 <li>Optimizely</li>
                                 <li>Google Optimize</li>
                             </ul>
@@ -195,11 +194,11 @@ js_scripts:
                     </ul>
                 </div>
             </div>
-            <div class="hireme__ga service-block" data-animate="ga">
-                <div class="service-block__title">
+            <div class="hireme__service hireme__service--ga" data-animate="ga">
+                <div class="hireme__service-title">
                     <h3 class="subtitle font-normal h4">Google Analytics</h3>
                 </div>
-                <div class="service-block__content">
+                <div class="hireme__service-content">
                     <h2 class="title font-serif">Custom setup tracking and reporting.</h2>
                     <p>Analytics is so much more than just page views and users count.
                         Are your marketing campaigns being appropriately tracked?
@@ -207,11 +206,11 @@ js_scripts:
                         Do you even know which channels gain users and which channels convert them?
                         I can help answer some of these questions along with custom configuration, like custom goals and e-commerce tracking, for instance.</p>
                 </div>
-                <div class="service-block__callouts">
+                <div class="hireme__service-callouts">
                     <ul class="callouts list-clean">
                         <li class="callouts__item">
                             <h4 class="callouts__title font-serif h5 font-normal">Tools</h4>
-                            <ul class="callouts__list list-clean">
+                            <ul class="callouts__list list-comma list-clean">
                                 <li>Google Analytics</li>
                                 <li>Google Tag Manager</li>
                                 <li>Google Data Studio</li>
@@ -226,25 +225,37 @@ js_scripts:
         </div>
     </div>
 </section>
-<section class="section" id="testimonials">
+<section class="section" id="testimonials" data-change-bkg>
     <div class="section__content layout">
         <div class="testimonials">
             <header class="testimonials__headline">
-                <h4 class="subtitle font-normal">Check out what I've been doing.</h4>
-                <h3 class="title font-serif">Latest Projects</h3>
+                <h4 class="subtitle font-normal">Some nice things said about me.</h4>
+                <h3 class="h1 title font-serif">Testimonials</h3>
             </header>
             <ul class="testimonials__list list-clean">
                 {%- for testimonial in site.data.testimonials -%}
                 <li class="testimonials__list-item">
-                    {{ testimonial.content }}
-                    {{ testimonial.title }}
+                    <div class="testimonials__brand">
+                        <img src="{{ testimonial.img }}" alt="">
+                    </div>
+                    <div class="testimonials__quote">
+                        <i class="fas fa-quote-left"></i>
+                        <div class="testimonials__quote-content">
+                            {{ testimonial.content }}
+                        </div>
+                    </div>
+                    <div class="testimonials__info">
+                        <h5>{{ testimonial.name }}</h5>
+                        <i>{{ testimonial.title }}</i>
+                        <a class="link" target="_blank" href="{{ testimonial.company_url }}">{{ testimonial.company }}</a>
+                    </div>
                 </li>
                 {%- endfor -%}
             </ul>
         </div>
     </div>
 </section>
-<section class="section js-scroll-in-view" id="latest-projects">
+<section class="section" id="latest-projects" data-change-bkg>
     <div class="section__content layout">
         <div class="projects">
             <header class="projects__headline">

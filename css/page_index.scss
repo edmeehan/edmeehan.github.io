@@ -4,6 +4,8 @@
 @import "variables";
 @import "home-animations";
 
+$white: #fff;
+
 .hidden {
   opacity: 0;
   pointer-events: none;
@@ -15,11 +17,10 @@
 
 .intro {
   $graphic-width: 36%;
-  $text-color: #fff;
   position: relative;
 
   &__content {
-    color: $text-color;
+    color: $white;
     height: 100vh;
     position: absolute;
 
@@ -74,7 +75,7 @@
     .tidbit {
       margin-top: 2rem;
       border-radius: $l-border-radius;
-      background-color: fade-out($color: #fff, $amount: .8);
+      background-color: fade-out($color: $white, $amount: .8);
       line-height: 1.3rem;
       padding: .5rem 1rem;
       display: inline-block;
@@ -239,7 +240,7 @@
   }
 
   &__scroll-on {
-    color: $text-color;
+    color: $white;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -286,8 +287,6 @@
 }
 
 .hireme {
-  color: #fff;
-
   &__intro {
     text-align: center;
     margin-bottom: 4rem;
@@ -297,6 +296,7 @@
       margin-top: 0;
     }
     .title {
+      color: $white;
       margin-bottom: 0;
     }
 
@@ -324,6 +324,7 @@
     .title {
       margin-top: 0;
       margin-bottom: 1rem;
+      color: $white;
 
       + p {
         margin: 0;
@@ -360,93 +361,160 @@
     }
   }
 
-  & &__ga {
-    margin-bottom: 0;
-
-    @media (min-width: $m-break) {
-      margin-bottom: 2rem;
-    }
-  }
-}
-
-.service-block {
-  margin-bottom: 4rem;
-  padding-top: 5rem;
-  border-top: solid 1px $brand-lite-blue;
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto auto auto;
-  grid-template-areas:
-      "title"
-      "content"
-      "callouts";
-
-  &__title {
-    grid-area: title;
-  }
-  &__content {
-    grid-area: content;
-  }
-  &__callouts {
-    grid-area: callouts;
-  }
-
-  .title {
-    margin-top: 0;
-  }
-  .subtitle {
-    color: $brand-lite-blue;
-    line-height: 1.5em;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  @media (max-width: $s-break-max) {
-    &.hireme__frontend {
-      border-top: none;
-    }
-  }
-
-  @media (min-width: $m-break) {
-    margin-bottom: 8rem;
-    padding-top: 1.5rem;
-    grid-template-columns: 1fr 10% 1fr;
-    grid-template-rows: auto auto;
+  &__service {
+    margin-bottom: 4rem;
+    padding-top: 5rem;
+    border-top: solid 1px $brand-lite-blue;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
-        "title title title"
-        "content . callouts";
+        "title"
+        "content"
+        "callouts";
+    
+    .title {
+      margin-top: 0;
+      color: $white;
+    }
+    .subtitle {
+      color: $brand-lite-blue;
+      line-height: 1.5em;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .callouts {
+      margin: 0;
+    
+      &__title {
+        margin-top: 0;
+        margin-bottom: 0;
+        color: $brand-lite-blue;
+      }
+      &__item {
+        margin-bottom: 1.5rem;
+      }
+      &__list {
+        margin: 0;
+        color: $white;
+      }
+    }
+  
+    &-title {
+      grid-area: title;
+    }
+    &-content {
+      grid-area: content;
+    }
+    &-callouts {
+      grid-area: callouts;
+    }
+    &--ga {
+      margin-bottom: 0;
+    }
+  
+    @media (max-width: $s-break-max) {
+      &--frontend {
+        border-top: none;
+      }
+    }
+  
+    @media (min-width: $m-break) {
+      margin-bottom: 8rem;
+      padding-top: 1.5rem;
+      grid-template-columns: 1fr 10% 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+          "title title title"
+          "content . callouts";
+
+      &--ga {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 
-.callouts {
-  margin: 0;
+// #testimonials {
+//   background-color: $brand-dark-blue;
+// }
 
-  &__title {
-    margin-top: 0;
-    margin-bottom: 0;
-    color: $brand-lite-blue;
-  }
-  &__item {
-    margin-bottom: 1.5rem;
+.testimonials {
+  &__headline {
+    margin-bottom: 5rem;
+    position: relative;
+    
+    .subtitle {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    .title {
+      margin-bottom: 0;
+      margin-top: 0;
+      color: $white;
+    }
   }
   &__list {
-    margin: 0;
+    margin-bottom:0;
+    margin-top: 0;
+    &-item {
+      background-color: $brand-lite-text;
+      color: $brand-black;
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: auto 2rem 100px;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+          "quote quote quote"
+          "info . brand";
+      }
+  }
+  &__quote {
+    grid-area: quote;
+    text-align: left;
+    
+    .fa-quote-left {
+      float: left;
+      color: $brand-purple;
+      font-size: 1.5rem;
+      padding-right: 0.5rem;
+    }
 
-    > li {
+    &-content {
+      p {
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  &__brand {
+    grid-area: brand;
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+  &__info {
+    grid-area: info;
+    text-align: right;
+    align-self: center;
+    h5 {
+      color: $brand-dark-blue;
+      margin: 0;
+    }
+    a {
       display: inline-block;
-      &::after {
-        content: ',';
-      }
-      &:last-child::after {
-        content: '';
-      }
+    }
+    i {
+      color: $brand-dark-blue;
+      display: block;
     }
   }
 }
 
 .projects {
-  color: #fff;
-
   &__headline {
     text-align: center;
     margin-bottom: 5rem;
@@ -459,6 +527,7 @@
     .title {
       margin-bottom: 0;
       margin-top: 0;
+      color: $white;
     }
 
     @media (max-width: 599px) {

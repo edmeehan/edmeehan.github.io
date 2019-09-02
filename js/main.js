@@ -27,7 +27,7 @@ var shadow = document.getElementById('page-shadow'),
     contactFields = document.querySelectorAll('#contact-form input, #contact-form textarea'); // section manager controls background and
 // events when sections become visible
 
-window.sections = new _modules_change_background__WEBPACK_IMPORTED_MODULE_0__["default"](document.getElementsByClassName('js-scroll-in-view'), document.getElementById('page-background'), window.backgroundCount || 1);
+window.sections = new _modules_change_background__WEBPACK_IMPORTED_MODULE_0__["default"](document.querySelectorAll('[data-change-bkg]'), document.getElementById('page-background'), window.backgroundCount || 1);
 
 function hideEndEvent(_ref) {
   var target = _ref.target;
@@ -94,6 +94,16 @@ function loadContactScript() {
   });
 }
 
+var scrollToTargetListerner = function scrollToTargetListerner(_ref4) {
+  var target = _ref4.target;
+  var name = target.dataset.scrollTo,
+      targetNode = document.getElementById(name),
+      rect = targetNode.getBoundingClientRect(),
+      offset = window.pageYOffset || document.documentElement.scrollTop;
+  window.scrollTo(0, rect.top + offset);
+  return false;
+};
+
 if (docEle) {
   docEle.addEventListener('aside.show', asideShowEvent);
   docEle.addEventListener('aside.hide', asideHideEvent);
@@ -129,7 +139,12 @@ if (contactFields) {
   _toConsumableArray(contactFields).forEach(function (field) {
     field.addEventListener('focus', loadContactScript);
   });
-}
+} // scroll to triggers
+
+
+_toConsumableArray(document.querySelectorAll('[data-scroll-to]')).forEach(function (item) {
+  item.addEventListener('click', scrollToTargetListerner);
+});
 
 /***/ }),
 

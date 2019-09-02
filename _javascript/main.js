@@ -8,7 +8,7 @@ const shadow = document.getElementById('page-shadow'),
 // section manager controls background and
 // events when sections become visible
 window.sections = new ChangeBackground(
-  document.getElementsByClassName('js-scroll-in-view'),
+  document.querySelectorAll('[data-change-bkg]'),
   document.getElementById('page-background'),
   window.backgroundCount || 1,
 );
@@ -71,6 +71,16 @@ function loadContactScript() {
   });
 }
 
+const scrollToTargetListerner = ({ target }) => {
+  const name = target.dataset.scrollTo,
+    targetNode = document.getElementById(name),
+    rect = targetNode.getBoundingClientRect(),
+    offset = window.pageYOffset || document.documentElement.scrollTop;
+
+  window.scrollTo(0, rect.top + offset);
+  return false;
+};
+
 if (docEle) {
   docEle.addEventListener('aside.show', asideShowEvent);
   docEle.addEventListener('aside.hide', asideHideEvent);
@@ -109,3 +119,8 @@ if (contactFields) {
     field.addEventListener('focus', loadContactScript);
   });
 }
+
+// scroll to triggers
+[...document.querySelectorAll('[data-scroll-to]')].forEach((item) => {
+  item.addEventListener('click', scrollToTargetListerner);
+});

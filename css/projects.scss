@@ -18,8 +18,15 @@
     }
 
     @media (min-width: $l-break) {
+        &__list {
+            margin-left: -10px;
+            margin-right: -10px;
+        }
         &__list-item {
             flex: 0 0 50%;
+        }
+        .project-card {
+            margin: 10px;
         }
     }
 

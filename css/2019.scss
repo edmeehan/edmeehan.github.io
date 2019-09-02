@@ -55,11 +55,9 @@ body {
             color: inherit;
         }
 
-        p {
-            > a,
-            > button.link {
-                background-color: rgba($brand-purple, .4);
-            }
+        p > a,
+        .link {
+            background-color: rgba($brand-purple, .4);
         }
     }
 }

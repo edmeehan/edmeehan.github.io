@@ -32,7 +32,7 @@ const prepFakeScroll = (node) => {
       const scrollShim = document.createElement('div');
       scrollShim.style.height = `${item.getBoundingClientRect().height}px`;
       scrollShim.className = 'scroll-shim';
-      scrollShim.dataset.scrollTarget = item.dataset.scroll;
+      scrollShim.id = item.dataset.scroll;
       fakeScroll.appendChild(scrollShim);
     });
   }
@@ -77,7 +77,7 @@ const prepForAnimation = () => {
  * @param {Event} event listener object
  */
 const introScrollerVisibleListener = ({ target, detail: { rect, window: visible } }) => {
-  const name = target.dataset.scrollTarget;
+  const name = target.id;
   // controls which scroll element is in focus
   // we do some class toggles to make text and buttons clickable
   if (visible > 0.65 && name !== contentNodeOfFocus) {
@@ -144,15 +144,6 @@ const introScrollerProgressListener = ({ detail: { rect } }) => {
   }
 };
 
-const scrollToTargetListerner = ({ target }) => {
-  const name = target.dataset.scrollTo,
-    targetNode = document.querySelector(`[data-scroll-target="${name}"]`),
-    rect = targetNode.getBoundingClientRect(),
-    offset = window.pageYOffset || document.documentElement.scrollTop;
-
-  window.scrollTo(0, rect.top + offset);
-};
-
 /**
  * something changed so we need to
  * figure out the new dimensions
@@ -182,10 +173,6 @@ const init = () => {
   });
   // intro section listener
   document.getElementById('intro').addEventListener(scroll.event, introScrollerProgressListener);
-  // scroll to triggers
-  [...document.querySelectorAll('[data-scroll-to]')].forEach((item) => {
-    item.addEventListener('click', scrollToTargetListerner);
-  });
   // hireme node listener - fix bug when we jump to hire me section
   hireMeNode.addEventListener(scroll.event, () => {
     if (!introScrollerNode.classList.contains('intro--not-fixed')) introScrollerNode.classList.add('intro--not-fixed');

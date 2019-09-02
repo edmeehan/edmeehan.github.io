@@ -549,7 +549,7 @@ var prepFakeScroll = function prepFakeScroll(node) {
       var scrollShim = document.createElement('div');
       scrollShim.style.height = "".concat(item.getBoundingClientRect().height, "px");
       scrollShim.className = 'scroll-shim';
-      scrollShim.dataset.scrollTarget = item.dataset.scroll;
+      scrollShim.id = item.dataset.scroll;
       fakeScroll.appendChild(scrollShim);
     });
   } // only if node was not passed to we insert in DOM
@@ -601,7 +601,7 @@ var introScrollerVisibleListener = function introScrollerVisibleListener(_ref) {
       _ref$detail = _ref.detail,
       rect = _ref$detail.rect,
       visible = _ref$detail.window;
-  var name = target.dataset.scrollTarget; // controls which scroll element is in focus
+  var name = target.id; // controls which scroll element is in focus
   // we do some class toggles to make text and buttons clickable
 
   if (visible > 0.65 && name !== contentNodeOfFocus) {
@@ -674,15 +674,6 @@ var introScrollerProgressListener = function introScrollerProgressListener(_ref3
     document.getElementById('prgress-target').setAttribute('y', '0%');
   }
 };
-
-var scrollToTargetListerner = function scrollToTargetListerner(_ref4) {
-  var target = _ref4.target;
-  var name = target.dataset.scrollTo,
-      targetNode = document.querySelector("[data-scroll-target=\"".concat(name, "\"]")),
-      rect = targetNode.getBoundingClientRect(),
-      offset = window.pageYOffset || document.documentElement.scrollTop;
-  window.scrollTo(0, rect.top + offset);
-};
 /**
  * something changed so we need to
  * figure out the new dimensions
@@ -716,12 +707,7 @@ var init = function init() {
   }); // intro section listener
 
 
-  document.getElementById('intro').addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, introScrollerProgressListener); // scroll to triggers
-
-  _toConsumableArray(document.querySelectorAll('[data-scroll-to]')).forEach(function (item) {
-    item.addEventListener('click', scrollToTargetListerner);
-  }); // hireme node listener - fix bug when we jump to hire me section
-
+  document.getElementById('intro').addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, introScrollerProgressListener); // hireme node listener - fix bug when we jump to hire me section
 
   hireMeNode.addEventListener(_modules_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, function () {
     if (!introScrollerNode.classList.contains('intro--not-fixed')) introScrollerNode.classList.add('intro--not-fixed');

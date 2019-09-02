@@ -1,113 +1,139 @@
 .font {
-    &-sans {
-        font-family: 'Noto Sans', sans-serif;
-    }
-    &-serif {
-        font-family: 'Roboto Slab', serif;
-    }
-    &-normal {
-        font-weight: 400;
-    }
-    &-bold {
-        font-weight: 600;
-    }
-    &-big {
-        font-size: (22/$size-units) + 0rem;
-    }
-    &-medium {
-        font-size: (18/$size-units) + 0rem;
-    }
-    &-small {
-        font-size: (14/$size-units) + 0rem;
-    }
-    &-x-small {
-        font-size: (12/$size-units) + 0rem;
-    }
+  &-sans {
+    font-family: "Noto Sans", sans-serif;
+  }
+  &-serif {
+    font-family: "Roboto Slab", serif;
+  }
+  &-normal {
+    font-weight: 400;
+  }
+  &-bold {
+    font-weight: 600;
+  }
+  &-big {
+    font-size: (22 / $size-units) + 0rem;
+  }
+  &-medium {
+    font-size: (18 / $size-units) + 0rem;
+  }
+  &-small {
+    font-size: (14 / $size-units) + 0rem;
+  }
+  &-x-small {
+    font-size: (12 / $size-units) + 0rem;
+  }
 }
 
 .overflow {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-p,ol,ul,hr {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.5rem;
+p,
+ol,
+ul,
+hr {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5rem;
 }
 
-h1,h2,h3,h4,h5,
-.h1,.h2,.h3,.h4,.h5 {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    line-height: 1em;
+h1,
+h2,
+h3,
+h4,
+h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1em;
 
-    &:not(.font-serif),
-    .font-sans {
-        letter-spacing: -0.02em;
-        margin-left: -0.07em;
+  &:not(.font-serif),
+  .font-sans {
+    letter-spacing: -0.02em;
+    margin-left: -0.07em;
+  }
+}
+
+h1,
+.h1 {
+  font-size: (36 / $size-units) + 0rem;
+
+  @media (min-width: $m-break) {
+    font-size: (52 / $size-units) + 0rem;
+  }
+}
+
+h2,
+.h2 {
+  font-size: (32 / $size-units) + 0rem;
+
+  @media (min-width: $m-break) {
+    font-size: (42 / $size-units) + 0rem;
+  }
+}
+
+h3,
+.h3 {
+  font-size: (26 / $size-units) + 0rem;
+
+  @media (min-width: $m-break) {
+    font-size: (36 / $size-units) + 0rem;
+  }
+}
+
+h4,
+.h4 {
+  font-size: (22 / $size-units) + 0rem;
+}
+
+h5,
+.h5 {
+  font-size: 1rem;
+}
+
+ol,
+ul {
+  padding-left: 1.5rem;
+  padding-inline-start: 1.5rem;
+
+  &.list {
+    &-clean {
+      list-style: none;
+      padding-left: 0;
     }
-}
-
-h1,.h1 {
-    font-size: (36/$size-units) + 0rem;
-
-    @media (min-width: $m-break) {
-        font-size: (52/$size-units) + 0rem;
-    }
-}
-
-h2,.h2 {
-    font-size: (32/$size-units) + 0rem;
-
-    @media (min-width: $m-break) {
-        font-size: (42/$size-units) + 0rem;
-    }
-}
-
-h3,.h3 {
-    font-size: (26/$size-units) + 0rem;
-
-    @media (min-width: $m-break) {
-        font-size: (36/$size-units) + 0rem;
-    }
-}
-
-h4,.h4 {
-    font-size: (22/$size-units) + 0rem;
-}
-
-h5,.h5 {
-    font-size: 1rem;
-}
-
-ol, ul {
-    padding-left: 1.5rem;
-    padding-inline-start: 1.5rem;
-
-    &.list {
-        &-clean {
-            list-style: none;
-            padding-left: 0;
+    &-comma {
+      > li {
+        display: inline-block;
+        &::after {
+          content: ",";
         }
+        &:last-child::after {
+          content: "";
+        }
+      }
     }
+  }
 }
 
 hr {
-    border: none;
-    height: 0;
-    border-top: solid 1px $hr-color;
+  border: none;
+  height: 0;
+  border-top: solid 1px $hr-color;
 }
 
-p {
-    > a,
-    button.link {
-        // display: inline-block;
-        padding-left: (2/$size-units) + 0rem;
-        padding-right: (2/$size-units) + 0rem;
-        margin-left: -(2/$size-units) + 0rem;
-        margin-right: -(2/$size-units) + 0rem;
-        text-decoration: none;
-    }
+p > a,
+.link {
+  // display: inline-block;
+  padding-left: (2 / $size-units) + 0rem;
+  padding-right: (2 / $size-units) + 0rem;
+  margin-left: -(2 / $size-units) + 0rem;
+  margin-right: -(2 / $size-units) + 0rem;
+  text-decoration: none;
 }

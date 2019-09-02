@@ -1,9 +1,7 @@
 -
   content: <p>Edward has been fantastic to work with! We have really appreciated his attention to detail and responsiveness to help launch KidsLuv.</p><p>He is efficient, very knowledgeable and has been an integral part in improving our customer’s experience online. It’s a relief to have someone like Edward that we can depend on for all of our web development needs!</p>
-  title: Jenn Goodrum - KidsLuv
-  img: 
-
--
-  content: This is just placeholder
-  title: Testing Title - Blah
-  img:
+  name: Jenn Goodrum
+  title: Marketing
+  company: KidsLuv
+  company_url: https://kidsluv.com
+  img: /img/testimonials/Kidsluv_BrandLogo.png
