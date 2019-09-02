@@ -14,10 +14,10 @@ layout: 2019_master
         </button>
         {{ content }}
         {%- if page.share -%}
-        {%- include share.html -%}
+        {% include share.html %}
         {%- endif -%}
     </div>
-    {%- include aside-nav.html -%}
-    {%- include aside-message.html -%}
+    {% include aside-nav.html %}
+    {% include aside-message.html %}
 </div>
 <!-- Page Layout End -->

@@ -22,7 +22,7 @@ layout: 2019_default
         </article>
         {%- if page.comments -%}
         <div class="blog__comment">
-            {%- include disqus_comments.html -%}
+            {% include disqus_comments.html %}
         </div>
         {%- endif -%}
     </div>

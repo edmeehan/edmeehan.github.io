@@ -18,7 +18,9 @@ css_styles:
                 {%- assign sorted_projects = site.projects | reverse -%}
                 {%- for project in sorted_projects -%}
                     {%- assign category_icon = site.data.icons-category[project.category] -%}
-                    <li class="projects__list-item">{%- include project-card.html icon=category_icon project=project -%}</li>
+                    <li class="projects__list-item">
+                        {% include project-card.html icon=category_icon project=project %}
+                    </li>
                 {%- endfor -%}
             </ul>
         </div>

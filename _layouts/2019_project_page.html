@@ -34,7 +34,7 @@ layout: 2019_default
             </div>
             {%- if page.comments -%}
             <div class="project__comment">
-                {%- include disqus_comments.html -%}
+                {% include disqus_comments.html %}
             </div>
             {%- endif -%}
         </article>

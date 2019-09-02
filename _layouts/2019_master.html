@@ -69,7 +69,10 @@
         {%- endif -%}
         {{ content }}
         <!-- Scripts -->
-        <script>window.backgroundCount = {{ theme_color.count }};</script>
+        <script>
+        window.backgroundCount = {{ theme_color.count }};
+        window.contactScriptPath = '/js/contact_form.js?{{ site.time | date: '%s%N' }}';
+        </script>
         {%- for item in site.js_scripts -%}
         <script src="{%- if item.absolute_url -%}{{ item.path | absolute_url }}{%- else -%}{{ item.path }}{%- endif -%}{%- if item.cache_bust -%}?{{ site.time | date: '%s%N' }}{%- endif -%}"></script>
         {%- endfor -%}

@@ -2,7 +2,8 @@ import ChangeBackground from './modules/change_background';
 import 'custom-event-polyfill';
 
 const shadow = document.getElementById('page-shadow'),
-  docEle = document.getElementById('document');
+  docEle = document.getElementById('document'),
+  contactFields = document.querySelectorAll('#contact-form input, #contact-form textarea');
 
 // section manager controls background and
 // events when sections become visible
@@ -59,6 +60,17 @@ function asideShowEvent({ detail: { target }, element }) {
   }, 50);
 }
 
+function loadContactScript() {
+  const ref = document.getElementsByTagName('script')[0],
+    script = document.createElement('script');
+
+  script.src = window.contactScriptPath;
+  ref.parentNode.insertBefore(script, ref);
+  [...contactFields].forEach((field) => {
+    field.removeEventListener('focus', loadContactScript);
+  });
+}
+
 if (docEle) {
   docEle.addEventListener('aside.show', asideShowEvent);
   docEle.addEventListener('aside.hide', asideHideEvent);
@@ -89,5 +101,11 @@ if (docEle) {
 if (shadow) {
   shadow.addEventListener('click', () => {
     if (window.activeAside) asideHideEvent({ element: window.activeAside });
+  });
+}
+
+if (contactFields) {
+  [...contactFields].forEach((field) => {
+    field.addEventListener('focus', loadContactScript);
   });
 }
