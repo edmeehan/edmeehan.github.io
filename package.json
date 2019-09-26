@@ -9,6 +9,10 @@
         "webpack": "^4.39.2",
         "webpack-cli": "^3.3.7"
     },
+    "scripts": {
+        "start": "bundle exec jekyll serve",
+        "watch": "webpack --watch"
+    },
     "dependencies": {
         "animejs": "^3.1.0",
         "axios": "^0.18.1",
