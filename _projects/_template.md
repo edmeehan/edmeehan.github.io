@@ -2,12 +2,14 @@
 title: 
 category: 
 project_url: 
-image: 
+image:
+image-alt: 
 og-image: 
 read-time:
 excerpt: 
 seo-title: 
-tags: 
+tags:
+share-url:
 ---
 ### headline
 Text here.

@@ -79,6 +79,8 @@
     &__content {
         grid-area: post;
         h1,h2,h3,h4,h5 {
+            margin-top: 3.5rem;
+            font-family: "Roboto Slab", serif;
             font-weight: 400;
         }
         img {
@@ -87,6 +89,19 @@
         p {
             font-size: 1.2rem;
             line-height: 1.5em;
+        }
+        blockquote {
+            border-color: rgba($brand-white-text, .3);
+        }
+        figure {
+            margin: 0;
+            padding: .75rem;
+            background-color: rgba(black, .2);
+        }
+        figcaption {
+            font-size: (14 / $size-units) + 0rem;
+            text-align: center;
+            color: $brand-lite-text;
         }
     }
 

@@ -2,6 +2,7 @@
 title: Gym Attendance App
 category: development
 project_url: https://github.com/edmeehan/react-gas-gym-classes
+share-url: https://v.emeehan.com/r/thkd2ue5
 image: /img/projects/gym-attendance-app.jpg
 og-image: /img/projects/gym-attendance-app.jpg
 read-time: 1.5 min read

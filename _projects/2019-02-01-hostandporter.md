@@ -2,6 +2,7 @@
 title: Host & Porter Product Catalog
 category: development
 project_url: http://hostandporter.com/
+share-url: https://v.emeehan.com/r/kiw67w3r
 image: /img/projects/hostandporter-site.jpg
 og-image: /img/projects/hostandporter-site.jpg
 read-time: 1.5 min read

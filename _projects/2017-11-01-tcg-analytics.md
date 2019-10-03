@@ -1,6 +1,7 @@
 ---
 title: TCG Google Analytics
 category: analytics
+share-url: https://v.emeehan.com/r/ju64wg67
 # project_url:
 image: /img/projects/tcg-analytics.jpg
 og-image: /img/projects/tcg-analytics.jpg

@@ -29,7 +29,7 @@ body {
 .theme {
     &--black {
         background-color: $brand-rich-blue;
-        color: #ececec;
+        color: $brand-white-text;
 
         a {
             color: inherit;

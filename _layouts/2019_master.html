@@ -31,8 +31,8 @@
         <meta itemprop="description" content="{{ description | normalize_whitespace }}">
         <meta name="twitter:description" content="{{ description | normalize_whitespace }}">
         <link rel="canonical" href="{{ page.url | absolute_url }}">
-        <link rel="apple-touch-icon" href="{{ "/apple-touch-icon.png" | absolute_url }}">
-        <link rel="shortcut icon" href="{{ "/favicon.png" | absolute_url }}" type="image/x-icon">
+        {%- comment -%}<link rel="apple-touch-icon" href="{{ "/apple-touch-icon.png" | absolute_url }}">{%- endcomment -%}
+        <link rel="shortcut icon" href="{{ "/img/favicon-32.png" | absolute_url }}" type="image/x-icon">
         <link rel="author" href="{{ "/humans.txt" | absolute_url }}">
         <link rel="alternate" type="application/rss+xml" href="{{ "/feed.xml" | absolute_url }}">
         <meta property="og:type" content="website">

@@ -2,6 +2,7 @@
 title: Crimewire Blog
 category: development
 project_url: https://www.instantcheckmate.com/crimewire/
+share-url: https://v.emeehan.com/r/ki58q32r
 image: /img/projects/crimewire-blog.jpg
 og-image: /img/projects/crimewire-blog.jpg
 excerpt: I got tasked with moving the Crimewire blog off of WordPress, and onto Laravel + Voyager.

@@ -1,6 +1,10 @@
 {%- comment -%}TODO: add utm tracking params{%- endcomment -%}
 {%- capture headline -%}{%- if page.seo-title -%}{{ page.seo-title }}{%- elsif page.title -%}{{ page.title }}{%- endif -%}{%- endcapture -%}
+{%- if page.share-url -%}
+{%- assign url_encoded = page.share-url | absolute_url | url_encode -%}
+{%- else -%}
 {%- assign url_encoded = page.url | absolute_url | url_encode -%}
+{%- endif -%}
 {%- assign title_encoded = headline | url_encode -%}
 {%- assign img_encoded = page.og-image | absolute_url | url_encode -%}
 <div class="share">
