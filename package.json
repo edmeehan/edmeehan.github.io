@@ -6,16 +6,23 @@
         "eslint": "^6.2.2",
         "eslint-config-airbnb-base": "^14.0.0",
         "eslint-plugin-import": "^2.18.2",
+        "vue-loader": "^15.7.1",
+        "vue-template-compiler": "^2.6.10",
         "webpack": "^4.39.2",
-        "webpack-cli": "^3.3.7"
+        "webpack-cli": "^3.3.7",
+        "webpack-merge": "^4.2.2"
     },
     "scripts": {
         "start": "bundle exec jekyll serve",
-        "watch": "webpack --watch"
+        "build": "webpack --config webpack.dev.js",
+        "prod": "webpack --config webpack.prod.js",
+        "watch": "webpack --watch --config webpack.dev.js"
     },
     "dependencies": {
         "animejs": "^3.1.0",
         "axios": "^0.18.1",
-        "custom-event-polyfill": "^1.0.7"
+        "core-js": "^3.2.1",
+        "custom-event-polyfill": "^1.0.7",
+        "vue": "^2.6.10"
     }
 }

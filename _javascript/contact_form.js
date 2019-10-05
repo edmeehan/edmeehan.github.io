@@ -43,13 +43,13 @@ function form_submit(event) {
   axios
     .post(contactForm.getAttribute('action'), formData)
     .then((response) => {
-      window.dataLayer.push({ 'event': 'contact-form-success', 'event_label': 'success' });
+      window.dataLayer.push({ event: 'contact-form-success', event_label: 'success' });
       contactForm.classList.add(`${formClass}success`);
       contactForm.classList.remove(`${formClass}pending`);
       form_response(true);
     })
     .catch((error) => {
-      window.dataLayer.push({ 'event': 'contact-form-fail', 'event_label': 'fail' });
+      window.dataLayer.push({ event: 'contact-form-fail', event_label: 'fail' });
       contactForm.classList.add(`${formClass}fail`);
       contactForm.classList.remove(`${formClass}pending`);
       form_response(false);
