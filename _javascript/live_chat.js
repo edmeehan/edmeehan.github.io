@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import test from 'Test/components/test';
+import test from '@/components/test';
 
 Vue.component('test', test);
 
-const vueApp = new Vue({
-  el: '#live-chat'
+new Vue({
+  el: '#livechat-app'
 });

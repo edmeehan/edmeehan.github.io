@@ -6,8 +6,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue'],
     alias: {
-      // 'vue$': isDev ? 'vue/dist/vue.runtime.js' : 'vue/dist/vue.runtime.min.js',
-      Test: path.resolve(__dirname, '_javascript')
+      '@': path.resolve(__dirname, '_javascript'),
+      'vue$': 'vue/dist/vue.esm.js'
     }
   },
   entry: {
@@ -34,18 +34,15 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        // test: /\.jsx?$/,
-        // exclude: /(node_modules)/,
-        // use: {
-        //   loader: 'babel-loader',
-        //   options: {
-        //     presets: ['@babel/preset-env']
-        //   }
-        // }
+        exclude: /node_modules/,
+        options: {
+          presets: ['@babel/preset-env']
+        }
       }
     ]
   }

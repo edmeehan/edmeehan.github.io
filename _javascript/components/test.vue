@@ -1,15 +1,16 @@
+<template>
+  <div>
+    this is a tag
+  </div>
+</template>
+
+
 <script>
 export default {
   props: [],
 
   mounted() {
-    console.log('teset mounted');
-  },
-
-  methods: {
-
-  },
-
-  computed: {}
+    console.log('test mounted');
+  }
 };
 </script>

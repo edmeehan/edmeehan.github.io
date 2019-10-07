@@ -1,4 +1,4 @@
-import ChangeBackground from './modules/change_background';
+import ChangeBackground from '@/modules/change_background';
 import 'custom-event-polyfill';
 
 const shadow = document.getElementById('page-shadow'),
@@ -22,7 +22,7 @@ function hideEndEvent({ target }) {
   }
 }
 
-function asideHideEvent({ detail: { target }, element }) {
+function asideHideEvent({ detail: { target = null } = {}, element }) {
   const aside = element || document.querySelector(target);
   // add listener for end of transition event
   aside.addEventListener('transitionend', hideEndEvent);
@@ -33,7 +33,7 @@ function asideHideEvent({ detail: { target }, element }) {
   document.body.classList.remove('locked');
 }
 
-function asideShowEvent({ detail: { target }, element }) {
+function asideShowEvent({ detail: { target = null } = {}, element }) {
   const aside = element || document.querySelector(target),
     labelName = target.substring(1),
     eventName = `show-${labelName}`;

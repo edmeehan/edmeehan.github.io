@@ -17,6 +17,9 @@ module.exports = {
   rules: {
     'one-var': 'off',
     camelcase: 'off',
-    'comma-dangle': 'off'
+    'comma-dangle': 'off',
+    'quote-props': 'off',
+    'import/no-unresolved': 'off',
+    'no-new': 'off'
   },
 };

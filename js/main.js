@@ -9,21 +9,29 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_change_background__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/change_background */ "./_javascript/modules/change_background.js");
+/* harmony import */ var _modules_change_background__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/modules/change_background */ "./_javascript/modules/change_background.js");
 /* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
 /* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 
-const shadow = document.getElementById('page-shadow'),
-      docEle = document.getElementById('document'),
-      contactFields = document.querySelectorAll('#contact-form input, #contact-form textarea'); // section manager controls background and
+
+var shadow = document.getElementById('page-shadow'),
+    docEle = document.getElementById('document'),
+    contactFields = document.querySelectorAll('#contact-form input, #contact-form textarea'); // section manager controls background and
 // events when sections become visible
 
 window.sections = new _modules_change_background__WEBPACK_IMPORTED_MODULE_0__["default"](document.querySelectorAll('[data-change-bkg]'), document.getElementById('page-background'), window.backgroundCount || 1);
 
-function hideEndEvent({
-  target
-}) {
+function hideEndEvent(_ref) {
+  var target = _ref.target;
+
   // condtion out bubbled events
   if (this === target) {
     this.style.display = 'none';
@@ -32,13 +40,13 @@ function hideEndEvent({
   }
 }
 
-function asideHideEvent({
-  detail: {
-    target
-  },
-  element
-}) {
-  const aside = element || document.querySelector(target); // add listener for end of transition event
+function asideHideEvent(_ref2) {
+  var _ref2$detail = _ref2.detail;
+  _ref2$detail = _ref2$detail === void 0 ? {} : _ref2$detail;
+  var _ref2$detail$target = _ref2$detail.target,
+      target = _ref2$detail$target === void 0 ? null : _ref2$detail$target,
+      element = _ref2.element;
+  var aside = element || document.querySelector(target); // add listener for end of transition event
 
   aside.addEventListener('transitionend', hideEndEvent); // add classes to trigger animation
 
@@ -48,15 +56,15 @@ function asideHideEvent({
   document.body.classList.remove('locked');
 }
 
-function asideShowEvent({
-  detail: {
-    target
-  },
-  element
-}) {
-  const aside = element || document.querySelector(target),
-        labelName = target.substring(1),
-        eventName = `show-${labelName}`; // handle active aside first
+function asideShowEvent(_ref3) {
+  var _ref3$detail = _ref3.detail;
+  _ref3$detail = _ref3$detail === void 0 ? {} : _ref3$detail;
+  var _ref3$detail$target = _ref3$detail.target,
+      target = _ref3$detail$target === void 0 ? null : _ref3$detail$target,
+      element = _ref3.element;
+  var aside = element || document.querySelector(target),
+      labelName = target.substring(1),
+      eventName = "show-".concat(labelName); // handle active aside first
   // - can also toggle
 
   if (window.activeAside) {
@@ -72,7 +80,7 @@ function asideShowEvent({
   });
   window.activeAside = aside;
   aside.style.display = null;
-  setTimeout(() => {
+  setTimeout(function () {
     // add classes to trigger animation
     aside.classList.add('active');
     docEle.classList.add('active'); // locks body to prevent scrolling
@@ -82,22 +90,22 @@ function asideShowEvent({
 }
 
 function loadContactScript() {
-  const ref = document.getElementsByTagName('script')[0],
-        script = document.createElement('script');
+  var ref = document.getElementsByTagName('script')[0],
+      script = document.createElement('script');
   script.src = window.contactScriptPath;
   ref.parentNode.insertBefore(script, ref);
-  [...contactFields].forEach(field => {
+
+  _toConsumableArray(contactFields).forEach(function (field) {
     field.removeEventListener('focus', loadContactScript);
   });
 }
 
-const scrollToTargetListerner = ({
-  target
-}) => {
-  const name = target.dataset.scrollTo,
-        targetNode = document.getElementById(name),
-        rect = targetNode.getBoundingClientRect(),
-        offset = window.pageYOffset || document.documentElement.scrollTop;
+var scrollToTargetListerner = function scrollToTargetListerner(_ref4) {
+  var target = _ref4.target;
+  var name = target.dataset.scrollTo,
+      targetNode = document.getElementById(name),
+      rect = targetNode.getBoundingClientRect(),
+      offset = window.pageYOffset || document.documentElement.scrollTop;
   window.scrollTo(0, rect.top + offset);
   return false;
 };
@@ -105,16 +113,18 @@ const scrollToTargetListerner = ({
 if (docEle) {
   docEle.addEventListener('aside.show', asideShowEvent);
   docEle.addEventListener('aside.hide', asideHideEvent);
-  [...document.getElementsByClassName('js-aside-show')].forEach(asideShow => {
-    asideShow.addEventListener('click', () => {
+
+  _toConsumableArray(document.getElementsByClassName('js-aside-show')).forEach(function (asideShow) {
+    asideShow.addEventListener('click', function () {
       docEle.dispatchEvent(new CustomEvent('aside.show', {
         bubbles: false,
         detail: asideShow.dataset
       }));
     });
   });
-  [...document.getElementsByClassName('js-aside-hide')].forEach(asideHide => {
-    asideHide.addEventListener('click', () => {
+
+  _toConsumableArray(document.getElementsByClassName('js-aside-hide')).forEach(function (asideHide) {
+    asideHide.addEventListener('click', function () {
       docEle.dispatchEvent(new CustomEvent('aside.hide', {
         bubbles: false,
         detail: asideHide.dataset
@@ -124,7 +134,7 @@ if (docEle) {
 }
 
 if (shadow) {
-  shadow.addEventListener('click', () => {
+  shadow.addEventListener('click', function () {
     if (window.activeAside) asideHideEvent({
       element: window.activeAside
     });
@@ -132,13 +142,13 @@ if (shadow) {
 }
 
 if (contactFields) {
-  [...contactFields].forEach(field => {
+  _toConsumableArray(contactFields).forEach(function (field) {
     field.addEventListener('focus', loadContactScript);
   });
 } // scroll to triggers
 
 
-[...document.querySelectorAll('[data-scroll-to]')].forEach(item => {
+_toConsumableArray(document.querySelectorAll('[data-scroll-to]')).forEach(function (item) {
   item.addEventListener('click', scrollToTargetListerner);
 });
 
@@ -153,10 +163,32 @@ if (contactFields) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
 /* harmony import */ var _scroll_into_view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scroll_into_view */ "./_javascript/modules/scroll_into_view.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
-/* harmony default export */ __webpack_exports__["default"] = (class {
-  constructor(sections, background, randomCeiling) {
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var _default =
+/*#__PURE__*/
+function () {
+  function _default(sections, background, randomCeiling) {
+    var _this = this;
+
+    _classCallCheck(this, _default);
+
     // Set arguments to properties
     this.backgroundEle = background;
     this.randomCeiling = randomCeiling; // some other properties
@@ -166,64 +198,73 @@ __webpack_require__.r(__webpack_exports__);
 
     _scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].add(sections); // add visibile listener
 
-    [...sections].forEach(item => {
-      item.addEventListener(_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, this.isVisible.bind(this));
+    _toConsumableArray(sections).forEach(function (item) {
+      item.addEventListener(_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"].event, _this.isVisible.bind(_this));
     });
   }
 
-  get active_section() {
-    return this.sectionInFocus;
-  }
-  /**
-   * bound to custom event listener
-   * called when element comes into view
-   */
+  _createClass(_default, [{
+    key: "isVisible",
 
+    /**
+     * bound to custom event listener
+     * called when element comes into view
+     */
+    value: function isVisible(_ref) {
+      var target = _ref.target,
+          focused = _ref.detail.focused;
 
-  isVisible({
-    target,
-    detail: {
-      focused
+      if (this.sectionInFocus !== target && focused) {
+        this.sectionInFocus = target;
+        this.changeBackground();
+      }
     }
-  }) {
-    if (this.sectionInFocus !== target && focused) {
-      this.sectionInFocus = target;
-      this.changeBackground();
-    }
-  }
-  /**
-   * changes background graphic by random
-   * TODO: maybe make more options here and break up
-   */
+    /**
+     * changes background graphic by random
+     * TODO: maybe make more options here and break up
+     */
 
-
-  changeBackground() {
-    const div = document.createElement('div'),
+  }, {
+    key: "changeBackground",
+    value: function changeBackground() {
+      var div = document.createElement('div'),
           backgroundClass = 'background',
           backgroundVisibleClass = 'background--visible';
-    let random; // get a new random number differnt from the last
+      var random; // get a new random number differnt from the last
 
-    do random = Math.floor(Math.random() * this.randomCeiling) + 1; while (random === this.prevRandom);
+      do {
+        random = Math.floor(Math.random() * this.randomCeiling) + 1;
+      } while (random === this.prevRandom);
 
-    this.prevRandom = random; // find and remove old backgrounds element when
-    // transition has finished
+      this.prevRandom = random; // find and remove old backgrounds element when
+      // transition has finished
 
-    [...this.backgroundEle.children].forEach(child => {
-      child.classList.remove(backgroundVisibleClass);
-      child.addEventListener('transitionend', item => {
-        item.target.remove();
-      });
-    }); // add new background
+      _toConsumableArray(this.backgroundEle.children).forEach(function (child) {
+        child.classList.remove(backgroundVisibleClass);
+        child.addEventListener('transitionend', function (item) {
+          item.target.remove();
+        });
+      }); // add new background
 
-    div.classList.add(backgroundClass, `${backgroundClass}__${random}`);
-    this.backgroundEle.appendChild(div); // add the class to trigger transition
 
-    setTimeout(() => {
-      div.classList.add(backgroundVisibleClass);
-    }, 5);
-  }
+      div.classList.add(backgroundClass, "".concat(backgroundClass, "__").concat(random));
+      this.backgroundEle.appendChild(div); // add the class to trigger transition
 
-});
+      setTimeout(function () {
+        div.classList.add(backgroundVisibleClass);
+      }, 5);
+    }
+  }, {
+    key: "active_section",
+    get: function get() {
+      return this.sectionInFocus;
+    }
+  }]);
+
+  return _default;
+}();
+
+
 
 /***/ }),
 
@@ -238,10 +279,28 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
 /* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_0__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 
-class ScrollIntoView {
-  constructor() {
+
+var ScrollIntoView =
+/*#__PURE__*/
+function () {
+  function ScrollIntoView() {
+    _classCallCheck(this, ScrollIntoView);
+
     // Set arguments to properties
     this.eventLabel = 'is_visible';
     this.watchArray = []; // Utility variables for `requestAnimationFrame`
@@ -256,108 +315,128 @@ class ScrollIntoView {
     window.addEventListener('resize', this.resized.bind(this));
   }
 
-  get event() {
-    return this.eventLabel;
-  }
+  _createClass(ScrollIntoView, [{
+    key: "add",
 
-  get watching() {
-    return this.watchArray;
-  }
-  /**
-   * add elements to watch and trigger events from
-   * does not work with single node return and must be
-   * a nodeList or htmlcollection
-   * TODO: make work for single or collection of nodes
-   */
+    /**
+     * add elements to watch and trigger events from
+     * does not work with single node return and must be
+     * a nodeList or htmlcollection
+     * TODO: make work for single or collection of nodes
+     */
+    value: function add(nodeList) {
+      var _this = this;
 
-
-  add(nodeList) {
-    this.watchArray = this.watchArray.concat( // make sure not to add duplicates
-    [...nodeList].filter(item => this.watchArray.indexOf(item) < 0));
-    this.setup();
-  }
-  /**
-   * remove elements from watch
-   */
-
-
-  remove(nodeList) {
-    this.watchArray = this.watchArray.filter(item => [...nodeList].indexOf(item) < 0);
-    this.setup();
-  }
-  /**
-   * getting dimensions info
-   * and other layout information
-   */
-
-
-  setup() {
-    this.windowHeight = window.innerHeight;
-    this.target = window.scrollY || window.pageYOffset;
-    this.startAnimation();
-  }
-  /**
-   * Acts as a throttle for scrolling listener
-   * checks to see if animation frame has been
-   * requested and if so then let it handle the
-   * callback
-   */
-
-
-  startAnimation() {
-    if (!this.rafActive && this.watchArray.length > 0) {
-      this.rafActive = true;
-      this.rafId = requestAnimationFrame(this.updateAnimation.bind(this));
-    }
-  }
-  /**
-   * Request Animation Frame Callback
-   * This is the work horse function
-   * safe to place more complex logic
-   * here - but don't be greedy
-   */
-
-
-  updateAnimation() {
-    const height = this.windowHeight,
-          half = height / 2; // loops array and filters out visable elements
-    // and adds some info to use in the UI
-
-    this.watchArray.forEach(item => {
-      const rect = item.getBoundingClientRect(),
-            isVisable = rect.top < height && rect.bottom > 0;
-      let pixels;
-      if (!isVisable) return false; // simple math to show % of visable element on screen
-
-      pixels = height - rect.bottom;
-      pixels = height - (rect.top > 0 ? rect.top : 0) - (pixels > 0 ? pixels : 0);
-      item.dispatchEvent(new CustomEvent(this.eventLabel, {
-        bubbles: false,
-        detail: {
-          rect,
-          node: (pixels / rect.height).toFixed(3) * 1,
-          window: (pixels / height).toFixed(3) * 1,
-          focused: rect.top < half && rect.bottom > half
-        }
+      this.watchArray = this.watchArray.concat( // make sure not to add duplicates
+      _toConsumableArray(nodeList).filter(function (item) {
+        return _this.watchArray.indexOf(item) < 0;
       }));
-      return true;
-    });
-    this.rafActive = false;
-    cancelAnimationFrame(this.rafId);
-  } // bound to resize event
+      this.setup();
+    }
+    /**
+     * remove elements from watch
+     */
 
+  }, {
+    key: "remove",
+    value: function remove(nodeList) {
+      this.watchArray = this.watchArray.filter(function (item) {
+        return _toConsumableArray(nodeList).indexOf(item) < 0;
+      });
+      this.setup();
+    }
+    /**
+     * getting dimensions info
+     * and other layout information
+     */
 
-  resized() {
-    this.setup();
-  } // bound to scroll event
+  }, {
+    key: "setup",
+    value: function setup() {
+      this.windowHeight = window.innerHeight;
+      this.target = window.scrollY || window.pageYOffset;
+      this.startAnimation();
+    }
+    /**
+     * Acts as a throttle for scrolling listener
+     * checks to see if animation frame has been
+     * requested and if so then let it handle the
+     * callback
+     */
 
+  }, {
+    key: "startAnimation",
+    value: function startAnimation() {
+      if (!this.rafActive && this.watchArray.length > 0) {
+        this.rafActive = true;
+        this.rafId = requestAnimationFrame(this.updateAnimation.bind(this));
+      }
+    }
+    /**
+     * Request Animation Frame Callback
+     * This is the work horse function
+     * safe to place more complex logic
+     * here - but don't be greedy
+     */
 
-  scroll() {
-    this.target = window.scrollY || window.pageYOffset;
-    this.startAnimation();
-  }
+  }, {
+    key: "updateAnimation",
+    value: function updateAnimation() {
+      var _this2 = this;
 
-}
+      var height = this.windowHeight,
+          half = height / 2; // loops array and filters out visable elements
+      // and adds some info to use in the UI
+
+      this.watchArray.forEach(function (item) {
+        var rect = item.getBoundingClientRect(),
+            isVisable = rect.top < height && rect.bottom > 0;
+        var pixels;
+        if (!isVisable) return false; // simple math to show % of visable element on screen
+
+        pixels = height - rect.bottom;
+        pixels = height - (rect.top > 0 ? rect.top : 0) - (pixels > 0 ? pixels : 0);
+        item.dispatchEvent(new CustomEvent(_this2.eventLabel, {
+          bubbles: false,
+          detail: {
+            rect: rect,
+            node: (pixels / rect.height).toFixed(3) * 1,
+            window: (pixels / height).toFixed(3) * 1,
+            focused: rect.top < half && rect.bottom > half
+          }
+        }));
+        return true;
+      });
+      this.rafActive = false;
+      cancelAnimationFrame(this.rafId);
+    } // bound to resize event
+
+  }, {
+    key: "resized",
+    value: function resized() {
+      this.setup();
+    } // bound to scroll event
+
+  }, {
+    key: "scroll",
+    value: function scroll() {
+      this.target = window.scrollY || window.pageYOffset;
+      this.startAnimation();
+    }
+  }, {
+    key: "event",
+    get: function get() {
+      return this.eventLabel;
+    }
+  }, {
+    key: "watching",
+    get: function get() {
+      return this.watchArray;
+    }
+  }]);
+
+  return ScrollIntoView;
+}();
 
 /* harmony default export */ __webpack_exports__["default"] = (new ScrollIntoView());
 
@@ -371,41 +450,44 @@ class ScrollIntoView {
 /***/ (function(module, exports) {
 
 // Polyfill for creating CustomEvents on IE9/10/11
+
 // code pulled from:
 // https://github.com/d4tocchini/customevent-polyfill
 // https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent#Polyfill
-(function () {
+
+(function() {
   if (typeof window === 'undefined') {
     return;
   }
 
   try {
-    var ce = new window.CustomEvent('test', {
-      cancelable: true
-    });
+    var ce = new window.CustomEvent('test', { cancelable: true });
     ce.preventDefault();
-
     if (ce.defaultPrevented !== true) {
       // IE has problems with .preventDefault() on custom events
       // http://stackoverflow.com/questions/23349191
       throw new Error('Could not prevent default');
     }
   } catch (e) {
-    var CustomEvent = function (event, params) {
+    var CustomEvent = function(event, params) {
       var evt, origPrevent;
       params = params || {};
       params.bubbles = !!params.bubbles;
       params.cancelable = !!params.cancelable;
+
       evt = document.createEvent('CustomEvent');
-      evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+      evt.initCustomEvent(
+        event,
+        params.bubbles,
+        params.cancelable,
+        params.detail
+      );
       origPrevent = evt.preventDefault;
-
-      evt.preventDefault = function () {
+      evt.preventDefault = function() {
         origPrevent.call(this);
-
         try {
           Object.defineProperty(this, 'defaultPrevented', {
-            get: function () {
+            get: function() {
               return true;
             }
           });
@@ -413,7 +495,6 @@ class ScrollIntoView {
           this.defaultPrevented = true;
         }
       };
-
       return evt;
     };
 
@@ -421,6 +502,7 @@ class ScrollIntoView {
     window.CustomEvent = CustomEvent; // expose definition to window
   }
 })();
+
 
 /***/ })
 

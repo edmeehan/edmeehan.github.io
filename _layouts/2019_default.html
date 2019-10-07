@@ -10,7 +10,10 @@ layout: 2019_master
             <i class="fas fa-bars site-nav__toggle-open"></i>
         </button>
         <button type="button" aria-label="Show Contact Form" class="aside-message__btn-show button button--cta-1 js-aside-show" data-target="#aside-message">
-            <i class="fas fa-comment"></i><span>&nbsp;Send me a message</span>
+            <i class="fas fa-envelope"></i><span>&nbsp;Send me a message</span>
+        </button>
+        <button type="button" aria-label="Show Live Chat" class="aside-livechat__btn-show button button--cta-1 js-aside-show" data-target="#aside-livechat">
+            <i class="fas fa-comments"></i><span>&nbsp;Live Chat</span>
         </button>
         {{ content }}
         {%- if page.share -%}
@@ -19,5 +22,6 @@ layout: 2019_master
     </div>
     {% include aside-nav.html %}
     {% include aside-message.html %}
+    {% include aside-livechat.html %}
 </div>
 <!-- Page Layout End -->

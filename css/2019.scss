@@ -250,6 +250,23 @@ body {
     }
 }
 
+.aside-livechat {
+    background-color: $brand-green;
+    color: $brand-black;
+    padding: 1.5rem;
+    
+    &__btn-show {
+        position: fixed;
+        z-index: $z-menu;
+        right: 1rem;
+        bottom: 1rem;
+
+        > span {
+            display: none;
+        }
+    }
+}
+
 .share {
     position: fixed;
     left: 50%;
