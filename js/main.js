@@ -10,8 +10,9 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_change_background__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/modules/change_background */ "./_javascript/modules/change_background.js");
-/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
-/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _modules_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/modules/utilities */ "./_javascript/modules/utilities.js");
+/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/polyfill.js");
+/* harmony import */ var custom_event_polyfill__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(custom_event_polyfill__WEBPACK_IMPORTED_MODULE_2__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -19,6 +20,7 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 
 
@@ -40,12 +42,23 @@ function hideEndEvent(_ref) {
   }
 }
 
-function asideHideEvent(_ref2) {
-  var _ref2$detail = _ref2.detail;
-  _ref2$detail = _ref2$detail === void 0 ? {} : _ref2$detail;
-  var _ref2$detail$target = _ref2$detail.target,
-      target = _ref2$detail$target === void 0 ? null : _ref2$detail$target,
-      element = _ref2.element;
+function loadLiveChatScript() {
+  Object(_modules_utilities__WEBPACK_IMPORTED_MODULE_1__["loadScript"])(window.liveChatScriptPath);
+  docEle.removeEventListener('aside.show', liveChatOpen);
+}
+
+function liveChatOpen(_ref2) {
+  var _ref2$detail$target = _ref2.detail.target,
+      target = _ref2$detail$target === void 0 ? null : _ref2$detail$target;
+  if (target === '#aside-livechat') loadLiveChatScript();
+}
+
+function asideHideEvent(_ref3) {
+  var _ref3$detail = _ref3.detail;
+  _ref3$detail = _ref3$detail === void 0 ? {} : _ref3$detail;
+  var _ref3$detail$target = _ref3$detail.target,
+      target = _ref3$detail$target === void 0 ? null : _ref3$detail$target,
+      element = _ref3.element;
   var aside = element || document.querySelector(target); // add listener for end of transition event
 
   aside.addEventListener('transitionend', hideEndEvent); // add classes to trigger animation
@@ -56,12 +69,12 @@ function asideHideEvent(_ref2) {
   document.body.classList.remove('locked');
 }
 
-function asideShowEvent(_ref3) {
-  var _ref3$detail = _ref3.detail;
-  _ref3$detail = _ref3$detail === void 0 ? {} : _ref3$detail;
-  var _ref3$detail$target = _ref3$detail.target,
-      target = _ref3$detail$target === void 0 ? null : _ref3$detail$target,
-      element = _ref3.element;
+function asideShowEvent(_ref4) {
+  var _ref4$detail = _ref4.detail;
+  _ref4$detail = _ref4$detail === void 0 ? {} : _ref4$detail;
+  var _ref4$detail$target = _ref4$detail.target,
+      target = _ref4$detail$target === void 0 ? null : _ref4$detail$target,
+      element = _ref4.element;
   var aside = element || document.querySelector(target),
       labelName = target.substring(1),
       eventName = "show-".concat(labelName); // handle active aside first
@@ -90,18 +103,15 @@ function asideShowEvent(_ref3) {
 }
 
 function loadContactScript() {
-  var ref = document.getElementsByTagName('script')[0],
-      script = document.createElement('script');
-  script.src = window.contactScriptPath;
-  ref.parentNode.insertBefore(script, ref);
+  Object(_modules_utilities__WEBPACK_IMPORTED_MODULE_1__["loadScript"])(window.contactScriptPath);
 
   _toConsumableArray(contactFields).forEach(function (field) {
     field.removeEventListener('focus', loadContactScript);
   });
 }
 
-var scrollToTargetListerner = function scrollToTargetListerner(_ref4) {
-  var target = _ref4.target;
+var scrollToTargetListerner = function scrollToTargetListerner(_ref5) {
+  var target = _ref5.target;
   var name = target.dataset.scrollTo,
       targetNode = document.getElementById(name),
       rect = targetNode.getBoundingClientRect(),
@@ -112,6 +122,7 @@ var scrollToTargetListerner = function scrollToTargetListerner(_ref4) {
 
 if (docEle) {
   docEle.addEventListener('aside.show', asideShowEvent);
+  docEle.addEventListener('aside.show', liveChatOpen);
   docEle.addEventListener('aside.hide', asideHideEvent);
 
   _toConsumableArray(document.getElementsByClassName('js-aside-show')).forEach(function (asideShow) {
@@ -439,6 +450,27 @@ function () {
 }();
 
 /* harmony default export */ __webpack_exports__["default"] = (new ScrollIntoView());
+
+/***/ }),
+
+/***/ "./_javascript/modules/utilities.js":
+/*!******************************************!*\
+  !*** ./_javascript/modules/utilities.js ***!
+  \******************************************/
+/*! exports provided: loadScript */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadScript", function() { return loadScript; });
+var loadScript = function loadScript(path) {
+  var ref = document.getElementsByTagName('script')[0],
+      script = document.createElement('script');
+  script.src = path;
+  ref.parentNode.insertBefore(script, ref);
+};
+
+
 
 /***/ }),
 

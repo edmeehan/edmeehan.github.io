@@ -1,0 +1,44 @@
+.livechat {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+
+  &__messages {
+    flex: 5 0 auto;
+    padding: 4rem 0 1.5rem;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__message {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: $m-border-radius;
+
+    &--user {
+      background-color: rgba(black, 5%);
+      text-align: left;
+    }
+    &--me {
+      background-color: rgba(white, 10%);
+      text-align: right;
+    }
+  }
+
+  &__form {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 1.5rem;
+
+    &-input {
+      flex: 0 1 auto;
+      border-radius: $s-border-radius 0 0 $s-border-radius;
+    }
+    &-button {
+      flex: 0 0 auto;
+      border-radius: 0 $s-border-radius $s-border-radius 0;
+      box-shadow: none;
+    }
+  }
+}

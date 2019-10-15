@@ -1,4 +1,8 @@
 <div class="page__aside aside-livechat page--right page--med" id="aside-livechat" style="display: none;">
   <button type="button"  aria-label="Hide Live Chat" class="aside-livechat__btn-hide button button--small js-aside-hide" data-target="#aside-livechat"><i class="fas fa-times"></i></button>
-  <div id="livechat-app"></div>
+  
+  <section class="livechat" id="livechat-app">
+    <chat-messages :messages="messages" class="livechat__messages"></chat-messages>
+    <chat-form v-model.trim="message" @submit="sendMessage" class="livechat__form"></chat-form>
+  </section>
 </div>

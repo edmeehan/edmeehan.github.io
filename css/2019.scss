@@ -6,6 +6,7 @@
 @import 'typography';
 @import 'layout';
 @import 'forms';
+@import 'live-chat';
 
 // font size and baseline
 html,
@@ -253,8 +254,8 @@ body {
 .aside-livechat {
     background-color: $brand-green;
     color: $brand-black;
-    padding: 1.5rem;
-    
+    padding: 0 1.5rem;
+
     &__btn-show {
         position: fixed;
         z-index: $z-menu;
@@ -264,6 +265,11 @@ body {
         > span {
             display: none;
         }
+    }
+
+    &__btn-hide {
+        position: absolute;
+        top: 1.5rem;
     }
 }
 

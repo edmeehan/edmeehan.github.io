@@ -1,4 +1,5 @@
 import ChangeBackground from '@/modules/change_background';
+import { loadScript } from '@/modules/utilities';
 import 'custom-event-polyfill';
 
 const shadow = document.getElementById('page-shadow'),
@@ -20,6 +21,15 @@ function hideEndEvent({ target }) {
     this.removeEventListener('transitionend', hideEndEvent);
     window.activeAside = null;
   }
+}
+
+function loadLiveChatScript() {
+  loadScript(window.liveChatScriptPath);
+  docEle.removeEventListener('aside.show', liveChatOpen);
+}
+
+function liveChatOpen({ detail: { target = null } }) {
+  if (target === '#aside-livechat') loadLiveChatScript();
 }
 
 function asideHideEvent({ detail: { target = null } = {}, element }) {
@@ -61,11 +71,7 @@ function asideShowEvent({ detail: { target = null } = {}, element }) {
 }
 
 function loadContactScript() {
-  const ref = document.getElementsByTagName('script')[0],
-    script = document.createElement('script');
-
-  script.src = window.contactScriptPath;
-  ref.parentNode.insertBefore(script, ref);
+  loadScript(window.contactScriptPath);
   [...contactFields].forEach((field) => {
     field.removeEventListener('focus', loadContactScript);
   });
@@ -83,6 +89,7 @@ const scrollToTargetListerner = ({ target }) => {
 
 if (docEle) {
   docEle.addEventListener('aside.show', asideShowEvent);
+  docEle.addEventListener('aside.show', liveChatOpen);
   docEle.addEventListener('aside.hide', asideHideEvent);
 
   [...document.getElementsByClassName('js-aside-show')].forEach((asideShow) => {

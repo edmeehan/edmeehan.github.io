@@ -23,6 +23,7 @@
         "axios": "^0.18.1",
         "core-js": "^3.2.1",
         "custom-event-polyfill": "^1.0.7",
+        "js-cookie": "^2.2.1",
         "vue": "^2.6.10"
     }
 }
