@@ -9,9 +9,11 @@ layout: 2019_master
         <button type="button" aria-label="Show Menu" class="aside-nav__btn-show button button--cta-2 js-aside-show" data-target="#aside-nav">
             <i class="fas fa-bars site-nav__toggle-open"></i>
         </button>
+        {%- comment -%}
         <button type="button" aria-label="Show Contact Form" class="aside-message__btn-show button button--cta-1 js-aside-show" data-target="#aside-message">
             <i class="fas fa-envelope"></i><span>&nbsp;Send me a message</span>
         </button>
+        {%- endcomment -%}
         <button type="button" aria-label="Show Live Chat" class="aside-livechat__btn-show button button--cta-1 js-aside-show" data-target="#aside-livechat">
             <i class="fas fa-comments"></i><span>&nbsp;Live Chat</span>
         </button>
@@ -21,7 +23,10 @@ layout: 2019_master
         {%- endif -%}
     </div>
     {% include aside-nav.html %}
+    <!--googleoff: all-->
     {% include aside-message.html %}
     {% include aside-livechat.html %}
+    {% include cookie-notice.html %}
+    <!--googleon: all-->
 </div>
 <!-- Page Layout End -->

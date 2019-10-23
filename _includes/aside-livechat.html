@@ -3,6 +3,6 @@
   
   <section class="livechat" id="livechat-app">
     <chat-messages :messages="messages" class="livechat__messages"></chat-messages>
-    <chat-form v-model.trim="message" @submit="sendMessage" class="livechat__form"></chat-form>
+    <chat-form v-model.trim="message" :active="active" @submit="sendMessage" class="livechat__form"></chat-form>
   </section>
 </div>

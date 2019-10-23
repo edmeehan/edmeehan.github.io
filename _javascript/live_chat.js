@@ -16,28 +16,13 @@ new Vue({
       message: '',
       messages: [],
       liveChatId: null,
-      polling: null
+      polling: null,
+      active: false
     };
   },
   beforeMount() {
-    // check for livechat cookie
-    const id = Cookies.get('livechat');
-    if (!id) {
-      this.createChatID();
-    } else {
-      this.liveChatId = id;
-    }
-    // setup listener
-    const doc = document.getElementById('document');
-    doc.addEventListener('aside.show', ({ detail: { target } }) => {
-      if (target === '#aside-livechat') this.pollData();
-    });
-    doc.addEventListener('aside.hide', ({ detail: { target } }) => {
-      if (target === '#aside-livechat') clearInterval(this.polling);
-    });
-    // start polling for chat
-    this.getMessages();
-    this.pollData();
+    // get livechat cookie
+    this.initChat(Cookies.get('livechat'));
   },
   beforeDestroy() {
     clearInterval(this.polling);
@@ -48,27 +33,36 @@ new Vue({
       formData.set('message', this.message);
       formData.set('id', this.liveChatId);
 
-      axios.post(`${appScript}?postMessage`, formData)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      axios.post(`${appScript}?postMessage`, formData);
       this.clearMessage();
     },
     clearMessage() {
       this.message = '';
     },
-    createChatID() {
-      axios.post(`${appScript}?initChat`)
-        .then(({ data: { id } }) => {
+    initChat(chatID) {
+      const formData = new FormData();
+      formData.set('id', chatID);
+
+      // kick off the party
+      axios.post(`${appScript}?initChat`, formData)
+        .then(({ data: { id, active } }) => {
           Cookies.set('livechat', id, { expires: 30 });
           this.liveChatId = id;
-        })
-        .catch((error) => {
-          console.log(error);
+          this.active = active;
+          this.getMessages();
+          if (active) this.setupChatListeners();
         });
+    },
+    setupChatListeners() {
+      this.pollData();
+      // setup listener
+      const doc = document.getElementById('document');
+      doc.addEventListener('aside.show', ({ detail: { target } }) => {
+        if (target === '#aside-livechat') this.pollData();
+      });
+      doc.addEventListener('aside.hide', ({ detail: { target } }) => {
+        if (target === '#aside-livechat') clearInterval(this.polling);
+      });
     },
     pollData() {
       this.polling = setInterval(this.getMessages, 4000);
@@ -79,10 +73,9 @@ new Vue({
 
       axios.post(`${appScript}?polling`, formData)
         .then(({ data: { messages } }) => {
-          this.messages = messages;
-        })
-        .catch((error) => {
-          console.log(error);
+          if (this.messages.length !== messages.length) {
+            this.messages = messages;
+          }
         });
     }
   }

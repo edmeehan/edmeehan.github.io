@@ -20,6 +20,22 @@
         }
     }
 
+    // &__passive-notice { // .page__passive-notice
+    // }
+
+    // &__notice { //.page__notice
+    //     position: fixed;
+    //     z-index: $z-background;
+    //     transition: transform 300ms;
+    //     top: 5rem;
+    //     left: 1rem;
+    //     right: 1rem;
+
+    //     &.active {
+    //         transform: translateX(0%);
+    //     }
+    // }
+
     &__aside { //.page__aside
         height: 100vh;
         position: fixed;

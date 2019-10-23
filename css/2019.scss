@@ -260,7 +260,7 @@ body {
         position: fixed;
         z-index: $z-menu;
         right: 1rem;
-        bottom: 1rem;
+        top: 1rem;
 
         > span {
             display: none;
@@ -270,6 +270,30 @@ body {
     &__btn-hide {
         position: absolute;
         top: 1.5rem;
+    }
+
+    @media (min-width: $l-break) {
+        &__btn-show {
+            > span {
+                display: inline;
+            }
+        }
+    }
+}
+
+.cookie-notice {
+    background-color: $brand-black;
+    padding: .5rem;
+
+    &__text {
+        line-height: 1.5em;
+        color: $brand-white-text;
+    }
+
+    &__icon {
+        float: left;
+        margin-right: .5rem;
+        line-height: 1rem;
     }
 }
 

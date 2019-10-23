@@ -2,37 +2,64 @@
   display: flex;
   flex-direction: column;
   height: inherit;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  box-sizing: border-box;
 
   &__messages {
-    flex: 5 0 auto;
-    padding: 4rem 0 1.5rem;
+    flex: 5 0 0;
+    padding: 0;
     margin: 0;
     list-style: none;
+    overflow: scroll;
+    // box-shadow: inset 0px 2rem 1rem -1.5rem $brand-green;
   }
 
   &__message {
     margin-bottom: 1.5rem;
-    padding: 1rem;
-    border-radius: $m-border-radius;
 
     &--user {
+      text-align: right;
+      margin-left: 3rem;
+    }
+    &--user &-text {
       background-color: rgba(black, 5%);
-      text-align: left;
     }
     &--me {
-      background-color: rgba(white, 10%);
-      text-align: right;
+      text-align: left;
+      margin-right: 3rem;
     }
+    &--me &-text{
+      background-color: rgba(white, 10%);
+    }
+  }
+
+  &__message-text {
+    padding: 1rem;
+    border-radius: $m-border-radius;
+  }
+
+  &__message-time {
+    margin: 0 1.5rem;
+  }
+
+  &__message-icon {
+    float: left;
+    height: 3.5rem;
+    margin-right: 1rem;
+    border-radius: $circle-radius;
   }
 
   &__form {
     flex: 0 0 auto;
     display: flex;
     flex-direction: row;
-    padding-bottom: 1.5rem;
+    padding-top: 1rem;
 
     &-input {
       flex: 0 1 auto;
+      height: 5rem;
+      resize: none;
       border-radius: $s-border-radius 0 0 $s-border-radius;
     }
     &-button {

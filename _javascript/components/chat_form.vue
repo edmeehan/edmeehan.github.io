@@ -1,27 +1,34 @@
 <template>
   <div>
-    <input class="livechat__form-input"
+    <textarea class="livechat__form-input"
       :value="value"
+      :disabled="!active"
       @keyup.enter="submit"
       @input="input"
-      type="text"
-      placeholder="Write a message...">
-    <button class="livechat__form-button button button--small button--cta-1" aria-label="Send Message" @click="submit"><i class="fas fa-comment"></i></button>
+      :placeholder="placeholderText"></textarea>
+    <button :disabled="!active" class="livechat__form-button button button--small button--cta-1" aria-label="Send Message" @click="submit"><i class="fas fa-comment"></i></button>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    'value': String
+    'value': String,
+    'active': Boolean
   },
 
   methods: {
     submit() {
-      this.$emit('submit');
+      if (this.active) this.$emit('submit');
     },
     input(e) {
-      this.$emit('input', e.target.value)
+      if (this.active) this.$emit('input', e.target.value)
+    }
+  },
+
+  computed: {
+    placeholderText() {
+      return this.active ? 'Write a message...' : 'Live Chat is currently closed.'
     }
   }
 };

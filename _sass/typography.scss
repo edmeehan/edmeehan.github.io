@@ -23,6 +23,9 @@
   &-x-small {
     font-size: (12 / $size-units) + 0rem;
   }
+  &-tiny {
+    font-size: (10 / $size-units) + 0rem;
+  }
 }
 
 .overflow {

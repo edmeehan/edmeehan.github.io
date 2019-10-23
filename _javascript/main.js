@@ -1,3 +1,4 @@
+// import Cookies from 'js-cookie';
 import ChangeBackground from '@/modules/change_background';
 import { loadScript } from '@/modules/utilities';
 import 'custom-event-polyfill';
@@ -5,6 +6,7 @@ import 'custom-event-polyfill';
 const shadow = document.getElementById('page-shadow'),
   docEle = document.getElementById('document'),
   contactFields = document.querySelectorAll('#contact-form input, #contact-form textarea');
+  // cookieNotice = Cookies.get('cookienotice');
 
 // section manager controls background and
 // events when sections become visible
@@ -126,6 +128,10 @@ if (contactFields) {
     field.addEventListener('focus', loadContactScript);
   });
 }
+
+// if (!cookieNotice) {
+//   console.log(cookieNotice);
+// }
 
 // scroll to triggers
 [...document.querySelectorAll('[data-scroll-to]')].forEach((item) => {
