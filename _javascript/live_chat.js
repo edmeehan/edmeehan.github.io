@@ -41,7 +41,7 @@ new Vue({
     },
     initChat(chatID) {
       const formData = new FormData();
-      formData.set('id', chatID);
+      if (chatID) formData.set('id', chatID);
 
       // kick off the party
       axios.post(`${appScript}?initChat`, formData)
