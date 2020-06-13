@@ -14,7 +14,7 @@ module.exports = {
     main: path.resolve(__dirname, '_javascript/main.js'),
     contact_form: path.resolve(__dirname, '_javascript/contact_form.js'),
     page_index: path.resolve(__dirname, '_javascript/page_index.js'),
-    live_chat: path.resolve(__dirname, '_javascript/live_chat.js')
+    // live_chat: path.resolve(__dirname, '_javascript/live_chat.js') // feature disabled
   },
   output: {
     path: path.resolve(__dirname, 'js'),
