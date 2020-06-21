@@ -38,11 +38,18 @@ gtm_container_id: GTM-TGPQS29
 # General information
 phone: 1-858-876-8088
 
+# External Settings
+jekyll_get_json:
+  - data: testing
+    json: 'https://jsonplaceholder.typicode.com/posts/1'
+
 # Configuration options - https://jekyllrb.com/docs/configuration/options/
 markdown: kramdown
 error_mode: warn
 plugins:
   - github-pages
+  - jekyll-admin
+  - jekyll-get-json
   # - jekyll-redirect-from
 exclude:
   - node_modules
