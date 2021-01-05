@@ -20,7 +20,7 @@
     },
     "dependencies": {
         "animejs": "^3.2.0",
-        "axios": "^0.18.1",
+        "axios": "^0.21.1",
         "core-js": "^3.6.5",
         "custom-event-polyfill": "^1.0.7",
         "js-cookie": "^2.2.1",
